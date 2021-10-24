@@ -1,5 +1,5 @@
 import { Route } from './route.interface';
-import { RouteNames } from './routeNames.enum';
+import { RouteNames } from './route-names.enum';
 
 export const publicRoutes: Route[] = [
   {path: RouteNames.LOGIN, exact: true }

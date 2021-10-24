@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '../../routes';
-import { RouteNames } from '../../routes/routeNames.enum';
+import { RouteNames } from '../../routes/route-names.enum';
 
-const AppRouter:FC = () => {
+const AppRouter: FC = () => {
   const auth = false;
   return (
     auth ?
