@@ -1,7 +1,7 @@
 import $api from '../api';
 import { UserData } from '../models/user-data';
 
-const AUTH_PREFIX = 'auth';
+const AUTH_PREFIX = 'auth/';
 
 const login = async (email: string, password: string) => {
   return $api.post<UserData>(AUTH_PREFIX + 'login', {email, password})
