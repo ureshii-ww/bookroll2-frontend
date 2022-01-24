@@ -16,7 +16,7 @@ type Inputs = {
 const RegisterForm: FC = props => {
   const [isRegistered, setIsRegistered] = useState(false);
   const { control, handleSubmit, formState: { errors }, getValues } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> =  data => handleRegister(data.username, data.email, data.password);
+  const onSubmit: SubmitHandler<Inputs> = data => handleRegister(data.username, data.email, data.password);
 
   const handleRegister = async (username: string, email: string, password: string) => {
     try {
