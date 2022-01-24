@@ -3,7 +3,7 @@ import InputText from '../../UI/Input/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { SubmitHandler, useForm, Controller, useWatch } from 'react-hook-form';
 import AuthServices from '../../../services/auth.service';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 
 type Inputs = {
@@ -26,7 +26,7 @@ const RegisterForm: FC = props => {
       console.log(error?.response?.data?.message);
     }
   }
-  if (isRegistered) return <Redirect to={RouteNames.LOGIN}/>
+  if (isRegistered) return <Navigate to={RouteNames.LOGIN}/>
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

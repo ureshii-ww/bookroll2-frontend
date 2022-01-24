@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '../../routes';
 import { RouteNames } from '../../routes/route-names.enum';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -8,19 +8,19 @@ const AppRouter: FC = () => {
   const {isAuth, userData} = useAppSelector(state => state.auth);
   return (
     isAuth && userData ?
-      <Switch>
+      <Routes>
         {privateRoutes.map(route =>
           <Route {...route} key={route.path}/>
         )}
-        <Redirect to={`${RouteNames.USER_PROFILE_BASE}${userData.url}`}/>
-      </Switch>
+        <Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}`}/>
+      </Routes>
       :
-      <Switch>
+      <Routes>
         {publicRoutes.map(route =>
           <Route {...route} key={route.path}/>
         )}
-        <Redirect to={RouteNames.REGISTER}/>
-      </Switch>
+        <Navigate to={RouteNames.REGISTER}/>
+      </Routes>
   );
 };
 
