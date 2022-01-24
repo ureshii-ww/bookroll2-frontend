@@ -3,7 +3,7 @@ import InputText from '../../UI/Input/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { SubmitHandler, useForm, Controller, useWatch } from 'react-hook-form';
 import AuthServices from '../../../services/auth.service';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 
 type Inputs = {
@@ -14,19 +14,18 @@ type Inputs = {
 }
 
 const RegisterForm: FC = props => {
-  const [isRegistered, setIsRegistered] = useState(false);
+  const navigate = useNavigate();
   const { control, handleSubmit, formState: { errors }, getValues } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = data => handleRegister(data.username, data.email, data.password);
 
   const handleRegister = async (username: string, email: string, password: string) => {
     try {
       await AuthServices.register(username, email, password);
-      setIsRegistered(true);
+      navigate(RouteNames.LOGIN);
     } catch (error: any) {
       console.log(error?.response?.data?.message);
     }
   }
-  if (isRegistered) return <Navigate to={RouteNames.LOGIN}/>
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
