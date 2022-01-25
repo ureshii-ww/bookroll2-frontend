@@ -3,25 +3,28 @@ import React, { FC } from 'react';
 interface BookCardProps {
   isClubHistory: boolean,
   isOwner: boolean,
-  meetingNumber?: string,
-  title: string,
-  authors: string[],
-  year: string,
-  genres: string[]
+  bookData: {
+    title: string,
+    authors: string[],
+    year: string,
+    genres: string[],
+    meetingNumber?: string,
+  },
 }
 
 const BookCard: FC<BookCardProps> = (props) => {
-  const {isClubHistory, isOwner, meetingNumber, ...bookData} = props;
+  const {isClubHistory, isOwner, bookData, ...rest} = props;
+  const {title, authors, year, genres, meetingNumber} = bookData;
 
   return (
     <div className="book-card">
       <div className={!isClubHistory ? "book-card__head" : "book-card__head book-card__head--with-meeting"}>
         <div className="book-card__title">
-          <h4>{bookData.title}</h4>
+          <h4>{title}</h4>
         </div>
         <div className="book-card__authors">
-        <p>{bookData.authors}</p>
-      </div>
+          <p>{authors}</p>
+        </div>
         {meetingNumber &&
         <div className="book-card__meeting-number">
           <p>Собрание {meetingNumber}</p>
@@ -29,10 +32,10 @@ const BookCard: FC<BookCardProps> = (props) => {
       </div>
       <div className="book-card__footer">
         <div className="book-card__genres">
-          <p>{bookData.genres}</p>
+          <p>{genres}</p>
         </div>
         <div className="book-card__year">
-          <p>{bookData.year}</p>
+          <p>{year}</p>
         </div>
       </div>
     </div>
