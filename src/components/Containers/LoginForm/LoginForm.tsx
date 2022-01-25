@@ -27,7 +27,7 @@ const LoginForm: FC = props => {
                   rules={{ required: true, maxLength: 128 }}
                   control={control}
                   render={({ field }) => <InputText {...field} type="password"/>}/>
-      <SubmitButton innerText={'Войти'}/>
+      <SubmitButton>Войти</SubmitButton>
     </form>
   )
 };

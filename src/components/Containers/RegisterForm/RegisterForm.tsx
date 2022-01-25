@@ -52,7 +52,7 @@ const RegisterForm: FC = props => {
                     validate: value => value === getValues().password || 'Пароли должны совпадать'
                   }}
                   render={({ field }) => <InputText {...field} type="password"/>}/>
-      <SubmitButton innerText={'Зарегистрироваться'}/>
+      <SubmitButton>Зарегистрироваться</SubmitButton>
     </form>
   )
 };
