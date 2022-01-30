@@ -1,6 +1,5 @@
 import React, { FC, Fragment } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { privateRoutes, publicRoutes } from '../../routes';
 import { RouteNames } from '../../routes/route-names.enum';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import UserProfilePage from '../Pages/UserProfilePage/UserProfilePage';

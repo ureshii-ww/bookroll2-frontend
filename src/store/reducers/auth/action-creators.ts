@@ -2,7 +2,7 @@ import { AuthActionEnum, SetIsAuthAction, SetUserDataAction } from './types';
 import { UserData } from '../../../models/user-data';
 import { AppDispatch } from '../../index';
 import AuthService from '../../../services/auth.service';
-import $api from '../../../api';
+import $api, { setUserUrl } from '../../../api';
 
 export const AuthActionCreators = {
   setIsAuth: (auth: boolean): SetIsAuthAction => ({ type: AuthActionEnum.SET_IS_AUTH, payload: auth }),
@@ -18,6 +18,7 @@ export const AuthActionCreators = {
       dispatch(AuthActionCreators.setIsAuth(true));
       localStorage.setItem('userData', JSON.stringify(response.data));
       dispatch(AuthActionCreators.setUserData(response.data));
+      setUserUrl(response.data.url);
       $api.defaults.headers.common['Authorization'] = `Bearer ${response.headers['x-access-token']}`;
     } catch (error: any) {
       console.log(error.response?.data?.message);
