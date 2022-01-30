@@ -23,6 +23,7 @@ $api.interceptors.response.use(config => {
       const response = await axios.post(API_URL + 'auth/refresh',
         {userUrl: currentUserUrl}, {withCredentials: true});
       $api.defaults.headers.common['Authorization'] = `Bearer ${response.headers['x-access-token']}`
+      originalRequest.headers.Authorization = `Bearer ${response.headers['x-access-token']}`;
       return $api.request(originalRequest);
     } catch (error) {
       console.log('Not Authorized');
