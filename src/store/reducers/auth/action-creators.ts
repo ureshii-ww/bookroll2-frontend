@@ -13,7 +13,6 @@ export const AuthActionCreators = {
   login: (email: string, password: string) => async (dispatch: AppDispatch) => {
     try {
       const response = await AuthService.login(email, password);
-      console.log('im here')
       localStorage.setItem('isAuth', JSON.stringify(true));
       dispatch(AuthActionCreators.setIsAuth(true));
       localStorage.setItem('userData', JSON.stringify(response.data));
@@ -33,6 +32,7 @@ export const AuthActionCreators = {
       localStorage.removeItem('userData');
       dispatch(AuthActionCreators.setUserData(null));
       $api.defaults.headers.common['Authorization'] = '';
+      setUserUrl('');
     } catch (error: any) {
       console.log(error.response?.data?.message);
       throw error;
