@@ -6,10 +6,11 @@ import UserService from '../../../services/user.service';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
-  userUrl: string;
+  userUrl: string | undefined;
 }
 
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
+  const location = useLocation();
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
     username: null,
     color: null,
@@ -18,10 +19,10 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
     clubUrl: null
   });
   const avatarStyles: CSSProperties = {
-    backgroundColor: userInfo.color ? userInfo.color : 'FFF'
+    backgroundColor: userInfo.color || 'FFF'
   }
 
-  const [fetchInfo, isLoaded] = useFetch(async (userUrl: string) => {
+  const [fetchInfo, isLoaded, error] = useFetch(async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
   })
@@ -44,13 +45,13 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
           </div>
         </div>
         {isCurrentUser && <div>
-          <Link to={`${location.pathname}/settings`}/>
+          <Link to={`${location.pathname}/settings`}>Настройки</Link>
         </div>}
         {isCurrentUser && <div>
           <h3>
             {userInfo.clubname && userInfo.clubUrl ? 'Вы состоите в клубе' : 'Вы не состоите в клубе, но можете'}
           </h3>
-          <Link to={`/club/${userInfo.clubUrl}`}/>
+          <Link to={`/club/${userInfo.clubUrl}`}>{userInfo.clubname}</Link>
         </div>}
         {!isCurrentUser && <div>
           <h3>

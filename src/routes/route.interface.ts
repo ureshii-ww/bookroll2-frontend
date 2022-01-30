@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface Route {
   path: string;
-  component?: React.ComponentType;
+  element?: React.FC;
   exact?: boolean;
+  children?: Route[];
 }

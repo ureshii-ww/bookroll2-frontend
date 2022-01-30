@@ -9,5 +9,3 @@ export default {
 
 const Template: Story<SubmitButtonProps> = args => <SubmitButton {...args}/>
 
-export const Primary = Template.bind({});
-Primary.args = {innerText: 'Biba'};
