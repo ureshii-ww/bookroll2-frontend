@@ -22,12 +22,6 @@ export interface SetUserDataAction {
   payload: UserData | null;
 }
 
-// export interface SetAccessToken {
-//   type: AuthActionEnum.SET_ACCESS_TOKEN;
-//   payload: string | null;
-// }
-
 export type AuthAction =
   SetUserDataAction |
   SetIsAuthAction;
-  // SetAccessToken;

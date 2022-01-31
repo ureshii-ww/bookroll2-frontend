@@ -1,17 +1,20 @@
-import {useState} from "react";
+import { useState } from 'react';
+import { useActions } from './useActions';
 
 export const useFetch = (callback: any) => {
-  const [isLoaded, setIsLoaded] = useState(false)
   const [error, setError] = useState<any>(null);
+  const {setIsLoading} = useActions();
 
   const fetch = async (...args: any[]) => {
     try {
+      setIsLoading(true)
       await callback(...args);
-      setIsLoaded(true);
     } catch (e:any) {
       setError(e)
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  return [fetch, isLoaded, error]
+  return [fetch, error]
 }

@@ -3,6 +3,7 @@ import { BookData } from '../../../models/book-data';
 import { useFetch } from '../../../hooks/useFetch';
 import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 const RandomBookInfo = () => {
   const [bookData, setBookData] = useState<BookData>({
@@ -13,29 +14,26 @@ const RandomBookInfo = () => {
     description: '',
     genres: ['']
   })
-  const [isLoaded, setIsLoaded] = useState(false)
+  const { isLoading } = useAppSelector(state => state.event)
 
-  const [fetchData, isFetched, error] = useFetch(async () => {
+  const [getBook,  error] = useFetch(async () => {
     const response = await BookService.getRandomBook();
     setBookData(response.data);
-    setIsLoaded(isFetched);
   })
 
-  const [fetchConfirm, isConfirmed, errorConfirm] = useFetch(async (bookData: BookData) => {
+  const [confirmBook, errorConfirm] = useFetch(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
-    fetchData();
+    const response = await BookService.getRandomBook();
+    setBookData(response.data);
   })
 
   useEffect(() => {
-    fetchData()
+    getBook()
   }, [])
 
-  const handleConfirm = (bookData: BookData) => {
-    fetchConfirm(bookData)
-  }
 
   return (
-    isFetched ?
+    !isLoading ?
       <div>
         <img src={bookData.cover} alt={bookData.title}/>
         <h1>{bookData.title}</h1>
@@ -43,7 +41,8 @@ const RandomBookInfo = () => {
         <p>{bookData.genres.join(', ')}</p>
         <p>{bookData.year}</p>
         <p>{bookData.description}</p>
-        <MainButton onClick={() => fetchConfirm(bookData)}>Подтвердить</MainButton>
+        <MainButton onClick={() => confirmBook(bookData)}>Подтвердить</MainButton>
+        <MainButton onClick={() => getBook()}>Искать ещё</MainButton>
       </div> :
       <div>
         Loading

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { UserProfileInfo } from '../../../models/user-profile-info';
 import { useFetch } from '../../../hooks/useFetch';
 import UserService from '../../../services/user.service';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -11,6 +12,7 @@ interface UserProfileHeaderProps {
 
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
   const location = useLocation();
+  const { isLoading } = useAppSelector(state => state.event)
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
     username: null,
     color: null,
@@ -22,7 +24,7 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
     backgroundColor: userInfo.color || 'FFF'
   }
 
-  const [fetchInfo, isLoaded, error] = useFetch(async (userUrl: string) => {
+  const [fetchInfo, error] = useFetch(async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
   })
@@ -32,7 +34,7 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
   }, [])
 
   return (
-    isLoaded ?
+    !isLoading ?
       <div>
         <div>
           <div>
