@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ClubProfileInfo } from '../../../models/club-profile-info';
-import { useFetch } from '../../../hooks/useFetch';
+import { useRequest } from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
@@ -19,7 +19,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ isInClub, clubUrl, ...r
     bookToRead: null
   })
 
-  const [fetchInfo, error] = useFetch(async (clubUrl: string) => {
+  const [fetchInfo, error] = useRequest(async (clubUrl: string) => {
     const response = await ClubService.getClubProfileInfo(clubUrl);
     setClubInfo(response.data);
   })

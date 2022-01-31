@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BookData } from '../../../models/book-data';
-import { useFetch } from '../../../hooks/useFetch';
+import { useRequest } from '../../../hooks/useRequest';
 import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
@@ -16,12 +16,12 @@ const RandomBookInfo = () => {
   })
   const { isLoading } = useAppSelector(state => state.event)
 
-  const [getBook,  error] = useFetch(async () => {
+  const [getBook,  error] = useRequest(async () => {
     const response = await BookService.getRandomBook();
     setBookData(response.data);
   })
 
-  const [confirmBook, errorConfirm] = useFetch(async (bookData: BookData) => {
+  const [confirmBook, errorConfirm] = useRequest(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
     const response = await BookService.getRandomBook();
     setBookData(response.data);

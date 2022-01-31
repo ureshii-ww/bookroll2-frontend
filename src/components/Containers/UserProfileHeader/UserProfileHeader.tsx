@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { UserProfileInfo } from '../../../models/user-profile-info';
-import { useFetch } from '../../../hooks/useFetch';
+import { useRequest } from '../../../hooks/useRequest';
 import UserService from '../../../services/user.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
@@ -24,7 +24,7 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
     backgroundColor: userInfo.color || 'FFF'
   }
 
-  const [fetchInfo, error] = useFetch(async (userUrl: string) => {
+  const [fetchInfo, error] = useRequest(async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
   })

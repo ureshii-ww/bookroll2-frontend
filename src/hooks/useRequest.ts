@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useActions } from './useActions';
 
-export const useFetch = (callback: any) => {
+export const useRequest = (callback: any) => {
   const [error, setError] = useState<any>(null);
   const {setIsLoading} = useActions();
 
