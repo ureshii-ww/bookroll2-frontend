@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { RouteNames } from '../../routes/route-names.enum';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { RouteNames } from '../../../routes/route-names.enum';
 
-const Navbar:FC = () => {
-  const {userData} = useAppSelector(state => state.auth);
+const Navbar: FC = () => {
+  const { userData } = useAppSelector(state => state.auth);
 
   return (
     <div>
