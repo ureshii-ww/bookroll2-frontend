@@ -16,7 +16,7 @@ const RandomBookInfo = () => {
   })
   const { isLoading } = useAppSelector(state => state.event)
 
-  const [getBook,  error] = useRequest(async () => {
+  const [getBook,  errorGet] = useRequest(async () => {
     const response = await BookService.getRandomBook();
     setBookData(response.data);
   })

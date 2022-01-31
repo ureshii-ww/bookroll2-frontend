@@ -14,16 +14,18 @@ const AppRouter: FC = () => {
   return (
     <Fragment>
       <RemoveTrailingSlash/>
-      <Navbar/>
       {isAuth && userData ?
-        <Routes>
-          {/*{privateRoutes.map(route =>*/}
-          {/*  <Route {...route} key={route.path}/>*/}
-          {/*)}*/}
-          <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage/>}/>
-          <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage/>}/>
-          <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`}/>}/>
-        </Routes>
+        <Fragment>
+          <Navbar/>
+          <Routes>
+            {/*{privateRoutes.map(route =>*/}
+            {/*  <Route {...route} key={route.path}/>*/}
+            {/*)}*/}
+            <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage/>}/>
+            <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage/>}/>
+            <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`}/>}/>
+          </Routes>
+        </Fragment>
         :
         <Routes>
           {/*{publicRoutes.map(route =>*/}
