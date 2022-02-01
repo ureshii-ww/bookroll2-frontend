@@ -1,22 +1,26 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ClubProfileInfo } from '../../../models/club-profile-info';
 import { useRequest } from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import { RouteNames } from '../../../routes/route-names.enum';
 
 interface ClubProfileHeaderProps {
-  isInClub: boolean;
   clubUrl: string | undefined;
+  setIsMaster: (arg0: boolean) => (void);
 }
 
-const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ isInClub, clubUrl, ...rest }) => {
+const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, ...rest }) => {
   const location = useLocation();
   const { isLoading } = useAppSelector(state => state.event)
+  const { userData } = useAppSelector(state => state.auth)
   const [clubInfo, setClubInfo] = useState<ClubProfileInfo>({
     clubname: null,
     master: null,
-    bookToRead: null
+    bookToRead: null,
+    isMaster: false,
+    isInClub: false
   })
 
   const [fetchInfo, error] = useRequest(async (clubUrl: string) => {
@@ -28,10 +32,30 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ isInClub, clubUrl, ...r
     fetchInfo(clubUrl)
   }, [])
 
-  return (
-    <div>
+  useEffect(() => {
+    setIsMaster(clubInfo.isMaster)
+  }, [clubInfo])
 
-    </div>
+  return (
+    !isLoading ?
+      <div>
+        <div>
+          <h1>{clubInfo.clubname}</h1>
+        </div>
+        <div>Buttons</div>
+        <div>
+          <div>Книга</div>
+          <div>{clubInfo.bookToRead?.title}</div>
+          <div>{clubInfo.bookToRead?.authors.join(', ')}</div>
+        </div>
+        <div>
+          <div>Управляющий</div>
+          <Link to={`${RouteNames.USER_PROFILE_BASE}${clubInfo.master?.url}`}>{clubInfo.master?.username}</Link>
+        </div>
+      </div> :
+      <div>
+        Loading
+      </div>
   );
 };
 

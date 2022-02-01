@@ -6,6 +6,8 @@ export interface ClubProfileInfo {
   } | null,
   bookToRead: {
     title: string,
-    authors: string
-  } | null
+    authors: string[]
+  } | null,
+  isMaster: boolean,
+  isInClub: boolean
 }
