@@ -12,14 +12,14 @@ const UserProfilePage = () => {
   const isCurrentUser = useAppSelector(state => state.auth.userData?.url === userUrl)
 
   const userProfileTabs: TabButtonProps[] = [
-    {name: 'Книги', path: `${RouteNames.USER_PROFILE_BASE}${userUrl}/${RouteNames.USER_PROFILE_BOOKS}`},
-    {name: 'Рецензии', path: `${RouteNames.USER_PROFILE_BASE}${userUrl}/${RouteNames.USER_PROFILE_REVIEWS}`}
+    { name: 'Книги', path: `${RouteNames.USER_PROFILE_BASE}${userUrl}/${RouteNames.USER_PROFILE_BOOKS}` },
+    { name: 'Рецензии', path: `${RouteNames.USER_PROFILE_BASE}${userUrl}/${RouteNames.USER_PROFILE_REVIEWS}` }
   ]
 
   return (
     <div>
       <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl}/>
-      <ProfileTabs tabsData={userProfileTabs}/>
+      <ProfileTabs tabsData={userProfileTabs} url={userUrl}/>
     </div>
   );
 };

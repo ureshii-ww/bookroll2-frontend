@@ -9,6 +9,11 @@ export enum RouteNames {
   RANDOM_BOOK = '/random-book',
   CLUB_PROFILE = '/club/:clubUrl',
   CLUB_PROFILE_BASE = '/club/',
+  CLUB_PROFILE_RULES = 'rules',
+  CLUB_PROFILE_MEMBERS = 'members',
+  CLUB_PROFILE_BOOKS = 'books',
+  CLUB_PROFILE_REVIEWS = 'reviews',
+  CLUB_PROFILE_HISTORY = 'history',
   CLUB_SETTINGS = '/club/:clubUrl/settings',
-  CLUB_WHEEL = '/club/:clubUrl/wheel'
+  CLUB_WHEEL = '/club/:clubUrl/wheel',
 }

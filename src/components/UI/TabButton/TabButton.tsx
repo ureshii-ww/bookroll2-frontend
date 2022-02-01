@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Link, useMatch, useNavigate } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 
 export interface TabButtonProps{
   name: string;
@@ -9,7 +9,6 @@ export interface TabButtonProps{
 
 const TabButton: FC<TabButtonProps> = (props) => {
   const match = useMatch(props.path);
-  const navigate = useNavigate();
 
   return (
     <Link
