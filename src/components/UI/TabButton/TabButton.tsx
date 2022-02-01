@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import { useMatch, useNavigate } from 'react-router-dom';
+import React, { FC, ReactNode } from 'react';
+import { Link, useMatch, useNavigate } from 'react-router-dom';
 
-export interface TabButtonProps {
+export interface TabButtonProps{
   name: string;
   path: string;
-  counter?: number;
+  counter?: ReactNode;
 }
 
 const TabButton: FC<TabButtonProps> = (props) => {
@@ -12,12 +12,12 @@ const TabButton: FC<TabButtonProps> = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div
+    <Link
       className={!match? "nav-tab" : "nav-tab nav-tab--active"}
-      onClick={() => navigate(props.path)}
-    >
+      to={props.path}>
       <span>{props.name}</span>
-    </div>
+      {props.counter}
+    </Link>
   );
 };
 
