@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import UserProfileHeader from '../../Containers/UserProfileHeader/UserProfileHeader';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Outlet, Navigate } from 'react-router-dom';
 import ProfileTabs from '../../Containers/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
@@ -17,11 +17,18 @@ const UserProfilePage = () => {
   ]
 
   return (
-    <div>
-      <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl}/>
-      <ProfileTabs tabsData={userProfileTabs} url={userUrl}/>
-    </div>
-  );
+    userProfileTabs.map(tab => tab.path).some(path => path === location.pathname)
+      ?
+      <div>
+        <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl}/>
+        <ProfileTabs tabsData={userProfileTabs} url={userUrl}/>
+        <div>
+          <Outlet/>
+        </div>
+      </div>
+      :
+      <Navigate to={`${RouteNames.USER_PROFILE_BASE}${userUrl}/${RouteNames.USER_PROFILE_BOOKS}`} replace={true}/>
+  )
 };
 
 export default UserProfilePage;

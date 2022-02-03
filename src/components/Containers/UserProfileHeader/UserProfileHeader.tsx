@@ -4,6 +4,8 @@ import { UserProfileInfo } from '../../../models/user-profile-info';
 import { useRequest } from '../../../hooks/useRequest';
 import UserService from '../../../services/user.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import Modal from '../../UI/Modal/Modal';
+import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -31,7 +33,9 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
 
   useEffect(() => {
     fetchInfo(userUrl);
-  }, [])
+  }, [userUrl])
+
+  const [isShowCreateClubModal, setIsShowCreateClubModal] = useState(false);
 
   return (
     !isLoading ?
@@ -53,7 +57,11 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
           <h3>
             {userInfo.clubname && userInfo.clubUrl ? 'Вы состоите в клубе' : 'Вы не состоите в клубе, но можете'}
           </h3>
-          <Link to={`/club/${userInfo.clubUrl}`}>{userInfo.clubname}</Link>
+          {userInfo.clubname && userInfo.clubUrl
+            ?
+            <Link to={`/club/${userInfo.clubUrl}`}>{userInfo.clubname}</Link>
+            :
+            <TransparentButton onClick={() => setIsShowCreateClubModal(true)}>создать клуб</TransparentButton>}
         </div>}
         {!isCurrentUser && <div>
           <h3>
@@ -61,6 +69,7 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
           </h3>
           {userInfo.clubname && userInfo.clubUrl && <Link to={`/club/${userInfo.clubUrl}`}/>}
         </div>}
+        <Modal isShow={isShowCreateClubModal} onClose={() => setIsShowCreateClubModal(false)}>Biba</Modal>
       </div>
       :
       <div>
