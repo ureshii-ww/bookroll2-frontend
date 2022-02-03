@@ -8,8 +8,7 @@ export interface AuthState {
 
 export enum AuthActionEnum {
   SET_USER_DATA = 'SET_USER_DATA',
-  SET_IS_AUTH = 'SET_IS_AUTH',
-  SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN'
+  SET_IS_AUTH = 'SET_IS_AUTH'
 }
 
 export interface SetIsAuthAction {

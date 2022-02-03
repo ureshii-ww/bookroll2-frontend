@@ -6,6 +6,7 @@ import UserService from '../../../services/user.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import Modal from '../../UI/Modal/Modal';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
+import CreateClubForm from '../CreateClubForm/CreateClubForm';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -15,6 +16,7 @@ interface UserProfileHeaderProps {
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
   const location = useLocation();
   const { isLoading } = useAppSelector(state => state.event)
+  const authUserData = useAppSelector(state => state.auth.userData)
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
     username: null,
     color: null,
@@ -33,7 +35,7 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
 
   useEffect(() => {
     fetchInfo(userUrl);
-  }, [userUrl])
+  }, [userUrl, authUserData])
 
   const [isShowCreateClubModal, setIsShowCreateClubModal] = useState(false);
 
@@ -69,7 +71,9 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
           </h3>
           {userInfo.clubname && userInfo.clubUrl && <Link to={`/club/${userInfo.clubUrl}`}/>}
         </div>}
-        <Modal isShow={isShowCreateClubModal} onClose={() => setIsShowCreateClubModal(false)}>Biba</Modal>
+        <Modal isShow={isShowCreateClubModal} onClose={() => setIsShowCreateClubModal(false)}>
+          <CreateClubForm onClose={() => setIsShowCreateClubModal(false)}/>
+        </Modal>
       </div>
       :
       <div>
