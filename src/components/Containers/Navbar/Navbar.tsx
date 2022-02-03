@@ -12,8 +12,8 @@ const Navbar: FC = () => {
       <div>Theme switch</div>
       <div>
         <Link to={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>My Profile</Link>
-        <Link to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>My Club</Link>
-        <Link to={RouteNames.RANDOM_BOOK}>Random book</Link>
+        {userData?.club && <Link to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>My Club</Link>}
+        {userData?.club && <Link to={RouteNames.RANDOM_BOOK}>Random book</Link>}
       </div>
       <LogoutButton/>
     </div>
