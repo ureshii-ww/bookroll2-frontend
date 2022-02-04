@@ -45,6 +45,12 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
     setUserData(response.data);
   })
 
+  const [joinClub, joinError] = useRequest(async (clubUrl: string) => {
+    const response = await ClubService.joinClub(clubUrl);
+    localStorage.setItem('userData', JSON.stringify(response.data));
+    setUserData(response.data);
+  })
+
   return (
     !isLoading ?
       <div>
@@ -54,6 +60,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
         <div>
           {clubInfo.isMaster && <div>Wheel</div>}
           {clubInfo.isMaster && <div>Settings</div>}
+          {!clubInfo.isInClub && <TransparentButton onClick={() => joinClub(clubUrl)}>Вступить в клуб</TransparentButton>}
           {clubInfo.isInClub && <TransparentButton onClick={() => leaveClub(clubUrl)}>Выйти из клуба</TransparentButton>}
         </div>
         <div>

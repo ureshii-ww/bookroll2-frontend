@@ -13,6 +13,10 @@ const ClubService = {
     return $api.post<UserData>(CLUB_PREFIX + 'create', { clubname });
   },
 
+  joinClub: async (clubUrl: string) => {
+    return $api.post<UserData>(CLUB_PREFIX + clubUrl + '/join');
+  },
+
   leaveClub: async (clubUrl: string) => {
     return $api.post<UserData>(CLUB_PREFIX + clubUrl + '/leave');
   }
