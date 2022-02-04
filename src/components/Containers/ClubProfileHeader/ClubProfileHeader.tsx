@@ -5,6 +5,8 @@ import { useRequest } from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { RouteNames } from '../../../routes/route-names.enum';
+import TransparentButton from '../../UI/TransparentButton/TransparentButton';
+import { useActions } from '../../../hooks/useActions';
 
 interface ClubProfileHeaderProps {
   clubUrl: string | undefined;
@@ -15,6 +17,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
   const location = useLocation();
   const { isLoading } = useAppSelector(state => state.event)
   const { userData } = useAppSelector(state => state.auth)
+  const { setUserData } = useActions();
   const [clubInfo, setClubInfo] = useState<ClubProfileInfo>({
     clubname: null,
     master: null,
@@ -30,11 +33,17 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
 
   useEffect(() => {
     fetchInfo(clubUrl)
-  }, [])
+  }, [userData])
 
   useEffect(() => {
     setIsMaster(clubInfo.isMaster)
   }, [clubInfo])
+
+  const [leaveClub, leaveError] = useRequest(async (clubUrl: string) => {
+    const response = await ClubService.leaveClub(clubUrl);
+    localStorage.setItem('userData', JSON.stringify(response.data));
+    setUserData(response.data);
+  })
 
   return (
     !isLoading ?
@@ -42,7 +51,11 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
         <div>
           <h1>{clubInfo.clubname}</h1>
         </div>
-        <div>Buttons</div>
+        <div>
+          {clubInfo.isMaster && <div>Wheel</div>}
+          {clubInfo.isMaster && <div>Settings</div>}
+          {clubInfo.isInClub && <TransparentButton onClick={() => leaveClub(clubUrl)}>Выйти из клуба</TransparentButton>}
+        </div>
         <div>
           <div>Книга</div>
           <div>{clubInfo.bookToRead?.title}</div>

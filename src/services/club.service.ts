@@ -12,6 +12,10 @@ const ClubService = {
   createClub: async (clubname: string) => {
     return $api.post<UserData>(CLUB_PREFIX + 'create', { clubname });
   },
+
+  leaveClub: async (clubUrl: string) => {
+    return $api.post<UserData>(CLUB_PREFIX + clubUrl + '/leave');
+  }
 }
 
 export default ClubService;
