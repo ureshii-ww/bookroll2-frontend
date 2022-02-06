@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import UserProfileHeader from '../../Containers/UserProfileHeader/UserProfileHeader';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useLocation, useParams, Outlet, Navigate } from 'react-router-dom';
+import { useLocation, useParams, Outlet, Navigate, useOutletContext } from 'react-router-dom';
 import ProfileTabs from '../../Containers/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
+
+type ContextType = { isCurrentUser: boolean, userUrl: string }
 
 const UserProfilePage = () => {
   const location = useLocation();
@@ -23,7 +25,7 @@ const UserProfilePage = () => {
         <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl}/>
         <ProfileTabs tabsData={userProfileTabs} url={userUrl}/>
         <div>
-          <Outlet/>
+          <Outlet context={{isCurrentUser: isCurrentUser, userUrl: userUrl}}/>
         </div>
       </div>
       :
@@ -32,3 +34,7 @@ const UserProfilePage = () => {
 };
 
 export default UserProfilePage;
+
+export function useUserProfileContext() {
+  return useOutletContext<ContextType>();
+}

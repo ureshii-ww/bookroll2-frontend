@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 interface BookCardProps {
   isClubHistory: boolean,
   isOwner: boolean,
+  handleDelete: () => void,
   bookData: {
     title: string,
     authors: string[],
@@ -13,7 +14,7 @@ interface BookCardProps {
 }
 
 const BookCard: FC<BookCardProps> = (props) => {
-  const {isClubHistory, isOwner, bookData, ...rest} = props;
+  const {isClubHistory, isOwner, bookData, handleDelete, ...rest} = props;
   const {title, authors, year, genres, meetingNumber} = bookData;
 
   return (
@@ -28,6 +29,9 @@ const BookCard: FC<BookCardProps> = (props) => {
         {meetingNumber &&
         <div className="book-card__meeting-number">
           <p>Собрание {meetingNumber}</p>
+        </div>}
+        {isOwner && <div>
+          Delete
         </div>}
       </div>
       <div className="book-card__footer">
