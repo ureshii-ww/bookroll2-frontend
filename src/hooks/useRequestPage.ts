@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useActions } from './useActions';
 
-export const useRequest = (callback: any) => {
+export const useRequestPage = (callback: any) => {
   const [error, setError] = useState<any>(null);
-  const {setIsLoading} = useActions();
+  const { setIsLoadingPage } = useActions();
 
   const fetch = async (...args: any[]) => {
     try {
-      setIsLoading(true)
+      setIsLoadingPage(true)
       await callback(...args);
-    } catch (e:any) {
+    } catch (e: any) {
       setError(e)
     } finally {
-      setIsLoading(false)
+      setIsLoadingPage(false)
     }
   }
 
