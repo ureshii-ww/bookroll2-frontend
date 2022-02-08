@@ -6,8 +6,6 @@ import ProfileTabs from '../../Containers/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 
-type ContextType = { isCurrentUser: boolean, userUrl: string }
-
 const UserProfilePage = () => {
   const location = useLocation();
   const { userUrl } = useParams();
@@ -34,6 +32,8 @@ const UserProfilePage = () => {
 };
 
 export default UserProfilePage;
+
+type ContextType = { isCurrentUser: boolean, userUrl: string }
 
 export function useUserProfileContext() {
   return useOutletContext<ContextType>();

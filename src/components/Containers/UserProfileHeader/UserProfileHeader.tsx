@@ -1,12 +1,13 @@
 import React, { CSSProperties, FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { UserProfileInfo } from '../../../models/user-profile-info';
-import { useRequest } from '../../../hooks/useRequest';
+import { useRequestPage } from '../../../hooks/useRequestPage';
 import UserService from '../../../services/user.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import Modal from '../../UI/Modal/Modal';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import CreateClubForm from '../CreateClubForm/CreateClubForm';
+import { RouteNames } from '../../../routes/route-names.enum';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -15,7 +16,7 @@ interface UserProfileHeaderProps {
 
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
   const location = useLocation();
-  const { isLoading } = useAppSelector(state => state.event)
+  const { isLoadingPage } = useAppSelector(state => state.event)
   const authUserData = useAppSelector(state => state.auth.userData)
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
     username: null,
@@ -28,19 +29,19 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
     backgroundColor: userInfo.color || 'FFF'
   }
 
-  const [fetchInfo, error] = useRequest(async (userUrl: string) => {
+  const [fetchInfo, error] = useRequestPage(async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
   })
 
   useEffect(() => {
     fetchInfo(userUrl);
-  }, [userUrl, authUserData])
+  }, [authUserData])
 
   const [isShowCreateClubModal, setIsShowCreateClubModal] = useState(false);
 
   return (
-    !isLoading ?
+    !isLoadingPage ?
       <div>
         <div>
           <div>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import InputText from '../../UI/Input/InputText';
-import { useRequest } from '../../../hooks/useRequest';
+import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
 import { useActions } from '../../../hooks/useActions';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
@@ -18,7 +18,7 @@ const CreateClubForm: FC<CreateClubFormProps> = ({onClose}) => {
   const { setUserData } = useActions();
   const { control, handleSubmit, formState: { errors } } = useForm<Input>();
 
-  const [createClub, error] = useRequest(async (clubname: string) => {
+  const [createClub, error] = useRequestPage(async (clubname: string) => {
     const response = await ClubService.createClub(clubname);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);

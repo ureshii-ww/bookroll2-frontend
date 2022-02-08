@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { BookData } from '../../../models/book-data';
-import { useRequest } from '../../../hooks/useRequest';
+import { RandomBookData } from '../../../models/random-book-data';
+import { useRequestPage } from '../../../hooks/useRequestPage';
 import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
 const RandomBookInfo = () => {
-  const [bookData, setBookData] = useState<BookData>({
+  const [bookData, setBookData] = useState<RandomBookData>({
     title: '',
     authors: [''],
     year: '',
@@ -14,14 +14,14 @@ const RandomBookInfo = () => {
     description: '',
     genres: ['']
   })
-  const { isLoading } = useAppSelector(state => state.event)
+  const isLoading = useAppSelector(state => state.event.isLoadingPage)
 
-  const [getBook,  errorGet] = useRequest(async () => {
+  const [getBook,  errorGet] = useRequestPage(async () => {
     const response = await BookService.getRandomBook();
     setBookData(response.data);
   })
 
-  const [confirmBook, errorConfirm] = useRequest(async (bookData: BookData) => {
+  const [confirmBook, errorConfirm] = useRequestPage(async (bookData: RandomBookData) => {
     await BookService.confirmBook(bookData);
     const response = await BookService.getRandomBook();
     setBookData(response.data);

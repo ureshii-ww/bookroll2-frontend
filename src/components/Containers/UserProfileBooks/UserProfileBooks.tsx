@@ -1,36 +1,36 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import UserService from '../../../services/user.service';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
-import { BookData } from '../../../models/book-data';
+import { RandomBookData } from '../../../models/random-book-data';
 import BookCard from '../../UI/BookCard/BookCard';
 import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
+import { logger } from '@storybook/node-logger';
+import { useRequestTab } from '../../../hooks/useRequestTab';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useParams } from 'react-router-dom';
 
 const UserProfileBooks: FC = (props) => {
+  const {userUrl} = useParams();
   const chunkSize: number = 10;
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [booksArray, setBooksArray] = useState<BookData[]>([])
-  const [allBooksLength, setAllBooksLength] = useState<number>(11)
-  const { isCurrentUser, userUrl } = useUserProfileContext();
-
+  // const [isLoading, setIsLoading] = useState<boolean>(false)
+  const isLoading = useAppSelector(state => state.event.isLoadingTab);
+  const [booksArray, setBooksArray] = useState<RandomBookData[]>([])
+  const [isOut, setIsOut] = useState<boolean>(false)
+  const { isCurrentUser } = useUserProfileContext();
   const { pageNum, containerRef } = useInfiniteScroll();
 
-  const getBooksArray = async () => {
-    setIsLoading(true);
-    try {
-      const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
-      const all: BookData[] = [...booksArray, ...response.data];
-      setBooksArray([...all]);
-      setAllBooksLength(parseInt(response.headers['x-data-length']));
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setIsLoading(false)
+  const [fetchBooksArray, booksArrayError] = useRequestTab(async (userUrl: string, pageNum: number, chunkSize: number) => {
+    const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
+    const all: RandomBookData[] = [...booksArray, ...response.data];
+    setBooksArray([...all]);
+    if (all.length === parseInt(response.headers['x-data-length'])) {
+      setIsOut(true);
     }
-  }
+  })
 
   useEffect(() => {
-    if (booksArray.length < allBooksLength) {
-      getBooksArray();
+    if (!isOut) {
+      fetchBooksArray(userUrl, pageNum, chunkSize);
     }
   }, [pageNum])
 
@@ -41,7 +41,7 @@ const UserProfileBooks: FC = (props) => {
   return (
     <div>
       {booksArray.length > 0 && booksArray.map((book, index) => {
-        return index === booksArray.length - 1 && !isLoading && booksArray.length < allBooksLength
+        return index === booksArray.length - 1 && !isLoading && !isOut
           ?
           <div key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}
                ref={containerRef}>

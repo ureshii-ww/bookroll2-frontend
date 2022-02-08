@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { RouteNames } from '../../routes/route-names.enum';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import UserProfilePage from '../Pages/UserProfilePage/UserProfilePage';
@@ -10,9 +10,11 @@ import Navbar from '../Containers/Navbar/Navbar';
 import RandomBookPage from '../Pages/RandomBookPage/RandomBookPage';
 import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
+import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
+  const location = useLocation();
   return (
     <Fragment>
       <RemoveTrailingSlash/>
@@ -23,10 +25,12 @@ const AppRouter: FC = () => {
             {/*{privateRoutes.map(route =>*/}
             {/*  <Route {...route} key={route.path}/>*/}
             {/*)}*/}
-            <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage/>}>
+            <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname}/>}>
               <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks/>}/>
             </Route>
-            <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage/>}/>
+            <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname}/>}>
+              <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks/>}/>
+            </Route>
             <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage/>}/>
             <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`}/>}/>
           </Routes>

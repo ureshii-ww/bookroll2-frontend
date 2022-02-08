@@ -1,14 +1,14 @@
 import $api from '../api';
-import { BookData } from '../models/book-data';
+import { RandomBookData } from '../models/random-book-data';
 
 const BOOK_PREFIX = 'book/';
 
 const BookService = {
   getRandomBook: async () => {
-    return $api.get<BookData>(BOOK_PREFIX + 'random')
+    return $api.get<RandomBookData>(BOOK_PREFIX + 'random')
   },
 
-  confirmBook: async (bookData: BookData) => {
+  confirmBook: async (bookData: RandomBookData) => {
     console.log(bookData)
     return $api.post(BOOK_PREFIX + 'confirm', { book: bookData })
   }

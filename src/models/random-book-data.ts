@@ -1,4 +1,4 @@
-export interface BookData {
+export interface RandomBookData {
   title: string,
   authors: string[],
   year: string,

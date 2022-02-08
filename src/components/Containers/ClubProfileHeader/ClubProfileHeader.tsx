@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ClubProfileInfo } from '../../../models/club-profile-info';
-import { useRequest } from '../../../hooks/useRequest';
+import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { RouteNames } from '../../../routes/route-names.enum';
@@ -14,8 +14,7 @@ interface ClubProfileHeaderProps {
 }
 
 const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, ...rest }) => {
-  const location = useLocation();
-  const { isLoading } = useAppSelector(state => state.event)
+  const isLoading = useAppSelector(state => state.event.isLoadingPage)
   const { userData } = useAppSelector(state => state.auth)
   const { setUserData } = useActions();
   const [clubInfo, setClubInfo] = useState<ClubProfileInfo>({
@@ -26,7 +25,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
     isInClub: false
   })
 
-  const [fetchInfo, error] = useRequest(async (clubUrl: string) => {
+  const [fetchInfo, error] = useRequestPage(async (clubUrl: string) => {
     const response = await ClubService.getClubProfileInfo(clubUrl);
     setClubInfo(response.data);
   })
@@ -39,13 +38,13 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
     setIsMaster(clubInfo.isMaster)
   }, [clubInfo])
 
-  const [leaveClub, leaveError] = useRequest(async (clubUrl: string) => {
+  const [leaveClub, leaveError] = useRequestPage(async (clubUrl: string) => {
     const response = await ClubService.leaveClub(clubUrl);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
   })
 
-  const [joinClub, joinError] = useRequest(async (clubUrl: string) => {
+  const [joinClub, joinError] = useRequestPage(async (clubUrl: string) => {
     const response = await ClubService.joinClub(clubUrl);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
