@@ -1,7 +1,8 @@
-import { EventActionEnum, SetIsLoadingAction, SetNotification } from './types';
+import { EventActionEnum, SetIsLoadingPageAction, SetIsLoadingTabAction, SetNotification } from './types';
 
 export const EventActionCreators = {
-  setIsLoading: (value: boolean): SetIsLoadingAction => ({type: EventActionEnum.SET_IS_LOADING, payload: value}),
+  setIsLoadingPage: (value: boolean): SetIsLoadingPageAction => ({type: EventActionEnum.SET_IS_LOADING_PAGE, payload: value}),
+  setIsLoadingTab: (value: boolean): SetIsLoadingTabAction => ({type: EventActionEnum.SET_IS_LOADING_TAB, payload: value}) ,
   setNotification: (notification: Notification): SetNotification => ({
     type: EventActionEnum.SET_NOTIFICATION,
     payload: notification

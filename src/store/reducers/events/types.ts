@@ -1,15 +1,22 @@
 export interface EventState {
   notification: Notification | null,
-  isLoading: boolean
+  isLoadingPage: boolean,
+  isLoadingTab: boolean
 }
 
 export enum EventActionEnum {
-  SET_IS_LOADING = 'SET_IS_LOADING',
+  SET_IS_LOADING_PAGE = 'SET_IS_LOADING_PAGE',
+  SET_IS_LOADING_TAB = 'SET_IS_LOADING_TAB',
   SET_NOTIFICATION = 'SET_NOTIFICATION'
 }
 
-export interface SetIsLoadingAction {
-  type: EventActionEnum.SET_IS_LOADING;
+export interface SetIsLoadingPageAction {
+  type: EventActionEnum.SET_IS_LOADING_PAGE;
+  payload: boolean;
+}
+
+export interface SetIsLoadingTabAction {
+  type: EventActionEnum.SET_IS_LOADING_TAB;
   payload: boolean;
 }
 
@@ -19,5 +26,6 @@ export interface SetNotification {
 }
 
 export type EventAction =
-  SetIsLoadingAction |
-  SetNotification;
+  SetIsLoadingPageAction |
+  SetNotification |
+  SetIsLoadingTabAction;
