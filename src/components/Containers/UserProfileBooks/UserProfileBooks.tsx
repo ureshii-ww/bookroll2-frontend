@@ -4,7 +4,6 @@ import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePa
 import { RandomBookData } from '../../../models/random-book-data';
 import BookCard from '../../UI/BookCard/BookCard';
 import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
-import { logger } from '@storybook/node-logger';
 import { useRequestTab } from '../../../hooks/useRequestTab';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useParams } from 'react-router-dom';
@@ -12,7 +11,6 @@ import { useParams } from 'react-router-dom';
 const UserProfileBooks: FC = (props) => {
   const {userUrl} = useParams();
   const chunkSize: number = 10;
-  // const [isLoading, setIsLoading] = useState<boolean>(false)
   const isLoading = useAppSelector(state => state.event.isLoadingTab);
   const [booksArray, setBooksArray] = useState<RandomBookData[]>([])
   const [isOut, setIsOut] = useState<boolean>(false)
