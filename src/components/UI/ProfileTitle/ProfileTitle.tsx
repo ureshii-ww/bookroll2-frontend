@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import './profile-title.scss';
 
 interface ProfileTitleProps {
   title: string;
@@ -6,8 +7,8 @@ interface ProfileTitleProps {
 
 const ProfileTitle: FC<ProfileTitleProps> = ({ title, ...rest }) => {
   return (
-    <div>
-      <h1>{title}</h1>
+    <div className="profile-title">
+      <h1 className="profile-title-text">{title}</h1>
     </div>
   );
 };

@@ -1,0 +1,14 @@
+@import 'src/styles/variables-size';
+
+.user-header-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-header-avatar__emoji {
+  font-size: $font-size-x-x-large;
+}

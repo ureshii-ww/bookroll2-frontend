@@ -1,0 +1,29 @@
+@import './src/styles/variables-light';
+@import 'src/styles/variables-size';
+
+.navbar {
+  grid-area: navbar;
+  background-color: $light-navbar-background-color;
+  border-radius: $page-layout-radius 0 0 $page-layout-radius;
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__theme-switch {
+
+}
+
+.navbar__main-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 200px;
+
+  a {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,13 @@
+.user-profile-header {
+  display: grid;
+  grid-template-areas:
+    'title buttons'
+    'club club';
+  grid-template-columns: auto 200px;
+  grid-template-rows: auto 80px;
+}
+
+.user-profile-header__title-container {
+  display: flex;
+  justify-content: flex-start;
+}

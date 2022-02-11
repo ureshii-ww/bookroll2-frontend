@@ -1,0 +1,17 @@
+@import 'variables-light';
+@import 'variables-size';
+
+.app-layout {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  display: grid;
+  grid-template-areas: 'navbar page';
+  grid-template-columns: 120px auto;
+  background-color: $light-background-color;
+}
+
+.app-layout__page {
+  background-color: $light-page-background-color;
+  border-radius: 0 $page-layout-radius $page-layout-radius 0 ;
+}

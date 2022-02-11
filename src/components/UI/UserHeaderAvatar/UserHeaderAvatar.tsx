@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC } from 'react';
+import './user-header-avatar.scss';
 
 interface UserHeaderAvatarProps {
   emoji: string;
@@ -11,10 +12,8 @@ const UserHeaderAvatar: FC<UserHeaderAvatarProps> = ({ color, emoji, ...rest }) 
   };
 
   return (
-    <div>
-      <div style={avatarStyles}>
-        <span>{emoji}</span>
-      </div>
+    <div className="user-header-avatar" style={avatarStyles}>
+      <span className="user-header-avatar__emoji">{emoji}</span>
     </div>
   );
 };
