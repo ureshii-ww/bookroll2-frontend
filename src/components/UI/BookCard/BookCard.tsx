@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import TransparentButton from '../TransparentButton/TransparentButton';
 
 interface BookCardProps {
   isClubHistory: boolean,
@@ -30,9 +31,7 @@ const BookCard: FC<BookCardProps> = (props) => {
         <div className="book-card__meeting-number">
           <p>Собрание {meetingNumber}</p>
         </div>}
-        {isOwner && <div>
-          Delete
-        </div>}
+        {isOwner && <TransparentButton onClick={handleDelete}>Delete</TransparentButton>}
       </div>
       <div className="book-card__footer">
         <div className="book-card__genres">

@@ -1,14 +1,14 @@
 import React, { CSSProperties, FC } from 'react';
 
 interface UserHeaderAvatarProps {
-  emoji: string,
-  color: string
+  emoji: string;
+  color: string;
 }
 
-const UserHeaderAvatar: FC<UserHeaderAvatarProps> = ({color, emoji, ...rest}) => {
+const UserHeaderAvatar: FC<UserHeaderAvatarProps> = ({ color, emoji, ...rest }) => {
   const avatarStyles: CSSProperties = {
-    backgroundColor: color || 'FFF'
-  }
+    backgroundColor: color || 'FFF',
+  };
 
   return (
     <div>

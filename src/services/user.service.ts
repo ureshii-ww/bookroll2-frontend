@@ -12,9 +12,14 @@ const getUserBooks = async (userUrl: string, page: number, size: number) => {
   return $api.get<RandomBookData[]>(`${USER_PREFIX}${userUrl}/books?page=${page}&size=${size}`, )
 }
 
+const deleteBook = async (userUrl: string, index: number) => {
+  return $api.post<string>(`${USER_PREFIX}${userUrl}/deleteBook`, {index})
+}
+
 const UserService = {
   getUserProfileInfo,
-  getUserBooks
+  getUserBooks,
+  deleteBook
 }
 
 export default UserService;

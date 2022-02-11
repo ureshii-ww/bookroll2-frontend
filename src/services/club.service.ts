@@ -7,7 +7,7 @@ const CLUB_PREFIX = 'club/';
 
 const ClubService = {
   getClubProfileInfo: (clubUrl: string) => {
-    return $api.get<ClubProfileInfo>(CLUB_PREFIX + clubUrl + '/info')
+    return $api.get<ClubProfileInfo>(CLUB_PREFIX + clubUrl + '/info');
   },
 
   createClub: (clubname: string) => {
@@ -24,7 +24,14 @@ const ClubService = {
 
   getClubBooks: (clubUrl: string) => {
     return $api.get<ClubBooks[]>(CLUB_PREFIX + clubUrl + '/books');
-  }
-}
+  },
+
+  deleteClubBook: (clubUrl: string, userUrl: string, index: number) => {
+    return $api.post<string>(CLUB_PREFIX + clubUrl + '/deleteBook', {
+      userUrl,
+      index,
+    });
+  },
+};
 
 export default ClubService;
