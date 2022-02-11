@@ -6,17 +6,18 @@ export const useInfiniteScroll = () => {
 
   const containerRef = useCallback(node => {
     setLastElement(node);
-  }, [])
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
         const container = entries[0];
         if (container.isIntersecting) {
-          setPageNum(num => num + 1)
+          setPageNum(num => num + 1);
         }
-      }, { threshold: 0.3 }
-    )
+      },
+      { threshold: 0.3 }
+    );
 
     if (lastElement) {
       observer.observe(lastElement);
@@ -26,11 +27,11 @@ export const useInfiniteScroll = () => {
       if (lastElement) {
         observer.unobserve(lastElement);
       }
-    }
+    };
   }, [lastElement]);
 
   return {
     pageNum,
-    containerRef
-  }
-}
+    containerRef,
+  };
+};
