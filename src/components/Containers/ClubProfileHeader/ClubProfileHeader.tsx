@@ -24,7 +24,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
     isInClub: false
   })
 
-  const [fetchInfo, error] = useRequestPage(async (clubUrl: string) => {
+  const fetchInfo = useRequestPage(async (clubUrl: string) => {
     const response = await ClubService.getClubProfileInfo(clubUrl);
     setClubInfo(response.data);
     setIsMaster(response.data.isMaster);

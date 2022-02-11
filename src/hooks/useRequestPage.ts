@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { useActions } from './useActions';
+import { useNotification } from './useNotification';
 
 export const useRequestPage = (callback: any) => {
-  const [error, setError] = useState<any>(null);
   const { setIsLoadingPage } = useActions();
+  const addNotification = useNotification();
 
-  const fetch = async (...args: any[]) => {
+  return async (...args: any[]) => {
     try {
-      setIsLoadingPage(true)
+      setIsLoadingPage(true);
       await callback(...args);
     } catch (e: any) {
-      setError(e)
+      await addNotification(e.data?.message || e.data || 'Ошибка при запросе', 'error');
     } finally {
-      setIsLoadingPage(false)
+      setIsLoadingPage(false);
     }
-  }
-
-  return [fetch, error]
-}
+  };
+};

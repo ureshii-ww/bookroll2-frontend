@@ -18,7 +18,7 @@ const CreateClubForm: FC<CreateClubFormProps> = ({onClose}) => {
   const { setUserData } = useActions();
   const { control, handleSubmit, formState: { errors } } = useForm<Input>();
 
-  const [createClub, error] = useRequestPage(async (clubname: string) => {
+  const createClub = useRequestPage(async (clubname: string) => {
     const response = await ClubService.createClub(clubname);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);

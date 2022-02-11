@@ -7,6 +7,7 @@ import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
 import UserHeaderAvatar from '../../UI/UserHeaderAvatar/UserHeaderAvatar';
 import UserHeaderButtons from '../../UI/UserHeaderButtons/UserHeaderButtons';
 import UserHeaderClub from '../../UI/UserHeaderClub/UserHeaderClub';
+import './user-profile-header.scss';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -14,39 +15,36 @@ interface UserProfileHeaderProps {
 }
 
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
-  const { isLoadingPage } = useAppSelector(state => state.event)
-  const authUserData = useAppSelector(state => state.auth.userData)
+  const { isLoadingPage } = useAppSelector(state => state.event);
+  const authUserData = useAppSelector(state => state.auth.userData);
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
     username: null,
     color: null,
     emoji: null,
     clubname: null,
-    clubUrl: null
+    clubUrl: null,
   });
 
-  const [fetchInfo, error] = useRequestPage(async (userUrl: string) => {
+  const fetchInfo = useRequestPage(async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
-  })
+  });
 
   useEffect(() => {
     fetchInfo(userUrl);
-  }, [authUserData])
+  }, [authUserData]);
 
-  return (
-    !isLoadingPage ?
-      <div>
-        <div>
-          <UserHeaderAvatar color={userInfo.color || ''} emoji={userInfo.emoji || ''}/>
-          <ProfileTitle title={userInfo.username || ''}/>
-        </div>
-        <UserHeaderButtons isCurrentUser={isCurrentUser}/>
-        <UserHeaderClub clubUrl={userInfo.clubUrl} clubname={userInfo.clubname} isCurrentUser={isCurrentUser}/>
+  return !isLoadingPage ? (
+    <div className="user-profile-header">
+      <div className="user-profile-header__title-container">
+        <UserHeaderAvatar color={userInfo.color || ''} emoji={userInfo.emoji || ''} />
+        <ProfileTitle title={userInfo.username || ''} />
       </div>
-      :
-      <div>
-        LOADING
-      </div>
+      <UserHeaderButtons isCurrentUser={isCurrentUser} />
+      <UserHeaderClub clubUrl={userInfo.clubUrl} clubname={userInfo.clubname} isCurrentUser={isCurrentUser} />
+    </div>
+  ) : (
+    <div>LOADING</div>
   );
 };
 

@@ -21,19 +21,22 @@ const ClubProfileBooks: FC = () => {
     fetchBooksData(clubUrl);
   }, [clubUrl]);
 
-  const [fetchDeleteBook, deleteBookError] = useRequestPage(async (clubUrl: string, index: number, userUrl: string) => {
-    const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
-    if (response.data === 'Success') {
-      const tempArray = booksData;
-      const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl)
-      tempArray[userIndex].books.splice(index, 1);
-      setBooksData([...tempArray]);
+  const fetchDeleteBook = useRequestPage(
+    async (clubUrl: string, index: number, userUrl: string) => {
+      const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
+
+      if (response.data === 'Success') {
+        const tempArray = booksData;
+        const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl);
+        tempArray[userIndex].books.splice(index, 1);
+        setBooksData([...tempArray]);
+      }
     }
-  })
+  );
 
   const handleDelete = (index: number, userUrl: string) => {
     fetchDeleteBook(clubUrl, index, userUrl);
-  }
+  };
 
   return !isLoading && booksData.length > 0 ? (
     <div>
@@ -52,6 +55,6 @@ const ClubProfileBooks: FC = () => {
   ) : (
     <div>Loading...</div>
   );
-}
+};
 
 export default ClubProfileBooks;
