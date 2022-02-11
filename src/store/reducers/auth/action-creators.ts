@@ -10,7 +10,7 @@ export const AuthActionCreators = {
   setIsAuth: (auth: boolean): SetIsAuthAction => ({ type: AuthActionEnum.SET_IS_AUTH, payload: auth }),
   setUserData: (userData: UserData | null): SetUserDataAction => ({
     type: AuthActionEnum.SET_USER_DATA,
-    payload: userData
+    payload: userData,
   }),
   login: (email: string, password: string) => async (dispatch: AppDispatch) => {
     try {
@@ -46,7 +46,7 @@ export const AuthActionCreators = {
       const response = await ClubService.joinClub(clubUrl);
       localStorage.setItem('userData', JSON.stringify(response.data));
       dispatch(AuthActionCreators.setUserData(response.data));
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
       throw error;
     } finally {
@@ -56,14 +56,14 @@ export const AuthActionCreators = {
   leaveClub: (clubUrl: string) => async (dispatch: AppDispatch) => {
     dispatch(EventActionCreators.setIsLoadingPage(true));
     try {
-      const response = await ClubService.leaveClub(clubUrl)
+      const response = await ClubService.leaveClub(clubUrl);
       localStorage.setItem('userData', JSON.stringify(response.data));
       dispatch(AuthActionCreators.setUserData(response.data));
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
       throw error;
     } finally {
       dispatch(EventActionCreators.setIsLoadingPage(false));
     }
-  }
-}
+  },
+};

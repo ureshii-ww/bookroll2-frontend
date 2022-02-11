@@ -1,13 +1,17 @@
+import { Notification } from '../../../models/notification';
+
 export interface EventState {
-  notification: Notification | null,
-  isLoadingPage: boolean,
-  isLoadingTab: boolean
+  notifications: Notification[];
+  isLoadingPage: boolean;
+  isLoadingTab: boolean;
 }
 
 export enum EventActionEnum {
   SET_IS_LOADING_PAGE = 'SET_IS_LOADING_PAGE',
   SET_IS_LOADING_TAB = 'SET_IS_LOADING_TAB',
-  SET_NOTIFICATION = 'SET_NOTIFICATION'
+  SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
+  CREATE_NOTIFICATIONS = 'CREATE_NOTIFICATIONS',
+  DESTROY_NOTIFICATION = 'DESTROY_NOTIFICATION',
 }
 
 export interface SetIsLoadingPageAction {
@@ -20,12 +24,24 @@ export interface SetIsLoadingTabAction {
   payload: boolean;
 }
 
-export interface SetNotification {
-  type: EventActionEnum.SET_NOTIFICATION;
+export interface SetNotifications {
+  type: EventActionEnum.SET_NOTIFICATIONS;
+  payload: Notification[];
+}
+
+export interface CreateNotification {
+  type: EventActionEnum.CREATE_NOTIFICATIONS;
+  payload: Notification;
+}
+
+export interface DestroyNotification {
+  type: EventActionEnum.DESTROY_NOTIFICATION;
   payload: Notification;
 }
 
 export type EventAction =
-  SetIsLoadingPageAction |
-  SetNotification |
-  SetIsLoadingTabAction;
+  | SetIsLoadingPageAction
+  | SetNotifications
+  | SetIsLoadingTabAction
+  | CreateNotification
+  | DestroyNotification;
