@@ -9,8 +9,7 @@ const BookService = {
   },
 
   confirmBook: async (bookData: RandomBookData) => {
-    console.log(bookData)
-    return $api.post(BOOK_PREFIX + 'confirm', { book: bookData })
+    return $api.post(BOOK_PREFIX + 'confir', { book: bookData })
   }
 }
 

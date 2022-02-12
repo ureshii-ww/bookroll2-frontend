@@ -4,7 +4,7 @@ import { Notification, NotificationType } from '../models/notification';
 
 export const useCreateNotification = () => {
   const { setNotifications } = useActions();
-  const notifications = [...useAppSelector(state => state.event.notifications)];
+  const notifications = [...useAppSelector(state => state.notifications.notifications)];
 
   return (message: string, notificationType: NotificationType) => {
     const id = Date.now();

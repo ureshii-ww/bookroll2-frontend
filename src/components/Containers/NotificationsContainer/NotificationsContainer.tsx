@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import Notification from '../../UI/Notification/Notification';
 import './notification-container.scss';
 
 const NotificationsContainer: FC = () => {
-  const notifications = useAppSelector(state => state.event.notifications);
+  const notifications = useAppSelector(state => state.notifications.notifications);
 
   return (
     <div className="notification-container">
