@@ -43,6 +43,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
   const onSubmit: SubmitHandler<Inputs> = data => updateInfo(userUrl, data.username, data.color, chosenEmoji);
 
   return (
+    //TODO Сделать валидацию
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="username"
