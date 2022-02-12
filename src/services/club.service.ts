@@ -2,6 +2,7 @@ import $api from '../api';
 import { ClubProfileInfo } from '../models/club-profile-info';
 import { UserData } from '../models/user-data';
 import { ClubBooks } from '../models/club-books';
+import { ClubSettingsInfo } from '../models/club-settings-info';
 
 const CLUB_PREFIX = 'club/';
 
@@ -31,6 +32,14 @@ const ClubService = {
       userUrl,
       index,
     });
+  },
+
+  getSettingsInfo: (clubUrl: string) => {
+    return $api.get<ClubSettingsInfo>(`${CLUB_PREFIX}${clubUrl}/settingsInfo`);
+  },
+
+  updateSettings: (clubUrl: string, clubname: string, masterUrl: string, description: string) => {
+    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/updateSettings`, { clubname, masterUrl, description });
   },
 };
 
