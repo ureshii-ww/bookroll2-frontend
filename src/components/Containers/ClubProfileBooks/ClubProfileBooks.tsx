@@ -12,7 +12,7 @@ const ClubProfileBooks: FC = () => {
   const { isMaster, clubUrl } = useClubProfileContext();
   const isLoading = useAppSelector(state => state.event.isLoadingTab);
 
-  const [fetchBooksData, booksDataError] = useRequestTab(async (clubUrl: string) => {
+  const fetchBooksData = useRequestTab(async (clubUrl: string) => {
     const response = await ClubService.getClubBooks(clubUrl);
     setBooksData(response.data);
   });

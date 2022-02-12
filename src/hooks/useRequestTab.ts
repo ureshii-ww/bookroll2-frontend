@@ -1,20 +1,21 @@
-import { useState } from 'react';
 import { useActions } from './useActions';
+import { useNotification } from './useNotification';
 
 export const useRequestTab = (callback: any) => {
-  const [error, setError] = useState<any>(null)
   const { setIsLoadingTab } = useActions();
+  const addNotification = useNotification();
 
-  const fetch = async (...args: any[]) => {
+  return async (...args: any[]) => {
     setIsLoadingTab(true);
     try {
       await callback(...args);
-    } catch (error: any) {
-      setError(error);
+    } catch (e: any) {
+      await addNotification(
+        JSON.parse(e.request?.response)?.message || JSON.parse(e.response?.response)?.message || 'Ошибка при запросе',
+        'error'
+      );
     } finally {
       setIsLoadingTab(false);
     }
-  }
-
-  return [fetch, error]
-}
+  };
+};

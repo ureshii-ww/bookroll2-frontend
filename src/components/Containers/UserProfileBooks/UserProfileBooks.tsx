@@ -7,6 +7,7 @@ import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { useRequestTab } from '../../../hooks/useRequestTab';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useParams } from 'react-router-dom';
+import { useRequestPage } from '../../../hooks/useRequestPage';
 
 const UserProfileBooks: FC = props => {
   const { userUrl } = useParams();
@@ -17,7 +18,7 @@ const UserProfileBooks: FC = props => {
   const { isCurrentUser } = useUserProfileContext();
   const { pageNum, containerRef } = useInfiniteScroll();
 
-  const [fetchBooksArray, booksArrayError] = useRequestTab(
+  const fetchBooksArray = useRequestTab(
     async (userUrl: string, pageNum: number, chunkSize: number) => {
       const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
       const all: RandomBookData[] = [...booksArray, ...response.data];
@@ -28,7 +29,7 @@ const UserProfileBooks: FC = props => {
     }
   );
 
-  const [fetchDeleteBook, deleteBookError] = useRequestTab(async (userUrl: string, index: number) => {
+  const fetchDeleteBook = useRequestPage(async (userUrl: string, index: number) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
       const tempArray = booksArray;
