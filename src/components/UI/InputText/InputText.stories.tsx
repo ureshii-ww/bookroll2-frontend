@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react';
 import InputText, { InputProps } from './InputText';
 
 export default {
-  title: 'Components/Input with Text',
+  title: 'Components/InputText with Text',
   component: InputText
 } as Meta;
 

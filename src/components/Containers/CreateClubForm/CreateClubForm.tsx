@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import InputText from '../../UI/Input/InputText';
+import InputText from '../../UI/InputText/InputText';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
 import { useActions } from '../../../hooks/useActions';

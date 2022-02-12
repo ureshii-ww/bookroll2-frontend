@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import './user-header-buttons.scss';
+import { RouteNames } from '../../../routes/route-names.enum';
 
 interface UserHeaderButtonsProps {
   isCurrentUser: boolean;
 }
 
-const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({isCurrentUser, ...rest}) => {
-  const location = useLocation();
+const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({ isCurrentUser, ...rest }) => {
+  const { userUrl } = useParams();
 
   return (
     <div className="user-header-buttons">
-      {isCurrentUser && <Link to={`${location.pathname}/settings`}>Настройки</Link>}
+      {isCurrentUser && <Link to={`${RouteNames.USER_PROFILE_BASE}${userUrl}/settings`}>Настройки</Link>}
     </div>
   );
 };

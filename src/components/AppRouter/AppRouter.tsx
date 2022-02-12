@@ -12,6 +12,7 @@ import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
 import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
 import '../../styles/app-layout.scss';
+import UserSettings from '../Pages/UserSettings/UserSettings';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -27,6 +28,7 @@ const AppRouter: FC = () => {
               <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname} />}>
                 <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
               </Route>
+              <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
               <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname} />}>
                 <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
               </Route>

@@ -1,5 +1,5 @@
 import React, { FC, useState, } from 'react';
-import InputText from '../../UI/Input/InputText';
+import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { SubmitHandler, useForm, Controller, useWatch } from 'react-hook-form';
 import AuthServices from '../../../services/auth.service';

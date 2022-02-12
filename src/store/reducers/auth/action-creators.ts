@@ -65,5 +65,5 @@ export const AuthActionCreators = {
     } finally {
       dispatch(EventActionCreators.setIsLoadingPage(false));
     }
-  },
+  }
 };
