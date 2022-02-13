@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { useActions } from './useActions';
 import { useNotification } from './useNotification';
-import { AxiosError } from 'axios';
 
-export const useRequestPage = (callback: any) => {
+export const useRequestPage = (callback: (...args: any[]) => Promise<void>) => {
   const { setIsLoadingPage } = useActions();
   const addNotification = useNotification();
 

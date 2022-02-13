@@ -1,7 +1,7 @@
 import { useActions } from './useActions';
 import { useNotification } from './useNotification';
 
-export const useRequestTab = (callback: any) => {
+export const useRequestTab = (callback: (...args: any[]) => Promise<void>) => {
   const { setIsLoadingTab } = useActions();
   const addNotification = useNotification();
 
