@@ -1,6 +1,6 @@
 import $api from '../api';
 import { UserProfileInfo } from '../models/user-profile-info';
-import { RandomBookData } from '../models/random-book-data';
+import { BookData } from '../models/book-data';
 import { UserData } from '../models/user-data';
 import { UserAccountInfo } from '../models/user-account-info';
 
@@ -12,7 +12,7 @@ const UserService = {
   },
 
   getUserBooks: async (userUrl: string, page: number, size: number) => {
-    return $api.get<RandomBookData[]>(`${USER_PREFIX}${userUrl}/books?page=${page}&size=${size}`);
+    return $api.get<BookData[]>(`${USER_PREFIX}${userUrl}/books?page=${page}&size=${size}`);
   },
 
   deleteBook: async (userUrl: string, index: number) => {

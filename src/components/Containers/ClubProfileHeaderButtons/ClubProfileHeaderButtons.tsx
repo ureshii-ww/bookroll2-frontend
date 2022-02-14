@@ -15,7 +15,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({isInClub, 
 
   return (
     <div>
-      {isMaster && <div>Wheel</div>}
+      {isMaster && <Link to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/wheel`}>Wheel</Link>}
       {isMaster && <Link to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/settings`}>Settings</Link>}
       {!isInClub &&
       <TransparentButton onClick={() => joinClub(clubUrl)}>Вступить в клуб</TransparentButton>}

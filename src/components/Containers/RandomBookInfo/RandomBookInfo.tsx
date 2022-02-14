@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RandomBookData } from '../../../models/random-book-data';
+import { BookData } from '../../../models/book-data';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useNotification } from '../../../hooks/useNotification';
 
 const RandomBookInfo = () => {
-  const [bookData, setBookData] = useState<RandomBookData>({
+  const [bookData, setBookData] = useState<BookData>({
     title: '',
     authors: [''],
     year: '',
@@ -23,7 +23,7 @@ const RandomBookInfo = () => {
   });
 
   const addNotification = useNotification();
-  const confirmBook = useRequestPage(async (bookData: RandomBookData) => {
+  const confirmBook = useRequestPage(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
     await addNotification('Книга добавлена', 'success');
     const response = await BookService.getRandomBook();

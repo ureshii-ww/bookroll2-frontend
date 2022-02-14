@@ -41,6 +41,10 @@ const ClubService = {
   updateSettings: (clubUrl: string, clubname: string, masterUrl: string, description: string) => {
     return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/updateSettings`, { clubname, masterUrl, description });
   },
+
+  confirmBook: (clubUrl: string, book: string) => {
+    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/confirmBook`, {book});
+  }
 };
 
 export default ClubService;
