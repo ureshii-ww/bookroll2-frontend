@@ -1,5 +1,7 @@
 @import '~normalize.css';
+@import 'styles/themes';
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 
 * {
   box-sizing: border-box;
@@ -14,3 +16,4 @@ h1 {
 a {
   text-decoration: none;
 }
+

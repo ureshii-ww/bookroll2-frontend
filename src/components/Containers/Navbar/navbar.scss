@@ -1,10 +1,9 @@
-@import './src/styles/variables-light';
-@import 'src/styles/variables-size';
+@use 'src/styles/variables-size';
 
 .navbar {
   grid-area: navbar;
-  background-color: $light-navbar-background-color;
-  border-radius: $page-layout-radius 0 0 $page-layout-radius;
+  background-color: var(--navbar-background-color);
+  border-radius: variables-size.$page-layout-radius 0 0 variables-size.$page-layout-radius;
   padding: 25px 0;
   display: flex;
   flex-direction: column;

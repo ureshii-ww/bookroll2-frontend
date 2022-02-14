@@ -4,13 +4,14 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { RouteNames } from '../../../routes/route-names.enum';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import './navbar.scss';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 const Navbar: FC = () => {
   const { userData } = useAppSelector(state => state.auth);
 
   return (
     <div className="navbar">
-      <div>Theme switch</div>
+      <ThemeSwitch/>
       <div className="navbar__main-buttons">
         <Link to={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>My Profile</Link>
         {userData?.club && <Link to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>My Club</Link>}

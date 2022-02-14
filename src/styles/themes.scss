@@ -1,0 +1,22 @@
+@use 'variables-light';
+@use 'variables-dark';
+
+:root {
+  --background-color: #{variables-light.$background-color};
+  --page-background-color: #{variables-light.$page-background-color};
+  --navbar-background-color: #{variables-light.$navbar-background-color};
+  --accent-color: #{variables-light.$accent-color};
+  --dim-color: #{variables-light.$dim-color};
+  --main-text-color: #{variables-light.$main-text-color};
+  --link-text-color: #{variables-light.$link-text-color};
+}
+
+.dark {
+  --background-color: #{variables-dark.$background-color};
+  --page-background-color: #{variables-dark.$page-background-color};
+  --navbar-background-color: #{variables-dark.$navbar-background-color};
+  --accent-color: #{variables-dark.$accent-color};
+  --dim-color: #{variables-dark.$dim-color};
+  --main-text-color: #{variables-dark.$main-text-color};
+  --link-text-color: #{variables-dark.$link-text-color};
+}

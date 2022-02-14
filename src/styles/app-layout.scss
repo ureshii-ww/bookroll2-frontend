@@ -1,5 +1,4 @@
-@import 'variables-light';
-@import 'variables-size';
+@use 'variables-size';
 
 .app-layout {
   width: 100vw;
@@ -8,10 +7,10 @@
   display: grid;
   grid-template-areas: 'navbar page';
   grid-template-columns: 120px auto;
-  background-color: $light-background-color;
+  background-color: var(--background-color);
 }
 
 .app-layout__page {
-  background-color: $light-page-background-color;
-  border-radius: 0 $page-layout-radius $page-layout-radius 0 ;
+  background-color: var(--page-background-color);
+  border-radius: 0 variables-size.$page-layout-radius variables-size.$page-layout-radius 0 ;
 }
