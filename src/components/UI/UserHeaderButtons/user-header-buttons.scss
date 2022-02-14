@@ -2,3 +2,15 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.user-header-buttons__button {
+  a {
+    color: var(--dim-text-color);
+    &:visited {
+      color: var(--dim-text-color);
+    }
+    &:hover {
+      color: var(--dim-text-color);
+    }
+  }
+}

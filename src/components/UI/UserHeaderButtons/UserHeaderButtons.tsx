@@ -12,7 +12,11 @@ const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({ isCurrentUser, ...rest 
 
   return (
     <div className="user-header-buttons">
-      {isCurrentUser && <Link to={`${RouteNames.USER_PROFILE_BASE}${userUrl}/settings`}>Настройки</Link>}
+      {isCurrentUser && (
+        <div className="user-header-buttons__button">
+          <Link to={`${RouteNames.USER_PROFILE_BASE}${userUrl}/settings`}>Настройки</Link>
+        </div>
+      )}
     </div>
   );
 };

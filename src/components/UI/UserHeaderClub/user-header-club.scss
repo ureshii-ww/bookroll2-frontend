@@ -4,12 +4,9 @@
   display: flex;
 }
 
-.user-header-club__description {
+.user-header-club__container {
+  display: flex;
+  align-items: center;
   font-weight: 400;
-  font-size: $font-size-large;
-}
-
-.user-header-club__name {
-  font-weight: 400;
-  font-size: $font-size-large;
+  font-size: $font-size-x-large;
 }

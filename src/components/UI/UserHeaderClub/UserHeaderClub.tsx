@@ -18,27 +18,32 @@ const UserHeaderClub: FC<UserHeaderClubProps> = ({ isCurrentUser, clubname, club
     <div className="user-header-club">
       {isCurrentUser && (
         <Fragment>
-          <h3 className="user-header-club__description">
-            {clubname && clubUrl ? 'Вы состоите в клубе\u00A0' : 'Вы не состоите в клубе, но можете\u00A0'}
-          </h3>
+          <div className="user-header-club__container user-header-club__description">
+            <p>{clubname && clubUrl ? 'Вы состоите в клубе\u00A0' : 'Вы не состоите в клубе, но можете\u00A0'}</p>
+          </div>
           {clubname && clubUrl ? (
-            <Link to={`/club/${clubUrl}`} className="user-header-club__name">
-              {clubname}
-            </Link>
+            <div className="user-header-club__container user-header-club__name">
+              <Link to={`/club/${clubUrl}`}>{clubname}</Link>
+            </div>
           ) : (
-            <TransparentButton onClick={() => setIsShowCreateClubModal(true)}>создать клуб</TransparentButton>
+            <div className="user-header-club__container">
+              <TransparentButton  onClick={() => setIsShowCreateClubModal(true)}>
+                создать клуб
+              </TransparentButton>
+            </div>
+
           )}
         </Fragment>
       )}
       {!isCurrentUser && (
         <Fragment>
-          <h3 className="user-header-club__description">
-            {clubname && clubUrl ? 'Состоит в клубе\u00A0' : 'Не состоит ни в одном клубе\u00A0'}
-          </h3>
+          <div className="user-header-club__container user-header-club__description">
+            <p>{clubname && clubUrl ? 'Состоит в клубе\u00A0' : 'Не состоит ни в одном клубе\u00A0'}</p>
+          </div>
           {clubname && clubUrl && (
-            <Link to={`/club/${clubUrl}`} className="user-header-club__name">
-              {clubname}
-            </Link>
+            <div className="user-header-club__container user-header-club__name">
+              <Link to={`/club/${clubUrl}`}>{clubname}</Link>
+            </div>
           )}
         </Fragment>
       )}
