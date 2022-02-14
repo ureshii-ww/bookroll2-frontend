@@ -16,18 +16,26 @@ const Navbar: FC = () => {
     <div className="navbar">
       <ThemeSwitch />
       <div className="navbar__main-buttons">
-        <Link to={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>
+        <Link className="navbar__button" to={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>
           <ProfileSvg />
         </Link>
-        {userData?.club && (
-          <Link to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>
+        {userData?.club ? (
+          <Link className="navbar__button" to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>
             <ClubSvg />
           </Link>
+        ) : (
+          <div className="navbar__button navbar__button--disabled">
+            <ClubSvg />
+          </div>
         )}
-        {userData?.club && (
-          <Link to={RouteNames.RANDOM_BOOK}>
+        {userData?.club ? (
+          <Link className="navbar__button" to={RouteNames.RANDOM_BOOK}>
             <BookSvg />
           </Link>
+        ) : (
+          <div className="navbar__button navbar__button--disabled">
+            <BookSvg />
+          </div>
         )}
       </div>
       <LogoutButton />

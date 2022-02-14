@@ -21,6 +21,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, ...rest }) => {
           handleWinner={handleWinner}
           segments={wheelSegments}
           sizeOptions={{ canvasWidth: 600, canvasHeight: 600 }}
+          animationOptions={{type: 'spinToStop'}}
         />
       )}
       {currentStage === 'bookInfo' && winnerInfo && (

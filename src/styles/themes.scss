@@ -8,7 +8,10 @@
   --accent-color: #{variables-light.$accent-color};
   --dim-color: #{variables-light.$dim-color};
   --main-text-color: #{variables-light.$main-text-color};
+  --bold-text-color: #{variables-light.$bold-text-color};
+  --dim-text-color: #{variables-light.$dim-text-color};
   --link-text-color: #{variables-light.$link-text-color};
+  --link-text-color-hover: #{variables-light.$link-text-color-hover};
 }
 
 .dark {
@@ -18,5 +21,8 @@
   --accent-color: #{variables-dark.$accent-color};
   --dim-color: #{variables-dark.$dim-color};
   --main-text-color: #{variables-dark.$main-text-color};
+  --bold-text-color: #{variables-dark.$bold-text-color};
+  --dim-text-color: #{variables-dark.$dim-text-color};
   --link-text-color: #{variables-dark.$link-text-color};
+  --link-text-color-hover: #{variables-dark.$link-text-color-hover};
 }

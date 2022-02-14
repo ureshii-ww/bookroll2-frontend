@@ -7,7 +7,7 @@ const LogoutButton = () => {
   const { logout } = useActions();
 
   return (
-    <TransparentButton onClick={() => logout()}>
+    <TransparentButton className="navbar__button" onClick={() => logout()}>
       <LogoutSvg />
     </TransparentButton>
   );

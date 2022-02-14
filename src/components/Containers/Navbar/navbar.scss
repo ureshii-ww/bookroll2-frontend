@@ -13,17 +13,6 @@
   z-index: 0;
   position: relative;
 
-  svg {
-    color: variables-color.$navbar-icon;
-    fill: currentColor;
-    width: variables-size.$navbar-icons-size;
-    height: variables-size.$navbar-icons-size;
-
-    &:hover {
-      color: variables-color.$navbar-icon-hover;
-    }
-  }
-
   &::before {
     content: ' ';
     width: 50px;
@@ -58,7 +47,30 @@
   align-items: center;
   padding-bottom: 50px;
 
-  a {
+  a, div {
     margin-bottom: 20px;
+  }
+}
+
+.navbar__button {
+  svg {
+    color: variables-color.$navbar-icon;
+    fill: currentColor;
+    width: variables-size.$navbar-icons-size;
+    height: variables-size.$navbar-icons-size;
+
+    &:hover {
+      color: variables-color.$navbar-icon-hover;
+    }
+  }
+
+  &.navbar__button--disabled {
+    svg {
+      color: variables-color.$navbar-icon-disabled;
+
+      &:hover {
+        color: variables-color.$navbar-icon-disabled;
+      }
+    }
   }
 }
