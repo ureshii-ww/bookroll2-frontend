@@ -1,3 +1,5 @@
+@use 'src/styles/variables-size';
+
 .user-profile-header {
   display: grid;
   grid-template-areas:
@@ -5,7 +7,7 @@
     'club club';
   grid-template-columns: auto 200px;
   grid-template-rows: auto 80px;
-  padding: 20px 20px 0 20px;
+  padding: variables-size.$page-padding-top variables-size.$page-padding-side 0 variables-size.$page-padding-side;
 }
 
 .user-profile-header__title-container {

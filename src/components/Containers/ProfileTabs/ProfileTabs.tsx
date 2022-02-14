@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import TabButton, {TabButtonProps} from '../../UI/TabButton/TabButton';
-import { useParams } from 'react-router-dom';
+import TabButton, { TabButtonProps } from '../../UI/TabButton/TabButton';
+import './profile-tabs.scss';
 
 interface ProfileTabsProps {
-  url: string | undefined,
-  tabsData: TabButtonProps[]
+  url: string | undefined;
+  tabsData: TabButtonProps[];
 }
 
-const ProfileTabs: FC<ProfileTabsProps> = (props) => {
-  const {tabsData} = props;
+const ProfileTabs: FC<ProfileTabsProps> = props => {
+  const { tabsData } = props;
   return (
-    <div>
-      {tabsData.map(tab =>
-        <TabButton name={tab.name} path={tab.path} counter={tab.counter} key={`${props.url}-${tab.path}`}/>
-      )}
+    <div className="profile-tabs">
+      {tabsData.map(tab => (
+        <TabButton name={tab.name} path={tab.path} counter={tab.counter} key={`${props.url}-${tab.path}`} />
+      ))}
     </div>
   );
 };

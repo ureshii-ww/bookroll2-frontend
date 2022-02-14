@@ -12,6 +12,7 @@
   --dim-text-color: #{variables-light.$dim-text-color};
   --link-text-color: #{variables-light.$link-text-color};
   --link-text-color-hover: #{variables-light.$link-text-color-hover};
+  --border-color: #{variables-light.$border-color};
 }
 
 .dark {
@@ -25,4 +26,5 @@
   --dim-text-color: #{variables-dark.$dim-text-color};
   --link-text-color: #{variables-dark.$link-text-color};
   --link-text-color-hover: #{variables-dark.$link-text-color-hover};
+  --border-color: #{variables-dark.$border-color};
 }

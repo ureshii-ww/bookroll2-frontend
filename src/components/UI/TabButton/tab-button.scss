@@ -1,0 +1,38 @@
+@use 'src/styles/variables-size';
+
+.tab-button {
+  font-size: variables-size.$font-size-middle-small;
+  padding-right: 20px;
+  font-weight: 500;
+
+  span {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    position: relative;
+    color: var(--main-text-color);
+    &:hover {
+      color: var(--main-text-color);
+    }
+    &:visited {
+      color: var(--main-text-color);
+    }
+  }
+
+  &.tab-button--active {
+    font-weight: 700;
+
+    span {
+      color: var(--bold-text-color);
+      &:after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: var(--accent-color);
+        content: '';
+        height: 4px;
+        width: 100%;
+      }
+    }
+  }
+}

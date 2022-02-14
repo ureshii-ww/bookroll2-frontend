@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import './tab-button.scss';
 
 export interface TabButtonProps{
   name: string;
@@ -11,12 +12,13 @@ const TabButton: FC<TabButtonProps> = (props) => {
   const match = useMatch(props.path);
 
   return (
-    <Link
-      className={!match? "nav-tab" : "nav-tab nav-tab--active"}
-      to={props.path}>
-      <span>{props.name}</span>
-      {props.counter}
-    </Link>
+    <div className={`tab-button${match ? ' tab-button--active' : ''}`}>
+      <Link
+        to={props.path}>
+        <span>{props.name}</span>
+        {props.counter}
+      </Link>
+    </div>
   );
 };
 

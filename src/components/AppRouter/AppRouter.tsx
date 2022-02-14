@@ -16,6 +16,7 @@ import UserSettings from '../Pages/UserSettings/UserSettings';
 import ClubSettingsPage from '../Pages/ClubSettingsPage/ClubSettingsPage';
 import WheelPage from '../Pages/WheelPage/WheelPage';
 import Scrollbars from 'react-custom-scrollbars-2';
+import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileReviews';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -31,6 +32,7 @@ const AppRouter: FC = () => {
               <Routes>
                 <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname} />}>
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
+                  <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
                 </Route>
                 <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
                 <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname} />}>
