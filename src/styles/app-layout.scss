@@ -11,6 +11,9 @@
 }
 
 .app-layout__page {
+  overflow: hidden;
   background-color: var(--page-background-color);
-  border-radius: 0 variables-size.$page-layout-radius variables-size.$page-layout-radius 0;
+  border-radius: variables-size.$page-layout-radius;
+  z-index: 1;
+  position: relative;
 }

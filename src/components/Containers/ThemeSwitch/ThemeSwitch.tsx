@@ -3,6 +3,8 @@ import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import { useActions } from '../../../hooks/useActions';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ThemeStyleType } from '../../../store/reducers/theme/types';
+import {ReactComponent as SunSvg} from '../../../assets/svg/navbar-sun.svg';
+import {ReactComponent as MoonSvg} from '../../../assets/svg/navbar-moon.svg';
 
 const ThemeSwitch: FC = () => {
   const {setTheme} = useActions();
@@ -23,7 +25,10 @@ const ThemeSwitch: FC = () => {
 
   return (
     <div>
-      <TransparentButton onClick={switchTheme}>Switch Theme</TransparentButton>
+      <TransparentButton onClick={switchTheme}>
+        {currentTheme === 'light' && <SunSvg/>}
+        {currentTheme === 'dark' && <MoonSvg/>}
+      </TransparentButton>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 @use 'src/styles/variables-size';
+@use 'src/styles/variables-color';
 
 .navbar {
   grid-area: navbar;
@@ -9,6 +10,41 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  z-index: 0;
+  position: relative;
+
+  svg {
+    color: variables-color.$navbar-icon;
+    fill: currentColor;
+    width: variables-size.$navbar-icons-size;
+    height: variables-size.$navbar-icons-size;
+
+    &:hover {
+      color: variables-color.$navbar-icon-hover;
+    }
+  }
+
+  &::before {
+    content: ' ';
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: -50px;
+    background-color: var(--navbar-background-color);
+    z-index: 0;
+  }
+
+  &::after {
+    content: ' ';
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+    background-color: var(--navbar-background-color);
+    z-index: 0;
+  }
 }
 
 .navbar__theme-switch {
@@ -20,7 +56,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 200px;
+  padding-bottom: 50px;
 
   a {
     margin-bottom: 20px;
