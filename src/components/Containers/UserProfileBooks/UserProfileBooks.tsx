@@ -8,6 +8,7 @@ import { useRequestTab } from '../../../hooks/useRequestTab';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useParams } from 'react-router-dom';
 import { useRequestPage } from '../../../hooks/useRequestPage';
+import './user-profile-books.scss';
 
 const UserProfileBooks: FC = props => {
   const { userUrl } = useParams();
@@ -49,7 +50,7 @@ const UserProfileBooks: FC = props => {
   };
 
   return (
-    <div>
+    <div className="user-profile-books">
       {booksArray.length > 0 &&
         booksArray.map((book, index) => {
           return index === booksArray.length - 1 && !isLoading && !isOut ? (

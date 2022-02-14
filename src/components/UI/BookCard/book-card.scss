@@ -1,0 +1,68 @@
+@use 'src/styles/variables-color';
+@use 'src/styles/variables-size';
+
+$book-card-white-text: #FFF;
+$book-card-radius: 20px;
+$book-card-padding-top: 10px;
+$book-card-padding-side: 20px;
+$book-card-title-padding: 10px;
+$book-card-authors-padding: 5px;
+
+.book-card {
+  margin-bottom: 20px;
+}
+
+.book-card__head {
+  display: grid;
+  grid-template-areas:
+    'title delete'
+    'author author';
+  grid-template-columns: auto 24px;
+
+  @include variables-color.main-gradient;
+  color: $book-card-white-text;
+  border-radius: $book-card-radius $book-card-radius 0 0;
+  padding: $book-card-padding-top $book-card-padding-side ;
+  &--with-meeting {
+    grid-template-areas:
+      'title title delete'
+      'author meeting meeting';
+  }
+}
+
+.book-card__title {
+  grid-area: title;
+  font-size: variables-size.$font-size-x-large;
+  font-weight: 700;
+  padding: $book-card-title-padding 0;
+}
+
+.book-card__authors {
+  grid-area: author;
+  font-size: variables-size.$font-size-middle;
+  padding: $book-card-authors-padding 0;
+}
+
+.book-card__meeting-number {
+  grid-area: meeting;
+}
+
+.book-card__delete {
+  grid-area: delete;
+  padding-top: $book-card-title-padding;
+  svg {
+    color: $book-card-white-text;
+    width: variables-size.$font-size-middle;
+    height: variables-size.$font-size-middle;
+  }
+}
+
+.book-card__footer {
+  background-color: var(--book-card-background-color);
+  border-radius: 0 0 $book-card-radius $book-card-radius;
+  color: var(--main-text-color);
+  font-size: variables-size.$font-size-middle-small;
+  display: flex;
+  justify-content: space-between;
+  padding: $book-card-padding-top $book-card-padding-side;
+}
