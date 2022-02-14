@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import { useActions } from '../../../hooks/useActions';
 import { useAppSelector } from '../../../hooks/useAppSelector';
@@ -14,6 +14,12 @@ const ThemeSwitch: FC = () => {
     localStorage.setItem('themeStyle', newTheme);
     document.body.classList.toggle('dark');
   }
+
+  useEffect(() => {
+    if (currentTheme === 'dark') {
+      document.body.classList.add('dark');
+    }
+  },[])
 
   return (
     <div>
