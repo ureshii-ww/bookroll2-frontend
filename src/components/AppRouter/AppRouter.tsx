@@ -15,6 +15,7 @@ import '../../styles/app-layout.scss';
 import UserSettings from '../Pages/UserSettings/UserSettings';
 import ClubSettingsPage from '../Pages/ClubSettingsPage/ClubSettingsPage';
 import WheelPage from '../Pages/WheelPage/WheelPage';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -26,19 +27,21 @@ const AppRouter: FC = () => {
         <div className="app-layout">
           <Navbar />
           <div className="app-layout__page">
-            <Routes>
-              <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname} />}>
-                <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
-              </Route>
-              <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
-              <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname} />}>
-                <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
-              </Route>
-              <Route path={RouteNames.CLUB_SETTINGS} element={<ClubSettingsPage />} />
-              <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage/>}/>
-              <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
-              <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
-            </Routes>
+            <Scrollbars>
+              <Routes>
+                <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname} />}>
+                  <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
+                </Route>
+                <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
+                <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname} />}>
+                  <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
+                </Route>
+                <Route path={RouteNames.CLUB_SETTINGS} element={<ClubSettingsPage />} />
+                <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
+                <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
+                <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
+              </Routes>
+            </Scrollbars>
           </div>
         </div>
       ) : (
