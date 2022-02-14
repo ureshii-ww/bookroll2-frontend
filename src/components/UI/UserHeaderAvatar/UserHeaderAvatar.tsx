@@ -12,8 +12,10 @@ const UserHeaderAvatar: FC<UserHeaderAvatarProps> = ({ color, emoji, ...rest }) 
   };
 
   return (
-    <div className="user-header-avatar" style={avatarStyles}>
-      <span className="user-header-avatar__emoji">{emoji}</span>
+    <div className="user-header-avatar__container">
+      <div className="user-header-avatar" style={avatarStyles}>
+        <span className="user-header-avatar__emoji">{emoji}</span>
+      </div>
     </div>
   );
 };
