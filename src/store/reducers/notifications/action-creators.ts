@@ -1,5 +1,4 @@
 import { DeleteNotification, Notification, NotificationsActionsEnum, NotificationType, SetNotification } from './types';
-import notification from '../../../components/UI/Notification/Notification';
 import { AppDispatch } from '../../index';
 
 export const NotificationsActionCreators = {

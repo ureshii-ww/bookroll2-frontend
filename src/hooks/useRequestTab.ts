@@ -8,7 +8,7 @@ export const useRequestTab = (callback: (...args: any[]) => Promise<void>) => {
     try {
       await callback(...args);
     } catch (e: any) {
-      await addNotification(
+      addNotification(
         JSON.parse(e.request?.response)?.message || JSON.parse(e.response?.response)?.message || 'Ошибка при запросе',
         'error'
       );

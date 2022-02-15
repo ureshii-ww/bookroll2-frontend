@@ -34,7 +34,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
 
   const updateInfo = useRequestPage(async (userUrl: string, username: string, color: string, emoji: string) => {
     const response = await UserService.updateInfo(userUrl, username, color, emoji);
-    await addNotification('Настройки успешно обновлены', 'success');
+    addNotification('Настройки успешно обновлены', 'success');
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
   });

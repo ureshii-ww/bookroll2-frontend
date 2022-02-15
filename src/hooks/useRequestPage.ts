@@ -8,7 +8,7 @@ export const useRequestPage = (callback: (...args: any[]) => Promise<void>) => {
       setIsLoadingPage(true);
       await callback(...args);
     } catch (e: any) {
-      await addNotification(
+      addNotification(
         JSON.parse(e.request?.response)?.message || JSON.parse(e.response?.response)?.message || 'Ошибка при запросе',
         'error'
       );

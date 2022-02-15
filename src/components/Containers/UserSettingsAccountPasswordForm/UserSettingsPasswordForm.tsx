@@ -28,7 +28,7 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
   const updatePassword = useRequestPage(async (userUrl: string, oldPassword: string, newPassword: string) => {
     const response = await UserService.updatePassword(userUrl, oldPassword, newPassword);
     if (response.data === 'Success') {
-      await addNotification('Пароль успешно обновлён', 'success');
+      addNotification('Пароль успешно обновлён', 'success');
     }
   });
 

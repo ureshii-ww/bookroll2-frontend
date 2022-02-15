@@ -19,7 +19,7 @@ const WheelContainerFinish: FC<WheelContainerFinishProps> = ({winnerInfo, ...res
   const confirmBook = useRequestPage(async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo.book.id);
     if (response.data === 'Success') {
-      await addNotification('Книга успешно выбрана', 'success');
+      addNotification('Книга успешно выбрана', 'success');
       navigate(`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}`)
     }
   })

@@ -25,7 +25,7 @@ const RandomBookInfo = () => {
   const {addNotification} = useActions();
   const confirmBook = useRequestPage(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
-    await addNotification('Книга добавлена', 'success');
+    addNotification('Книга добавлена', 'success');
     const response = await BookService.getRandomBook();
     setBookData(response.data);
   });
