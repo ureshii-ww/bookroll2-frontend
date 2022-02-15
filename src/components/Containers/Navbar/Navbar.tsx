@@ -8,35 +8,35 @@ import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import { ReactComponent as ProfileSvg } from '../../../assets/svg/navbar_profile.svg';
 import { ReactComponent as ClubSvg } from '../../../assets/svg/navbar-club.svg';
 import { ReactComponent as BookSvg } from '../../../assets/svg/navbar-book.svg';
+import NavbarMainButton from '../../UI/NavbarMainButton/NavbarMainButton';
 
 const Navbar: FC = () => {
   const { userData } = useAppSelector(state => state.auth);
 
-  //TODO сделать активные кнопки
   return (
     <div className="navbar">
       <ThemeSwitch />
       <div className="navbar__main-buttons">
-        <Link className="navbar__button" to={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>
+        <NavbarMainButton path={`${RouteNames.USER_PROFILE_BASE}${userData?.url}`}>
           <ProfileSvg />
-        </Link>
+        </NavbarMainButton>
         {userData?.club ? (
-          <Link className="navbar__button" to={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>
+          <NavbarMainButton path={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}>
             <ClubSvg />
-          </Link>
+          </NavbarMainButton>
         ) : (
-          <div className="navbar__button navbar__button--disabled">
+          <NavbarMainButton disabled={true}>
             <ClubSvg />
-          </div>
+          </NavbarMainButton>
         )}
         {userData?.club ? (
-          <Link className="navbar__button" to={RouteNames.RANDOM_BOOK}>
+          <NavbarMainButton path={RouteNames.RANDOM_BOOK}>
             <BookSvg />
-          </Link>
+          </NavbarMainButton>
         ) : (
-          <div className="navbar__button navbar__button--disabled">
+          <NavbarMainButton disabled={true}>
             <BookSvg />
-          </div>
+          </NavbarMainButton>
         )}
       </div>
       <LogoutButton />

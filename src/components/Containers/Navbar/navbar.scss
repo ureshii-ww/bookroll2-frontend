@@ -73,4 +73,13 @@
       }
     }
   }
+
+  &.navbar__button--active {
+    svg{
+      filter: drop-shadow(0 0 4px variables-color.$navbar-icon);
+      &:hover {
+        color: variables-color.$navbar-icon;
+      }
+    }
+  }
 }
