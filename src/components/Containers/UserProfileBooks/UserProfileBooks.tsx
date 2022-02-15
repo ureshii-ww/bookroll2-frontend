@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import UserService from '../../../services/user.service';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
 import { BookData } from '../../../models/book-data';
@@ -19,21 +19,20 @@ const UserProfileBooks: FC = props => {
   const { isCurrentUser } = useUserProfileContext();
   const { pageNum, containerRef } = useInfiniteScroll();
 
-  const fetchBooksArray = useRequestTab(
-    async (userUrl: string, pageNum: number, chunkSize: number) => {
-      const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
-      const all: BookData[] = [...booksArray, ...response.data];
-      setBooksArray([...all]);
-      if (all.length === parseInt(response.headers['x-data-length'])) {
-        setIsOut(true);
-      }
+  const fetchBooksArray = useRequestTab(async (userUrl: string, pageNum: number, chunkSize: number) => {
+    const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
+    const all: BookData[] = [...booksArray, ...response.data];
+    setBooksArray([...all]);
+    if (all.length === parseInt(response.headers['x-data-length'])) {
+      setIsOut(true);
     }
-  );
+  });
 
   const fetchDeleteBook = useRequestPage(async (userUrl: string, index: number) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
-      const tempArray = booksArray;
+      //TODO: пофиксить баг с инфинайт скроллом
+      const tempArray = [...booksArray];
       tempArray.splice(index, 1);
       setBooksArray(tempArray);
     }

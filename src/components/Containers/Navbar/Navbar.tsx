@@ -12,6 +12,7 @@ import { ReactComponent as BookSvg } from '../../../assets/svg/navbar-book.svg';
 const Navbar: FC = () => {
   const { userData } = useAppSelector(state => state.auth);
 
+  //TODO сделать активные кнопки
   return (
     <div className="navbar">
       <ThemeSwitch />

@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { RouteNames } from '../../routes/route-names.enum';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import UserProfilePage from '../Pages/UserProfilePage/UserProfilePage';
@@ -21,6 +21,8 @@ import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileRevi
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
   const location = useLocation();
+  const cutPath = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
+
   return (
     <Fragment>
       <RemoveTrailingSlash />
@@ -30,12 +32,12 @@ const AppRouter: FC = () => {
           <div className="app-layout__page">
             <Scrollbars>
               <Routes>
-                <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={location.pathname} />}>
+                <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
                   <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
                 </Route>
                 <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
-                <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={location.pathname} />}>
+                <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
                   <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
                 </Route>
                 <Route path={RouteNames.CLUB_SETTINGS} element={<ClubSettingsPage />} />
