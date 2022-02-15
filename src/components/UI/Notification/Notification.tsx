@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { NotificationType } from '../../../models/notification';
+import { NotificationType } from '../../../store/reducers/notifications/types';
 import './notification.scss';
 
 interface NotificationProps {

@@ -1,16 +1,28 @@
-import { Notification } from '../../../models/notification';
+export type NotificationType = 'success' | 'error';
+
+export interface Notification {
+  message: string;
+  notificationType: NotificationType;
+  id: number;
+}
 
 export interface NotificationsState {
   notifications: Notification[];
 }
 
 export enum NotificationsActionsEnum {
-  SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
+  SET_NOTIFICATION = 'SET_NOTIFICATION',
+  DELETE_NOTIFICATION = 'DELETE_NOTIFICATION'
 }
 
-export interface SetNotifications {
-  type: NotificationsActionsEnum.SET_NOTIFICATIONS;
-  payload: Notification[];
+export interface SetNotification {
+  type: NotificationsActionsEnum.SET_NOTIFICATION;
+  payload: Notification;
 }
 
-export type NotificationsAction = SetNotifications;
+export interface DeleteNotification {
+  type: NotificationsActionsEnum.DELETE_NOTIFICATION;
+  payload: number;
+}
+
+export type NotificationsAction = SetNotification | DeleteNotification;

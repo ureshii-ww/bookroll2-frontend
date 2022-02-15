@@ -4,7 +4,7 @@ import { useRequestPage } from '../../../hooks/useRequestPage';
 import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useNotification } from '../../../hooks/useNotification';
+import { useActions } from '../../../hooks/useActions';
 
 const RandomBookInfo = () => {
   const [bookData, setBookData] = useState<BookData>({
@@ -22,7 +22,7 @@ const RandomBookInfo = () => {
     setBookData(response.data);
   });
 
-  const addNotification = useNotification();
+  const {addNotification} = useActions();
   const confirmBook = useRequestPage(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
     await addNotification('Книга добавлена', 'success');

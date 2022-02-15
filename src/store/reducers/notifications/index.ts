@@ -7,8 +7,17 @@ const initialState: NotificationsState = {
 
 export default function NotificationsReducer(state = initialState, action: NotificationsAction): NotificationsState {
   switch (action.type) {
-    case NotificationsActionsEnum.SET_NOTIFICATIONS:
-      return { ...state, notifications: action.payload };
+    case NotificationsActionsEnum.SET_NOTIFICATION:
+      return {
+        notifications: [
+          ...state.notifications.filter(notification => notification.id !== action.payload.id),
+          action.payload,
+        ],
+      };
+    case NotificationsActionsEnum.DELETE_NOTIFICATION:
+      return {
+        notifications: state.notifications.filter(notification => notification.id !== action.payload),
+      };
     default:
       return state;
   }

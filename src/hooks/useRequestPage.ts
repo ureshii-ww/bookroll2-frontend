@@ -1,9 +1,7 @@
 import { useActions } from './useActions';
-import { useNotification } from './useNotification';
 
 export const useRequestPage = (callback: (...args: any[]) => Promise<void>) => {
-  const { setIsLoadingPage } = useActions();
-  const addNotification = useNotification();
+  const { setIsLoadingPage, addNotification } = useActions();
 
   return async (...args: any[]) => {
     try {

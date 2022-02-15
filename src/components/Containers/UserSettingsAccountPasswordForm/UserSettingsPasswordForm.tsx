@@ -4,7 +4,7 @@ import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import UserService from '../../../services/user.service';
-import { useNotification } from '../../../hooks/useNotification';
+import { useActions } from '../../../hooks/useActions';
 
 interface UserSettingsPasswordFormProps {
   userUrl: string;
@@ -17,7 +17,7 @@ interface Inputs {
 }
 
 const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, ...rest }) => {
-  const addNotification = useNotification();
+  const {addNotification} = useActions();
   const {
     handleSubmit,
     control,

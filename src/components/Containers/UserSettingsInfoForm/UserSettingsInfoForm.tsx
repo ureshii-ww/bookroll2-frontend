@@ -7,7 +7,6 @@ import { useRequestPage } from '../../../hooks/useRequestPage';
 import UserService from '../../../services/user.service';
 import { useActions } from '../../../hooks/useActions';
 import EmojiButton from '../../UI/EmojiButton/EmojiButton';
-import { useNotification } from '../../../hooks/useNotification';
 
 interface UserSettingsInfoFormProps {
   username: string | null;
@@ -25,7 +24,7 @@ interface Inputs {
 const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, emoji, userUrl, ...rest }) => {
   const { setUserData } = useActions();
   const [chosenEmoji, setChosenEmoji] = useState<string>(emoji || '😎');
-  const addNotification = useNotification();
+  const { addNotification } = useActions();
 
   const {
     control,

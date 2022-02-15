@@ -5,9 +5,9 @@ import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
-import { useNotification } from '../../../hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
+import { useActions } from '../../../hooks/useActions';
 
 interface ClubSettingsFormProps {
   clubSettingsInfo: ClubSettingsInfo;
@@ -22,7 +22,7 @@ interface Inputs {
 
 const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl, ...rest }) => {
   const { clubname, description, members } = clubSettingsInfo;
-  const addNotification = useNotification();
+  const { addNotification } = useActions();
   const navigate = useNavigate();
   const {
     register,
@@ -59,7 +59,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
           </option>
         ))}
       </select>
-      <textarea {...register('description')} defaultValue={description}/>
+      <textarea {...register('description')} defaultValue={description} />
       <SubmitButton>Сохранить</SubmitButton>
     </form>
   );

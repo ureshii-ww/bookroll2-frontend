@@ -4,9 +4,9 @@ import WheelContainerBookData from '../WheelContainerBookData/WheelContainerBook
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
-import { useNotification } from '../../../hooks/useNotification';
 import { RouteNames } from '../../../routes/route-names.enum';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
+import { useActions } from '../../../hooks/useActions';
 
 interface WheelContainerFinishProps {
   readonly winnerInfo: WheelWinnerInfo;
@@ -15,7 +15,7 @@ interface WheelContainerFinishProps {
 const WheelContainerFinish: FC<WheelContainerFinishProps> = ({winnerInfo, ...rest}) => {
   const {clubUrl} = useParams();
   const navigate = useNavigate();
-  const addNotification = useNotification();
+  const { addNotification } = useActions();
   const confirmBook = useRequestPage(async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo.book.id);
     if (response.data === 'Success') {
