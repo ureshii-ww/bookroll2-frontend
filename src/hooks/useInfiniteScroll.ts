@@ -10,7 +10,7 @@ export const useInfiniteScroll = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
+      async entries => {
         const container = entries[0];
         if (container.isIntersecting) {
           setPageNum(num => num + 1);
@@ -32,6 +32,7 @@ export const useInfiniteScroll = () => {
 
   return {
     pageNum,
-    containerRef,
+    setPageNum,
+    containerRef
   };
 };

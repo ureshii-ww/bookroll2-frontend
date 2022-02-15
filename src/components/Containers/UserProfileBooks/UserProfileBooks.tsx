@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import UserService from '../../../services/user.service';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
 import { BookData } from '../../../models/book-data';
@@ -9,40 +9,13 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useParams } from 'react-router-dom';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import './user-profile-books.scss';
+import useUserProfileBooks from '../../../hooks/useUserProfileBooks';
 
 const UserProfileBooks: FC = props => {
   const { userUrl } = useParams();
-  const chunkSize: number = 10;
   const isLoading = useAppSelector(state => state.event.isLoadingTab);
-  const [booksArray, setBooksArray] = useState<BookData[]>([]);
-  const [isOut, setIsOut] = useState<boolean>(false);
   const { isCurrentUser } = useUserProfileContext();
-  const { pageNum, containerRef } = useInfiniteScroll();
-
-  const fetchBooksArray = useRequestTab(async (userUrl: string, pageNum: number, chunkSize: number) => {
-    const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
-    const all: BookData[] = [...booksArray, ...response.data];
-    setBooksArray([...all]);
-    if (all.length === parseInt(response.headers['x-data-length'])) {
-      setIsOut(true);
-    }
-  });
-
-  const fetchDeleteBook = useRequestPage(async (userUrl: string, index: number) => {
-    const response = await UserService.deleteBook(userUrl, index);
-    if (response.data === 'Success') {
-      //TODO: пофиксить баг с инфинайт скроллом
-      const tempArray = [...booksArray];
-      tempArray.splice(index, 1);
-      setBooksArray(tempArray);
-    }
-  });
-
-  useEffect(() => {
-    if (!isOut) {
-      fetchBooksArray(userUrl, pageNum, chunkSize);
-    }
-  }, [pageNum]);
+  const {booksArray, isOut, containerRef, fetchDeleteBook, fetchBooksArray} = useUserProfileBooks(userUrl || '');
 
   const handleDeleteBook = (index: number) => {
     fetchDeleteBook(userUrl, index);
@@ -53,14 +26,15 @@ const UserProfileBooks: FC = props => {
       {booksArray.length > 0 &&
         booksArray.map((book, index) => {
           return index === booksArray.length - 1 && !isLoading && !isOut ? (
-            <div key={`${userUrl}-${book.title}-${book.authors.join(', ')}`} ref={containerRef}>
+            <Fragment key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}>
               <BookCard
                 isClubHistory={false}
                 isOwner={isCurrentUser}
                 handleDelete={() => handleDeleteBook(index)}
                 bookData={{ ...book }}
               />
-            </div>
+              <div ref={containerRef}>Biba</div>
+            </Fragment>
           ) : (
             <BookCard
               key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}
