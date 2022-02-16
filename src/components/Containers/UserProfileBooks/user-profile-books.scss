@@ -1,5 +1,6 @@
 @use 'src/styles/variables-size';
+@use 'src/styles/placeholders';
 
 .user-profile-books {
-  padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+  @extend %page-padding;
 }

@@ -41,3 +41,8 @@
   font-size: variables-size.$font-size-m-s;
   padding: variables-size.$card-padding-top variables-size.$card-padding-side;
 }
+
+//page
+%page-padding {
+  padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+}
