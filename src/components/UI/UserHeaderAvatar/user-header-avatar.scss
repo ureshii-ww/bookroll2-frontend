@@ -1,12 +1,10 @@
-@import 'src/styles/variables-size';
+@use'src/styles/variables-size';
+@use 'src/styles/placeholders';
 
 .user-header-avatar {
+  @extend %avatar;
   width: 72px;
   height: 72px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-right: 20px;
 }
 
@@ -17,5 +15,5 @@
 }
 
 .user-header-avatar__emoji {
-  font-size: $font-size-x-x-l;
+  font-size: variables-size.$font-size-x-x-l;
 }

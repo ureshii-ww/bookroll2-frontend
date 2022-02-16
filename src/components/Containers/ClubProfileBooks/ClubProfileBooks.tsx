@@ -6,6 +6,7 @@ import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePa
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import ClubBooksCard from '../../UI/ClubBooksCard/ClubBooksCard';
 import { useRequestPage } from '../../../hooks/useRequestPage';
+import './club-profile-books.scss';
 
 const ClubProfileBooks: FC = () => {
   const [booksData, setBooksData] = useState<ClubBooks[]>([]);
@@ -21,25 +22,23 @@ const ClubProfileBooks: FC = () => {
     fetchBooksData(clubUrl);
   }, [clubUrl]);
 
-  const fetchDeleteBook = useRequestPage(
-    async (clubUrl: string, index: number, userUrl: string) => {
-      const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
+  const fetchDeleteBook = useRequestPage(async (clubUrl: string, index: number, userUrl: string) => {
+    const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
 
-      if (response.data === 'Success') {
-        const tempArray = booksData;
-        const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl);
-        tempArray[userIndex].books.splice(index, 1);
-        setBooksData([...tempArray]);
-      }
+    if (response.data === 'Success') {
+      const tempArray = booksData;
+      const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl);
+      tempArray[userIndex].books.splice(index, 1);
+      setBooksData([...tempArray]);
     }
-  );
+  });
 
   const handleDelete = (index: number, userUrl: string) => {
     fetchDeleteBook(clubUrl, index, userUrl);
   };
 
   return !isLoading && booksData.length > 0 ? (
-    <div>
+    <div className="club-profile-books">
       {booksData.map((data, index) => (
         <ClubBooksCard
           key={`${clubUrl}-${data.user.url}-books`}

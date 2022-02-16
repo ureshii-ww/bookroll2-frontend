@@ -1,6 +1,14 @@
 @use 'variables-size';
 @use 'variables-color';
 
+//avatar
+%avatar {
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 //profile-header
 %profile-header-button {
   margin-left: 10px;

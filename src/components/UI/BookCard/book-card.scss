@@ -6,7 +6,9 @@ $book-card-title-padding: 10px;
 $book-card-authors-padding: 5px;
 
 .book-card {
-  margin-bottom: 20px;
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
 
   &__head {
     @extend %card-header;
@@ -43,9 +45,9 @@ $book-card-authors-padding: 5px;
   &__delete {
     grid-area: delete;
     padding-top: $book-card-title-padding;
-    color: variables-color.$card-white-text;
 
     svg {
+      color: variables-color.$card-white-text;
       width: variables-size.$font-size-m;
       height: variables-size.$font-size-m;
     }
