@@ -1,12 +1,15 @@
-import React, { CSSProperties, FC, useState } from 'react';
+import React, { CSSProperties, FC, Fragment, useState } from 'react';
 import { BasicUserInfo } from '../../../models/basic-user-info';
 import { BasicBookInfo } from '../../../models/basic-book-info';
 import { Link } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 import TransparentButton from '../TransparentButton/TransparentButton';
 import { ReactComponent as DropdownSvg } from '../../../assets/svg/dropdown.svg';
-import { ReactComponent as DeleteSvg } from '../../../assets/svg/delete.svg';
 import './club-books-card.scss';
+import Modal from '../Modal/Modal';
+import BookDataContainer from '../../Containers/BookDataContainer/BookDataContainer';
+import ClubBooksCardFooter from '../ClubBooksCardFooter/ClubBooksCardFooter';
+import ClubBooksCardHeader from '../ClubBooksCardHeader/ClubBooksCardHeader';
 
 interface ClubBooksCardProps {
   user: BasicUserInfo;
@@ -16,45 +19,34 @@ interface ClubBooksCardProps {
 }
 
 const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDelete, ...rest }) => {
-  const avatarStyles: CSSProperties = {
-    backgroundColor: user.color || 'FFF',
-  };
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(value => !value);
   };
 
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [modalBookId, setModalBookId] = useState(books[0].id);
+  const showModal = (id: string) => {
+    setModalBookId(id);
+    setIsShowModal(true);
+  };
+
   return (
-    <div className={isOpen ? 'club-books-card club-books-card--open' : 'club-books-card'}>
-      <div className="club-books-card__head">
-        <Link className="club-books-card__user" to={`${RouteNames.USER_PROFILE_BASE}${user.url}`}>
-          <div className="club-books-card__avatar" style={avatarStyles}>
-            <span>{user.emoji}</span>
-          </div>
-          <span className="club-books-card__username">{user.username}</span>
-        </Link>
-        <TransparentButton className="club-books-card__button" onClick={toggleOpen}>
-          <DropdownSvg />
-        </TransparentButton>
+    <Fragment>
+      <div className={isOpen ? 'club-books-card club-books-card--open' : 'club-books-card'}>
+        <ClubBooksCardHeader user={user} toggleOpen={toggleOpen} />
+        <ClubBooksCardFooter
+          books={books}
+          user={user}
+          isMaster={isMaster}
+          showModal={showModal}
+          handleDelete={handleDelete}
+        />
       </div>
-      <div className="club-books-card__footer">
-        {books.map((book, index) => (
-          <div className="club-books-card-book" key={`${user.url}-${book.id}`}>
-            <p className="club-books-card-book__title">{`${book.title} - ${book.authors.join(', ')}`}</p>
-            <div className="club-books-card-book__right-container">
-              <p className="club-books-card-book__year">{book.year}</p>
-              {isMaster && (
-                <TransparentButton
-                  className="club-books-card-book__button"
-                  onClick={() => handleDelete(index, user.url)}>
-                  <DeleteSvg />
-                </TransparentButton>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      <Modal isShow={isShowModal} onClose={() => setIsShowModal(false)}>
+        <BookDataContainer bookId={modalBookId} />
+      </Modal>
+    </Fragment>
   );
 };
 

@@ -105,22 +105,33 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
     margin-right: 10px;
   }
 
-  &__right-container {
+  &__left-container, &__right-container {
     display: flex;
     align-items: center;
+  }
+
+  &__left-container {
+    padding-right: 30px;
   }
 
   &__year {
     margin-right: 10px;
   }
 
-  &__button {
+  &__delete, &__details {
     display: flex;
     align-items: center;
 
     svg {
+      fill: currentColor;
       width: variables-size.$font-size-m-s;
       height: variables-size.$font-size-m-s;
+    }
+  }
+
+  &__delete {
+    svg {
+      color: var(--red-text-color);
     }
   }
 }
