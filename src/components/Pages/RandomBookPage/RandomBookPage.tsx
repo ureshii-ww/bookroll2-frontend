@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RandomBookInfo from '../../Containers/RandomBookInfo/RandomBookInfo';
+import RandomBookContainer from '../../Containers/RandomBookContainer/RandomBookContainer';
 import RandomBookPlaceholder from '../../Containers/RandomBookPlaceholder/RandomBookPlaceholder';
 
 const RandomBookPage = () => {
@@ -10,7 +10,7 @@ const RandomBookPage = () => {
 
   return (
     <div>
-      {isBook ? <RandomBookInfo/> : <RandomBookPlaceholder handleClick={handleSetIsBook}/>}
+      {isBook ? <RandomBookContainer/> : <RandomBookPlaceholder handleClick={handleSetIsBook}/>}
     </div>
   );
 };

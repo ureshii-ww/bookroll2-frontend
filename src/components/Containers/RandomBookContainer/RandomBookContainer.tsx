@@ -5,8 +5,9 @@ import BookService from '../../../services/book.service';
 import MainButton from '../../UI/MainButton/MainButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useActions } from '../../../hooks/useActions';
+import BookDataView from '../../UI/BookDataView/BookDataView';
 
-const RandomBookInfo = () => {
+const RandomBookContainer = () => {
   const [bookData, setBookData] = useState<BookData>({
     title: '',
     authors: [''],
@@ -36,12 +37,7 @@ const RandomBookInfo = () => {
 
   return !isLoading ? (
     <div>
-      <img src={bookData.cover} alt={bookData.title} />
-      <h1>{bookData.title}</h1>
-      <p>{bookData.authors.join(', ')}</p>
-      <p>{bookData.genres.join(', ')}</p>
-      <p>{bookData.year}</p>
-      <p>{bookData.description}</p>
+      <BookDataView book={bookData}/>
       <MainButton onClick={() => confirmBook(bookData)}>Подтвердить</MainButton>
       <MainButton onClick={() => getBook()}>Искать ещё</MainButton>
     </div>
@@ -50,4 +46,4 @@ const RandomBookInfo = () => {
   );
 };
 
-export default RandomBookInfo;
+export default RandomBookContainer;

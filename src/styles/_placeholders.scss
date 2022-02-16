@@ -19,6 +19,9 @@
   &:hover {
     color: var(--dim-text-color);
   }
+  &:visited {
+    color: var(--dim-text-color);
+  }
 
   svg {
     fill: currentColor;
