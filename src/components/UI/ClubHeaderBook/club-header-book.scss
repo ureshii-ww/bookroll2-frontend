@@ -1,0 +1,32 @@
+@use 'src/styles/variables-size';
+
+.club-header-book {
+  grid-area: book;
+
+  &__title {
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-x-s;
+    color: var(--dim-text-color);
+    margin-top: 10px;
+  }
+
+  &__book {
+    margin-top: 10px;
+  }
+
+  &__name {
+    font-size: variables-size.$font-size-x-x-l;
+    font-weight: variables-size.$font-weight-x-x-l;
+    color: var(--bold-text-color);
+  }
+
+  &__author {
+    margin-top: 5px;
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-s;
+  }
+}
+
+.club-header-book__placeholder {
+
+}

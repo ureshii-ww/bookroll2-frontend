@@ -1,0 +1,25 @@
+@use 'variables-size';
+
+%profile-header-button {
+  margin-left: 10px;
+  font-size: variables-size.$font-size-x-s;
+  display: flex;
+  align-items: center;
+  color: var(--dim-text-color);
+  &:hover {
+    color: var(--dim-text-color);
+  }
+
+  svg {
+    fill: currentColor;
+    width: variables-size.$font-size-m-s;
+    height: variables-size.$font-size-m-s;
+    margin-right: 3px;
+  }
+}
+
+%profile-header-section-title {
+  font-size: variables-size.$font-size-l;
+  font-weight: variables-size.$font-weight-x-s;
+  color: var(--dim-text-color);
+}

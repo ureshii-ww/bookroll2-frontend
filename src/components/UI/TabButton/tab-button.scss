@@ -1,9 +1,9 @@
 @use 'src/styles/variables-size';
 
 .tab-button {
-  font-size: variables-size.$font-size-middle-small;
+  font-size: variables-size.$font-size-m-s;
   padding-right: 20px;
-  font-weight: 500;
+  font-weight: variables-size.$font-weight-x-s;
 
   span {
     display: flex;
@@ -19,7 +19,7 @@
     }
   }
 
-  &.tab-button--active {
+  &--active {
     font-weight: 700;
 
     span {

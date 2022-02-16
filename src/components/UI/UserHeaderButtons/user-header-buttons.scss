@@ -9,7 +9,7 @@
   a {
     display: flex;
     align-items: center;
-    font-size: variables-size.$font-size-x-small;
+    font-size: variables-size.$font-size-x-s;
     color: var(--dim-text-color);
     &:visited {
       color: var(--dim-text-color);
@@ -19,9 +19,9 @@
     }
     svg {
       fill: currentColor;
-      width: variables-size.$font-size-middle-small;
-      height: variables-size.$font-size-middle-small;
-      margin-right: 5px;
+      width: variables-size.$font-size-m-s;
+      height: variables-size.$font-size-m-s;
+      margin-right: 3px;
     }
   }
 }

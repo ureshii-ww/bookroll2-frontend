@@ -12,6 +12,10 @@
   --dim-text-color: #{variables-light.$dim-text-color};
   --link-text-color: #{variables-light.$link-text-color};
   --link-text-color-hover: #{variables-light.$link-text-color-hover};
+  --red-text-color: #{variables-light.$red-text-color};
+  --red-text-color-hover: #{variables-light.$red-text-color-hover};
+  --green-text-color: #{variables-light.$green-text-color};
+  --green-text-color-hover: #{variables-light.$green-text-color-hover};
   --border-color: #{variables-light.$border-color};
   --book-card-background-color: #{variables-light.$book-card-background-color};
 }
@@ -27,6 +31,10 @@
   --dim-text-color: #{variables-dark.$dim-text-color};
   --link-text-color: #{variables-dark.$link-text-color};
   --link-text-color-hover: #{variables-dark.$link-text-color-hover};
+  --red-text-color: #{variables-dark.$red-text-color};
+  --red-text-color-hover: #{variables-dark.$red-text-color-hover};
+  --green-text-color: #{variables-dark.$green-text-color};
+  --green-text-color-hover: #{variables-dark.$green-text-color-hover};
   --border-color: #{variables-dark.$border-color};
   --book-card-background-color: #{variables-dark.$book-card-background-color};
 }

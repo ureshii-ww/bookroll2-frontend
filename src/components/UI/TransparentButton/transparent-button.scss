@@ -4,7 +4,32 @@
   cursor: pointer;
   border: none;
   color: var(--link-text-color);
+
   &:hover {
     color: var(--link-text-color-hover);
+  }
+
+  &.transparent-button--green {
+    color: var(--green-text-color);
+
+    &:hover {
+      color: var(--green-text-color-hover);
+    }
+  }
+
+  &.transparent-button--red {
+    color: var(--red-text-color);
+
+    &:hover {
+      color: var(--red-text-color-hover);
+    }
+  }
+
+  &.transparent-button--dim {
+    color: var(--dim-text-color);
+
+    &:hover {
+      color: var(--dim-text-color);
+    }
   }
 }

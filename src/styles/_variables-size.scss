@@ -1,13 +1,21 @@
 //font
-$font-size-x-x-small: 14px;
-$font-size-x-small: 16px;
-$font-size-small: 18px;
-$font-size-middle-small: 20px;
-$font-size-middle: 24px;
-$font-size-large: 28px;
-$font-size-x-large: 32px;
-$font-size-x-x-large: 36px;
+$font-size-x-x-s: 14px;
+$font-size-x-s: 16px;
+$font-size-s: 18px;
+$font-size-m-s: 20px;
+$font-size-m: 24px;
+$font-size-l: 28px;
+$font-size-x-l: 32px;
+$font-size-x-x-l: 36px;
 $font-size-page-title: 72px;
+
+//font-weight
+$font-weight-x-s: 300;
+$font-weight-s: 400;
+$font-weight-m: 500;
+$font-weight-l: 600;
+$font-weight-x-l: 700;
+$font-weight-x-x-l: 800;
 
 //border-radius
 $page-layout-radius: 24px;

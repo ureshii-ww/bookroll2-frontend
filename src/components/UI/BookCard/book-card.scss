@@ -32,14 +32,14 @@ $book-card-authors-padding: 5px;
 
 .book-card__title {
   grid-area: title;
-  font-size: variables-size.$font-size-x-large;
+  font-size: variables-size.$font-size-x-l;
   font-weight: 700;
   padding: $book-card-title-padding 0;
 }
 
 .book-card__authors {
   grid-area: author;
-  font-size: variables-size.$font-size-middle;
+  font-size: variables-size.$font-size-m;
   padding: $book-card-authors-padding 0;
 }
 
@@ -52,8 +52,8 @@ $book-card-authors-padding: 5px;
   padding-top: $book-card-title-padding;
   svg {
     color: $book-card-white-text;
-    width: variables-size.$font-size-middle;
-    height: variables-size.$font-size-middle;
+    width: variables-size.$font-size-m;
+    height: variables-size.$font-size-m;
   }
 }
 
@@ -61,7 +61,7 @@ $book-card-authors-padding: 5px;
   background-color: var(--book-card-background-color);
   border-radius: 0 0 $book-card-radius $book-card-radius;
   color: var(--main-text-color);
-  font-size: variables-size.$font-size-middle-small;
+  font-size: variables-size.$font-size-m-s;
   display: flex;
   justify-content: space-between;
   padding: $book-card-padding-top $book-card-padding-side;

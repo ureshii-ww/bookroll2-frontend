@@ -7,46 +7,46 @@ import ClubProfileHeaderButtons from '../ClubProfileHeaderButtons/ClubProfileHea
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
 import ClubHeaderBook from '../../UI/ClubHeaderBook/ClubHeaderBook';
 import ClubHeaderMaster from '../../UI/ClubHeaderMaster/ClubHeaderMaster';
+import './club-profile-header.scss';
+import ClubHeaderMeeting from '../../UI/ClubHeaderMeeting/ClubHeaderMeeting';
 
 interface ClubProfileHeaderProps {
   clubUrl: string | undefined;
-  setIsMaster: (arg0: boolean) => (void);
+  setIsMaster: (arg0: boolean) => void;
 }
 
 const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, ...rest }) => {
-  const isLoading = useAppSelector(state => state.event.isLoadingPage)
-  const userData = useAppSelector(state => state.auth.userData)
+  const isLoading = useAppSelector(state => state.event.isLoadingPage);
+  const userData = useAppSelector(state => state.auth.userData);
   const [clubInfo, setClubInfo] = useState<ClubProfileInfo>({
     clubname: null,
     master: null,
     bookToRead: null,
+    meetingNumber: 1,
     isMaster: false,
-    isInClub: false
-  })
+    isInClub: false,
+  });
 
   const fetchInfo = useRequestPage(async (clubUrl: string) => {
     const response = await ClubService.getClubProfileInfo(clubUrl);
     setClubInfo(response.data);
     setIsMaster(response.data.isMaster);
-  })
+  });
 
   useEffect(() => {
-    fetchInfo(clubUrl)
-  }, [userData])
+    fetchInfo(clubUrl);
+  }, [userData]);
 
-  return (
-    !isLoading ?
-      <div>
-        <ProfileTitle title={clubInfo.clubname || ''}/>
-        <ClubProfileHeaderButtons clubUrl={clubUrl || ''}
-                                  isInClub={clubInfo.isInClub}
-                                  isMaster={clubInfo.isMaster} />
-        <ClubHeaderBook book={clubInfo.bookToRead}/>
-        <ClubHeaderMaster master={clubInfo.master}/>
-      </div> :
-      <div>
-        Loading
-      </div>
+  return !isLoading ? (
+    <div className="club-profile-header">
+      <ProfileTitle title={clubInfo.clubname || ''} />
+      <ClubProfileHeaderButtons clubUrl={clubUrl || ''} isInClub={clubInfo.isInClub} isMaster={clubInfo.isMaster} />
+      <ClubHeaderBook book={clubInfo.bookToRead} />
+      <ClubHeaderMaster master={clubInfo.master} />
+      <ClubHeaderMeeting meetingNumber={clubInfo.meetingNumber}/>
+    </div>
+  ) : (
+    <div>Loading</div>
   );
 };
 

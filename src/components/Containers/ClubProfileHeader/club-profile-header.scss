@@ -1,0 +1,10 @@
+@use 'src/styles/variables-size';
+
+.club-profile-header {
+  display: grid;
+  grid-template-areas:
+    'title buttons buttons'
+    'book book master'
+    'book book meeting';
+  padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+}

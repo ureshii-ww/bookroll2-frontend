@@ -8,6 +8,7 @@ export interface ClubProfileInfo {
     title: string,
     authors: string[]
   } | null,
+  meetingNumber: number,
   isMaster: boolean,
   isInClub: boolean
 }
