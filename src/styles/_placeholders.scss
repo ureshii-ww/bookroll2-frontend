@@ -1,5 +1,7 @@
 @use 'variables-size';
+@use 'variables-color';
 
+//profile-header
 %profile-header-button {
   margin-left: 10px;
   font-size: variables-size.$font-size-x-s;
@@ -22,4 +24,20 @@
   font-size: variables-size.$font-size-l;
   font-weight: variables-size.$font-weight-x-s;
   color: var(--dim-text-color);
+}
+
+//cards
+%card-header {
+  @include variables-color.main-gradient;
+  color: variables-color.$card-white-text;
+  border-radius: variables-size.$card-radius variables-size.$card-radius 0 0;
+  padding: variables-size.$card-padding-top variables-size.$card-padding-side;
+}
+
+%card-footer {
+  background-color: var(--book-card-background-color);
+  border-radius: 0 0 variables-size.$card-radius variables-size.$card-radius;
+  color: var(--main-text-color);
+  font-size: variables-size.$font-size-m-s;
+  padding: variables-size.$card-padding-top variables-size.$card-padding-side;
 }
