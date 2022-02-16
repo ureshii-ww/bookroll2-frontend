@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import UserSettingsInfoForm from '../UserSettingsInfoForm/UserSettingsInfoForm';
+import UserSettingsInfoForm from './UserSettingsInfoForm/UserSettingsInfoForm';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import { useParams } from 'react-router-dom';
 import UserService from '../../../services/user.service';

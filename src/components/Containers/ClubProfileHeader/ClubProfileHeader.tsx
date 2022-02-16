@@ -3,12 +3,12 @@ import { ClubProfileInfo } from '../../../models/club-profile-info';
 import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import ClubProfileHeaderButtons from '../ClubProfileHeaderButtons/ClubProfileHeaderButtons';
+import ClubProfileHeaderButtons from './ClubProfileHeaderButtons/ClubProfileHeaderButtons';
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
-import ClubHeaderBook from '../../UI/ClubHeaderBook/ClubHeaderBook';
-import ClubHeaderMaster from '../../UI/ClubHeaderMaster/ClubHeaderMaster';
+import ClubHeaderBook from './ClubHeaderBook/ClubHeaderBook';
+import ClubHeaderMaster from './ClubHeaderMaster/ClubHeaderMaster';
 import './club-profile-header.scss';
-import ClubHeaderMeeting from '../../UI/ClubHeaderMeeting/ClubHeaderMeeting';
+import ClubHeaderMeeting from './ClubHeaderMeeting/ClubHeaderMeeting';
 
 interface ClubProfileHeaderProps {
   clubUrl: string | undefined;

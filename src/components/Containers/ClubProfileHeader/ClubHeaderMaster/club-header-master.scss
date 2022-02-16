@@ -1,0 +1,20 @@
+@use '../../../../styles/variables-size';
+@use '../../../../styles/placeholders';
+
+.club-header-master {
+  grid-area: master;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  &__title {
+    margin-top: 10px;
+    @extend %profile-header-section-title;
+  }
+
+  &__name {
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-s;
+  }
+}

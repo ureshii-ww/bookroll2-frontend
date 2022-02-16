@@ -1,0 +1,10 @@
+@use '../../../../styles/variables-size';
+
+.club-header-meeting {
+  grid-area: meeting;
+  font-size: variables-size.$font-size-l;
+  font-weight: variables-size.$font-weight-x-s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}

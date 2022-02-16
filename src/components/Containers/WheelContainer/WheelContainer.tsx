@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { ClubBooks } from '../../../models/club-books';
 import useWheelContainer from '../../../hooks/useWheelContainer';
 import WinWheel from '../../UI/WinWheel/WinWheel';
-import WheelContainerStart from '../WheelContainerStart/WheelContainerStart';
-import WheelContainerInfo from '../WheelContainerInfo/WheelContainerInfo';
-import WheelContainerFinish from '../WheelContainerFinish/WheelContainerFinish';
+import WheelContainerStart from './WheelContainerStart/WheelContainerStart';
+import WheelContainerInfo from './WheelContainerInfo/WheelContainerInfo';
+import WheelContainerFinish from './WheelContainerFinish/WheelContainerFinish';
 
 interface WheelContainerProps {
   clubBooks: ClubBooks[];

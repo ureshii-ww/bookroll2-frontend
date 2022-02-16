@@ -8,8 +8,8 @@ import { ReactComponent as DropdownSvg } from '../../../assets/svg/dropdown.svg'
 import './club-books-card.scss';
 import Modal from '../Modal/Modal';
 import BookDataContainer from '../../Containers/BookDataContainer/BookDataContainer';
-import ClubBooksCardFooter from '../ClubBooksCardFooter/ClubBooksCardFooter';
-import ClubBooksCardHeader from '../ClubBooksCardHeader/ClubBooksCardHeader';
+import ClubBooksCardFooter from './ClubBooksCardFooter/ClubBooksCardFooter';
+import ClubBooksCardHeader from './ClubBooksCardHeader/ClubBooksCardHeader';
 
 interface ClubBooksCardProps {
   user: BasicUserInfo;

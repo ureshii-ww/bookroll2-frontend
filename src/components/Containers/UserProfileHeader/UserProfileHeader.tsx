@@ -4,9 +4,9 @@ import { useRequestPage } from '../../../hooks/useRequestPage';
 import UserService from '../../../services/user.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
-import UserHeaderAvatar from '../../UI/UserHeaderAvatar/UserHeaderAvatar';
-import UserHeaderButtons from '../../UI/UserHeaderButtons/UserHeaderButtons';
-import UserHeaderClub from '../../UI/UserHeaderClub/UserHeaderClub';
+import UserHeaderAvatar from './UserHeaderAvatar/UserHeaderAvatar';
+import UserHeaderButtons from './UserHeaderButtons/UserHeaderButtons';
+import UserHeaderClub from './UserHeaderClub/UserHeaderClub';
 import './user-profile-header.scss';
 
 interface UserProfileHeaderProps {

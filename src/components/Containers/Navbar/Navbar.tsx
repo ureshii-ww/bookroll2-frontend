@@ -8,7 +8,7 @@ import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 import { ReactComponent as ProfileSvg } from '../../../assets/svg/navbar_profile.svg';
 import { ReactComponent as ClubSvg } from '../../../assets/svg/navbar-club.svg';
 import { ReactComponent as BookSvg } from '../../../assets/svg/navbar-book.svg';
-import NavbarMainButton from '../../UI/NavbarMainButton/NavbarMainButton';
+import NavbarMainButton from './NavbarMainButton/NavbarMainButton';
 
 const Navbar: FC = () => {
   const { userData } = useAppSelector(state => state.auth);

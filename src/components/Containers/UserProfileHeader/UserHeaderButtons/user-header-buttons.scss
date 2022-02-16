@@ -1,0 +1,12 @@
+@use '../../../../styles/variables-size';
+@use '../../../../styles/placeholders';
+
+.user-header-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.user-header-buttons__button {
+  @extend %profile-header-button;
+}
