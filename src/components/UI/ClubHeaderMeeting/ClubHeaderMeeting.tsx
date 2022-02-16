@@ -8,8 +8,7 @@ interface ClubHeaderMeetingProps {
 const ClubHeaderMeeting: FC<ClubHeaderMeetingProps> = ({ meetingNumber, ...rest }) => {
   return (
     <div className="club-header-meeting">
-      <span className="club-header-meeting__title">Собрание </span>
-      <span className="club-header-meeting__number">{meetingNumber}</span>
+      <span>{`Собрание ${meetingNumber}`}</span>
     </div>
   );
 };

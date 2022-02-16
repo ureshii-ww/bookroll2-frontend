@@ -8,6 +8,7 @@ import { ReactComponent as WheelSvg } from '../../../assets/svg/wheel.svg';
 import { ReactComponent as SettingsSvg } from '../../../assets/svg/settings.svg';
 import { ReactComponent as LeaveSvg } from '../../../assets/svg/leave-club.svg';
 import { ReactComponent as JoinSvg } from '../../../assets/svg/join-club.svg';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 interface ClubProfileHeaderButtonsProps {
   isMaster: boolean;
@@ -17,6 +18,7 @@ interface ClubProfileHeaderButtonsProps {
 
 const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub, isMaster, clubUrl, ...rest }) => {
   const { joinClub, leaveClub } = useActions();
+  const userClub = useAppSelector(state => state.auth.userData?.club);
 
   return (
     <div className="club-profile-header__buttons">
@@ -32,7 +34,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
           Настройки
         </Link>
       )}
-      {!isInClub && (
+      {!isInClub && !userClub && (
         <TransparentButton
           className="club-profile-header__button transparent-button--green"
           onClick={() => joinClub(clubUrl)}>
