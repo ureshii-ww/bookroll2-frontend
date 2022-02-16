@@ -1,27 +1,12 @@
 @use 'src/styles/variables-size';
+@use 'src/styles/placeholders';
 
 .user-header-buttons {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .user-header-buttons__button {
-  a {
-    display: flex;
-    align-items: center;
-    font-size: variables-size.$font-size-x-s;
-    color: var(--dim-text-color);
-    &:visited {
-      color: var(--dim-text-color);
-    }
-    &:hover {
-      color: var(--dim-text-color);
-    }
-    svg {
-      fill: currentColor;
-      width: variables-size.$font-size-m-s;
-      height: variables-size.$font-size-m-s;
-      margin-right: 3px;
-    }
-  }
+  @extend %profile-header-button;
 }

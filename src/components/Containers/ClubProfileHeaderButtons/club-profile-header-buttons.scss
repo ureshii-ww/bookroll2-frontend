@@ -1,13 +1,10 @@
 @use 'src/styles/placeholders';
 
 .club-profile-header__buttons {
-  grid-area: buttons;
-}
-
-.club-profile-header__buttons {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+  grid-area: buttons;
 }
 
 .club-profile-header__button {
