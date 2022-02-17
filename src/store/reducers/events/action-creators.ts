@@ -1,8 +1,4 @@
-import {
-  EventActionEnum,
-  SetIsLoadingPageAction,
-  SetIsLoadingTabAction,
-} from './types';
+import { EventActionEnum, SetIsLoadingPageAction, SetIsLoadingTabAction } from './types';
 
 export const EventActionCreators = {
   setIsLoadingPage: (value: boolean): SetIsLoadingPageAction => ({

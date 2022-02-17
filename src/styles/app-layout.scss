@@ -8,6 +8,7 @@
   grid-template-areas: 'navbar page';
   grid-template-columns: 120px auto;
   background-color: var(--background-color);
+  overflow: hidden;
 }
 
 .app-layout__page {

@@ -1,15 +1,11 @@
-import React, { CSSProperties, FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import { BasicUserInfo } from '../../../models/basic-user-info';
 import { BasicBookInfo } from '../../../models/basic-book-info';
-import { Link } from 'react-router-dom';
-import { RouteNames } from '../../../routes/route-names.enum';
-import TransparentButton from '../TransparentButton/TransparentButton';
-import { ReactComponent as DropdownSvg } from '../../../assets/svg/dropdown.svg';
 import './club-books-card.scss';
-import Modal from '../Modal/Modal';
 import BookDataContainer from '../../Containers/BookDataContainer/BookDataContainer';
 import ClubBooksCardFooter from './ClubBooksCardFooter/ClubBooksCardFooter';
 import ClubBooksCardHeader from './ClubBooksCardHeader/ClubBooksCardHeader';
+import { useActions } from '../../../hooks/useActions';
 
 interface ClubBooksCardProps {
   user: BasicUserInfo;
@@ -24,12 +20,10 @@ const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDe
     setIsOpen(value => !value);
   };
 
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [modalBookId, setModalBookId] = useState(books[0].id);
-  const showModal = (id: string) => {
-    setModalBookId(id);
-    setIsShowModal(true);
-  };
+  const {showModal} = useActions();
+  const handleShowModal = (id: string) => {
+    showModal(<BookDataContainer bookId={id}/>)
+  }
 
   return (
     <Fragment>
@@ -39,13 +33,10 @@ const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDe
           books={books}
           user={user}
           isMaster={isMaster}
-          showModal={showModal}
+          showModal={handleShowModal}
           handleDelete={handleDelete}
         />
       </div>
-      <Modal isShow={isShowModal} onClose={() => setIsShowModal(false)}>
-        <BookDataContainer bookId={modalBookId} />
-      </Modal>
     </Fragment>
   );
 };

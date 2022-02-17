@@ -20,9 +20,7 @@ const BookDataContainer: FC<BookDataContainerProps> = ({ bookId }) => {
   }, []);
 
   return bookData ? (
-    <div>
-      <BookDataView book={bookData} />
-    </div>
+    <BookDataView book={bookData} />
   ) : (
     <div>Loading</div>
   );

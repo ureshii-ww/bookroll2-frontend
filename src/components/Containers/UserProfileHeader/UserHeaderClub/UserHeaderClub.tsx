@@ -1,9 +1,9 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
-import Modal from '../../../UI/Modal/Modal';
 import CreateClubForm from '../../CreateClubForm/CreateClubForm';
 import './user-header-club.scss';
+import { useActions } from '../../../../hooks/useActions';
 
 interface UserHeaderClubProps {
   isCurrentUser: boolean;
@@ -12,7 +12,10 @@ interface UserHeaderClubProps {
 }
 
 const UserHeaderClub: FC<UserHeaderClubProps> = ({ isCurrentUser, clubname, clubUrl, ...rest }) => {
-  const [isShowCreateClubModal, setIsShowCreateClubModal] = useState(false);
+  const {showModal} = useActions();
+  const handleShowModal = () => {
+    showModal(<CreateClubForm />)
+  }
 
   return (
     <div className="user-header-club">
@@ -27,7 +30,7 @@ const UserHeaderClub: FC<UserHeaderClubProps> = ({ isCurrentUser, clubname, club
             </div>
           ) : (
             <div className="user-header-club__container">
-              <TransparentButton  onClick={() => setIsShowCreateClubModal(true)}>
+              <TransparentButton  onClick={handleShowModal}>
                 создать клуб
               </TransparentButton>
             </div>
@@ -47,9 +50,6 @@ const UserHeaderClub: FC<UserHeaderClubProps> = ({ isCurrentUser, clubname, club
           )}
         </Fragment>
       )}
-      <Modal isShow={isShowCreateClubModal} onClose={() => setIsShowCreateClubModal(false)}>
-        <CreateClubForm onClose={() => setIsShowCreateClubModal(false)} />
-      </Modal>
     </div>
   );
 };

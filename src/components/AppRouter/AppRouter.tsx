@@ -30,7 +30,7 @@ const AppRouter: FC = () => {
         <div className="app-layout">
           <Navbar />
           <div className="app-layout__page">
-            <Scrollbars>
+            <Scrollbars autoHide={true}>
               <Routes>
                 <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />

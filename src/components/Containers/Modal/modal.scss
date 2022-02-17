@@ -1,24 +1,30 @@
 @use 'src/styles/variables-size';
 @use 'src/styles/placeholders';
 
+
+
 .modal-bg {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 500;
+  overflow: hidden;
 }
 
 .modal-container {
-  max-width: 70vw;
-  padding: 20px;
   background-color: var(--page-background-color);
   border-radius: variables-size.$page-layout-radius;
   position: relative;
+  max-width: 60%;
+  padding: variables-size.$page-padding-top;
+  margin: auto;
+
+  &__wrapper {
+    padding: 20px;
+  }
 
   &__close {
     @extend %profile-header-button;

@@ -7,22 +7,22 @@ import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 
 interface CreateClubFormProps {
-  onClose: () => void;
+
 }
 
 type Input = {
   clubname: string;
 }
 
-const CreateClubForm: FC<CreateClubFormProps> = ({onClose}) => {
-  const { setUserData } = useActions();
+const CreateClubForm: FC<CreateClubFormProps> = () => {
+  const { setUserData, closeModal } = useActions();
   const { control, handleSubmit, formState: { errors } } = useForm<Input>();
 
   const createClub = useRequestPage(async (clubname: string) => {
     const response = await ClubService.createClub(clubname);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
-    onClose();
+    closeModal();
   });
 
   const onSubmit: SubmitHandler<Input> = data => createClub(data.clubname)
