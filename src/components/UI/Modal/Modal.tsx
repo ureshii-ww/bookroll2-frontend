@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import TransparentButton from '../TransparentButton/TransparentButton';
 import './modal.scss';
+import { ReactComponent as CloseSvg } from '../../../assets/svg/close.svg';
 
 export interface ModalProps {
   isShow: boolean;
@@ -15,7 +16,9 @@ const Modal: FC<ModalProps> = ({ isShow, onClose, children }) => {
   return (
     <div className="modal-bg" onClick={onClose}>
       <div className="modal-container" onClick={e => e.stopPropagation()}>
-        <TransparentButton onClick={onClose}>Close</TransparentButton>
+        <TransparentButton className="modal-container__close" onClick={onClose}>
+          <CloseSvg />
+        </TransparentButton>
         {children}
       </div>
     </div>

@@ -1,3 +1,6 @@
+@use 'src/styles/variables-size';
+@use 'src/styles/placeholders';
+
 .modal-bg {
   position: fixed;
   left: 0;
@@ -11,7 +14,21 @@
 }
 
 .modal-container {
-  width: 600px;
+  max-width: 70vw;
   padding: 20px;
-  background-color: #FFF;
+  background-color: var(--page-background-color);
+  border-radius: variables-size.$page-layout-radius;
+  position: relative;
+
+  &__close {
+    @extend %profile-header-button;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    svg {
+      width: variables-size.$font-size-l;
+      height: variables-size.$font-size-l;
+    }
+  }
 }
