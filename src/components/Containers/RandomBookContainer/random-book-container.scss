@@ -1,0 +1,13 @@
+@use 'src/styles/variables-size';
+
+.random-book {
+  &__view {
+    margin-bottom: variables-size.$page-padding-top;
+  }
+
+  &__buttons {
+    button {
+      margin-right: 20px;
+    }
+  }
+}

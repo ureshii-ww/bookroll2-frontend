@@ -3,7 +3,7 @@
 .app-layout {
   width: 100vw;
   height: 100vh;
-  padding: 30px;
+  padding: variables-size.$layout-padding;
   display: grid;
   grid-template-areas: 'navbar page';
   grid-template-columns: 120px auto;

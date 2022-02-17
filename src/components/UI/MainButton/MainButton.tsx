@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
+import './main-button.scss';
 
 interface MainButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 

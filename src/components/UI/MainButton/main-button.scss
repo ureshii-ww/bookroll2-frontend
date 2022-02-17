@@ -1,0 +1,25 @@
+@use 'src/styles/variables-size';
+@use 'src/styles/variables-color';
+
+.main-button {
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: variables-size.$font-size-m;
+  font-weight: variables-size.$font-weight-l;
+  cursor: pointer;
+  color: variables-color.$card-white-text;
+
+  &:active {
+    transform: translateY(1px)
+  }
+
+  &--green {
+    background-color: var(--green-text-color);
+  }
+
+  &--red {
+    background-color: var(--red-text-color);
+  }
+}

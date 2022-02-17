@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 import MainButton from '../../UI/MainButton/MainButton';
+import './random-book-placeholder.scss';
 
 interface RandomBookPlaceholderProps {
-  handleClick: () => void
+  handleClick: () => void;
 }
 
-const RandomBookPlaceholder: FC<RandomBookPlaceholderProps> = ({handleClick}) => {
+const RandomBookPlaceholder: FC<RandomBookPlaceholderProps> = ({ handleClick }) => {
   return (
-    <div>
+    <div className="random-book-placeholder">
       <MainButton onClick={() => handleClick()}>Искать книги</MainButton>
     </div>
   );

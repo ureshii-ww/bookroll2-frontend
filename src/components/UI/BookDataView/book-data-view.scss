@@ -1,0 +1,53 @@
+@use 'src/styles/placeholders';
+@use 'src/styles/variables-size';
+@use 'src/styles/variables-color';
+
+.book-data-view {
+  &__header {
+    display: flex;
+    @extend %main-gradient;
+    border-radius: variables-size.$card-radius;
+    overflow: hidden;
+    margin-bottom: variables-size.$page-padding-top;
+  }
+
+  &__title-container {
+    padding: variables-size.$card-padding-side;
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: variables-size.$font-size-page-title;
+    color: variables-color.$card-white-text;
+  }
+
+  &__info {
+    margin-bottom: variables-size.$page-padding-top;
+  }
+
+  &__info-line {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: variables-size.$font-size-m;
+  }
+
+  &__info-label {
+    margin-right: 5px;
+    color: var(--bold-text-color);
+    font-weight: variables-size.$font-weight-l;
+  }
+
+  &__info-value {
+
+  }
+
+  &__description-container {
+    font-size: variables-size.$font-size-m;
+  }
+
+  &__description {
+    font-size: variables-size.$font-size-m-s;
+  }
+}

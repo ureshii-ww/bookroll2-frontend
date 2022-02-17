@@ -1,6 +1,13 @@
 @use 'variables-size';
 @use 'variables-color';
 
+%main-gradient {
+  background: rgb(12,124,89);
+  background: -moz-linear-gradient(240deg, rgba(12,124,89,1) 0%, rgba(59,51,112,1) 100%);
+  background: -webkit-linear-gradient(240deg, rgba(12,124,89,1) 0%, rgba(59,51,112,1) 100%);
+  background: linear-gradient(240deg, rgba(12,124,89,1) 0%, rgba(59,51,112,1) 100%);
+}
+
 //avatar
 %avatar {
   border-radius: 100%;
@@ -39,7 +46,7 @@
 
 //cards
 %card-header {
-  @include variables-color.main-gradient;
+  @extend %main-gradient;
   color: variables-color.$card-white-text;
   border-radius: variables-size.$card-radius variables-size.$card-radius 0 0;
   padding: variables-size.$card-padding-top variables-size.$card-padding-side;
@@ -56,4 +63,14 @@
 //page
 %page-padding {
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+}
+
+//spoiler-text
+%spoiler-text {
+  color: transparent;
+  @extend %main-gradient;
+  &:hover {
+    color: var(--main-text-color);
+    background: transparent;
+  }
 }
