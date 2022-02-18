@@ -1,5 +1,5 @@
-@use 'src/styles/variables-size';
-@use 'src/styles/variables-color';
+@use '../../../styles/variables/variables-size';
+@use '../../../styles/variables/variables-color';
 
 .navbar {
   grid-area: navbar;

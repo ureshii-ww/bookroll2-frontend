@@ -1,0 +1,30 @@
+//base
+$accent-color: #807DE1;
+$accent-color-hover: rgba(128, 125, 225, 0.8);
+$dim-color: #707070;
+$green-color: #81c784;
+$green-color-hover: rgba(67, 160, 71, 0.8);
+$red-color: #ef5350;
+$red-color-hover: rgba(239, 83, 80, 0.8);
+
+//background
+$background-color: #121212;
+$page-background-color: #232323;
+$navbar-background-color: $accent-color;
+$book-card-background-color: #343434;
+$input-background-color: #1a1a1a;
+
+//text
+$main-text-color: rgba(255, 255, 255, 0.77);
+$bold-text-color: rgba(255, 255, 255, 0.89);
+$dim-text-color: rgba(255, 255, 255, 0.5);
+$link-text-color: $accent-color;
+$link-text-color-hover: $accent-color-hover;
+$red-text-color: $red-color;
+$red-text-color-hover: $red-color-hover;
+$green-text-color: $green-color;
+$green-text-color-hover: $green-color-hover;
+
+//border
+$border-color: rgba(255, 255, 255, 0.1);
+$input-border-color: $accent-color;

@@ -1,6 +1,6 @@
-@use 'src/styles/placeholders';
-@use 'src/styles/variables-size';
-@use 'src/styles/variables-color';
+@use 'src/styles/placeholders/main-gradient-placeholder';
+@use '../../../styles/variables/variables-size';
+@use '../../../styles/variables/variables-color';
 
 .book-data-view {
   &__header {

@@ -1,4 +1,4 @@
-@use 'src/styles/placeholders';
+@use 'src/styles/placeholders/page-placeholders';
 
 .random-book-page {
   @extend %page-padding;

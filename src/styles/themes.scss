@@ -1,12 +1,24 @@
-@use 'variables-light';
-@use 'variables-dark';
+@use 'variables/variables-light';
+@use 'variables/variables-dark';
 
 :root {
+  //base
+  --accent-color: #{variables-light.$accent-color};
+  --accent-color-hover: #{variables-light.$accent-color-hover};
+  --dim-color: #{variables-light.$dim-color};
+  --green-color: #{variables-light.$green-color};
+  --green-color-hover: #{variables-light.$green-color-hover};
+  --red-color: #{variables-light.$red-color};
+  --red-color-hover: #{variables-light.$red-color-hover};
+
+  //background
   --background-color: #{variables-light.$background-color};
   --page-background-color: #{variables-light.$page-background-color};
   --navbar-background-color: #{variables-light.$navbar-background-color};
-  --accent-color: #{variables-light.$accent-color};
-  --dim-color: #{variables-light.$dim-color};
+  --book-card-background-color: #{variables-light.$book-card-background-color};
+  --input-background-color: #{variables-light.$input-background-color};
+
+  //text
   --main-text-color: #{variables-light.$main-text-color};
   --bold-text-color: #{variables-light.$bold-text-color};
   --dim-text-color: #{variables-light.$dim-text-color};
@@ -16,16 +28,30 @@
   --red-text-color-hover: #{variables-light.$red-text-color-hover};
   --green-text-color: #{variables-light.$green-text-color};
   --green-text-color-hover: #{variables-light.$green-text-color-hover};
+
+  //border
   --border-color: #{variables-light.$border-color};
-  --book-card-background-color: #{variables-light.$book-card-background-color};
+  --input-border-color: #{variables-light.$input-border-color};
 }
 
 .dark {
+  //base
+  --accent-color: #{variables-dark.$accent-color};
+  --accent-color-hover: #{variables-dark.$accent-color-hover};
+  --dim-color: #{variables-dark.$dim-color};
+  --green-color: #{variables-dark.$green-color};
+  --green-color-hover: #{variables-dark.$green-color-hover};
+  --red-color: #{variables-dark.$red-color};
+  --red-color-hover: #{variables-dark.$red-color-hover};
+
+  //background
   --background-color: #{variables-dark.$background-color};
   --page-background-color: #{variables-dark.$page-background-color};
   --navbar-background-color: #{variables-dark.$navbar-background-color};
-  --accent-color: #{variables-dark.$accent-color};
-  --dim-color: #{variables-dark.$dim-color};
+  --book-card-background-color: #{variables-dark.$book-card-background-color};
+  --input-background-color: #{variables-dark.$input-background-color};
+
+  //text
   --main-text-color: #{variables-dark.$main-text-color};
   --bold-text-color: #{variables-dark.$bold-text-color};
   --dim-text-color: #{variables-dark.$dim-text-color};
@@ -35,6 +61,8 @@
   --red-text-color-hover: #{variables-dark.$red-text-color-hover};
   --green-text-color: #{variables-dark.$green-text-color};
   --green-text-color-hover: #{variables-dark.$green-text-color-hover};
+
+  //border
   --border-color: #{variables-dark.$border-color};
-  --book-card-background-color: #{variables-dark.$book-card-background-color};
+  --input-border-color: #{variables-dark.$input-border-color};
 }

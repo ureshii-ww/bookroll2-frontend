@@ -1,5 +1,5 @@
-@use '../../../../styles/variables-size';
-@use '../../../../styles/placeholders';
+@use '../../../../styles/variables/variables-size';
+@use '../../../../styles/placeholders/avatar-placeholder';
 
 .user-header-avatar {
   @extend %avatar;

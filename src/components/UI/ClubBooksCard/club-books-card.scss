@@ -1,6 +1,7 @@
-@use 'src/styles/placeholders';
-@use 'src/styles/variables-size';
-@use 'src/styles/variables-color';
+@use 'src/styles/placeholders/cards-placeholders';
+@use 'src/styles/placeholders/avatar-placeholder';
+@use '../../../styles/variables/variables-size';
+@use '../../../styles/variables/variables-color';
 
 $club-books-card-avatar-size: 48px;
 $club-books-card-head-padding: variables-size.$card-padding-side variables-size.$card-padding-side;

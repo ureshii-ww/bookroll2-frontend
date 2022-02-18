@@ -7,7 +7,7 @@ export interface SubmitButtonProps extends ButtonHTMLAttributes<HTMLButtonElemen
 const SubmitButton: FC<SubmitButtonProps> = (props) => {
   const { className, children, ...rest } = props;
   return (
-    <button {...rest} className={`${className ? 'submit-button ' + className : 'submit-button'}`}>
+    <button type="button" {...rest} className={`${className ? 'submit-button ' + className : 'submit-button'}`}>
       {children}
     </button>
   );

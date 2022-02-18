@@ -1,0 +1,18 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+@use 'main-gradient-placeholder';
+
+%card-header {
+  @extend %main-gradient;
+  color: variables-color.$card-white-text;
+  border-radius: variables-size.$card-radius variables-size.$card-radius 0 0;
+  padding: variables-size.$card-padding-top variables-size.$card-padding-side;
+}
+
+%card-footer {
+  background-color: var(--book-card-background-color);
+  border-radius: 0 0 variables-size.$card-radius variables-size.$card-radius;
+  color: var(--main-text-color);
+  font-size: variables-size.$font-size-m-s;
+  padding: variables-size.$card-padding-top variables-size.$card-padding-side;
+}

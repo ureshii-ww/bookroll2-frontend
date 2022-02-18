@@ -1,6 +1,6 @@
-@use 'src/styles/variables-color';
-@use 'src/styles/variables-size';
-@use 'src/styles/placeholders';
+@use '../../../styles/variables/variables-color';
+@use '../../../styles/variables/variables-size';
+@use 'src/styles/placeholders/cards-placeholders';
 
 $book-card-title-padding: 10px;
 $book-card-authors-padding: 5px;
