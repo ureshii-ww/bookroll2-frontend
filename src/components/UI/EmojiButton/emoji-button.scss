@@ -1,0 +1,65 @@
+@use 'src/styles/variables/variables-size';
+@import '/node_modules/emoji-mart-virtualized/css/emoji-mart.css';
+
+.emoji-button {
+  position: relative;
+
+  &__button {
+    font-size: variables-size.$font-size-x-l;
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.picker-container {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 750;
+}
+
+.emoji-mart {
+  &-search {
+    display: none;
+  }
+
+  &-scroll {
+    overflow: hidden;
+    padding: 0 6px 0 10px;
+    >div {
+      box-sizing: content-box;
+      padding: 17px;
+    }
+  }
+
+  &-anchor {
+    cursor: pointer;
+  }
+
+  &-emoji {
+    span {
+      cursor: pointer;
+    }
+    &:hover {
+      &:before {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &-dark {
+    .emoji-mart-emoji {
+      &:hover {
+        &:before {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

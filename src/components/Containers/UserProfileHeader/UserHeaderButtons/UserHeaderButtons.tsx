@@ -1,23 +1,27 @@
 import React, { FC } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import './user-header-buttons.scss';
-import { RouteNames } from '../../../../routes/route-names.enum';
 import { ReactComponent as SettingsSvg } from '../../../../assets/svg/settings.svg';
+import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
+import { useActions } from '../../../../hooks/useActions';
+import UserSettings from '../../../Pages/UserSettings/UserSettings';
 
 interface UserHeaderButtonsProps {
   isCurrentUser: boolean;
 }
 
 const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({ isCurrentUser, ...rest }) => {
-  const { userUrl } = useParams();
+  const {showModal} = useActions();
+  const showSettings = () => {
+    showModal(<UserSettings/>)
+  }
 
   return (
     <div className="user-header-buttons">
       {isCurrentUser && (
-        <Link className="user-header-buttons__button" to={`${RouteNames.USER_PROFILE_BASE}${userUrl}/settings`}>
+        <TransparentButton className="user-header-buttons__button transparent-button--dim" onClick={showSettings}>
           <SettingsSvg />
           Настройки
-        </Link>
+        </TransparentButton>
       )}
     </div>
   );

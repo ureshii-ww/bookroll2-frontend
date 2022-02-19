@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { RouteNames } from '../../routes/route-names.enum';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import UserProfilePage from '../Pages/UserProfilePage/UserProfilePage';
@@ -12,7 +12,6 @@ import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
 import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
 import '../../styles/app-layout.scss';
-import UserSettings from '../Pages/UserSettings/UserSettings';
 import ClubSettingsPage from '../Pages/ClubSettingsPage/ClubSettingsPage';
 import WheelPage from '../Pages/WheelPage/WheelPage';
 import Scrollbars from 'react-custom-scrollbars-2';
@@ -36,7 +35,6 @@ const AppRouter: FC = () => {
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
                   <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
                 </Route>
-                <Route path={RouteNames.USER_SETTINGS} element={<UserSettings />} />
                 <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
                   <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
                 </Route>

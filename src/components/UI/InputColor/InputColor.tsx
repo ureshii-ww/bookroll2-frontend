@@ -1,4 +1,5 @@
 import React, { FC, forwardRef, InputHTMLAttributes } from 'react';
+import './input-color.scss';
 
 interface InputColorProps extends InputHTMLAttributes<HTMLInputElement> {}
 

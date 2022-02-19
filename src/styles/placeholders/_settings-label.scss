@@ -1,0 +1,8 @@
+@use 'src/styles/variables/variables-size';
+
+%settings-label {
+  color: var(--bold-text-color);
+  font-size: variables-size.$font-size-m-s;
+  font-weight: variables-size.$font-weight-l;
+  margin-bottom: 10px;
+}

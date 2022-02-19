@@ -1,8 +1,6 @@
 @use '../../../styles/variables/variables-size';
 @use 'src/styles/placeholders/profile-header-placeholders';
 
-
-
 .modal-bg {
   position: fixed;
   left: 0;
@@ -24,6 +22,8 @@
 
   &__wrapper {
     padding: 20px;
+    display: flex;
+    align-items: center;
   }
 
   &__close {

@@ -1,0 +1,14 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/settings-label';
+
+.user-settings-account {
+  &__group {
+    &:not(:last-of-type) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__label {
+    @extend %settings-label;
+  }
+}

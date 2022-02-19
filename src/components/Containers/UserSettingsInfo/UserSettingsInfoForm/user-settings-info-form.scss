@@ -1,0 +1,29 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/settings-label';
+
+.user-settings-info-form {
+  &__container {
+    margin-bottom: 30px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__label {
+    @extend %settings-label;
+  }
+
+  &__input {
+
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

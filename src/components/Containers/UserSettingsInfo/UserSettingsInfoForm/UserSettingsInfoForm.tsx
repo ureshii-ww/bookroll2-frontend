@@ -7,6 +7,7 @@ import { useRequestPage } from '../../../../hooks/useRequestPage';
 import UserService from '../../../../services/user.service';
 import { useActions } from '../../../../hooks/useActions';
 import EmojiButton from '../../../UI/EmojiButton/EmojiButton';
+import './user-settings-info-form.scss';
 
 interface UserSettingsInfoFormProps {
   username: string | null;
@@ -22,7 +23,7 @@ interface Inputs {
 }
 
 const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, emoji, userUrl, ...rest }) => {
-  const { setUserData } = useActions();
+  const { setUserData, closeModal } = useActions();
   const [chosenEmoji, setChosenEmoji] = useState<string>(emoji || '😎');
   const { addNotification } = useActions();
 
@@ -37,29 +38,47 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
     addNotification('Настройки успешно обновлены', 'success');
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
+    closeModal();
   });
 
   const onSubmit: SubmitHandler<Inputs> = data => updateInfo(userUrl, data.username, data.color, chosenEmoji);
 
   return (
     //TODO Сделать валидацию
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="username"
-        control={control}
-        defaultValue={username || 'username'}
-        rules={{ required: true }}
-        render={({ field }) => <InputText {...field} />}
-      />
-      <Controller
-        name="color"
-        control={control}
-        defaultValue={color || '#FFF'}
-        rules={{ required: true }}
-        render={({ field }) => <InputColor {...field} />}
-      />
-      <EmojiButton emoji={chosenEmoji} setEmoji={(emoji: string) => setChosenEmoji(emoji)} />
-      <SubmitButton>Сохранить</SubmitButton>
+    <form className="user-settings-info-form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="user-settings-info-form__container">
+        <div className="user-settings-info-form__group">
+          <label className="user-settings-info-form__label" htmlFor="username">
+            Имя
+          </label>
+          <Controller
+            name="username"
+            control={control}
+            defaultValue={username || 'username'}
+            rules={{ required: true }}
+            render={({ field }) => <InputText {...field} />}
+          />
+        </div>
+        <div className="user-settings-info-form__group">
+          <label className="user-settings-info-form__label" htmlFor="color">
+            Цвет
+          </label>
+          <Controller
+            name="color"
+            control={control}
+            defaultValue={color || '#FFF'}
+            rules={{ required: true }}
+            render={({ field }) => <InputColor {...field} />}
+          />
+        </div>
+        <div className="user-settings-info-form__group">
+          <span className="user-settings-info-form__label">Эмодзи</span>
+          <EmojiButton emoji={chosenEmoji} setEmoji={(emoji: string) => setChosenEmoji(emoji)} />
+        </div>
+      </div>
+      <div className="user-settings-info-form__button">
+        <SubmitButton>Сохранить</SubmitButton>
+      </div>
     </form>
   );
 };

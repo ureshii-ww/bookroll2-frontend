@@ -1,0 +1,30 @@
+@use 'src/styles/variables/variables-size';
+
+.settings-tab-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: var(--main-text-color);
+  font-size: variables-size.$font-size-m;
+  font-weight: variables-size.$font-weight-x-s;
+  &--active {
+    font-weight: variables-size.$font-weight-l;
+    color: var(--bold-text-color);
+
+    span {
+      position: relative;
+      padding-right: 10px;
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: '';
+        width: 3px;
+        height: 100%;
+        background-color: var(--accent-color);
+      }
+    }
+  }
+}

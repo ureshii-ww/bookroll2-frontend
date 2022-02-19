@@ -1,6 +1,8 @@
-import React, { FC, Fragment, useState, MouseEvent } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import TransparentButton from '../TransparentButton/TransparentButton';
-import Picker, { IEmojiData } from 'emoji-picker-react';
+import { BaseEmoji, Picker, PickerProps } from 'emoji-mart-virtualized';
+import './emoji-button.scss';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 interface EmojiButtonProps {
   emoji: string;
@@ -8,19 +10,37 @@ interface EmojiButtonProps {
 }
 
 const EmojiButton: FC<EmojiButtonProps> = ({ emoji, setEmoji, ...rest }) => {
+  const currentTheme = useAppSelector(state => state.theme.themeStyle)
   const [isShowPicker, setIsShowPicker] = useState<boolean>(false);
-  const onEmojiClick = (event: MouseEvent, emojiObject: IEmojiData) => {
+  const selectEmoji = (emoji: BaseEmoji) => {
     setIsShowPicker(false);
-    setEmoji(emojiObject.emoji);
+    setEmoji(emoji.native);
   };
+
+  const pickerOptions: PickerProps = {
+    native: true,
+    onSelect: selectEmoji,
+    exclude: ['flags', 'custom', 'recent'],
+    theme: currentTheme,
+    showPreview: false,
+    showSkinTones: false,
+    color: 'var(--accent-color)',
+    perLine: 7,
+  }
 
   return (
     <Fragment>
-      <TransparentButton type="button" onClick={() => setIsShowPicker(value => !value)}>
-        {emoji}
-      </TransparentButton>
-      {isShowPicker && <Picker native onEmojiClick={onEmojiClick} />}
+      <div className="emoji-button">
+        <TransparentButton className="emoji-button__button" type="button" onClick={() => setIsShowPicker(value => !value)}>
+          {emoji}
+        </TransparentButton>
+        <div className={isShowPicker ? "picker-container" : "hidden"}>
+          <Picker {...pickerOptions}/>
+        </div>
+      </div>
+      {isShowPicker && <div className="emoji-button__bg" onClick={() => setIsShowPicker(false)}/>}
     </Fragment>
+
   );
 };
 

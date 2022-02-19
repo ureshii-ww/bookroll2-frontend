@@ -5,6 +5,7 @@ import SubmitButton from '../../../UI/SubmitButton/SubmitButton';
 import { useRequestPage } from '../../../../hooks/useRequestPage';
 import UserService from '../../../../services/user.service';
 import { useActions } from '../../../../hooks/useActions';
+import './user-settings-password-form.scss';
 
 interface UserSettingsPasswordFormProps {
   userUrl: string;
@@ -17,13 +18,13 @@ interface Inputs {
 }
 
 const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, ...rest }) => {
-  const {addNotification} = useActions();
+  const { addNotification } = useActions();
   const {
     handleSubmit,
     control,
     formState: { errors },
     getValues,
-    resetField
+    resetField,
   } = useForm<Inputs>();
   const updatePassword = useRequestPage(async (userUrl: string, oldPassword: string, newPassword: string) => {
     const response = await UserService.updatePassword(userUrl, oldPassword, newPassword);
@@ -41,32 +42,57 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
 
   return (
     //TODO добавить валидацию
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="oldPassword"
-        control={control}
-        defaultValue={''}
-        rules={{ required: true }}
-        render={({ field }) => <InputText {...field} type="password" />}
-      />
-      <Controller
-        name="newPassword"
-        control={control}
-        defaultValue={''}
-        rules={{ required: true }}
-        render={({ field }) => <InputText {...field} type="password" />}
-      />
-      <Controller
-        name="newPasswordRepeat"
-        control={control}
-        defaultValue={''}
-        rules={{
-          required: true,
-          validate: value => value === getValues().newPassword || 'Пароли должны совпадать',
-        }}
-        render={({ field }) => <InputText {...field} type="password" />}
-      />
-      <SubmitButton>Сменить пароль</SubmitButton>
+    <form className="user-settings-password-form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="user-settings-password-form__inputs-group">
+        <Controller
+          name="oldPassword"
+          control={control}
+          defaultValue={''}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <InputText
+              {...field}
+              className="user-settings-password-form__input"
+              placeholder="Старый пароль"
+              type="password"
+            />
+          )}
+        />
+        <Controller
+          name="newPassword"
+          control={control}
+          defaultValue={''}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <InputText
+              {...field}
+              className="user-settings-password-form__input"
+              placeholder="Новый пароль"
+              type="password"
+            />
+          )}
+        />
+        <Controller
+          name="newPasswordRepeat"
+          control={control}
+          defaultValue={''}
+          rules={{
+            required: true,
+            validate: value => value === getValues().newPassword || 'Пароли должны совпадать',
+          }}
+          render={({ field }) => (
+            <InputText
+              {...field}
+              className="user-settings-password-form__input"
+              placeholder="Повторите пароль"
+              type="password"
+            />
+          )}
+        />
+      </div>
+      <div className="user-settings-password-form__button">
+        <SubmitButton>Сменить пароль</SubmitButton>
+      </div>
     </form>
   );
 };
