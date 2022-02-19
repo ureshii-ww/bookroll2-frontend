@@ -1,0 +1,31 @@
+{
+  "name": "emoji-mart-virtualized",
+  "version": "3.0.9",
+  "description": "TypeScript definitions for emoji-mart-virtualized",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/emoji-mart",
+  "license": "MIT",
+  "contributors": [
+    "Jessica Franco (https://github.com/Jessidhia)",
+    "Nick Winans (https://github.com/Nicell)",
+    "Elvis Wolcott (https://github.com/elviswolcott)",
+    "Tarrence van As (https://github.com/tarrencev)"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/emoji-mart"
+  },
+  "scripts": {},
+  "dependencies": {
+    "@types/react": "*"
+  },
+  "typesPublisherContentHash": "ca4a127b5abae759fbd620978171d3375064203fae68a9d588f91444f95ffbe8",
+  "typeScriptVersion": "3.8",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "keywords": [],
+  "author": ""
+}
