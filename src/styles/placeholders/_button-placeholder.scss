@@ -1,0 +1,32 @@
+@use 'src/styles/variables/variables-color';
+@use 'src/styles/variables/variables-size';
+
+%button {
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: variables-size.$font-size-m-s;
+  font-weight: variables-size.$font-weight-l;
+  cursor: pointer;
+  color: variables-color.$card-white-text;
+
+  &:active {
+    transform: translateY(1px)
+  }
+
+  &--green {
+    background-color: var(--green-color);
+  }
+
+  &--red {
+    background-color: var(--red-color);
+  }
+
+  &--big {
+    font-size: variables-size.$font-size-m;
+    padding: 20px;
+    border-radius: 16px;
+  }
+}
+

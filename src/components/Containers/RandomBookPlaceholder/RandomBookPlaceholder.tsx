@@ -9,7 +9,7 @@ interface RandomBookPlaceholderProps {
 const RandomBookPlaceholder: FC<RandomBookPlaceholderProps> = ({ handleClick }) => {
   return (
     <div className="random-book-placeholder">
-      <MainButton onClick={() => handleClick()}>Искать книги</MainButton>
+      <MainButton className="main-button--big" onClick={() => handleClick()}>Искать книги</MainButton>
     </div>
   );
 };

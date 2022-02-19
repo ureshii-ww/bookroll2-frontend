@@ -1,8 +1,7 @@
 @use 'src/styles/placeholders/button-placeholder';
 
-.main-button {
+.submit-button {
   @extend %button;
-
   &--green {
     @extend %button--green;
   }
