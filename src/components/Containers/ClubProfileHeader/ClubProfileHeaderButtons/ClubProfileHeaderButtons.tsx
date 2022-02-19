@@ -9,6 +9,7 @@ import { ReactComponent as SettingsSvg } from '../../../../assets/svg/settings.s
 import { ReactComponent as LeaveSvg } from '../../../../assets/svg/leave-club.svg';
 import { ReactComponent as JoinSvg } from '../../../../assets/svg/join-club.svg';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
+import ClubSettingsPage from '../../../Pages/ClubSettingsPage/ClubSettingsPage';
 
 interface ClubProfileHeaderButtonsProps {
   isMaster: boolean;
@@ -17,8 +18,11 @@ interface ClubProfileHeaderButtonsProps {
 }
 
 const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub, isMaster, clubUrl, ...rest }) => {
-  const { joinClub, leaveClub } = useActions();
+  const { joinClub, leaveClub, showModal } = useActions();
   const userClub = useAppSelector(state => state.auth.userData?.club);
+  const showSettingsModal = () => {
+    showModal(<ClubSettingsPage />);
+  };
 
   return (
     <div className="club-profile-header__buttons">
@@ -29,10 +33,10 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
         </Link>
       )}
       {isMaster && (
-        <Link className="club-profile-header__button" to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/settings`}>
+        <TransparentButton className="club-profile-header__button" onClick={showSettingsModal}>
           <SettingsSvg />
           Настройки
-        </Link>
+        </TransparentButton>
       )}
       {!isInClub && !userClub && (
         <TransparentButton

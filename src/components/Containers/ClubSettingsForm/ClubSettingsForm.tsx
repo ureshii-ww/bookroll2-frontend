@@ -8,6 +8,9 @@ import ClubService from '../../../services/club.service';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 import { useActions } from '../../../hooks/useActions';
+import './club-settings-form.scss';
+import InputTextarea from '../../UI/InputTextarea/InputTextarea';
+import InputSelect from '../../UI/InputSelect/InputSelect';
 
 interface ClubSettingsFormProps {
   clubSettingsInfo: ClubSettingsInfo;
@@ -44,23 +47,50 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
     sendSettingsData(clubUrl, data.clubname, data.master, data.description);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="clubname"
-        control={control}
-        defaultValue={clubname}
-        rules={{ required: true }}
-        render={({ field }) => <InputText {...field} />}
-      />
-      <select {...register('master')}>
-        {members.map(member => (
-          <option key={`master-${member.url}`} value={member.url}>
-            {member.username}
-          </option>
-        ))}
-      </select>
-      <textarea {...register('description')} defaultValue={description} />
-      <SubmitButton>Сохранить</SubmitButton>
+    <form className="club-settings-form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="club-settings-form__group">
+        <label className="club-settings-form__label" htmlFor="clubname">
+          Имя клуба
+        </label>
+        <Controller
+          name="clubname"
+          control={control}
+          defaultValue={clubname}
+          rules={{ required: true }}
+          render={({ field }) => <InputText {...field} />}
+        />
+      </div>
+      <div className="club-settings-form__group">
+        <label className="club-settings-form__label" htmlFor="master">
+          Управляющий
+        </label>
+        <Controller
+          name="master"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => <InputSelect {...field}>
+            {members.map(member => (
+              <option key={`master-${member.url}`} value={member.url}>
+                {member.username}
+              </option>
+            ))}
+          </InputSelect>}
+        />
+      </div>
+      <div className="club-settings-form__group">
+        <label className="club-settings-form__label" htmlFor="description">
+          Описание
+        </label>
+        <Controller
+          name="description"
+          control={control}
+          defaultValue={description}
+          render={({ field }) => <InputTextarea {...field} placeholder="Введите описание клуба" />}
+        />
+      </div>
+      <div className="club-settings-form__button">
+        <SubmitButton>Сохранить</SubmitButton>
+      </div>
     </form>
   );
 };

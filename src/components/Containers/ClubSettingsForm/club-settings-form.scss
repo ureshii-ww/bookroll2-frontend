@@ -1,0 +1,18 @@
+@use 'src/styles/placeholders/form-input-group';
+@use 'src/styles/placeholders/settings-label';
+@use 'src/styles/variables/variables-size';
+
+.club-settings-form {
+  &__group {
+    @extend %form-input-group;
+  }
+
+  &__label {
+    @extend %settings-label;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
