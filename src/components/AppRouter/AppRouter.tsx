@@ -12,7 +12,6 @@ import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
 import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
 import '../../styles/app-layout.scss';
-import ClubSettingsPage from '../Pages/ClubSettingsPage/ClubSettingsPage';
 import WheelPage from '../Pages/WheelPage/WheelPage';
 import Scrollbars from 'react-custom-scrollbars-2';
 import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileReviews';
@@ -38,7 +37,6 @@ const AppRouter: FC = () => {
                 <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
                   <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
                 </Route>
-                <Route path={RouteNames.CLUB_SETTINGS} element={<ClubSettingsPage />} />
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
                 <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
