@@ -1,12 +1,8 @@
-@use 'src/styles/placeholders/page-placeholders';
+@use 'src/styles/placeholders/settings-page-title';
 @use 'src/styles/variables/variables-size';
 
 .user-settings {
   padding: variables-size.$page-padding-top;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 
   &__content {
     display: grid;
@@ -16,10 +12,7 @@
   }
 
   &__title {
-    grid-area: title;
-    font-size: variables-size.$font-size-l;
-    font-weight: variables-size.$font-weight-l;
-    color: var(--bold-text-color);
+    @extend %setting-page-title;
   }
 
   &__tabs {

@@ -1,0 +1,7 @@
+%form-input-group {
+  display: flex;
+  flex-direction: column;
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}

@@ -60,6 +60,10 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
           />
         </div>
         <div className="user-settings-info-form__group">
+          <span className="user-settings-info-form__label">Эмодзи</span>
+          <EmojiButton emoji={chosenEmoji} setEmoji={(emoji: string) => setChosenEmoji(emoji)} />
+        </div>
+        <div className="user-settings-info-form__group">
           <label className="user-settings-info-form__label" htmlFor="color">
             Цвет
           </label>
@@ -70,10 +74,6 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
             rules={{ required: true }}
             render={({ field }) => <InputColor {...field} />}
           />
-        </div>
-        <div className="user-settings-info-form__group">
-          <span className="user-settings-info-form__label">Эмодзи</span>
-          <EmojiButton emoji={chosenEmoji} setEmoji={(emoji: string) => setChosenEmoji(emoji)} />
         </div>
       </div>
       <div className="user-settings-info-form__button">

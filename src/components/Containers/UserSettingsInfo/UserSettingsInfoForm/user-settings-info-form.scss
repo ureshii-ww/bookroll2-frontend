@@ -1,5 +1,6 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/placeholders/settings-label';
+@use 'src/styles/placeholders/form-input-group';
 
 .user-settings-info-form {
   &__container {
@@ -7,11 +8,7 @@
   }
 
   &__group {
-    display: flex;
-    flex-direction: column;
-    &:not(:last-of-type) {
-      margin-bottom: 20px;
-    }
+    @extend %form-input-group;
   }
 
   &__label {

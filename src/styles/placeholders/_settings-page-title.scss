@@ -1,0 +1,8 @@
+@use 'src/styles/variables/variables-size';
+
+%setting-page-title {
+  grid-area: title;
+  font-size: variables-size.$font-size-l;
+  font-weight: variables-size.$font-weight-l;
+  color: var(--bold-text-color);
+}

@@ -1,22 +1,5 @@
-@use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/input-placeholder';
 
 .input-text {
-  background-color: var(--input-background-color);
-  outline: none;
-  //border: 1px solid var(--input-border-color);
-  border: none;
-  border-radius: 10px;
-  height: variables-size.$input-height;
-  padding: 0 10px;
-  font-size: variables-size.$font-size-s;
-  color: var(--main-text-color);
-
-  &::placeholder {
-    color: var(--dim-text-color);
-  }
-
-  &:hover, &:focus {
-    border: 1px solid var(--input-border-color);
-    padding: 0 9px;
-  }
+  @extend %input-placeholder;
 }
