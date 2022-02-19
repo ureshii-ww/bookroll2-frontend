@@ -1,0 +1,11 @@
+@use 'src/styles/placeholders/input-placeholder';
+
+.input-textarea {
+  @extend %input-placeholder;
+  padding: 10px;
+  min-width: 400px;
+  min-height: 100px;
+  &:hover, &:active, &:focus {
+    padding: 9px;
+  }
+}
