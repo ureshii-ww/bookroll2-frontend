@@ -1,0 +1,6 @@
+@use 'src/styles/placeholders/input-placeholder';
+
+.input-select {
+  @extend %input-placeholder;
+  padding-right: 10px;
+}
