@@ -1,0 +1,7 @@
+@use 'src/styles/placeholders/page-placeholders';
+
+.club-profile-page {
+  &__content {
+    @extend %page-padding;
+  }
+}

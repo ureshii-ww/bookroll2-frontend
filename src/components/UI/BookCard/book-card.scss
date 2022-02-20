@@ -40,6 +40,10 @@ $book-card-authors-padding: 5px;
 
   &__meeting-number {
     grid-area: meeting;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: variables-size.$font-size-m-s;
   }
 
   &__delete {

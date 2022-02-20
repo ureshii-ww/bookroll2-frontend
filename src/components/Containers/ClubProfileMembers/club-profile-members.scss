@@ -1,0 +1,14 @@
+.club-profile-members {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__card {
+    width: calc(50% - 10px);
+    &:nth-of-type(odd) {
+      margin-right: 20px;
+    }
+    &:nth-of-type(-n+2) {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -3,6 +3,8 @@ import { ClubProfileInfo } from '../models/club-profile-info';
 import { UserData } from '../models/user-data';
 import { ClubBooks } from '../models/club-books';
 import { ClubSettingsInfo } from '../models/club-settings-info';
+import { BookData } from '../models/book-data';
+import { BasicUserInfo } from '../models/basic-user-info';
 
 const CLUB_PREFIX = 'club/';
 
@@ -43,8 +45,16 @@ const ClubService = {
   },
 
   confirmBook: (clubUrl: string, book: string) => {
-    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/confirmBook`, {book});
-  }
+    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/confirmBook`, { book });
+  },
+
+  getChosenBooksHistory: (clubUrl: string) => {
+    return $api.get<BookData[]>(`${CLUB_PREFIX}${clubUrl}/history`);
+  },
+
+  getClubMembers: (clubUrl: string) => {
+    return $api.get<BasicUserInfo[]>(`${CLUB_PREFIX}${clubUrl}/members`);
+  },
 };
 
 export default ClubService;

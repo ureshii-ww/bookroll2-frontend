@@ -15,6 +15,8 @@ import '../../styles/app-layout.scss';
 import WheelPage from '../Pages/WheelPage/WheelPage';
 import Scrollbars from 'react-custom-scrollbars-2';
 import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileReviews';
+import ClubProfileHistory from '../Containers/ClubProfileHistory/ClubProfileHistory';
+import ClubProfileMembers from '../Containers/ClubProfileMembers/ClubProfileMembers';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -36,6 +38,8 @@ const AppRouter: FC = () => {
                 </Route>
                 <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
                   <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
+                  <Route path={RouteNames.CLUB_PROFILE_HISTORY} element={<ClubProfileHistory />} />
+                  <Route path={RouteNames.CLUB_PROFILE_MEMBERS} element={<ClubProfileMembers />}/>
                 </Route>
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />

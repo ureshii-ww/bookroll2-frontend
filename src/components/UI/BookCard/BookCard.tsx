@@ -4,15 +4,15 @@ import {ReactComponent as DeleteSvg} from '../../../assets/svg/delete.svg';
 import './book-card.scss';
 
 interface BookCardProps {
-  isClubHistory: boolean;
-  isOwner: boolean;
-  handleDelete: () => void;
+  isClubHistory?: boolean;
+  isOwner?: boolean;
+  handleDelete?: () => void;
   bookData: {
     title: string;
     authors: string[];
     year: string;
     genres: string[];
-    meetingNumber?: string;
+    meetingNumber?: number;
   };
 }
 
