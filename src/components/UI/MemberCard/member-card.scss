@@ -1,0 +1,26 @@
+@use 'src/styles/placeholders/cards-placeholders';
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+
+.member-card {
+  @extend %card-header;
+  border-radius: variables-size.$card-radius;
+  padding: 20px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    margin-right: 20px;
+  }
+
+  &__name {
+    color: variables-color.$card-white-text;
+    font-size: variables-size.$font-size-x-l;
+    &:hover {
+      color: variables-color.$card-white-text;
+    }
+  }
+}
