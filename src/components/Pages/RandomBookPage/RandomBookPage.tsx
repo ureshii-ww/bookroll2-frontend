@@ -9,7 +9,11 @@ const RandomBookPage = () => {
     setIsBook(true);
   };
 
-  return <div className="random-book-page">{isBook ? <RandomBookContainer /> : <RandomBookPlaceholder handleClick={handleSetIsBook} />}</div>;
+  return (
+    <div className="random-book-page">
+      {isBook ? <RandomBookContainer /> : <RandomBookPlaceholder handleClick={handleSetIsBook} />}
+    </div>
+  );
 };
 
 export default RandomBookPage;

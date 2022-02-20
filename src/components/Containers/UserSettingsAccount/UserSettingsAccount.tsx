@@ -1,27 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import UserSettingsAccountEmail from './UserSettingsAccountEmail/UserSettingsAccountEmail';
-import { useRequestPage } from '../../../hooks/useRequestPage';
-import { UserAccountInfo } from '../../../models/user-account-info';
-import UserService from '../../../services/user.service';
 import UserSettingsPasswordForm from './UserSettingsAccountPasswordForm/UserSettingsPasswordForm';
 import './user-settings-account.scss';
+import useUserSettingsAccount from './useUserSettingsAccount';
 
 interface UserAccountProps {
   userUrl: string;
 }
 
 const UserSettingsAccount: FC<UserAccountProps> = ({ userUrl, ...rest }) => {
-  const [accountInfo, setAccountInfo] = useState<UserAccountInfo>({ email: '' });
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const fetchAccountData = useRequestPage(async (userUrl: string) => {
-    const response = await UserService.getAccountInfo(userUrl);
-    setAccountInfo(response.data);
-    setIsLoaded(true);
-  });
-
-  useEffect(() => {
-    fetchAccountData(userUrl);
-  }, []);
+  const {accountInfo, isLoaded} = useUserSettingsAccount(userUrl);
 
   return isLoaded ? (
     <div className="user-settings-account">

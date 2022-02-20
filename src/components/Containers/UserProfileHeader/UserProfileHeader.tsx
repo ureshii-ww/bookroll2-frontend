@@ -1,38 +1,18 @@
-import React, { FC, useEffect, useState } from 'react';
-import { UserProfileInfo } from '../../../models/user-profile-info';
-import { useRequestPage } from '../../../hooks/useRequestPage';
-import UserService from '../../../services/user.service';
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import React, { FC } from 'react';
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
 import UserHeaderAvatar from './UserHeaderAvatar/UserHeaderAvatar';
 import UserHeaderButtons from './UserHeaderButtons/UserHeaderButtons';
 import UserHeaderClub from './UserHeaderClub/UserHeaderClub';
 import './user-profile-header.scss';
+import useUserProfileHeader from './useUserProfileHeader';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
-  userUrl: string | undefined;
+  userUrl: string;
 }
 
 const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser, ...rest }) => {
-  const { isLoadingPage } = useAppSelector(state => state.event);
-  const authUserData = useAppSelector(state => state.auth.userData);
-  const [userInfo, setUserInfo] = useState<UserProfileInfo>({
-    username: null,
-    color: null,
-    emoji: null,
-    clubname: null,
-    clubUrl: null,
-  });
-
-  const fetchInfo = useRequestPage(async (userUrl: string) => {
-    const response = await UserService.getUserProfileInfo(userUrl);
-    setUserInfo(response.data);
-  });
-
-  useEffect(() => {
-    fetchInfo(userUrl);
-  }, [authUserData]);
+  const {userInfo, isLoadingPage} = useUserProfileHeader(userUrl);
 
   return !isLoadingPage ? (
     <div className="user-profile-header">

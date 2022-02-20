@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ClubBooks } from '../../../models/club-books';
-import useWheelContainer from '../../../hooks/useWheelContainer';
+import useWheelContainer from './useWheelContainer';
 import WinWheel from '../../UI/WinWheel/WinWheel';
 import WheelContainerStart from './WheelContainerStart/WheelContainerStart';
 import WheelContainerInfo from './WheelContainerInfo/WheelContainerInfo';

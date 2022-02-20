@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { WheelSegment } from '../components/UI/WinWheel/models/wheel-segment';
-import { ClubBooks } from '../models/club-books';
-import { WheelWinnerInfo } from '../models/wheel-winner-info';
+import { WheelSegment } from '../../UI/WinWheel/models/wheel-segment';
+import { ClubBooks } from '../../../models/club-books';
+import { WheelWinnerInfo } from '../../../models/wheel-winner-info';
 
 const useWheelContainer = (clubBooks: ClubBooks[]) => {
   const [wheelSegments, setWheelSegments] = useState<WheelSegment[]>([]);

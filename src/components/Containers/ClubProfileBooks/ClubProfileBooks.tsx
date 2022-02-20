@@ -1,41 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
-import { ClubBooks } from '../../../models/club-books';
-import { useRequestTab } from '../../../hooks/useRequestTab';
-import ClubService from '../../../services/club.service';
-import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import React, { FC } from 'react';
 import ClubBooksCard from '../../UI/ClubBooksCard/ClubBooksCard';
-import { useRequestPage } from '../../../hooks/useRequestPage';
 import './club-profile-books.scss';
+import useClubProfileBooks from './useClubProfileBooks';
 
 const ClubProfileBooks: FC = () => {
-  const [booksData, setBooksData] = useState<ClubBooks[]>([]);
-  const { isMaster, clubUrl } = useClubProfileContext();
-  const isLoading = useAppSelector(state => state.event.isLoadingTab);
-
-  const fetchBooksData = useRequestTab(async (clubUrl: string) => {
-    const response = await ClubService.getClubBooks(clubUrl);
-    setBooksData(response.data);
-  });
-
-  useEffect(() => {
-    fetchBooksData(clubUrl);
-  }, [clubUrl]);
-
-  const fetchDeleteBook = useRequestPage(async (clubUrl: string, index: number, userUrl: string) => {
-    const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
-
-    if (response.data === 'Success') {
-      const tempArray = booksData;
-      const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl);
-      tempArray[userIndex].books.splice(index, 1);
-      setBooksData([...tempArray]);
-    }
-  });
-
-  const handleDelete = (index: number, userUrl: string) => {
-    fetchDeleteBook(clubUrl, index, userUrl);
-  };
+  const {booksData, clubUrl, isMaster, handleDelete, isLoading} = useClubProfileBooks();
 
   return !isLoading && booksData.length > 0 ? (
     <div className="club-profile-books">

@@ -1,21 +1,16 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
-import UserService from '../../../services/user.service';
+import React, { FC, Fragment } from 'react';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
-import { BookData } from '../../../models/book-data';
 import BookCard from '../../UI/BookCard/BookCard';
-import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
-import { useRequestTab } from '../../../hooks/useRequestTab';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useParams } from 'react-router-dom';
-import { useRequestPage } from '../../../hooks/useRequestPage';
 import './user-profile-books.scss';
-import useUserProfileBooks from '../../../hooks/useUserProfileBooks';
+import useUserProfileBooks from './useUserProfileBooks';
 
 const UserProfileBooks: FC = props => {
   const { userUrl } = useParams();
   const isLoading = useAppSelector(state => state.event.isLoadingTab);
   const { isCurrentUser } = useUserProfileContext();
-  const {booksArray, isOut, containerRef, fetchDeleteBook, fetchBooksArray} = useUserProfileBooks(userUrl || '');
+  const { booksArray, isOut, containerRef, fetchDeleteBook } = useUserProfileBooks(userUrl || '');
 
   const handleDeleteBook = (index: number) => {
     fetchDeleteBook(userUrl, index);

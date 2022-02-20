@@ -1,13 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import InputText from '../../../UI/InputText/InputText';
 import SubmitButton from '../../../UI/SubmitButton/SubmitButton';
 import InputColor from '../../../UI/InputColor/InputColor';
-import { useRequestPage } from '../../../../hooks/useRequestPage';
-import UserService from '../../../../services/user.service';
-import { useActions } from '../../../../hooks/useActions';
 import EmojiButton from '../../../UI/EmojiButton/EmojiButton';
 import './user-settings-info-form.scss';
+import useUserSettingsInfoForm from './useUserSettingsInfoForm';
 
 interface UserSettingsInfoFormProps {
   username: string | null;
@@ -23,23 +21,12 @@ interface Inputs {
 }
 
 const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, emoji, userUrl, ...rest }) => {
-  const { setUserData, closeModal } = useActions();
-  const [chosenEmoji, setChosenEmoji] = useState<string>(emoji || '😎');
-  const { addNotification } = useActions();
-
+  const {updateInfo, chosenEmoji, setEmoji} = useUserSettingsInfoForm(emoji)
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const updateInfo = useRequestPage(async (userUrl: string, username: string, color: string, emoji: string) => {
-    const response = await UserService.updateInfo(userUrl, username, color, emoji);
-    addNotification('Настройки успешно обновлены', 'success');
-    localStorage.setItem('userData', JSON.stringify(response.data));
-    setUserData(response.data);
-    closeModal();
-  });
 
   const onSubmit: SubmitHandler<Inputs> = data => updateInfo(userUrl, data.username, data.color, chosenEmoji);
 
@@ -61,7 +48,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
         </div>
         <div className="user-settings-info-form__group">
           <span className="user-settings-info-form__label">Эмодзи</span>
-          <EmojiButton emoji={chosenEmoji} setEmoji={(emoji: string) => setChosenEmoji(emoji)} />
+          <EmojiButton emoji={chosenEmoji} setEmoji={setEmoji} />
         </div>
         <div className="user-settings-info-form__group">
           <label className="user-settings-info-form__label" htmlFor="color">

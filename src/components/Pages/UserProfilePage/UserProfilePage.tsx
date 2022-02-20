@@ -18,7 +18,7 @@ const UserProfilePage = () => {
 
   return userProfileTabs.map(tab => tab.path).some(path => path === location.pathname) ? (
     <div>
-      <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl} />
+      <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl || ''} />
       <ProfileTabs tabsData={userProfileTabs} url={userUrl} />
       <Outlet context={{ isCurrentUser: isCurrentUser, userUrl: userUrl }} />
     </div>

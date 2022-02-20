@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { BookData } from '../models/book-data';
-import { useInfiniteScroll } from './useInfiniteScroll';
-import { useRequestTab } from './useRequestTab';
-import UserService from '../services/user.service';
+import { BookData } from '../../../models/book-data';
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
+import { useRequestTab } from '../../../hooks/useRequestTab';
+import UserService from '../../../services/user.service';
 
 const useUserProfileBooks = (userUrl: string) => {
   const chunkSize = 10;
