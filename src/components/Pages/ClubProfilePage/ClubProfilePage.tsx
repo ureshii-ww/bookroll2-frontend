@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ClubProfileHeader from '../../Containers/ClubProfileHeader/ClubProfileHeader';
 import { useParams, Outlet, useLocation, Navigate, useOutletContext } from 'react-router-dom';
-import ProfileTabs from '../../Containers/ProfileTabs/ProfileTabs';
+import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './club-profile-page.scss';
@@ -19,7 +19,7 @@ const ClubProfilePage = () => {
   }, [clubUrl]);
 
   const clubProfileTabs: TabButtonProps[] = [
-    { name: 'Правила', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_RULES}` },
+    { name: 'Описание', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_RULES}` },
     { name: 'Участники', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_MEMBERS}` },
     { name: 'Книги', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_BOOKS}` },
     { name: 'Рецензии', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_REVIEWS}` },

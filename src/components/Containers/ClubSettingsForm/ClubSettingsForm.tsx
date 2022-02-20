@@ -16,11 +16,11 @@ export interface ClubSettingsFormProps {
 interface Inputs {
   clubname: string;
   master: string;
-  description: string;
+  rules: string;
 }
 
 const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl, ...rest }) => {
-  const { clubname, description, members } = clubSettingsInfo;
+  const { clubname, rules, members } = clubSettingsInfo;
   const sendSettingsData = useClubSettingsForm();
   const {
     handleSubmit,
@@ -29,7 +29,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = data =>
-    sendSettingsData(clubUrl, data.clubname, data.master, data.description);
+    sendSettingsData(clubUrl, data.clubname, data.master, data.rules);
 
   return (
     <form className="club-settings-form" onSubmit={handleSubmit(onSubmit)}>
@@ -70,9 +70,9 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
           Описание
         </label>
         <Controller
-          name="description"
+          name="rules"
           control={control}
-          defaultValue={description}
+          defaultValue={rules}
           render={({ field }) => <InputTextarea {...field} placeholder="Введите описание клуба" />}
         />
       </div>

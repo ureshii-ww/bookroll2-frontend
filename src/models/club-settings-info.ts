@@ -5,6 +5,6 @@ export interface ClubSettingsInfoMember {
 
 export interface ClubSettingsInfo {
   readonly clubname: string;
-  readonly description: string;
+  readonly rules: string;
   readonly members: ClubSettingsInfoMember[];
 }

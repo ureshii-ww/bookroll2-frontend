@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TabButton, { TabButtonProps } from '../../UI/TabButton/TabButton';
+import TabButton, { TabButtonProps } from '../TabButton/TabButton';
 import './profile-tabs.scss';
 
 interface ProfileTabsProps {

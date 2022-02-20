@@ -1,0 +1,8 @@
+@use 'src/styles/variables/variables-size';
+
+.club-profile-rules {
+  &__text {
+    white-space: pre-wrap;
+    font-size: variables-size.$font-size-m;
+  }
+}

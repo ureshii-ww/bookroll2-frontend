@@ -11,7 +11,7 @@ const ClubSettingsPage = () => {
   const clubUrl = path.substring(path.lastIndexOf('/') - 12, path.lastIndexOf('/'));
   const [clubInfo, setClubInfo] = useState<ClubSettingsInfo>({
     clubname: '',
-    description: '',
+    rules: '',
     members: [],
   });
   const [isLoaded, setIsLoaded] = useState<boolean>(false);

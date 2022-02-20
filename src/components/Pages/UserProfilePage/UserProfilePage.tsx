@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import UserProfileHeader from '../../Containers/UserProfileHeader/UserProfileHeader';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useLocation, useParams, Outlet, Navigate, useOutletContext } from 'react-router-dom';
-import ProfileTabs from '../../Containers/ProfileTabs/ProfileTabs';
+import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 

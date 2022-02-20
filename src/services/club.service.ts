@@ -40,8 +40,8 @@ const ClubService = {
     return $api.get<ClubSettingsInfo>(`${CLUB_PREFIX}${clubUrl}/settingsInfo`);
   },
 
-  updateSettings: (clubUrl: string, clubname: string, masterUrl: string, description: string) => {
-    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/updateSettings`, { clubname, masterUrl, description });
+  updateSettings: (clubUrl: string, clubname: string, masterUrl: string, rules: string) => {
+    return $api.post<string>(`${CLUB_PREFIX}${clubUrl}/updateSettings`, { clubname, masterUrl, rules });
   },
 
   confirmBook: (clubUrl: string, book: string) => {
@@ -55,6 +55,10 @@ const ClubService = {
   getClubMembers: (clubUrl: string) => {
     return $api.get<BasicUserInfo[]>(`${CLUB_PREFIX}${clubUrl}/members`);
   },
+
+  getClubRules: (clubUrl: string) => {
+    return $api.get<string>(`${CLUB_PREFIX}${clubUrl}/rules`);
+  }
 };
 
 export default ClubService;
