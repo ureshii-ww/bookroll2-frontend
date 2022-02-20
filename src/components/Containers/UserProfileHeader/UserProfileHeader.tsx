@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
-import UserHeaderAvatar from './UserHeaderAvatar/UserHeaderAvatar';
 import UserHeaderButtons from './UserHeaderButtons/UserHeaderButtons';
 import UserHeaderClub from './UserHeaderClub/UserHeaderClub';
 import './user-profile-header.scss';
 import useUserProfileHeader from './useUserProfileHeader';
+import Avatar from '../../UI/Avatar/Avatar';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -17,7 +17,9 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, isCurrentUser,
   return !isLoadingPage ? (
     <div className="user-profile-header">
       <div className="user-profile-header__title-container">
-        <UserHeaderAvatar color={userInfo.color || ''} emoji={userInfo.emoji || ''} />
+        <div className="user-header-avatar">
+          <Avatar emoji={userInfo.emoji} color={userInfo.color} className="avatar--big"/>
+        </div>
         <ProfileTitle title={userInfo.username || ''} />
       </div>
       <UserHeaderButtons isCurrentUser={isCurrentUser} />
