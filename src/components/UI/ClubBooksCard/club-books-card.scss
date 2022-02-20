@@ -35,11 +35,7 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
   }
 
   &__avatar {
-    @extend %avatar;
-    width: $club-books-card-avatar-size;
-    height: $club-books-card-avatar-size;
     margin-right: 10px;
-    font-size: variables-size.$font-size-l;
   }
 
   &__username {

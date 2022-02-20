@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { RouteNames } from '../../../../routes/route-names.enum';
 import TransparentButton from '../../TransparentButton/TransparentButton';
 import { ReactComponent as DropdownSvg } from '../../../../assets/svg/dropdown.svg';
+import Avatar from '../../Avatar/Avatar';
 
 interface ClubBooksCardHeaderProps {
   user: BasicUserInfo;
@@ -18,8 +19,8 @@ const ClubBooksCardHeader: FC<ClubBooksCardHeaderProps> = ({user, toggleOpen, ..
   return (
     <div className="club-books-card__head">
       <Link className="club-books-card__user" to={`${RouteNames.USER_PROFILE_BASE}${user.url}`}>
-        <div className="club-books-card__avatar" style={avatarStyles}>
-          <span>{user.emoji}</span>
+        <div className="club-books-card__avatar">
+          <Avatar color={user.color} emoji={user.emoji}/>
         </div>
         <span className="club-books-card__username">{user.username}</span>
       </Link>

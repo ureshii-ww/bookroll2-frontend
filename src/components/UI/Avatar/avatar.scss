@@ -1,0 +1,28 @@
+@use 'src/styles/variables/variables-size';
+
+.avatar {
+  &__background {
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__emoji {
+    color: #FFF;
+    font-size: variables-size.$font-size-l;
+  }
+
+  &.avatar--big {
+    .avatar__background {
+      width: 72px;
+      height: 72px;
+    }
+
+    .avatar__emoji {
+      font-size: variables-size.$font-size-x-x-l;
+    }
+  }
+}
