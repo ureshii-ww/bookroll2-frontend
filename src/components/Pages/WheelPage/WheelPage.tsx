@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useRequestPage } from '../../../hooks/useRequestPage';
-import ClubService from '../../../services/club.service';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import WheelContainer from '../../Containers/WheelContainer/WheelContainer';
-import { ClubBooks } from '../../../models/club-books';
+import WheelPageClubBooks from '../../Containers/WheelPageClubBooks/WheelPageClubBooks';
+import useWheelPage from './useWheelPage';
+import './wheel-page.scss';
 
 const WheelPage = () => {
-  const { clubUrl } = useParams();
-  const [clubBooks, setClubBooks] = useState<ClubBooks[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const getClubBooks = useRequestPage(async () => {
-    const response = await ClubService.getClubBooks(clubUrl || '');
-    setClubBooks(response.data);
-    setIsLoaded(true);
-  });
-
-  useEffect(() => {
-    getClubBooks();
-  }, []);
+  const { clubBooks, isLoaded, displayWinner, handleSetBooksKey, booksKey } = useWheelPage();
 
   return isLoaded ? (
-    <div>
-      <WheelContainer clubBooks={clubBooks} />
+    <div className="wheel-page">
+      <WheelContainer clubBooks={clubBooks} handleSetBooksKey={handleSetBooksKey} displayWinner={displayWinner} />
+      <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
     </div>
   ) : (
     <div>Loading</div>

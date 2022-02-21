@@ -20,7 +20,7 @@ const WinWheel: FC<WinWheelProps> = (props) => {
     wheel.startAnimation();
   }, []);
 
-  return <canvas id='wheelCanvas' width={400} height={400} />;
+  return <canvas id='wheelCanvas' width={sizeOptions?.canvasWidth || 400} height={sizeOptions?.canvasHeight || 400} />;
 };
 
 export default WinWheel;

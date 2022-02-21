@@ -131,6 +131,10 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
       color: var(--red-text-color);
     }
   }
+
+  &.club-books-card-book--disabled {
+    color: var(--dim-text-color);
+  }
 }
 
 @keyframes growDown {

@@ -4,4 +4,6 @@ import { BasicBookInfo } from './basic-book-info';
 export interface WheelWinnerInfo {
   user: BasicUserInfo;
   book: BasicBookInfo;
+  indexUser: number;
+  indexBook: number;
 }

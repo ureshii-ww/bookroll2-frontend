@@ -3,4 +3,5 @@ export interface BasicBookInfo {
   readonly title: string;
   readonly authors: string[];
   readonly year: string;
+  isDisabled?: boolean;
 }

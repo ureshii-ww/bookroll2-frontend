@@ -1,5 +1,5 @@
 export interface WheelAnimationOptions {
-  readonly type?: 'spinOngoing' | 'spinToStop' | 'spinAndBack';
+  readonly type?: 'spinOngoing' | 'spinToStop' | 'spinAndBack' | 'custom';
   readonly duration?: number;
   readonly spins?: number;
   readonly yoyo?: boolean;

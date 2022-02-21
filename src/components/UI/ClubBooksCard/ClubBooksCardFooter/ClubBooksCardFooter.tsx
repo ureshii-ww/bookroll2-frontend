@@ -8,18 +8,21 @@ import { BasicUserInfo } from '../../../../models/basic-user-info';
 interface ClubBooksCardFooterProps {
   books: BasicBookInfo[];
   user: BasicUserInfo;
-  isMaster: boolean;
+  isMaster?: boolean;
   showModal: (id: string) => void;
-  handleDelete: (index: number, userUrl: string) => void;
+  handleDelete?: (index: number, userUrl: string) => void;
+  booksKey?: string;
 }
 
 const ClubBooksCardFooter: FC<ClubBooksCardFooterProps> = props => {
-  const { books, user, isMaster, showModal, handleDelete } = props;
+  const { books, user, isMaster, showModal, handleDelete, booksKey } = props;
 
   return (
     <div className="club-books-card__footer">
       {books.map((book, index) => (
-        <div className="club-books-card-book" key={`${user.url}-${book.id}`}>
+        <div
+          className={book.isDisabled ? 'club-books-card-book club-books-card-book--disabled' : 'club-books-card-book'}
+          key={`${user.url}-${book.id}-${booksKey}`}>
           <div className="club-books-card-book__left-container">
             <p className="club-books-card-book__title">{`${book.title} - ${book.authors.join(', ')}`}</p>
             <TransparentButton className="club-books-card-book__details" onClick={() => showModal(book.id)}>
@@ -28,7 +31,7 @@ const ClubBooksCardFooter: FC<ClubBooksCardFooterProps> = props => {
           </div>
           <div className="club-books-card-book__right-container">
             <p className="club-books-card-book__year">{book.year}</p>
-            {isMaster && (
+            {isMaster && handleDelete && (
               <TransparentButton className="club-books-card-book__delete" onClick={() => handleDelete(index, user.url)}>
                 <DeleteSvg />
               </TransparentButton>

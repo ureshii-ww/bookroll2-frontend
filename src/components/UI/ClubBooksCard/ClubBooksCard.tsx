@@ -10,20 +10,21 @@ import { useActions } from '../../../hooks/useActions';
 interface ClubBooksCardProps {
   user: BasicUserInfo;
   books: BasicBookInfo[];
-  isMaster: boolean;
-  handleDelete: (index: number, userUrl: string) => void;
+  isMaster?: boolean;
+  handleDelete?: (index: number, userUrl: string) => void;
+  booksKey?: string;
 }
 
-const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDelete, ...rest }) => {
+const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDelete, booksKey, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(value => !value);
   };
 
-  const {showModal} = useActions();
+  const { showModal } = useActions();
   const handleShowModal = (id: string) => {
-    showModal(<BookDataContainer bookId={id}/>)
-  }
+    showModal(<BookDataContainer bookId={id} />);
+  };
 
   return (
     <Fragment>
@@ -35,6 +36,7 @@ const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDe
           isMaster={isMaster}
           showModal={handleShowModal}
           handleDelete={handleDelete}
+          booksKey={booksKey}
         />
       </div>
     </Fragment>
