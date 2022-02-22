@@ -5,7 +5,7 @@ import shuffleWheelSegments from '../helpers/shuffleWheelSegments';
 import removeSegment from '../helpers/removeSegment';
 import createWheelSegments from '../helpers/createWheelSegments';
 
-const useWheelSegments = (clubBooks: ClubBooks[]) => {
+const useWheelSegments = (clubBooks: ClubBooks[], recountTextSize: (segmentsNumber: number) => void) => {
   const [wheelSegments, setWheelSegments] = useState<WheelSegment[]>([]);
 
   const shuffleSegments = () => {
@@ -18,6 +18,7 @@ const useWheelSegments = (clubBooks: ClubBooks[]) => {
 
   const createStartingSegments = () => {
     const wheelSegments = createWheelSegments(clubBooks);
+    recountTextSize(wheelSegments.length);
     const shuffledWheelSegments = shuffleWheelSegments(wheelSegments);
     setWheelSegments(shuffledWheelSegments);
   };

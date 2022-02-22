@@ -32,6 +32,9 @@
   //border
   --border-color: #{variables-light.$border-color};
   --input-border-color: #{variables-light.$input-border-color};
+
+  //shadow
+  --wheel-shadow-color: #{variables-light.$wheel-shadow-color};
 }
 
 .dark {
@@ -65,4 +68,7 @@
   //border
   --border-color: #{variables-dark.$border-color};
   --input-border-color: #{variables-dark.$input-border-color};
+
+  //shadow
+  --wheel-shadow-color: #{variables-dark.$wheel-shadow-color};
 }

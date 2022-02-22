@@ -21,10 +21,11 @@ export interface WheelContainerProps {
 
 const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, handleSetBooksKey, ...rest }) => {
   const { showModal } = useActions();
-  const { handleSetTime, handeSetSpinsNumber, spinsNumber, spinTime } = useWheelSettings();
+  const { handleSetTime, handeSetSpinsNumber, recountTextSize, spinsNumber, spinTime, textSize } = useWheelSettings();
   const { hookData, wheelWinner, wheelStages } = useWheelContainer(
     { clubBooks, handleSetBooksKey, displayWinner },
-    handeSetSpinsNumber
+    handeSetSpinsNumber,
+    recountTextSize
   );
   const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
   const { isStart, isRoll, isFinish } = wheelStages;
@@ -48,7 +49,9 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
           key={`${wheelSegments.length === 0}-${rollCount}`}
           handleWinner={handleWinner}
           segments={wheelSegments}
-          sizeOptions={{ canvasWidth: 600, canvasHeight: 600, responsive: true }}
+          sizeOptions={{ canvasWidth: 600, canvasHeight: 600, innerRadius: 40 }}
+          textOptions={{textFontSize: textSize}}
+          renderOptions={{lineWidth: 1, strokeStyle: '#737373'}}
           animationOptions={wheelAnimationOptions}
         />
       </div>

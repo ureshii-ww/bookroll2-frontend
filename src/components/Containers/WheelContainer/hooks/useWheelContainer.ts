@@ -13,14 +13,15 @@ import useWheelStages, { WheelStages } from './useWheelStages';
 
 const useWheelContainer = (
   { clubBooks, handleSetBooksKey, displayWinner }: WheelContainerProps,
-  handeSetSpinsNumber: () => void
+  handeSetSpinsNumber: () => void,
+  recountTextSize: (segmentsNumber: number) => void,
 ) => {
   const { clubUrl } = useParams();
   const navigate = useNavigate();
   const { addNotification } = useActions();
   const [rollCount, setRollCount] = useState(0);
   const { isStart, isRoll, isFinish, setStage } = useWheelStages();
-  const { wheelSegments, shuffleSegments, removeWinnerSegment } = useWheelSegments(clubBooks);
+  const { wheelSegments, shuffleSegments, removeWinnerSegment } = useWheelSegments(clubBooks, recountTextSize);
   const { wheelRollsHistory, addToHistory } = useWheelRollsHistory();
   const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, isFinish, addToHistory });
 
@@ -43,6 +44,7 @@ const useWheelContainer = (
 
   const startRoll = () => {
     handeSetSpinsNumber();
+    recountTextSize(wheelSegments.length);
     shuffleSegments();
     if (isStart) {
       setStage(WheelStages.START, false);
