@@ -1,5 +1,5 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import { countSpinsNumber } from '../helpers';
+import { FormEvent, useEffect, useState } from 'react';
+import countSpinsNumber from '../helpers/countSpinsNumber';
 
 const useWheelSettings = () => {
   const [spinTime, setSpinTime] = useState<number>(10);

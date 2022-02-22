@@ -8,9 +8,9 @@ const useWheelRollsHistory = () => {
     const tempArr = [...wheelRollsHistory];
     tempArr.push(winner);
     setWheelRollsHistory(tempArr);
-  }
+  };
 
-  return {wheelRollsHistory, addToHistory};
-}
+  return { wheelRollsHistory, addToHistory };
+};
 
 export default useWheelRollsHistory;

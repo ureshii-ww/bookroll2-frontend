@@ -66,11 +66,13 @@ const useWheelContainer = (
       winnerInfo,
       handleWinner,
     },
-    wheelSegments,
-    wheelRollsHistory,
-    rollCount,
-    startRoll,
-    confirmBook,
+    hookData: {
+      wheelSegments,
+      wheelRollsHistory,
+      rollCount,
+      startRoll,
+      confirmBook,
+    },
   };
 };
 

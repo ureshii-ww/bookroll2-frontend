@@ -21,10 +21,13 @@ export interface WheelContainerProps {
 const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, handleSetBooksKey, ...rest }) => {
   const { showModal } = useActions();
   const { handleSetTime, handeSetSpinsNumber, spinsNumber, spinTime } = useWheelSettings();
-  const { wheelSegments, wheelWinner, wheelStages, wheelRollsHistory, confirmBook, rollCount, startRoll } =
-    useWheelContainer({ clubBooks, handleSetBooksKey, displayWinner }, handeSetSpinsNumber);
-  const {isStart, isRoll, isFinish} = wheelStages;
-  const {winnerInfo, handleWinner} = wheelWinner;
+  const { hookData, wheelWinner, wheelStages } = useWheelContainer(
+    { clubBooks, handleSetBooksKey, displayWinner },
+    handeSetSpinsNumber
+  );
+  const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
+  const { isStart, isRoll, isFinish } = wheelStages;
+  const { winnerInfo, handleWinner } = wheelWinner;
 
   const wheelAnimationOptions: WheelAnimationOptions = !isStart
     ? {

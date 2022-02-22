@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import { WheelSegment } from '../../../UI/WinWheel/models/wheel-segment';
-import { findWinnerInfoBySegment } from '../helpers';
 import { ClubBooks } from '../../../../models/club-books';
+import findWinnerInfoBySegment from '../helpers/findWinnerInfoBySegment';
 
 interface useWheelWinnerArgs {
   clubBooks: ClubBooks[];
@@ -13,13 +13,13 @@ interface useWheelWinnerArgs {
 }
 
 const useWheelWinner = (args: useWheelWinnerArgs) => {
-  const {clubBooks, wheelSegments, displayWinner, isFinish, addToHistory} = args;
+  const { clubBooks, wheelSegments, displayWinner, isFinish, addToHistory } = args;
   const [winnerInfo, setWinnerInfo] = useState<WheelWinnerInfo | null>(null);
 
   const setWinner = (segment: WheelSegment) => {
     const winnerInfo = findWinnerInfoBySegment(clubBooks, segment);
     setWinnerInfo(winnerInfo);
-  }
+  };
 
   useEffect(() => {
     if (winnerInfo) {
@@ -34,7 +34,7 @@ const useWheelWinner = (args: useWheelWinnerArgs) => {
     }
   }, [winnerInfo]);
 
-  return {winnerInfo, setWinner};
-}
+  return { winnerInfo, setWinner };
+};
 
 export default useWheelWinner;
