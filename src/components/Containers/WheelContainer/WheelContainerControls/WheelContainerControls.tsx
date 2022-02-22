@@ -1,7 +1,8 @@
-import React, { FC, FormEvent, MutableRefObject, RefObject } from 'react';
+import React, { FC, FormEvent, Fragment } from 'react';
 import MainButton from '../../../UI/MainButton/MainButton';
 import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import InputText from '../../../UI/InputText/InputText';
+import './wheel-container-controls.scss';
 
 interface WheelContainerControlsProps {
   readonly startRoll: () => void;
@@ -15,16 +16,29 @@ interface WheelContainerControlsProps {
 const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
   const { startRoll, confirmBook, winnerInfo, isRoll, isFinish, handleSetTime, ...rest } = props;
   return (
-    <div>
+    <div className="wheel-container-controls">
       {!isFinish ? (
-        <div>
-          <InputText disabled={isRoll} maxLength={2} onChange={handleSetTime} />
-          <MainButton disabled={isRoll} onClick={startRoll}>
-            Крутить
+        <Fragment>
+          <div className="wheel-container-controls__input-group">
+            <label className="wheel-container-controls__input-label" htmlFor="spin-time">
+              Время кручения
+            </label>
+            <InputText
+              className="wheel-container-controls__input"
+              name="spin-time"
+              disabled={isRoll}
+              maxLength={2}
+              onChange={handleSetTime}
+            />
+          </div>
+          <MainButton className="wheel-container-controls__button" disabled={isRoll} onClick={startRoll}>
+            Раскрутить
           </MainButton>
-        </div>
+        </Fragment>
       ) : (
-        <MainButton onClick={confirmBook}>Подтвердить книгу</MainButton>
+        <MainButton onClick={confirmBook} className="main-button--green">
+          Подтвердить книгу
+        </MainButton>
       )}
     </div>
   );

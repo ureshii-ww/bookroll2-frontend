@@ -1,0 +1,11 @@
+@use 'src/styles/variables/variables-size';
+
+.wheel-container-info {
+  margin-bottom: 40px;
+
+  &__placeholder {
+    font-size: variables-size.$font-size-page-title-s;
+    font-weight: variables-size.$font-weight-l;
+    color: var(--bold-text-color);
+  }
+}

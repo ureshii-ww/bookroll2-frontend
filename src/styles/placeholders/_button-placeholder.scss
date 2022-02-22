@@ -28,5 +28,9 @@
     padding: 20px;
     border-radius: 16px;
   }
+
+  &:disabled {
+    filter: opacity(50%);
+  }
 }
 

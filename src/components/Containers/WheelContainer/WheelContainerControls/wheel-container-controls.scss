@@ -1,0 +1,17 @@
+@use 'src/styles/placeholders/form-input-group';
+@use 'src/styles/placeholders/settings-label';
+
+.wheel-container-controls {
+  &__input-group {
+    @extend %form-input-group;
+    margin-bottom: 20px;
+  }
+
+  &__input-label {
+    @extend %settings-label;
+  }
+
+  &__input {
+    width: 43px;
+  }
+}

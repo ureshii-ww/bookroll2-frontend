@@ -1,0 +1,58 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+@use 'src/styles/placeholders/triangle-shadow';
+
+.wheel-container {
+  display: grid;
+  grid-template-areas: 'wheel side';
+  grid-template-columns: fit-content(700px) auto;
+  margin-bottom: variables-size.$page-padding-side;
+
+  &__triangle {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 18px);
+    color: variables-color.$wheel-triangle;
+    svg {
+      @extend %triangle-shadow;
+      width: 36px;
+      height: 36px
+    }
+  }
+
+  &__wheel {
+    position: relative;
+    grid-area: wheel;
+    padding-top: variables-size.$page-padding-top;
+    margin-right: variables-size.$page-padding-side;
+  }
+
+  &__side {
+    grid-area: side;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: variables-size.$page-padding-top;
+  }
+
+  &__history-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__history-button {
+    font-size: variables-size.$font-size-x-s;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-left: 5px;
+      fill: currentColor;
+      width: variables-size.$font-size-x-s;
+      height: variables-size.$font-size-x-s;;
+    }
+  }
+
+  &__triangle {
+
+  }
+}

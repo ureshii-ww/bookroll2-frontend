@@ -11,6 +11,7 @@ const useWheelSettings = () => {
       event.currentTarget.value = '1';
       setSpinTime(1);
     } else if (!intValue) {
+      event.currentTarget.value = '';
       setSpinTime(10);
     } else {
       event.currentTarget.value = value;

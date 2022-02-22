@@ -14,4 +14,9 @@
   &--big {
     @extend %button--big;
   }
+
+  &:disabled {
+    cursor: default;
+    filter: opacity(50%);
+  }
 }

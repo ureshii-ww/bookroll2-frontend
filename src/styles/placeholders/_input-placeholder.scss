@@ -18,4 +18,12 @@
     border: 1px solid var(--input-border-color);
     padding: 0 9px;
   }
+
+  &:disabled {
+    filter: opacity(50%);
+    border: none;
+    &:hover {
+      padding: 0 10px;
+    }
+  }
 }

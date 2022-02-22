@@ -1,16 +1,17 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { ClubBooks } from '../../../models/club-books';
 import useWheelContainer from './hooks/useWheelContainer';
 import WinWheel from '../../UI/WinWheel/WinWheel';
 import WheelContainerInfo from './WheelContainerInfo/WheelContainerInfo';
-import './wheel-container.scss';
 import WheelContainerControls from './WheelContainerControls/WheelContainerControls';
 import useWheelSettings from './hooks/useWheelSettings';
 import { WheelAnimationOptions } from '../../UI/WinWheel/models/wheel-animation-options';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import { useActions } from '../../../hooks/useActions';
 import WheelHistory from '../WheelHistory/WheelHistory';
-import useWheelSegments from './hooks/useWheelSegments';
+import { ReactComponent as DetailsSvg } from '../../../assets/svg/details.svg';
+import { ReactComponent as TriangleSvg } from '../../../assets/svg/triangle.svg';
+import './wheel-container.scss';
 
 export interface WheelContainerProps {
   clubBooks: ClubBooks[];
@@ -39,7 +40,10 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
 
   return (
     <div className="wheel-container">
-      <div>
+      <div className="wheel-container__wheel">
+        <div className="wheel-container__triangle">
+          <TriangleSvg/>
+        </div>
         <WinWheel
           key={`${wheelSegments.length === 0}-${rollCount}`}
           handleWinner={handleWinner}
@@ -48,18 +52,27 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
           animationOptions={wheelAnimationOptions}
         />
       </div>
-      <WheelContainerInfo winnerInfo={winnerInfo} />
-      <WheelContainerControls
-        isRoll={isRoll}
-        confirmBook={confirmBook}
-        isFinish={isFinish}
-        winnerInfo={winnerInfo}
-        startRoll={startRoll}
-        handleSetTime={handleSetTime}
-      />
-      <TransparentButton onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
-        История
-      </TransparentButton>
+      <div className="wheel-container__side">
+        <div className="wheel-container__info-wrapper">
+          <WheelContainerInfo winnerInfo={winnerInfo} />
+          <WheelContainerControls
+            isRoll={isRoll}
+            confirmBook={confirmBook}
+            isFinish={isFinish}
+            winnerInfo={winnerInfo}
+            startRoll={startRoll}
+            handleSetTime={handleSetTime}
+          />
+        </div>
+        <div className="wheel-container__history-button-wrapper">
+          <TransparentButton
+            className="wheel-container__history-button"
+            onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
+            История
+            <DetailsSvg />
+          </TransparentButton>
+        </div>
+      </div>
     </div>
   );
 };

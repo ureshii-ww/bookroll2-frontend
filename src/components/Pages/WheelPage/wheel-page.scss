@@ -1,5 +1,20 @@
 @use 'src/styles/placeholders/page-placeholders';
+@use 'src/styles/variables/variables-size';
 
 .wheel-page {
   @extend %page-padding;
+  &__back-wrapper {
+    display: flex;
+  }
+
+  &__back {
+    font-size: variables-size.$font-size-x-s;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 5px;
+      width: variables-size.$font-size-s;
+      height: variables-size.$font-size-s;
+    }
+  }
 }
