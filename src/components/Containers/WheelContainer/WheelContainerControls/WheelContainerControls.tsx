@@ -21,7 +21,7 @@ const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
         <Fragment>
           <div className="wheel-container-controls__input-group">
             <label className="wheel-container-controls__input-label" htmlFor="spin-time">
-              Время кручения
+              Продолжительность вращения
             </label>
             <InputText
               className="wheel-container-controls__input"
