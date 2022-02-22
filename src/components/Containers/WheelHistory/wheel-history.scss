@@ -1,0 +1,49 @@
+@use 'src/styles/variables/variables-size';
+
+.wheel-history {
+  &__group {
+    padding: 20px 0;
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    &:last-child {
+      padding: 20px 0 0 0;
+    }
+
+    &:first-child {
+      padding: 0 0 20px 0;
+    }
+  }
+
+  &__user {
+    font-size: variables-size.$font-size-m-s;
+    font-weight: variables-size.$font-weight-x-s;
+    margin-bottom: 5px;
+    color: var(--dim-text-color);
+  }
+
+  &__username {
+    color: var(--main-text-color);
+  }
+
+  &__emoji {
+    color: #FFF;
+  }
+
+  &__book {
+    font-size: variables-size.$font-size-m;
+    font-weight: variables-size.$font-weight-s;
+    margin-bottom: 5px;
+  }
+
+  &__title {
+    font-weight: variables-size.$font-weight-l;
+    color: var(--bold-text-color);
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
