@@ -2,13 +2,12 @@ import { WheelSegment } from '../../../UI/WinWheel/models/wheel-segment';
 
 const shuffleWheelSegments = (wheelSegments: WheelSegment[]) => {
   let tempArray = [...wheelSegments];
-  let currentIndex = wheelSegments.length,
-    randomIndex;
-  while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [tempArray[currentIndex], tempArray[randomIndex]] = [tempArray[randomIndex], tempArray[currentIndex]];
+  const length = tempArray.length - 1;
+  for (let i = length; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]];
   }
+
   return tempArray;
 };
 

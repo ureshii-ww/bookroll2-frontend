@@ -10,7 +10,7 @@ interface WheelContainerInfoProps {
 const WheelContainerInfo: FC<WheelContainerInfoProps> = ({ winnerInfo, ...rest }) => {
   return (
     <div className="wheel-container-info">
-      {!winnerInfo && <div className="wheel-container-info__placeholder">Нажмите на кнопку «Раскрутить»</div>}
+      {!winnerInfo && <div className="wheel-container-info__placeholder">Нажмите на кнопку <span>Раскрутить</span></div>}
       {winnerInfo && <WheelContainerBookData winnerInfo={winnerInfo} />}
     </div>
   );
