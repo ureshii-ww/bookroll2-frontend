@@ -50,7 +50,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
           handleWinner={handleWinner}
           segments={wheelSegments}
           sizeOptions={{ canvasWidth: 600, canvasHeight: 600, innerRadius: 40 }}
-          textOptions={{textFontSize: textSize}}
+          textOptions={{textFontSize: textSize, textFontFamily: 'Inter', textFontWeight: 600}}
           renderOptions={{lineWidth: 1, strokeStyle: '#737373'}}
           animationOptions={wheelAnimationOptions}
         />
