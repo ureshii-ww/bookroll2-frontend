@@ -2,15 +2,13 @@ import React, { FC, Fragment } from 'react';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
 import BookCard from '../../UI/BookCard/BookCard';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useParams } from 'react-router-dom';
 import './user-profile-books.scss';
 import useUserProfileBooks from './useUserProfileBooks';
 
 const UserProfileBooks: FC = props => {
-  const { userUrl } = useParams();
-  const isLoading = useAppSelector(state => state.event.isLoadingTab);
-  const { isCurrentUser } = useUserProfileContext();
-  const { booksArray, isOut, containerRef, fetchDeleteBook } = useUserProfileBooks(userUrl || '');
+  const isLoading = useAppSelector(state => state.loadingTab.isLoadingTab);
+  const { isCurrentUser, userUrl } = useUserProfileContext();
+  const { booksArray, isOut, containerRef, fetchDeleteBook, isLoaded } = useUserProfileBooks(userUrl || '');
 
   const handleDeleteBook = (index: number) => {
     fetchDeleteBook(userUrl, index);
@@ -18,7 +16,8 @@ const UserProfileBooks: FC = props => {
 
   return (
     <div className="user-profile-books">
-      {booksArray.length > 0 &&
+      {isLoaded &&
+        booksArray.length > 0 &&
         booksArray.map((book, index) => {
           return index === booksArray.length - 1 && !isLoading && !isOut ? (
             <Fragment key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}>
@@ -28,7 +27,7 @@ const UserProfileBooks: FC = props => {
                 handleDelete={() => handleDeleteBook(index)}
                 bookData={{ ...book }}
               />
-              <div ref={containerRef}>Biba</div>
+              <div ref={containerRef}>Loader</div>
             </Fragment>
           ) : (
             <BookCard
@@ -40,8 +39,7 @@ const UserProfileBooks: FC = props => {
             />
           );
         })}
-      {!isLoading && booksArray.length === 0 && <div>Книги не выбраны</div>}
-      {isLoading && <div>Loader...</div>}
+      {!isLoading && isLoaded && booksArray.length === 0 && <div>Книги не выбраны</div>}
     </div>
   );
 };

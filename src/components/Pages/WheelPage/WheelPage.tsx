@@ -6,6 +6,7 @@ import './wheel-page.scss';
 import { Link, useParams } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 import { ReactComponent as BackSvg } from '../../../assets/svg/back.svg';
+import PageLoader from '../../UI/PageLoader/PageLoader';
 
 const WheelPage = () => {
   const { clubUrl } = useParams();
@@ -23,7 +24,9 @@ const WheelPage = () => {
       <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
     </div>
   ) : (
-    <div>Loading</div>
+    <div className="wheel-page__loader">
+      <PageLoader />
+    </div>
   );
 };
 

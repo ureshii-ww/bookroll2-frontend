@@ -18,6 +18,7 @@ import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileRevi
 import ClubProfileHistory from '../Containers/ClubProfileHistory/ClubProfileHistory';
 import ClubProfileMembers from '../Containers/ClubProfileMembers/ClubProfileMembers';
 import ClubProfileRules from '../Containers/ClubProfileRules/ClubProfileRules';
+import ClubProfileReviews from '../Containers/ClubProfileReviews/ClubProfileReviews';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -42,6 +43,7 @@ const AppRouter: FC = () => {
                   <Route path={RouteNames.CLUB_PROFILE_HISTORY} element={<ClubProfileHistory />} />
                   <Route path={RouteNames.CLUB_PROFILE_MEMBERS} element={<ClubProfileMembers />} />
                   <Route path={RouteNames.CLUB_PROFILE_RULES} element={<ClubProfileRules />} />
+                  <Route path={RouteNames.CLUB_PROFILE_REVIEWS} element={<ClubProfileReviews />} />
                 </Route>
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />

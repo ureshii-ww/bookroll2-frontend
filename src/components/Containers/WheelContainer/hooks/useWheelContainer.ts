@@ -10,6 +10,7 @@ import useWheelSegments from './useWheelSegments';
 import useWheelWinner from './useWheelWinner';
 import useWheelRollsHistory from './useWheelRollsHistory';
 import useWheelStages, { WheelStages } from './useWheelStages';
+import { useRequestPost } from '../../../../hooks/useRequestPost';
 
 const useWheelContainer = (
   { clubBooks, handleSetBooksKey, displayWinner }: WheelContainerProps,
@@ -25,7 +26,7 @@ const useWheelContainer = (
   const { wheelRollsHistory, addToHistory } = useWheelRollsHistory();
   const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, isFinish, addToHistory });
 
-  const confirmBook = useRequestPage(async () => {
+  const confirmBook = useRequestPost(async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo?.book.id || '');
     if (response.data === 'Success') {
       addNotification('Книга успешно выбрана', 'success');

@@ -3,13 +3,14 @@ import UserSettingsAccountEmail from './UserSettingsAccountEmail/UserSettingsAcc
 import UserSettingsPasswordForm from './UserSettingsAccountPasswordForm/UserSettingsPasswordForm';
 import './user-settings-account.scss';
 import useUserSettingsAccount from './useUserSettingsAccount';
+import PageLoader from '../../UI/PageLoader/PageLoader';
 
 interface UserAccountProps {
   userUrl: string;
 }
 
 const UserSettingsAccount: FC<UserAccountProps> = ({ userUrl, ...rest }) => {
-  const {accountInfo, isLoaded} = useUserSettingsAccount(userUrl);
+  const { accountInfo, isLoaded } = useUserSettingsAccount(userUrl);
 
   return isLoaded ? (
     <div className="user-settings-account">
@@ -23,7 +24,9 @@ const UserSettingsAccount: FC<UserAccountProps> = ({ userUrl, ...rest }) => {
       </div>
     </div>
   ) : (
-    <div>Loading</div>
+    <div className="user-settings-account__loader">
+      <PageLoader />
+    </div>
   );
 };
 

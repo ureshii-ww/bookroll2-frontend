@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ClubProfileHeader from '../../Containers/ClubProfileHeader/ClubProfileHeader';
 import { useParams, Outlet, useLocation, Navigate, useOutletContext } from 'react-router-dom';
 import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './club-profile-page.scss';
+import PageLoader from '../../UI/PageLoader/PageLoader';
 
 type ContextType = { isMaster: boolean; clubUrl: string };
 
@@ -12,11 +13,10 @@ const ClubProfilePage = () => {
   const location = useLocation();
   const { clubUrl } = useParams();
   const [isMaster, setIsMaster] = useState(false);
-  const [paramClubUrl, setParamClubUrl] = useState<string>();
-
-  useEffect(() => {
-    setParamClubUrl(clubUrl);
-  }, [clubUrl]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const handleSetIsLoaded = () => {
+    setIsLoaded(true);
+  };
 
   const clubProfileTabs: TabButtonProps[] = [
     { name: 'Описание', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_RULES}` },
@@ -26,16 +26,25 @@ const ClubProfilePage = () => {
     { name: 'История', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_HISTORY}` },
   ];
 
-  return clubProfileTabs.map(tab => tab.path).some(path => path === location.pathname) ? (
-    <div className="club-profile-page">
-      <ClubProfileHeader clubUrl={clubUrl} setIsMaster={value => setIsMaster(value)} />
+  if (!clubProfileTabs.map(tab => tab.path).some(path => path === location.pathname)) {
+    return (
+      <Navigate to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_BOOKS}`} replace={true} />
+    );
+  }
+
+  return (
+    <div className={isLoaded ? 'club-profile-page' : 'club-profile-page club-profile-page--loading'}>
+      {!isLoaded && (
+        <div>
+          <PageLoader />
+        </div>
+      )}
+      <ClubProfileHeader setIsLoaded={handleSetIsLoaded} clubUrl={clubUrl} setIsMaster={value => setIsMaster(value)} />
       <ProfileTabs tabsData={clubProfileTabs} url={clubUrl} />
       <div className="club-profile-page__content">
         <Outlet context={{ isMaster, clubUrl }} />
       </div>
     </div>
-  ) : (
-    <Navigate to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_BOOKS}`} replace={true} />
   );
 };
 

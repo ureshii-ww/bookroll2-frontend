@@ -4,7 +4,7 @@ import { AppDispatch } from '../../index';
 import AuthService from '../../../services/auth.service';
 import $api, { setUserUrl } from '../../../api';
 import ClubService from '../../../services/club.service';
-import { EventActionCreators } from '../events/action-creators';
+import { LoadingPageActionCreators } from '../loading-page/action-creators';
 
 export const AuthActionCreators = {
   setIsAuth: (auth: boolean): SetIsAuthAction => ({ type: AuthActionEnum.SET_IS_AUTH, payload: auth }),
@@ -41,7 +41,7 @@ export const AuthActionCreators = {
     }
   },
   joinClub: (clubUrl: string) => async (dispatch: AppDispatch) => {
-    dispatch(EventActionCreators.setIsLoadingPage(true));
+    dispatch(LoadingPageActionCreators.setLoadingPageTrue());
     try {
       const response = await ClubService.joinClub(clubUrl);
       localStorage.setItem('userData', JSON.stringify(response.data));
@@ -50,11 +50,11 @@ export const AuthActionCreators = {
       console.log(error);
       throw error;
     } finally {
-      dispatch(EventActionCreators.setIsLoadingPage(false));
+      dispatch(LoadingPageActionCreators.setLoadingPageFalse());
     }
   },
   leaveClub: (clubUrl: string) => async (dispatch: AppDispatch) => {
-    dispatch(EventActionCreators.setIsLoadingPage(true));
+    dispatch(LoadingPageActionCreators.setLoadingPageTrue());
     try {
       const response = await ClubService.leaveClub(clubUrl);
       localStorage.setItem('userData', JSON.stringify(response.data));
@@ -63,7 +63,7 @@ export const AuthActionCreators = {
       console.log(error);
       throw error;
     } finally {
-      dispatch(EventActionCreators.setIsLoadingPage(false));
+      dispatch(LoadingPageActionCreators.setLoadingPageFalse());
     }
   }
 };

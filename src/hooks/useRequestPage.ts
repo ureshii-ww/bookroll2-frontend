@@ -1,11 +1,11 @@
 import { useActions } from './useActions';
 
 export const useRequestPage = (callback: (...args: any[]) => Promise<void>) => {
-  const { setIsLoadingPage, addNotification } = useActions();
+  const { setLoadingPageTrue, setLoadingPageFalse, addNotification } = useActions();
 
   return async (...args: any[]) => {
     try {
-      setIsLoadingPage(true);
+      setLoadingPageTrue();
       await callback(...args);
     } catch (e: any) {
       addNotification(
@@ -13,7 +13,7 @@ export const useRequestPage = (callback: (...args: any[]) => Promise<void>) => {
         'error'
       );
     } finally {
-      setIsLoadingPage(false);
+      setLoadingPageFalse();
     }
   };
 };

@@ -3,12 +3,14 @@ import { BookData } from '../../../models/book-data';
 import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { useRequestTab } from '../../../hooks/useRequestTab';
 import UserService from '../../../services/user.service';
+import { useRequestPost } from '../../../hooks/useRequestPost';
 
 const useUserProfileBooks = (userUrl: string) => {
   const chunkSize = 10;
   const [booksArray, setBooksArray] = useState<BookData[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isOut, setIsOut] = useState<boolean>(false);
-  const { pageNum, setPageNum, containerRef } = useInfiniteScroll();
+  const { pageNum, containerRef } = useInfiniteScroll();
 
   const makeNewBooksArray = (oldArray: BookData[], newArray: BookData[], listLength: number) => {
     const all: BookData[] = [...oldArray, ...newArray];
@@ -22,9 +24,10 @@ const useUserProfileBooks = (userUrl: string) => {
     const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
     const listLength = parseInt(response.headers['x-data-length']);
     makeNewBooksArray(booksArray, response.data, listLength)
+    setIsLoaded(true);
   });
 
-  const fetchDeleteBook = useRequestTab(async (userUrl: string, index: number) => {
+  const fetchDeleteBook = useRequestPost(async (userUrl: string, index: number) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
       const copyOfBooksArray = [...booksArray];
@@ -50,7 +53,7 @@ const useUserProfileBooks = (userUrl: string) => {
     }
   }, [pageNum]);
 
-  return { booksArray, containerRef, isOut, fetchBooksArray, fetchDeleteBook };
+  return { booksArray, containerRef, isOut, fetchBooksArray, fetchDeleteBook, isLoaded };
 };
 
 export default useUserProfileBooks;

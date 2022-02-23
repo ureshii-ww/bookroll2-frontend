@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import UserSettingsInfoForm from './UserSettingsInfoForm/UserSettingsInfoForm';
 import useUserSettingsInfo from './useUserSettingsInfo';
+import PageLoader from '../../UI/PageLoader/PageLoader';
+import './user-settings-info.scss';
 
 interface UserInfoProps {
   userUrl: string;
@@ -17,7 +19,9 @@ const UserSettingsInfo: FC<UserInfoProps> = ({ userUrl, ...rest }) => {
       userUrl={userUrl || ''}
     />
   ) : (
-    <div>Loading...</div>
+    <div className="user-settings-info__loader">
+      <PageLoader />
+    </div>
   );
 };
 

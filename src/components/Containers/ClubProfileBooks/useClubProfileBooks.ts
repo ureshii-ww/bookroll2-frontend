@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
 import { ClubBooks } from '../../../models/club-books';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useRequestTab } from '../../../hooks/useRequestTab';
 import ClubService from '../../../services/club.service';
-import { useRequestPage } from '../../../hooks/useRequestPage';
+import { useRequestPost } from '../../../hooks/useRequestPost';
 
 const useClubProfileBooks = () => {
   const [booksData, setBooksData] = useState<ClubBooks[]>([]);
   const { isMaster, clubUrl } = useClubProfileContext();
-  const isLoading = useAppSelector(state => state.event.isLoadingTab);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const fetchBooksData = useRequestTab(async (clubUrl: string) => {
     const response = await ClubService.getClubBooks(clubUrl);
     setBooksData(response.data);
+    setIsLoaded(true);
   });
 
   useEffect(() => {
     fetchBooksData(clubUrl);
   }, [clubUrl]);
 
-  const fetchDeleteBook = useRequestPage(async (clubUrl: string, index: number, userUrl: string) => {
+  const fetchDeleteBook = useRequestPost(async (clubUrl: string, index: number, userUrl: string) => {
     const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
 
     if (response.data === 'Success') {
@@ -35,7 +35,7 @@ const useClubProfileBooks = () => {
     fetchDeleteBook(clubUrl, index, userUrl);
   };
 
-  return {booksData, clubUrl, isMaster, handleDelete, isLoading}
+  return {booksData, clubUrl, isMaster, handleDelete, isLoaded}
 }
 
 export default useClubProfileBooks;

@@ -11,4 +11,10 @@
   &__label {
     @extend %settings-label;
   }
+
+  &__loader {
+    position: relative;
+    width: 100px;
+    height: 200px;
+  }
 }

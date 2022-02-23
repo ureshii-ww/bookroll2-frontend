@@ -14,4 +14,69 @@
     height: 1px;
     background-color: var(--border-color);
   }
+
+  &--loading {
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 0;
+      height: 1px;
+      background-color: var(--accent-color);
+      animation: progress 0.5s ease normal forwards;
+      z-index: 1;
+    }
+  }
+
+  &--loaded {
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 80%;
+      height: 1px;
+      background-color: var(--accent-color);
+      animation: progress-finish 0.5s ease normal;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+
+  25% {
+    width: 20%;
+  }
+
+  50% {
+    width: 40%;
+  }
+
+  75% {
+    width: 60%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes progress-finish {
+  0% {
+    width: 80%;
+  }
+
+  50% {
+    width: 90%;
+  }
+
+  100% {
+    width: 100%;
+    display: none;
+  }
 }

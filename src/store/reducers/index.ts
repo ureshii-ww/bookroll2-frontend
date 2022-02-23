@@ -1,13 +1,19 @@
 import auth from './auth';
-import event from './events';
 import notifications from './notifications';
 import theme from './theme';
 import modal from './modal';
+import loadingTab from './loading-tab';
+import loadingPage from './loading-page';
+import loadingModal from './loading-page';
+import loadingPost from './loading-post';
 
 export default {
   auth,
-  event,
   notifications,
   theme,
   modal,
+  loadingTab,
+  loadingPage,
+  loadingModal,
+  loadingPost,
 };

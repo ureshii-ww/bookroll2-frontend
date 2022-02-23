@@ -10,12 +10,13 @@ import useClubProfileHeader from './useClubProfileHeader';
 export interface ClubProfileHeaderProps {
   clubUrl: string | undefined;
   setIsMaster: (arg0: boolean) => void;
+  setIsLoaded: () => void;
 }
 
-const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, ...rest }) => {
-  const { clubInfo, isLoading } = useClubProfileHeader({ clubUrl, setIsMaster });
+const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, setIsLoaded, ...rest }) => {
+  const { clubInfo } = useClubProfileHeader({ clubUrl, setIsMaster, setIsLoaded });
 
-  return !isLoading ? (
+  return (
     <div className="club-profile-header">
       <ProfileTitle title={clubInfo.clubname || ''} />
       <ClubProfileHeaderButtons clubUrl={clubUrl || ''} isInClub={clubInfo.isInClub} isMaster={clubInfo.isMaster} />
@@ -23,9 +24,7 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, .
       <ClubHeaderMaster master={clubInfo.master} />
       <ClubHeaderMeeting meetingNumber={clubInfo.meetingNumber} />
     </div>
-  ) : (
-    <div>Loading</div>
-  );
+  )
 };
 
 export default ClubProfileHeader;

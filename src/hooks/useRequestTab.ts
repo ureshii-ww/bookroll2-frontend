@@ -1,10 +1,10 @@
 import { useActions } from './useActions';
 
 export const useRequestTab = (callback: (...args: any[]) => Promise<void>) => {
-  const { setIsLoadingTab, addNotification } = useActions();
+  const { setLoadingTabTrue, setLoadingTabFalse, addNotification } = useActions();
 
   return async (...args: any[]) => {
-    setIsLoadingTab(true);
+    setLoadingTabTrue();
     try {
       await callback(...args);
     } catch (e: any) {
@@ -13,7 +13,7 @@ export const useRequestTab = (callback: (...args: any[]) => Promise<void>) => {
         'error'
       );
     } finally {
-      setIsLoadingTab(false);
+      setLoadingTabFalse();
     }
   };
 };

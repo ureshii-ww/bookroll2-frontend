@@ -30,6 +30,10 @@ const UserService = {
   updatePassword: async (userUrl: string, oldPassword: string, newPassword: string) => {
     return $api.post<string>(`${USER_PREFIX}${userUrl}/updatePassword`, {oldPassword, newPassword});
   },
+
+  // getReviews: async (userUrl: string, page: number, size: number) => {
+  //   return $api.get<>()
+  // }
 };
 
 export default UserService;

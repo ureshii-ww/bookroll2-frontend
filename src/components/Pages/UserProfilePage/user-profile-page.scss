@@ -1,0 +1,7 @@
+@use 'src/styles/placeholders/page-loading';
+
+.user-profile-page {
+  &--loading {
+    @extend %page-loading;
+  }
+}

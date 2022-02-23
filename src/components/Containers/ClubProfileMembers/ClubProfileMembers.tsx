@@ -6,11 +6,11 @@ import './club-profile-members.scss';
 interface ClubProfileMembersProps {}
 
 const ClubProfileMembers: FC<ClubProfileMembersProps> = () => {
-  const { usersInfo, clubUrl, isLoading } = useClubProfileMembers();
+  const { usersInfo, clubUrl, isLoaded } = useClubProfileMembers();
 
-  return !isLoading ? (
+  return (
     <div className="club-profile-members">
-      {usersInfo.length !== 0 &&
+      {isLoaded && usersInfo.length !== 0 &&
         usersInfo.map((user, index) => (
           <MemberCard
             className="club-profile-members__card"
@@ -18,10 +18,8 @@ const ClubProfileMembers: FC<ClubProfileMembersProps> = () => {
             userInfo={user}
           />
         ))}
-      {usersInfo.length === 0 && <div>В клубе нет участников</div>}
+      {isLoaded && usersInfo.length === 0 && <div>В клубе нет участников</div>}
     </div>
-  ) : (
-    <div>Loading</div>
   );
 };
 

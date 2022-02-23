@@ -1,7 +1,12 @@
 @use 'src/styles/placeholders/page-placeholders';
+@use 'src/styles/placeholders/page-loading';
 
 .club-profile-page {
   &__content {
     @extend %page-padding;
+  }
+
+  &--loading {
+    @extend %page-loading;
   }
 }

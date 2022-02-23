@@ -5,8 +5,7 @@ import { useRequestPage } from '../../../hooks/useRequestPage';
 import ClubService from '../../../services/club.service';
 import { ClubProfileHeaderProps } from './ClubProfileHeader';
 
-const useClubProfileHeader = ({ clubUrl, setIsMaster }: ClubProfileHeaderProps) => {
-  const isLoading = useAppSelector(state => state.event.isLoadingPage);
+const useClubProfileHeader = ({ clubUrl, setIsMaster, setIsLoaded }: ClubProfileHeaderProps) => {
   const userData = useAppSelector(state => state.auth.userData);
   const [clubInfo, setClubInfo] = useState<ClubProfileInfo>({
     clubname: null,
@@ -21,13 +20,14 @@ const useClubProfileHeader = ({ clubUrl, setIsMaster }: ClubProfileHeaderProps) 
     const response = await ClubService.getClubProfileInfo(clubUrl);
     setClubInfo(response.data);
     setIsMaster(response.data.isMaster);
+    setIsLoaded();
   });
 
   useEffect(() => {
     fetchInfo(clubUrl);
   }, [userData]);
 
-  return { clubInfo, isLoading };
+  return { clubInfo };
 };
 
 export default useClubProfileHeader;

@@ -1,5 +1,6 @@
 @use 'src/styles/placeholders/page-placeholders';
 @use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/page-loading';
 
 .wheel-page {
   @extend %page-padding;
@@ -16,5 +17,9 @@
       width: variables-size.$font-size-s;
       height: variables-size.$font-size-s;
     }
+  }
+
+  &__loader {
+    @extend %page-loading;
   }
 }

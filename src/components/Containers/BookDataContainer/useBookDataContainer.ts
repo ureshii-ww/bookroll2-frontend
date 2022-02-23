@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { BookData } from '../../../models/book-data';
-import { useRequestPage } from '../../../hooks/useRequestPage';
 import BookService from '../../../services/book.service';
+import { useRequestModal } from '../../../hooks/useRequestModal';
 
 const useBookDataContainer = (bookId: string) => {
   const [bookData, setBookData] = useState<BookData>();
-  const getBookData = useRequestPage(async () => {
+  const getBookData = useRequestModal(async () => {
     const response = await BookService.getBookData(bookId);
     setBookData(response.data);
   });

@@ -3,6 +3,7 @@
 .wheel-history {
   &__group {
     padding: 20px 0;
+
     &:not(:last-child) {
       border-bottom: 1px solid var(--border-color);
     }
@@ -45,5 +46,14 @@
   &__button {
     display: flex;
     justify-content: flex-end;
+  }
+
+  &__placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    font-size: variables-size.$font-size-l;
   }
 }

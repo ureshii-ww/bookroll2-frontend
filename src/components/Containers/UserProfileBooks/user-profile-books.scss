@@ -1,5 +1,9 @@
 @use 'src/styles/placeholders/page-placeholders';
+@use 'src/styles/placeholders/page-loading';
 
 .user-profile-books {
   @extend %page-padding;
+  &--loading {
+    @extend %page-loading;
+  }
 }

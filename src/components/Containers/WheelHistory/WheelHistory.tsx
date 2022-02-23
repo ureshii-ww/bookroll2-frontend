@@ -11,7 +11,7 @@ interface WheelHistoryProps {
 const WheelHistory: FC<WheelHistoryProps> = ({ rollsHistory, ...rest }) => {
   const confirmBook = useWheelHistory(rollsHistory);
 
-  return (
+  return rollsHistory.length > 0 ? (
     <div className="wheel-history">
       {rollsHistory.map((winner, index) => (
         <div className="wheel-history__group">
@@ -27,6 +27,10 @@ const WheelHistory: FC<WheelHistoryProps> = ({ rollsHistory, ...rest }) => {
           </div>
         </div>
       ))}
+    </div>
+  ) : (
+    <div className="wheel-history__placeholder">
+      Вы ещё не крутили колесо
     </div>
   );
 };

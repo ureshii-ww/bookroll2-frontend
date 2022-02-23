@@ -3,15 +3,13 @@ import useClubProfileRules from './useClubProfileRules';
 import './club-profile-rules.scss';
 
 const ClubProfileRules = () => {
-  const { clubRules, isLoading } = useClubProfileRules();
+  const { clubRules, isLoaded } = useClubProfileRules();
 
-  return !isLoading ? (
+  return (
     <div className="club-profile-rules">
-      {clubRules && <p className="club-profile-rules__text">{clubRules}</p>}
-      {!clubRules && <div>Пусто</div>}
+      {isLoaded && clubRules && <p className="club-profile-rules__text">{clubRules}</p>}
+      {isLoaded && !clubRules && <div>Пусто</div>}
     </div>
-  ) : (
-    <div>Loading</div>
   );
 };
 
