@@ -8,3 +8,15 @@
     'book book meeting';
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-profile-header {
+    grid-template-areas:
+      'buttons'
+      'title'
+      'book'
+      'master'
+      'meeting';
+    padding: variables-size.$page-padding-top;
+  }
+}

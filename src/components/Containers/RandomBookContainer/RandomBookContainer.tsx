@@ -9,7 +9,7 @@ const RandomBookContainer = () => {
   const { bookData, getBook, confirmBook, isLoading, isLoaded } = useRandomBookContainer();
 
   return !isLoading ? (
-    <div>
+    <Fragment>
       <div className="random-book__view">
         <BookDataView book={bookData} />
       </div>
@@ -21,7 +21,7 @@ const RandomBookContainer = () => {
           Искать ещё
         </MainButton>
       </div>
-    </div>
+    </Fragment>
   ) : (
     <div className="random-book__loader">
       <PageLoader/>

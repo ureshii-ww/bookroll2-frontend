@@ -18,3 +18,14 @@
     font-weight: variables-size.$font-weight-s;
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-header-master {
+    align-items: flex-start;
+    margin-top: variables-size.$rem-10;
+
+    &__name {
+      font-size: variables-size.$font-size-m;
+    }
+  }
+}

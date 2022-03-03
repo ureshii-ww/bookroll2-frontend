@@ -1,4 +1,4 @@
-@use '../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
 @use 'src/styles/placeholders/profile-header-placeholders';
 
 .modal-bg {
@@ -16,18 +16,19 @@
   background-color: var(--page-background-color);
   border-radius: variables-size.$page-layout-radius;
   position: relative;
-  max-width: 60%;
+  max-width: clamp(320px, 80%, 900px);
   padding: variables-size.$page-padding-top;
   margin: auto;
 
   &__wrapper {
-    padding: 20px;
+    padding: variables-size.$rem-20;
     display: flex;
     align-items: center;
   }
 
   &__close {
     @extend %profile-header-button;
+    margin: 0;
     position: absolute;
     top: 10px;
     right: 10px;

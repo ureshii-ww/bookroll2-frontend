@@ -33,7 +33,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
 
   return (
     <form className="club-settings-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="club-settings-form__group">
+      <fieldset className="club-settings-form__group">
         <label className="club-settings-form__label" htmlFor="clubname">
           Имя клуба
         </label>
@@ -44,8 +44,8 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
           rules={{ required: true }}
           render={({ field }) => <InputText {...field} />}
         />
-      </div>
-      <div className="club-settings-form__group">
+      </fieldset>
+      <fieldset className="club-settings-form__group">
         <label className="club-settings-form__label" htmlFor="master">
           Управляющий
         </label>
@@ -64,8 +64,8 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
             </InputSelect>
           )}
         />
-      </div>
-      <div className="club-settings-form__group">
+      </fieldset>
+      <fieldset className="club-settings-form__group">
         <label className="club-settings-form__label" htmlFor="description">
           Описание
         </label>
@@ -75,7 +75,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
           defaultValue={rules}
           render={({ field }) => <InputTextarea {...field} placeholder="Введите описание клуба" />}
         />
-      </div>
+      </fieldset>
       <div className="club-settings-form__button">
         <SubmitButton>Сохранить</SubmitButton>
       </div>

@@ -7,12 +7,25 @@
   }
 
   &__buttons {
-    button {
+    button:not(:last-child) {
       margin-right: 20px;
     }
   }
 
   &__loader {
     @extend %page-loading;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .random-book {
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        margin: 0;
+      }
+    }
   }
 }

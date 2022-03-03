@@ -1,6 +1,9 @@
 @use 'src/styles/placeholders/settings-page-title';
 @use 'src/styles/variables/variables-size';
 
+$container-padding: 1.25rem;
+$tabs-padding: 2.5rem;
+
 .user-settings {
   padding: variables-size.$page-padding-top;
 
@@ -19,11 +22,37 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-top: 40px;
+    padding-top: $tabs-padding;
   }
 
   &__container {
-    padding: 20px 20px 0 20px;
+    padding: $container-padding $container-padding 0 $container-padding;
     grid-area: container;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .user-settings {
+    padding: 0;
+
+    &__content {
+      grid-template-areas:
+        'title'
+        'tabs'
+        'container';
+    }
+
+    &__container, &__tabs {
+      padding: 0;
+    }
+
+    &__title {
+      margin-bottom: variables-size.$rem-10;
+    }
+
+    &__tabs {
+      flex-direction: row;
+      margin-bottom: variables-size.$rem-20;
+    }
   }
 }

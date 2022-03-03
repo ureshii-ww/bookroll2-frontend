@@ -1,15 +1,14 @@
-@use '../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
 
 .tab-button {
   font-size: variables-size.$font-size-m-s;
-  padding-right: 20px;
+  padding-right: variables-size.$rem-20;
   font-weight: variables-size.$font-weight-x-s;
 
   span {
     display: flex;
-    height: 60px;
+    height: 3.75em;
     align-items: center;
-    position: relative;
     color: var(--main-text-color);
     &:hover {
       color: var(--main-text-color);
@@ -24,15 +23,22 @@
 
     span {
       color: var(--bold-text-color);
+      position: relative;
       &:after {
         position: absolute;
         left: 0;
         bottom: 0;
         background-color: var(--accent-color);
         content: '';
-        height: 4px;
+        height: variables-size.$rem-4;
         width: 100%;
       }
     }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .tab-button {
+    font-size: variables-size.$font-size-x-s;
   }
 }

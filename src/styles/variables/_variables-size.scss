@@ -1,14 +1,30 @@
+//sizes
+$rem-4: 0.25rem;
+$rem-5: 0.3125rem;
+$rem-10: 0.625rem;
+$rem-12: 0.75rem;
+$rem-16: 1rem;
+$rem-20: 1.25rem;
+$rem-24: 1.5rem;
+$rem-32: 2rem;
+$rem-36: 2.25rem;
+$rem-40: 2.5rem;
+$rem-48: 3rem;
+$rem-60: 3.75rem;
+$rem-72: 4.5rem;
+$rem-80: 5rem;
+
 //font
-$font-size-x-x-s: 14px;
-$font-size-x-s: 16px;
-$font-size-s: 18px;
-$font-size-m-s: 20px;
-$font-size-m: 24px;
-$font-size-l: 28px;
-$font-size-x-l: 32px;
-$font-size-x-x-l: 36px;
-$font-size-page-title-s: 48px;
-$font-size-page-title: 72px;
+$font-size-x-x-s: 0.875rem;
+$font-size-x-s: 1rem;
+$font-size-s: 1.125rem;
+$font-size-m-s: 1.25rem;
+$font-size-m: 1.5rem;
+$font-size-l: 1.75rem;
+$font-size-x-l: 2rem;
+$font-size-x-x-l: 2.25rem;
+$font-size-page-title-s: 3rem;
+$font-size-page-title: 4.5rem;
 
 //font-weight
 $font-weight-x-s: 300;
@@ -27,10 +43,16 @@ $navbar-icons-size: 64px;
 
 //padding
 $layout-padding: 30px;
-$page-padding-top: 20px;
-$page-padding-side: 40px;
-$card-padding-top: 10px;
-$card-padding-side: 20px;
+$page-padding-top: $rem-20;
+$page-padding-side: $rem-40;
+$card-padding-top: $rem-10;
+$card-padding-side: $rem-20;
 
 //input
-$input-height: 40px;
+$input-height: 2.5em;
+
+//media
+$device-width-small: 576px;
+$device-width-medium: 768px;
+$device-width-large: 992px;
+$device-width-x-large: 1200px;

@@ -1,7 +1,19 @@
+@use 'src/styles/variables/variables-size';
+
 .user-settings-info {
   &__loader {
     position: relative;
     width: 100px;
     height: 200px;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .user-settings-info {
+    &__loader {
+      position: relative;
+      width: 100%;
+      height: 200px;
+    }
   }
 }

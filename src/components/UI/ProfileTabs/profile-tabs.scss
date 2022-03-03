@@ -1,9 +1,14 @@
-@use '../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
 
 .profile-tabs {
-  display: flex;
-  padding-left: variables-size.$page-padding-side;
   position: relative;
+
+  &__wrapper {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    padding-left: variables-size.$page-padding-side;
+  }
 
   &:after {
     position: absolute;
@@ -38,7 +43,7 @@
       width: 80%;
       height: 1px;
       background-color: var(--accent-color);
-      animation: progress-finish 0.5s ease normal;
+      animation: progress-finish 0.5s ease normal forwards;
       z-index: 1;
     }
   }
@@ -69,14 +74,24 @@
 @keyframes progress-finish {
   0% {
     width: 80%;
+    opacity: 100;
   }
 
   50% {
     width: 90%;
+    opacity: 100;
   }
 
   100% {
     width: 100%;
-    display: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .profile-tabs {
+    &__wrapper {
+      padding-left: variables-size.$page-padding-top;
+    }
   }
 }

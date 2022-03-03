@@ -1,6 +1,6 @@
-import { useActions } from '../../../hooks/useActions';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { ThemeStyleType } from '../../../store/reducers/theme/types';
+import { useActions } from '../../../../hooks/useActions';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { ThemeStyleType } from '../../../../store/reducers/theme/types';
 import { useEffect } from 'react';
 
 const useThemeSwitch = () => {

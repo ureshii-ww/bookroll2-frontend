@@ -34,52 +34,100 @@
     background-color: var(--navbar-background-color);
     z-index: 0;
   }
-}
 
-.navbar__theme-switch {
+  &__main-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
 
-}
-
-.navbar__main-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 50px;
-
-  a, div {
-    margin-bottom: 20px;
-  }
-}
-
-.navbar__button {
-  svg {
-    color: variables-color.$navbar-icon;
-    fill: currentColor;
-    width: variables-size.$navbar-icons-size;
-    height: variables-size.$navbar-icons-size;
-
-    &:hover {
-      color: variables-color.$navbar-icon-hover;
+    a, div {
+      margin-bottom: 20px;
     }
   }
 
-  &.navbar__button--disabled {
+  &__button {
     svg {
-      color: variables-color.$navbar-icon-disabled;
+      color: variables-color.$navbar-icon;
+      fill: currentColor;
+      width: variables-size.$navbar-icons-size;
+      height: variables-size.$navbar-icons-size;
 
       &:hover {
+        color: variables-color.$navbar-icon-hover;
+      }
+    }
+
+    &.navbar__button--disabled {
+      svg {
         color: variables-color.$navbar-icon-disabled;
+
+        &:hover {
+          color: variables-color.$navbar-icon-disabled;
+        }
+      }
+    }
+
+    &.navbar__button--active {
+      svg {
+        filter: drop-shadow(0 0 4px variables-color.$navbar-icon);
+
+        &:hover {
+          color: variables-color.$navbar-icon;
+        }
       }
     }
   }
 
-  &.navbar__button--active {
-    svg{
-      filter: drop-shadow(0 0 4px variables-color.$navbar-icon);
-      &:hover {
-        color: variables-color.$navbar-icon;
+  &__profile {
+    display: block;
+  }
+
+  &__bubble-button {
+    display: none;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .navbar {
+    border-radius: 0;
+    padding: 0;
+
+    .navbar__theme-switch, .navbar__logout {
+      display: none;
+    }
+
+    &__main-buttons {
+      width: 100%;
+      height: 100%;
+      flex-direction: row-reverse;
+      justify-content: space-around;
+      padding-bottom: 0;
+
+      a:not(.navbar__profile), div:not(.navbar__profile) {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+    }
+
+    &__button {
+      svg {
+        width: variables-size.$font-size-page-title-s;
+        height: variables-size.$font-size-page-title-s;
+      }
+    }
+
+    &__bubble-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__profile {
+      display: none;
     }
   }
 }

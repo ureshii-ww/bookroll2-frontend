@@ -1,7 +1,11 @@
+@use 'src/styles/variables/variables-size';
+
 %form-input-group {
   display: flex;
   flex-direction: column;
+  padding: 0;
+  border: none;
   &:not(:last-of-type) {
-    margin-bottom: 20px;
+    margin-bottom: variables-size.$rem-20;
   }
 }

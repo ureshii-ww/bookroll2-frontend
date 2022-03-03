@@ -3,3 +3,9 @@
 %page-padding {
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  %page-padding {
+    padding: variables-size.$page-padding-top;
+  }
+}

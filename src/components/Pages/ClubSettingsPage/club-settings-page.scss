@@ -19,3 +19,9 @@
     height: 300px;
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-settings-page {
+    padding: 0;
+  }
+}

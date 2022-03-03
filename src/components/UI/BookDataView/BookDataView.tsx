@@ -8,24 +8,26 @@ interface BookDataViewProps {
 
 const BookDataView: FC<BookDataViewProps> = ({ book, ...rest }) => {
   //fix parser bug
-  const [coverSrc, setCoverSrc] = useState(book.cover)
+  const [coverSrc, setCoverSrc] = useState(book.cover);
 
   useEffect(() => {
-    const readlyHref = 'https://readly.ru'
+    const readlyHref = 'https://readly.ru';
     if (!coverSrc.includes(readlyHref)) {
       setCoverSrc(readlyHref + book.cover);
     }
-  },[])
+  }, []);
 
   return (
     <div className="book-data-view">
-      <div className="book-data-view__header">
-        <img className="book-data-view__cover" src={coverSrc} alt={book.title} />
+      <section className="book-data-view__header">
+        <figure className="book-data-view__cover">
+          <img src={coverSrc} alt={book.title} />
+        </figure>
         <div className="book-data-view__title-container">
           <h1 className="book-data-view__title">{book.title}</h1>
         </div>
-      </div>
-      <div className="book-data-view__info">
+      </section>
+      <section className="book-data-view__info">
         <div className="book-data-view__info-line">
           <p className="book-data-view__info-label">{book.authors.length <= 1 ? 'Автор:' : 'Авторы'}</p>
           <p className="book-data-view__info-value">{book.authors.join(', ')}</p>
@@ -38,11 +40,11 @@ const BookDataView: FC<BookDataViewProps> = ({ book, ...rest }) => {
           <p className="book-data-view__info-label">Год:</p>
           <p className="book-data-view__info-value">{book.year}</p>
         </div>
-      </div>
-      <div className="book-data-view__description-container">
+      </section>
+      <section className="book-data-view__description-container">
         <p className="book-data-view__info-label">Описание:</p>
         <span className="book-data-view__description">{book.description}</span>
-      </div>
+      </section>
     </div>
   );
 };

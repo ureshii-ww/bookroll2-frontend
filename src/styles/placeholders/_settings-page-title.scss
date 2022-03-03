@@ -6,3 +6,9 @@
   font-weight: variables-size.$font-weight-l;
   color: var(--bold-text-color);
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  %setting-page-title h1 {
+    font-size: variables-size.$font-size-x-x-l;
+  }
+}

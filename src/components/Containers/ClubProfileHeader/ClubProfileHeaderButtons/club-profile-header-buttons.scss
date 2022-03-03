@@ -1,4 +1,5 @@
-@use '../../../../styles/placeholders/profile-header-placeholders';
+@use 'src/styles/placeholders/profile-header-placeholders';
+@use 'src/styles/variables/variables-size';
 
 .club-profile-header__buttons {
   display: flex;
@@ -9,4 +10,10 @@
 
 .club-profile-header__button {
   @extend %profile-header-button;
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-profile-header__buttons {
+    margin-bottom: variables-size.$rem-20;
+  }
 }

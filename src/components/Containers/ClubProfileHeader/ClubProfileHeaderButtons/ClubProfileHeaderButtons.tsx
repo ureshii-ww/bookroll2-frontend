@@ -29,13 +29,13 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
       {isMaster && (
         <Link className="club-profile-header__button" to={`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/wheel`}>
           <WheelSvg />
-          Колесо
+          <span>Колесо</span>
         </Link>
       )}
       {isMaster && (
         <TransparentButton className="club-profile-header__button" onClick={showSettingsModal}>
           <SettingsSvg />
-          Настройки
+          <span>Настройки</span>
         </TransparentButton>
       )}
       {!isInClub && !userClub && (
@@ -43,7 +43,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
           className="club-profile-header__button transparent-button--green"
           onClick={() => joinClub(clubUrl)}>
           <JoinSvg />
-          Вступить в клуб
+          <span>Вступить в клуб</span>
         </TransparentButton>
       )}
       {isInClub && (
@@ -51,7 +51,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
           className="club-profile-header__button transparent-button--red"
           onClick={() => leaveClub(clubUrl)}>
           <LeaveSvg />
-          Выйти из клуба
+          <span>Выйти из клуба</span>
         </TransparentButton>
       )}
     </div>

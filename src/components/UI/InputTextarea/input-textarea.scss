@@ -1,11 +1,19 @@
 @use 'src/styles/placeholders/input-placeholder';
+@use 'src/styles/variables/variables-size';
 
 .input-textarea {
   @extend %input-placeholder;
   padding: 10px;
-  min-width: 400px;
-  min-height: 100px;
+  width: 700px;
+  height: clamp(100px, 15vh, 600px);
+  resize: none;
   &:hover, &:active, &:focus {
     padding: 9px;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .input-textarea {
+    width: 100%;
   }
 }

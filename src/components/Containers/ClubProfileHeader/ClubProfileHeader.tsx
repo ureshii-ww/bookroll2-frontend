@@ -17,13 +17,13 @@ const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, s
   const { clubInfo } = useClubProfileHeader({ clubUrl, setIsMaster, setIsLoaded });
 
   return (
-    <div className="club-profile-header">
+    <section className="club-profile-header">
       <ProfileTitle title={clubInfo.clubname || ''} />
       <ClubProfileHeaderButtons clubUrl={clubUrl || ''} isInClub={clubInfo.isInClub} isMaster={clubInfo.isMaster} />
       <ClubHeaderBook book={clubInfo.bookToRead} />
       <ClubHeaderMaster master={clubInfo.master} />
       <ClubHeaderMeeting meetingNumber={clubInfo.meetingNumber} />
-    </div>
+    </section>
   )
 };
 

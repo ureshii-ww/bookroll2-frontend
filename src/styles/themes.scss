@@ -17,6 +17,7 @@
   --navbar-background-color: #{variables-light.$navbar-background-color};
   --book-card-background-color: #{variables-light.$book-card-background-color};
   --input-background-color: #{variables-light.$input-background-color};
+  --bubble-background-color: #{variables-light.$bubble-background-color};
 
   //text
   --main-text-color: #{variables-light.$main-text-color};
@@ -53,6 +54,7 @@
   --navbar-background-color: #{variables-dark.$navbar-background-color};
   --book-card-background-color: #{variables-dark.$book-card-background-color};
   --input-background-color: #{variables-dark.$input-background-color};
+  --bubble-background-color: #{variables-dark.$bubble-background-color};
 
   //text
   --main-text-color: #{variables-dark.$main-text-color};

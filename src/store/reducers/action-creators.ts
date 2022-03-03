@@ -6,6 +6,7 @@ import { LoadingTabActionCreators } from './loading-tab/action-creators';
 import { LoadingPageActionCreators } from './loading-page/action-creators';
 import { LoadingModalActionCreators } from './loading-modal/action-creators';
 import { LoadingPostActionCreators } from './loading-post/action-creators';
+import { BubbleActionCreators } from './bubble/action-creators';
 
 export const allActionCreators = {
   ...AuthActionCreators,
@@ -16,4 +17,5 @@ export const allActionCreators = {
   ...LoadingPageActionCreators,
   ...LoadingModalActionCreators,
   ...LoadingPostActionCreators,
+  ...BubbleActionCreators,
 };

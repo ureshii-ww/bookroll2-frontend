@@ -5,7 +5,7 @@
 .member-card {
   @extend %card-header;
   border-radius: variables-size.$card-radius;
-  padding: 20px;
+  padding: variables-size.$rem-20;
 
   &__content {
     display: flex;
@@ -13,7 +13,7 @@
   }
 
   &__avatar {
-    margin-right: 20px;
+    margin-right: variables-size.$rem-20;
   }
 
   &__name {
@@ -21,6 +21,16 @@
     font-size: variables-size.$font-size-x-l;
     &:hover {
       color: variables-color.$card-white-text;
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .member-card {
+    padding: variables-size.$rem-16;
+
+    &__name {
+      font-size: variables-size.$font-size-m;
     }
   }
 }

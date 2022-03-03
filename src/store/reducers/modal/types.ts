@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 export interface ModalState {
   isShow: boolean;
   reactComponent: JSX.Element | null;

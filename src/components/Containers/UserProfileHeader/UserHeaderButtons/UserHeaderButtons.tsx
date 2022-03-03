@@ -20,7 +20,7 @@ const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({ isCurrentUser, ...rest 
       {isCurrentUser && (
         <TransparentButton className="user-header-buttons__button transparent-button--dim" onClick={showSettings}>
           <SettingsSvg />
-          Настройки
+          <span>Настройки</span>
         </TransparentButton>
       )}
     </div>

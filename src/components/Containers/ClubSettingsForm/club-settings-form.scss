@@ -14,5 +14,6 @@
   &__button {
     display: flex;
     justify-content: flex-end;
+    margin-top: variables-size.$rem-20;
   }
 }

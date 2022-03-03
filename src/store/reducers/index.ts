@@ -6,6 +6,7 @@ import loadingTab from './loading-tab';
 import loadingPage from './loading-page';
 import loadingModal from './loading-page';
 import loadingPost from './loading-post';
+import bubble from './bubble';
 
 export default {
   auth,
@@ -16,4 +17,5 @@ export default {
   loadingPage,
   loadingModal,
   loadingPost,
+  bubble,
 };

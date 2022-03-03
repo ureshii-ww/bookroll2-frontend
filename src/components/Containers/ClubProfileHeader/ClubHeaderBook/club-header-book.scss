@@ -1,17 +1,16 @@
-@use '../../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/profile-header-placeholders';
 
 .club-header-book {
   grid-area: book;
 
   &__title {
-    font-size: variables-size.$font-size-l;
-    font-weight: variables-size.$font-weight-x-s;
-    color: var(--dim-text-color);
-    margin-top: 10px;
+    @extend %profile-header-section-title;
+    margin-top: variables-size.$rem-10;
   }
 
   &__book {
-    margin-top: 10px;
+    margin-top: variables-size.$rem-10;
   }
 
   &__name {
@@ -29,4 +28,24 @@
 
 .club-header-book__placeholder {
 
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-header-book {
+    &__title {
+      margin-top: variables-size.$rem-16;
+    }
+
+    &__book {
+      margin-top: variables-size.$rem-5;
+    }
+
+    &__name {
+      font-size: variables-size.$font-size-l;
+    }
+
+    &__author {
+      font-size: variables-size.$font-size-m;
+    }
+  }
 }

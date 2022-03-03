@@ -18,3 +18,22 @@
   z-index: 1;
   position: relative;
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .app-layout {
+    padding: 0;
+    grid-template-areas:
+      'page'
+      'navbar';
+    grid-template-columns: auto;
+    grid-template-rows: auto 60px;
+
+    &__wrapper {
+      overflow-x: hidden !important;
+    }
+
+    &__page {
+      border-radius: 0;
+    }
+  }
+}

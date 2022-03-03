@@ -1,4 +1,4 @@
-import React, { CSSProperties, Component } from 'react';
+import React from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import { ReactComponent as CloseSvg } from '../../../assets/svg/close.svg';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ClubProfileHeader from '../../Containers/ClubProfileHeader/ClubProfileHeader';
 import { useParams, Outlet, useLocation, Navigate, useOutletContext } from 'react-router-dom';
 import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
-import { TabButtonProps } from '../../UI/TabButton/TabButton';
+import { TabButtonProps } from '../../UI/ProfileTabs/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './club-profile-page.scss';
 import PageLoader from '../../UI/PageLoader/PageLoader';
@@ -41,9 +41,9 @@ const ClubProfilePage = () => {
       )}
       <ClubProfileHeader setIsLoaded={handleSetIsLoaded} clubUrl={clubUrl} setIsMaster={value => setIsMaster(value)} />
       <ProfileTabs tabsData={clubProfileTabs} url={clubUrl} />
-      <div className="club-profile-page__content">
+      <section className="club-profile-page__content">
         <Outlet context={{ isMaster, clubUrl }} />
-      </div>
+      </section>
     </div>
   );
 };

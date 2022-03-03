@@ -1,12 +1,22 @@
-@import '../../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
 
 .user-header-club {
   display: flex;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: variables-size.$font-size-x-l;
+  }
 }
 
-.user-header-club__container {
-  display: flex;
-  align-items: center;
-  font-weight: 400;
-  font-size: $font-size-x-l;
+@media (max-width: variables-size.$device-width-small) {
+  .user-header-club {
+    flex-direction: column;
+    margin-bottom: variables-size.$rem-12;
+    &__container {
+      font-size: variables-size.$font-size-l;
+    }
+  }
 }

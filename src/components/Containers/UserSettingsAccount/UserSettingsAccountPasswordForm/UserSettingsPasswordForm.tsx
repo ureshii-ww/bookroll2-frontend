@@ -43,7 +43,7 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
   return (
     //TODO добавить валидацию
     <form className="user-settings-password-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="user-settings-password-form__inputs-group">
+      <fieldset className="user-settings-password-form__inputs-group">
         <Controller
           name="oldPassword"
           control={control}
@@ -89,7 +89,7 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
             />
           )}
         />
-      </div>
+      </fieldset>
       <div className="user-settings-password-form__button">
         <SubmitButton>Сменить пароль</SubmitButton>
       </div>

@@ -1,6 +1,11 @@
 @use 'src/styles/placeholders/page-loading';
+@use 'src/styles/placeholders/page-placeholders';
 
 .user-profile-page {
+  &__content {
+    @extend %page-padding;
+  }
+
   &--loading {
     @extend %page-loading;
   }

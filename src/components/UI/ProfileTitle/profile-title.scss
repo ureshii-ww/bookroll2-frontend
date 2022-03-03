@@ -1,11 +1,21 @@
-@import '../../../styles/variables/variables-size';
+@use '../../../styles/variables/variables-size';
 
 .profile-title {
   grid-area: title;
+  display: flex;
+  align-items: center;
+
+  &__text {
+    font-size: variables-size.$font-size-page-title;
+    font-weight: 500;
+    color: var(--bold-text-color);
+  }
+
 }
 
-.profile-title-text {
-  font-size: $font-size-page-title;
-  font-weight: 500;
-  color: var(--bold-text-color);
+@media (max-width: variables-size.$device-width-small) {
+  .profile-title__text {
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-l;
+  }
 }

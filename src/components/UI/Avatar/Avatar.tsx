@@ -14,11 +14,11 @@ const UserHeaderAvatar: FC<AvatarProps> = ({ color, emoji, className, ...rest })
   const classString = className ? `avatar ${className}` : 'avatar';
 
   return (
-    <div className={classString}>
+    <figure className={classString}>
       <div className="avatar__background" style={avatarStyles}>
         <span className="avatar__emoji">{emoji}</span>
       </div>
-    </div>
+    </figure>
   );
 };
 

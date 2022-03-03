@@ -26,3 +26,30 @@
   font-weight: variables-size.$font-weight-x-s;
   color: var(--dim-text-color);
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  %profile-header-button {
+    margin-left: 0;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    span {
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+    svg {
+      width: variables-size.$font-size-l;
+      height: variables-size.$font-size-l;
+      margin-right: 0;
+    }
+  }
+
+  %profile-header-section-title {
+    font-size: variables-size.$font-size-m-s;
+    margin-top: variables-size.$rem-16;
+  }
+}

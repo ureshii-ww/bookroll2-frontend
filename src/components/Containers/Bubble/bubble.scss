@@ -1,0 +1,64 @@
+@use 'src/styles/variables/variables-size';
+
+.bubble {
+  position: absolute;
+  z-index: 100;
+  background-color: var(--bubble-background-color);
+  border-radius: variables-size.$card-radius;
+  padding: variables-size.$rem-5;
+  box-shadow: 0 0 12px 4px var(--wheel-shadow-color);
+
+  &__item {
+    padding: variables-size.$rem-10 variables-size.$rem-12;
+    font-size: variables-size.$font-size-m-s;
+    color: var(--main-text-color);
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+
+    &:visited, &:hover {
+      color: var(--main-text-color);
+    }
+
+    .bubble__emoji, svg {
+      width: variables-size.$font-size-l;
+      height: variables-size.$font-size-l;
+      font-size: variables-size.$font-size-m;
+      margin-right: variables-size.$rem-5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--main-text-color);
+    }
+
+    .transparent-button {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+  }
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -9px;
+    right: 25px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--bubble-background-color);
+  }
+}

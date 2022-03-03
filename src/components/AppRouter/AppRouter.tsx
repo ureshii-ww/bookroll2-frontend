@@ -19,6 +19,7 @@ import ClubProfileHistory from '../Containers/ClubProfileHistory/ClubProfileHist
 import ClubProfileMembers from '../Containers/ClubProfileMembers/ClubProfileMembers';
 import ClubProfileRules from '../Containers/ClubProfileRules/ClubProfileRules';
 import ClubProfileReviews from '../Containers/ClubProfileReviews/ClubProfileReviews';
+import Bubble from '../Containers/Bubble/Bubble';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -31,8 +32,9 @@ const AppRouter: FC = () => {
       {isAuth && userData ? (
         <div className="app-layout">
           <Navbar />
-          <div className="app-layout__page">
-            <Scrollbars autoHide={true}>
+          <Bubble />
+          <main className="app-layout__page">
+            <Scrollbars autoHide={true} renderView={props => <div {...props} className="app-layout__wrapper" />}>
               <Routes>
                 <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
@@ -50,7 +52,7 @@ const AppRouter: FC = () => {
                 <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
               </Routes>
             </Scrollbars>
-          </div>
+          </main>
         </div>
       ) : (
         <Routes>

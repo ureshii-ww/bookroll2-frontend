@@ -8,3 +8,11 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-header-meeting {
+    margin-top: variables-size.$rem-10;
+    justify-content: flex-start;
+    font-size: variables-size.$font-size-m-s;
+  }
+}

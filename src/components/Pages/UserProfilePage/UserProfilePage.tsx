@@ -3,7 +3,7 @@ import UserProfileHeader from '../../Containers/UserProfileHeader/UserProfileHea
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useLocation, Outlet, Navigate, useOutletContext, useParams } from 'react-router-dom';
 import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
-import { TabButtonProps } from '../../UI/TabButton/TabButton';
+import { TabButtonProps } from '../../UI/ProfileTabs/TabButton/TabButton';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './user-profile-page.scss';
 import PageLoader from '../../UI/PageLoader/PageLoader';
@@ -34,7 +34,9 @@ const UserProfilePage = () => {
       {!isLoaded && <PageLoader />}
       <UserProfileHeader isCurrentUser={isCurrentUser} userUrl={userUrl || ''} setIsLoaded={handleSetIsLoaded} />
       <ProfileTabs tabsData={userProfileTabs} url={userUrl}   />
-      <Outlet context={{ isCurrentUser: isCurrentUser, userUrl: userUrl }} />
+      <section className="user-profile-page__content">
+        <Outlet context={{ isCurrentUser: isCurrentUser, userUrl: userUrl }} />
+      </section>
     </div>
   );
 };

@@ -2,12 +2,12 @@
 @use '../../../styles/variables/variables-size';
 @use 'src/styles/placeholders/cards-placeholders';
 
-$book-card-title-padding: 10px;
-$book-card-authors-padding: 5px;
+$book-card-title-padding: variables-size.$rem-10;
+$book-card-authors-padding: variables-size.$rem-5;
 
 .book-card {
   &:not(:last-of-type) {
-    margin-bottom: 20px;
+    margin-bottom: variables-size.$rem-20;
   }
 
   &__head {
@@ -16,7 +16,7 @@ $book-card-authors-padding: 5px;
     grid-template-areas:
     'title delete'
     'author author';
-    grid-template-columns: auto 24px;
+    grid-template-columns: auto variables-size.$rem-24;
 
     &--with-meeting {
       grid-template-areas:
@@ -61,5 +61,46 @@ $book-card-authors-padding: 5px;
     @extend %card-footer;
     display: flex;
     justify-content: space-between;
+  }
+
+  &__genres {
+    padding-right: variables-size.$rem-10;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .book-card {
+    &__head {
+      &--with-meeting {
+        grid-template-areas:
+          'title delete'
+          'author author'
+          'meeting meeting';
+
+        .book-card__authors {
+          margin-bottom: variables-size.$rem-10;
+        }
+      }
+    }
+
+    &__title {
+      padding: 0;
+      font-size: variables-size.$font-size-m;
+      margin-bottom: $book-card-authors-padding;
+    }
+
+    &__authors {
+      font-size: variables-size.$font-size-m-s;
+      padding: 0;
+    }
+
+    &__meeting-number {
+      justify-content: flex-start;
+      font-size: variables-size.$font-size-s;
+    }
+
+    &__delete {
+      padding: 0;
+    }
   }
 }

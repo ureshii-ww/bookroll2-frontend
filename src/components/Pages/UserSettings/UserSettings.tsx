@@ -33,11 +33,11 @@ const UserSettings = () => {
         <div className="user-settings__title">
           <h1>Настройки</h1>
         </div>
-        <div className="user-settings__tabs">
+        <nav className="user-settings__tabs">
           {settingsTabs.map((tab) => (
             <SettingsTabButton key={`user-settings-${tab.name}`} {...tab} />
           ))}
-        </div>
+        </nav>
         <div className="user-settings__container">
           {currentTab === 'info' && <UserSettingsInfo userUrl={userUrl} />}
           {currentTab === 'account' && <UserSettingsAccount userUrl={userUrl} />}

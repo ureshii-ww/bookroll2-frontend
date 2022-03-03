@@ -9,6 +9,14 @@
     color: var(--link-text-color-hover);
   }
 
+  &.transparent-button--main {
+    color: var(--main-text-color);
+
+    &:hover {
+      color: var(--main-text-color);
+    }
+  }
+
   &.transparent-button--green {
     color: var(--green-text-color);
 

@@ -2,6 +2,7 @@
 @use '../../../../styles/placeholders/profile-header-placeholders';
 
 .user-header-buttons {
+  grid-area: buttons;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;

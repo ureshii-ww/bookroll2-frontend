@@ -1,9 +1,8 @@
 @use 'src/styles/placeholders/cards-placeholders';
 @use 'src/styles/placeholders/avatar-placeholder';
-@use '../../../styles/variables/variables-size';
-@use '../../../styles/variables/variables-color';
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
 
-$club-books-card-avatar-size: 48px;
 $club-books-card-head-padding: variables-size.$card-padding-side variables-size.$card-padding-side;
 
 .club-books-card {
@@ -147,5 +146,31 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
   }
   100% {
     transform: scaleY(1);
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-books-card {
+    &__username {
+      font-size: variables-size.$font-size-m;
+    }
+  }
+
+  .club-books-card-book {
+    flex-direction: column;
+    font-size: variables-size.$font-size-s;
+    align-items: flex-start;
+
+    &__left-container {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: variables-size.$rem-10;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    &__right-container {
+      width: 100%;
+    }
   }
 }

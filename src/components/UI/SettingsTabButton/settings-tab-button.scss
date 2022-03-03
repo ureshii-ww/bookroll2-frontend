@@ -4,26 +4,61 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin-bottom: 10px;
-  padding: 10px;
+  margin-bottom: variables-size.$rem-10;
+  padding: variables-size.$rem-10;
   color: var(--main-text-color);
   font-size: variables-size.$font-size-m;
   font-weight: variables-size.$font-weight-x-s;
+
   &--active {
     font-weight: variables-size.$font-weight-l;
     color: var(--bold-text-color);
 
     span {
       position: relative;
-      padding-right: 10px;
+      padding-right: variables-size.$rem-10;
       &:after {
         position: absolute;
         top: 0;
         right: 0;
         content: '';
-        width: 3px;
+        width: variables-size.$rem-4;
         height: 100%;
         background-color: var(--accent-color);
+      }
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .settings-tab-button {
+    padding: 0;
+    font-size: variables-size.$font-size-s;
+    margin-bottom: 0;
+    margin-right: variables-size.$rem-10;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: variables-size.$rem-60;
+    }
+
+    &--active {
+      span {
+        color: var(--bold-text-color);
+        position: relative;
+        padding: 0;
+        &:after {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          top: unset;
+          right: unset;
+          content: '';
+          height: variables-size.$rem-4;
+          width: 100%;
+        }
       }
     }
   }
