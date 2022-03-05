@@ -17,7 +17,8 @@
   padding: variables-size.$card-padding-top variables-size.$card-padding-side;
 }
 
-@media (max-width: variables-size.$device-width-small) {
+
+@media (max-width: variables-size.$device-width-medium) {
   %card-footer {
     font-size: variables-size.$font-size-s;
   }

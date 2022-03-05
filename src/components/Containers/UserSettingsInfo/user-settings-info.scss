@@ -8,7 +8,7 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-medium) {
   .user-settings-info {
     &__loader {
       position: relative;

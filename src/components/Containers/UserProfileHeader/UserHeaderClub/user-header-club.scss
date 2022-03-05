@@ -11,10 +11,15 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-large) {
   .user-header-club {
     flex-direction: column;
     margin-bottom: variables-size.$rem-12;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .user-header-club {
     &__container {
       font-size: variables-size.$font-size-l;
     }

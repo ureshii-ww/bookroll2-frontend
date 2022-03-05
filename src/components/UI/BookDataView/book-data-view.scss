@@ -52,6 +52,30 @@
   }
 }
 
+@media (max-width: variables-size.$device-width-large) {
+  .book-data-view {
+    &__title {
+      font-size: variables-size.$font-size-page-title-s;
+    }
+
+    &__info-line {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-medium) {
+  .book-data-view {
+    &__title {
+      font-size: variables-size.$font-size-x-x-l;
+    }
+
+    &__info-line {
+      font-size: variables-size.$font-size-m-s;
+    }
+  }
+}
+
 @media (max-width: variables-size.$device-width-small) {
   .book-data-view {
     &__header {

@@ -12,7 +12,13 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-large) {
+  .input-textarea {
+    width: 400px;
+  }
+}
+
+@media (max-width: variables-size.$device-width-medium) {
   .input-textarea {
     width: 100%;
   }

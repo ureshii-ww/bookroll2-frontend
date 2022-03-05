@@ -88,7 +88,7 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-large) {
   .profile-tabs {
     &__wrapper {
       padding-left: variables-size.$page-padding-top;

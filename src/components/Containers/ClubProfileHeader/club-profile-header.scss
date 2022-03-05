@@ -9,7 +9,18 @@
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-large) {
+  .club-profile-header {
+    grid-template-areas:
+      'buttons buttons buttons'
+      'title title title'
+      'book book master'
+      'book book meeting';
+    padding: variables-size.$page-padding-top;
+  }
+}
+
+@media (max-width: variables-size.$device-width-medium) {
   .club-profile-header {
     grid-template-areas:
       'buttons'
@@ -17,6 +28,5 @@
       'book'
       'master'
       'meeting';
-    padding: variables-size.$page-padding-top;
   }
 }

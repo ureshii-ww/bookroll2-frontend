@@ -27,6 +27,13 @@
   color: var(--dim-text-color);
 }
 
+@media (max-width: variables-size.$device-width-medium) {
+  %profile-header-section-title {
+    font-size: variables-size.$font-size-m;
+    margin-top: variables-size.$rem-16;
+  }
+}
+
 @media (max-width: variables-size.$device-width-small) {
   %profile-header-button {
     margin-left: 0;

@@ -27,7 +27,7 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-medium) {
   .avatar {
     &__background {
       width: variables-size.$rem-36;

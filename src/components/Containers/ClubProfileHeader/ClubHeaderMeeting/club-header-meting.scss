@@ -9,7 +9,7 @@
   justify-content: flex-end;
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-medium) {
   .club-header-meeting {
     margin-top: variables-size.$rem-10;
     justify-content: flex-start;

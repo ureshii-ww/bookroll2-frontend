@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-small) {
+@media (max-width: variables-size.$device-width-large) {
   .user-profile-header {
     grid-template-areas:
       'buttons'
@@ -32,12 +32,16 @@
     grid-template-rows: auto auto auto;
     padding: variables-size.$page-padding-top variables-size.$page-padding-top 0 variables-size.$page-padding-top;
 
-    &__avatar {
-      margin-right: 10px;
-    }
-
     &__title-container {
       margin-bottom: variables-size.$rem-12;
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .user-profile-header {
+    &__avatar {
+      margin-right: 10px;
     }
   }
 }

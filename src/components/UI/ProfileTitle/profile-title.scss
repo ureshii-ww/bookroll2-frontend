@@ -13,6 +13,12 @@
 
 }
 
+@media (max-width: variables-size.$device-width-medium) {
+  .profile-title__text {
+    font-size: variables-size.$font-size-page-title-s;
+  }
+}
+
 @media (max-width: variables-size.$device-width-small) {
   .profile-title__text {
     font-size: variables-size.$font-size-l;
