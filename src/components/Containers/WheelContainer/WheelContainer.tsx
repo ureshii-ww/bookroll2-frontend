@@ -12,6 +12,7 @@ import WheelHistory from '../WheelHistory/WheelHistory';
 import { ReactComponent as DetailsSvg } from '../../../assets/svg/details.svg';
 import { ReactComponent as TriangleSvg } from '../../../assets/svg/triangle.svg';
 import './wheel-container.scss';
+import useWindowDimensions from '../../../hooks/useDimensions';
 
 export interface WheelContainerProps {
   clubBooks: ClubBooks[];
@@ -21,11 +22,12 @@ export interface WheelContainerProps {
 
 const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, handleSetBooksKey, ...rest }) => {
   const { showModal } = useActions();
+  const { width } = useWindowDimensions();
   const { handleSetTime, handeSetSpinsNumber, recountTextSize, spinsNumber, spinTime, textSize } = useWheelSettings();
   const { hookData, wheelWinner, wheelStages } = useWheelContainer(
     { clubBooks, handleSetBooksKey, displayWinner },
     handeSetSpinsNumber,
-    recountTextSize
+    recountTextSize,
   );
   const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
   const { isStart, isRoll, isFinish } = wheelStages;
@@ -33,30 +35,38 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
 
   const wheelAnimationOptions: WheelAnimationOptions = !isStart
     ? {
-        type: 'spinToStop',
-        spins: spinsNumber,
-        duration: spinTime,
-      }
+      type: 'spinToStop',
+      spins: spinsNumber,
+      duration: spinTime,
+    }
     : { spins: 0 };
 
+  if (width < 700) {
+    return (
+      <div className="wheel-container__placeholder">
+        Ваш экран слишком мал для колеса
+      </div>
+    )
+  }
+
   return (
-    <div className="wheel-container">
-      <div className="wheel-container__wheel">
-        <div className="wheel-container__triangle">
-          <TriangleSvg/>
+    <div className='wheel-container'>
+      <div className='wheel-container__wheel'>
+        <div className='wheel-container__triangle'>
+          <TriangleSvg />
         </div>
         <WinWheel
           key={`${wheelSegments.length === 0}-${rollCount}`}
           handleWinner={handleWinner}
           segments={wheelSegments}
           sizeOptions={{ canvasWidth: 600, canvasHeight: 600, innerRadius: 40 }}
-          textOptions={{textFontSize: textSize, textFontFamily: 'Inter', textFontWeight: 600}}
-          renderOptions={{lineWidth: 1, strokeStyle: '#737373'}}
+          textOptions={{ textFontSize: textSize, textFontFamily: 'Inter', textFontWeight: 600 }}
+          renderOptions={{ lineWidth: 1, strokeStyle: '#737373' }}
           animationOptions={wheelAnimationOptions}
         />
       </div>
-      <div className="wheel-container__side">
-        <div className="wheel-container__info-wrapper">
+      <div className='wheel-container__side'>
+        <div className='wheel-container__info-wrapper'>
           <WheelContainerInfo winnerInfo={winnerInfo} />
           <WheelContainerControls
             isRoll={isRoll}
@@ -67,9 +77,9 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
             handleSetTime={handleSetTime}
           />
         </div>
-        <div className="wheel-container__history-button-wrapper">
+        <div className='wheel-container__history-button-wrapper'>
           <TransparentButton
-            className="wheel-container__history-button"
+            className='wheel-container__history-button'
             onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
             История
             <DetailsSvg />

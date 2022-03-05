@@ -2,25 +2,25 @@
 
 .wheel-history {
   &__group {
-    padding: 20px 0;
+    padding: variables-size.$rem-20 0;
 
     &:not(:last-child) {
       border-bottom: 1px solid var(--border-color);
     }
 
     &:last-child {
-      padding: 20px 0 0 0;
+      padding: variables-size.$rem-20 0 0 0;
     }
 
     &:first-child {
-      padding: 0 0 20px 0;
+      padding: 0 0 variables-size.$rem-20 0;
     }
   }
 
   &__user {
     font-size: variables-size.$font-size-m-s;
     font-weight: variables-size.$font-weight-x-s;
-    margin-bottom: 5px;
+    margin-bottom: variables-size.$rem-5;
     color: var(--dim-text-color);
   }
 
@@ -35,7 +35,7 @@
   &__book {
     font-size: variables-size.$font-size-m;
     font-weight: variables-size.$font-weight-s;
-    margin-bottom: 5px;
+    margin-bottom: variables-size.$rem-5;
   }
 
   &__title {
@@ -55,5 +55,17 @@
     width: 400px;
     height: 80px;
     font-size: variables-size.$font-size-l;
+  }
+}
+
+@media (max-width: variables-size.$device-width-medium) {
+  .wheel-history {
+    &__user {
+      font-size: variables-size.$font-size-s;
+    }
+
+    &__book {
+      font-size: variables-size.$font-size-m-s;
+    }
   }
 }
