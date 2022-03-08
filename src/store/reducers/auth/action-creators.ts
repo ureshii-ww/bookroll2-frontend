@@ -22,7 +22,6 @@ export const AuthActionCreators = {
       setUserUrl(response.data.url);
       $api.defaults.headers.common['Authorization'] = `Bearer ${response.headers['x-access-token']}`;
     } catch (error: any) {
-      console.log(error.response?.data?.message);
       throw error;
     }
   },
@@ -36,7 +35,6 @@ export const AuthActionCreators = {
       $api.defaults.headers.common['Authorization'] = '';
       setUserUrl('');
     } catch (error: any) {
-      console.log(error.response?.data?.message);
       throw error;
     }
   },
@@ -47,7 +45,6 @@ export const AuthActionCreators = {
       localStorage.setItem('userData', JSON.stringify(response.data));
       dispatch(AuthActionCreators.setUserData(response.data));
     } catch (error: any) {
-      console.log(error);
       throw error;
     } finally {
       dispatch(LoadingPageActionCreators.setLoadingPageFalse());
@@ -60,7 +57,6 @@ export const AuthActionCreators = {
       localStorage.setItem('userData', JSON.stringify(response.data));
       dispatch(AuthActionCreators.setUserData(response.data));
     } catch (error: any) {
-      console.log(error);
       throw error;
     } finally {
       dispatch(LoadingPageActionCreators.setLoadingPageFalse());

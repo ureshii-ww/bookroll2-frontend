@@ -11,14 +11,19 @@ type Inputs = {
 };
 
 const LoginForm: FC = props => {
-  const { login } = useActions();
+  const { login, addNotification } = useActions();
   const {
     control,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = data => login(data.email, data.password);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await login(data.email, data.password);
+    } catch (error: any) {
+      addNotification(error.response?.data?.message || 'Непредвиденная ошибка', 'error')
+    }
+  }
 
   return (
     <form className="login-form" onSubmit={handleSubmit(onSubmit)}>

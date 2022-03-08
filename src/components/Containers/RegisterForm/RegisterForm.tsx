@@ -6,6 +6,7 @@ import AuthServices from '../../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './register-form.scss';
+import { useRequestPost } from '../../../hooks/useRequestPost';
 
 type Inputs = {
   username: string;
@@ -22,16 +23,11 @@ const RegisterForm: FC = props => {
     formState: { errors },
     getValues,
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => handleRegister(data.username, data.email, data.password);
-
-  const handleRegister = async (username: string, email: string, password: string) => {
-    try {
-      await AuthServices.register(username, email, password);
-      navigate(RouteNames.LOGIN);
-    } catch (error: any) {
-      console.log(error?.response?.data?.message);
-    }
-  };
+  const onSubmit: SubmitHandler<Inputs> = data => fetchRegister(data.username, data.email, data.password);
+  const fetchRegister = useRequestPost(async (username: string, email: string, password: string) => {
+    await AuthServices.register(username, email, password);
+    navigate(RouteNames.LOGIN);
+  });
 
   return (
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
