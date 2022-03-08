@@ -12,6 +12,7 @@ import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
 import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
 import '../../styles/app-layout.scss';
+import '../../styles/auth-pages.scss';
 import WheelPage from '../Pages/WheelPage/WheelPage';
 import Scrollbars from 'react-custom-scrollbars-2';
 import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileReviews';
@@ -55,11 +56,13 @@ const AppRouter: FC = () => {
           </main>
         </div>
       ) : (
-        <Routes>
-          <Route path={RouteNames.LOGIN} element={<LoginPage />} />
-          <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
-          <Route path="*" element={<Navigate to={RouteNames.REGISTER} />} />
-        </Routes>
+        <div className="auth-pages">
+          <Routes>
+            <Route path={RouteNames.LOGIN} element={<LoginPage />} />
+            <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to={RouteNames.REGISTER} />} />
+          </Routes>
+        </div>
       )}
     </Fragment>
   );

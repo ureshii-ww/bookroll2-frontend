@@ -1,0 +1,13 @@
+@use 'src/styles/placeholders/auth-pages-placeholders';
+
+.login-page {
+  @extend %auth-page;
+
+  &__title {
+    @extend %auth-page__title;
+  }
+
+  &__link {
+    @extend %auth-page__link;
+  }
+}

@@ -5,6 +5,7 @@ import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import AuthServices from '../../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
+import './register-form.scss';
 
 type Inputs = {
   username: string;
@@ -33,27 +34,27 @@ const RegisterForm: FC = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="username"
         control={control}
         defaultValue={''}
         rules={{ required: true, maxLength: 32 }}
-        render={({ field }) => <InputText {...field} type="text" />}
+        render={({ field }) => <InputText placeholder='Никнейм' className="register-form__input" {...field} type="text" />}
       />
       <Controller
         name="email"
         control={control}
         defaultValue={''}
         rules={{ required: true }}
-        render={({ field }) => <InputText {...field} type="email" />}
+        render={({ field }) => <InputText placeholder='Почта' className="register-form__input" {...field} type="email" />}
       />
       <Controller
         name="password"
         defaultValue={''}
         rules={{ required: true, minLength: 8, maxLength: 128 }}
         control={control}
-        render={({ field }) => <InputText {...field} type="password" />}
+        render={({ field }) => <InputText placeholder='Пароль' className="register-form__input" {...field} type="password" />}
       />
       <Controller
         name="passwordRepeat"
@@ -63,9 +64,9 @@ const RegisterForm: FC = props => {
           required: true,
           validate: value => value === getValues().password || 'Пароли должны совпадать',
         }}
-        render={({ field }) => <InputText {...field} type="password" />}
+        render={({ field }) => <InputText placeholder='Введите пароль ещё раз' className="register-form__input" {...field} type="password" />}
       />
-      <SubmitButton>Зарегистрироваться</SubmitButton>
+      <SubmitButton className="register-form__button">Зарегистрироваться</SubmitButton>
     </form>
   );
 };

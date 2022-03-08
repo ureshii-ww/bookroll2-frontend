@@ -1,0 +1,16 @@
+@use 'src/styles/variables/variables-size';
+
+.auth-pages {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .auth-pages {
+    background-color: var(--page-background-color);
+  }
+}

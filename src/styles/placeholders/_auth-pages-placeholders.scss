@@ -1,0 +1,36 @@
+@use 'src/styles/variables/variables-size';
+
+%auth-page {
+  background-color: var(--page-background-color);
+  padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+  border-radius: variables-size.$page-layout-radius;
+}
+
+%auth-page__title {
+  margin-bottom: variables-size.$rem-20;
+  font-size: variables-size.$font-size-page-title-s;
+}
+
+%auth-page__link {
+  font-size: variables-size.$font-size-s;
+}
+
+%auth-page__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: variables-size.$rem-20;
+}
+
+%auth-page__input {
+  margin-bottom: variables-size.$rem-16;
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  %auth-page {
+    width: 100%;
+  }
+
+  %auth-page__title {
+    font-size: variables-size.$font-size-x-x-l;
+  }
+}

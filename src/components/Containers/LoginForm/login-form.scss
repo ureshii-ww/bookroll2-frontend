@@ -1,0 +1,9 @@
+@use 'src/styles/placeholders/auth-pages-placeholders';
+
+.login-form {
+  @extend %auth-page__form;
+
+  &__input {
+    @extend %auth-page__input;
+  }
+}
