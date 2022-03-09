@@ -10,6 +10,7 @@ interface NotificationProps {
 const Notification: FC<NotificationProps> = ({ message, notificationType, ...rest }) => {
   return (
     <div className={`notification notification--${notificationType}`}>
+      <div className="notification__line" />
       <span>{message}</span>
     </div>
   );

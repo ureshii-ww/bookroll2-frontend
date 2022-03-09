@@ -1,17 +1,40 @@
+@use 'src/styles/variables/variables-size';
+
 .notification {
-  width: 300px;
+  width: 100%;
   height: 80px;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  background-color: var(--notification-background-color);
+  position: relative;
+
+  span {
+    font-size: variables-size.$font-size-x-s;
+    max-width: 85%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__line {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 4px;
+  }
 
   &.notification--success {
-    background-color: green;
+    .notification__line {
+      background-color: var(--green-color);
+    }
   }
 
   &.notification--error {
-    background-color: darkred;
+    .notification__line {
+      background-color: var(--red-color);
+    }
   }
 }
