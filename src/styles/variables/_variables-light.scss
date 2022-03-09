@@ -2,10 +2,10 @@
 $accent-color: #F08A4B;
 $accent-color-hover: rgba(240, 138, 75, 0.8);
 $dim-color: #707070;
-$green-color: rgb(0, 164, 12);
-$green-color-hover: rgba(0, 164, 12, 0.8);
-$red-color: #D90000;
-$red-color-hover: rgba(217, 0, 0, 0.8);
+$green-color: rgba(12, 124, 89, 1);
+$green-color-hover: rgba(12, 124, 89, .8);
+$red-color: rgba(208, 10, 33, 1);
+$red-color-hover: rgba(208, 10, 33, 0.8);
 
 //background
 $background-color: #454545;
@@ -22,10 +22,10 @@ $bold-text-color: #000;
 $dim-text-color: $dim-color;
 $link-text-color: $accent-color;
 $link-text-color-hover: $accent-color-hover;
-$red-text-color: $red-color;
-$red-text-color-hover: $red-color-hover;
-$green-text-color: $green-color;
-$green-text-color-hover: $green-color-hover;
+$red-text-color: #D90000;
+$red-text-color-hover: rgba(217, 0, 0, 0.8);
+$green-text-color: rgb(0, 164, 12);
+$green-text-color-hover: rgba(0, 164, 12, 0.8);
 
 //border
 $border-color: #C1C1C1;
@@ -33,5 +33,5 @@ $input-border-color: $accent-color;
 
 //shadow
 $wheel-shadow-color: rgba(0, 0, 0, .2);
-$notification-shadow-color: rgba(0, 0, 0 , .15);
-$page-shadow-color: rgba(0, 0, 0, .4);
+$notification-shadow-color: rgba(0, 0, 0, .15);
+$page-shadow-color: rgba(0, 0, 0, .2);

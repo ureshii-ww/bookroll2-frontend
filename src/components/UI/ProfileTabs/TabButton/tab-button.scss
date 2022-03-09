@@ -10,9 +10,11 @@
     height: 3.75em;
     align-items: center;
     color: var(--main-text-color);
+
     &:hover {
       color: var(--main-text-color);
     }
+
     &:visited {
       color: var(--main-text-color);
     }
@@ -24,6 +26,11 @@
     span {
       color: var(--bold-text-color);
       position: relative;
+
+      &:hover {
+        color: var(--bold-text-color);
+      }
+
       &:after {
         position: absolute;
         left: 0;
