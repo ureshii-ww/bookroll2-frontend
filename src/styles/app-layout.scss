@@ -1,5 +1,6 @@
 @use 'variables/variables-size';
 @use 'variables/z-indexes';
+@use 'variables/variables-shadow';
 
 .app-layout {
   width: 100vw;
@@ -17,6 +18,7 @@
     border-radius: variables-size.$page-layout-radius;
     z-index: z-indexes.$z-index-app-layout;
     position: relative;
+    box-shadow: variables-shadow.$shadow-page;
   }
 }
 
@@ -41,6 +43,7 @@
 
     &__page {
       border-radius: 0;
+      box-shadow: none;
     }
   }
 }

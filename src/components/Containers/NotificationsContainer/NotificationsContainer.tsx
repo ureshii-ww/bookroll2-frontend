@@ -8,8 +8,6 @@ const NotificationsContainer: FC = () => {
 
   return (
     <div className="notification-container">
-      <Notification message={'Книга успешно добавлена биба оверфлоу длинный текс'} notificationType="success" />
-      <Notification message={'Произошла серверная ошибка'} notificationType="error" />
       {notifications.map(notification => (
         <Notification
           key={`notification-${notification.id}`}

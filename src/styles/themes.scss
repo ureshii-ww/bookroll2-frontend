@@ -37,6 +37,8 @@
 
   //shadow
   --wheel-shadow-color: #{variables-light.$wheel-shadow-color};
+  --notification-shadow-color: #{variables-light.$notification-shadow-color};
+  --page-shadow-color: #{variables-light.$page-shadow-color};
 }
 
 .dark {
@@ -75,4 +77,6 @@
 
   //shadow
   --wheel-shadow-color: #{variables-dark.$wheel-shadow-color};
+  --notification-shadow-color: #{variables-dark.$notification-shadow-color};
+  --page-shadow-color: #{variables-dark.$page-shadow-color};
 }

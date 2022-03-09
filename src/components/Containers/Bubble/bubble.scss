@@ -1,5 +1,6 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/variables/z-indexes';
+@use 'src/styles/variables/variables-shadow';
 
 .bubble {
   position: absolute;
@@ -7,7 +8,7 @@
   background-color: var(--bubble-background-color);
   border-radius: variables-size.$card-radius;
   padding: variables-size.$rem-5;
-  box-shadow: 0 0 12px 4px var(--wheel-shadow-color);
+  box-shadow: variables-shadow.$shadow-bubble;
 
   &__item {
     padding: variables-size.$rem-10 variables-size.$rem-12;
