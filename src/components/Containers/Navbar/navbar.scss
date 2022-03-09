@@ -1,5 +1,6 @@
-@use '../../../styles/variables/variables-size';
-@use '../../../styles/variables/variables-color';
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+@use 'src/styles/variables/z-indexes';
 
 .navbar {
   grid-area: navbar;
@@ -10,7 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 0;
+  z-index: z-indexes.$z-index-navbar;
   position: relative;
 
   &::before {
@@ -21,7 +22,7 @@
     top: 0;
     right: -50px;
     background-color: var(--navbar-background-color);
-    z-index: 0;
+    z-index: z-indexes.$z-index-navbar;
   }
 
   &::after {
@@ -32,7 +33,7 @@
     bottom: 0;
     right: -50px;
     background-color: var(--navbar-background-color);
-    z-index: 0;
+    z-index: z-indexes.$z-index-navbar;
   }
 
   &__main-buttons {

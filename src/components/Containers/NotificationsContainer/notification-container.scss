@@ -1,8 +1,12 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/z-indexes';
+
 .notification-container {
-  z-index: 1000;
+  z-index: z-indexes.$z-index-notifications;
   position: absolute;
   top: 10px;
   right: 0;
   width: 300px;
   max-height: 100vh;
+  overflow: hidden;
 }

@@ -1,4 +1,5 @@
 @use 'variables/variables-size';
+@use 'variables/z-indexes';
 
 .app-layout {
   width: 100vw;
@@ -9,14 +10,14 @@
   grid-template-columns: 120px auto;
   background-color: var(--background-color);
   overflow: hidden;
-}
 
-.app-layout__page {
-  overflow: hidden;
-  background-color: var(--page-background-color);
-  border-radius: variables-size.$page-layout-radius;
-  z-index: 1;
-  position: relative;
+  &__page {
+    overflow: hidden;
+    background-color: var(--page-background-color);
+    border-radius: variables-size.$page-layout-radius;
+    z-index: z-indexes.$z-index-app-layout;
+    position: relative;
+  }
 }
 
 @media (max-width: variables-size.$device-width-large) {

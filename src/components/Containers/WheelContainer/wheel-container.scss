@@ -1,6 +1,7 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/variables/variables-color';
 @use 'src/styles/placeholders/triangle-shadow';
+@use 'src/styles/variables/z-indexes';
 
 .wheel-container {
   display: grid;
@@ -13,7 +14,7 @@
     top: 0;
     left: calc(50% - 18px);
     color: variables-color.$wheel-triangle;
-    z-index: 10;
+    z-index: z-indexes.$z-index-wheel-triangle;
     svg {
       @extend %triangle-shadow;
       width: 36px;

@@ -1,8 +1,9 @@
 @use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/z-indexes';
 
 .bubble {
   position: absolute;
-  z-index: 100;
+  z-index: z-indexes.$z-index-bubble;
   background-color: var(--bubble-background-color);
   border-radius: variables-size.$card-radius;
   padding: variables-size.$rem-5;
@@ -47,7 +48,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 99;
+    z-index: z-indexes.$z-index-bubble-bg;
   }
 
   &:after {
