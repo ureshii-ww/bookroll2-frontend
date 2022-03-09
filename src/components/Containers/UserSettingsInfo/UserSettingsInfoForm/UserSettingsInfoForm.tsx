@@ -31,7 +31,6 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
   const onSubmit: SubmitHandler<Inputs> = data => updateInfo(userUrl, data.username, data.color, chosenEmoji);
 
   return (
-    //TODO Сделать валидацию
     <form className="user-settings-info-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="user-settings-info-form__container">
         <fieldset className="user-settings-info-form__group">
@@ -45,6 +44,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
             rules={{ required: true }}
             render={({ field }) => <InputText {...field} />}
           />
+          {errors.username && <div className="user-settings-info-form__error">Введите имя</div>}
         </fieldset>
         <fieldset className="user-settings-info-form__group">
           <span className="user-settings-info-form__label">Эмодзи</span>

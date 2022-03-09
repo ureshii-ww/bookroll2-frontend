@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../../routes/route-names.enum';
 import './register-form.scss';
 import { useRequestPost } from '../../../hooks/useRequestPost';
+import authDataLength from '../../../constants/auth-data-length';
 
 type Inputs = {
   username: string;
@@ -31,37 +32,79 @@ const RegisterForm: FC = props => {
 
   return (
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="username"
-        control={control}
-        defaultValue={''}
-        rules={{ required: true, maxLength: 32 }}
-        render={({ field }) => <InputText placeholder='Никнейм' className="register-form__input" {...field} type="text" />}
-      />
-      <Controller
-        name="email"
-        control={control}
-        defaultValue={''}
-        rules={{ required: true }}
-        render={({ field }) => <InputText placeholder='Почта' className="register-form__input" {...field} type="email" />}
-      />
-      <Controller
-        name="password"
-        defaultValue={''}
-        rules={{ required: true, minLength: 8, maxLength: 128 }}
-        control={control}
-        render={({ field }) => <InputText placeholder='Пароль' className="register-form__input" {...field} type="password" />}
-      />
-      <Controller
-        name="passwordRepeat"
-        control={control}
-        defaultValue={''}
-        rules={{
-          required: true,
-          validate: value => value === getValues().password || 'Пароли должны совпадать',
-        }}
-        render={({ field }) => <InputText placeholder='Введите пароль ещё раз' className="register-form__input" {...field} type="password" />}
-      />
+      <div className="register-form__input-group">
+        <Controller
+          name="username"
+          control={control}
+          defaultValue={''}
+          rules={{
+            required: true,
+            minLength: authDataLength.USERNAME_MIN_LENGTH,
+            maxLength: authDataLength.USERNAME_MAX_LENGTH,
+          }}
+          render={({ field }) => (
+            <InputText placeholder="Имя" className="register-form__input" {...field} type="text" />
+          )}
+        />
+        {errors.username?.type === 'required' && <div className="register-form__error">Введите имя</div>}
+        {errors.username?.type === 'minLength' && (
+          <div className="register-form__error">
+            Имя должно быть длиннее {authDataLength.USERNAME_MIN_LENGTH} символов
+          </div>
+        )}
+        {errors.username?.type === 'maxLength' && (
+          <div className="register-form__error">
+            Имя должно быть короче {authDataLength.USERNAME_MAX_LENGTH} символов
+          </div>
+        )}
+      </div>
+      <div className="register-form__input-group">
+        <Controller
+          name="email"
+          control={control}
+          defaultValue={''}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <InputText placeholder="Почта" className="register-form__input" {...field} type="email" />
+          )}
+        />
+        {errors.email && <div className="register-form__error">Введите почту</div>}
+      </div>
+      <div className="register-form__input-group">
+        <Controller
+          name="password"
+          defaultValue={''}
+          rules={{ required: true, minLength: 8 }}
+          control={control}
+          render={({ field }) => (
+            <InputText placeholder="Пароль" className="register-form__input" {...field} type="password" />
+          )}
+        />
+        {errors.password?.type === 'required' && <div className="register-form__error">Введите пароль</div>}
+        {errors.password?.type === 'minLength' && (
+          <div className="register-form__error">
+            Пароль должен быть длиннее {authDataLength.USERNAME_MIN_LENGTH} символов
+          </div>
+        )}
+      </div>
+      <div className="register-form__input-group">
+        <Controller
+          name="passwordRepeat"
+          control={control}
+          defaultValue={''}
+          rules={{
+            required: true,
+            validate: value => value === getValues().password,
+          }}
+          render={({ field }) => (
+            <InputText placeholder="Повторите пароль" className="register-form__input" {...field} type="password" />
+          )}
+        />
+        {errors.passwordRepeat?.type === 'required' && <div className="register-form__error">Повторите пароль</div>}
+        {errors.passwordRepeat?.type === 'validate' && (
+          <div className="register-form__error">Пароли должны совпадать</div>
+        )}
+      </div>
       <SubmitButton className="register-form__button">Зарегистрироваться</SubmitButton>
     </form>
   );

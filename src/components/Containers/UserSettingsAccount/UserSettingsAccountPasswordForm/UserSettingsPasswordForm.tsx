@@ -6,6 +6,7 @@ import { useRequestPage } from '../../../../hooks/useRequestPage';
 import UserService from '../../../../services/user.service';
 import { useActions } from '../../../../hooks/useActions';
 import './user-settings-password-form.scss';
+import authDataLength from '../../../../constants/auth-data-length';
 
 interface UserSettingsPasswordFormProps {
   userUrl: string;
@@ -41,14 +42,13 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
   };
 
   return (
-    //TODO добавить валидацию
     <form className="user-settings-password-form" onSubmit={handleSubmit(onSubmit)}>
-      <fieldset className="user-settings-password-form__inputs-group">
+      <div className="user-settings-password-form__inputs-group">
         <Controller
           name="oldPassword"
           control={control}
           defaultValue={''}
-          rules={{ required: true }}
+          rules={{ required: true, minLength: authDataLength.PASSWORD_MIN_LENGTH }}
           render={({ field }) => (
             <InputText
               {...field}
@@ -58,11 +58,19 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
             />
           )}
         />
+        {errors.oldPassword?.type === 'required' && <div className="register-form__error">Введите старый пароль</div>}
+        {errors.oldPassword?.type === 'minLength' && (
+          <div className="register-form__error">
+            Пароль должен быть длиннее {authDataLength.USERNAME_MIN_LENGTH} символов
+          </div>
+        )}
+      </div>
+      <div className="user-settings-password-form__inputs-group">
         <Controller
           name="newPassword"
           control={control}
           defaultValue={''}
-          rules={{ required: true }}
+          rules={{ required: true, minLength: authDataLength.PASSWORD_MIN_LENGTH }}
           render={({ field }) => (
             <InputText
               {...field}
@@ -72,6 +80,14 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
             />
           )}
         />
+        {errors.newPassword?.type === 'required' && <div className="register-form__error">Введите новый пароль</div>}
+        {errors.newPassword?.type === 'minLength' && (
+          <div className="register-form__error">
+            Пароль должен быть длиннее {authDataLength.USERNAME_MIN_LENGTH} символов
+          </div>
+        )}
+      </div>
+      <div className="user-settings-password-form__inputs-group">
         <Controller
           name="newPasswordRepeat"
           control={control}
@@ -89,7 +105,11 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
             />
           )}
         />
-      </fieldset>
+        {errors.newPasswordRepeat?.type === 'required' && <div className="register-form__error">Повторите пароль</div>}
+        {errors.newPasswordRepeat?.type === 'validate' && (
+          <div className="register-form__error">Пароли должны совпадать</div>
+        )}
+      </div>
       <div className="user-settings-password-form__button">
         <SubmitButton>Сменить пароль</SubmitButton>
       </div>

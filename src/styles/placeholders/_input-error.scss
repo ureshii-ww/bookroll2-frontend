@@ -1,0 +1,8 @@
+@use 'src/styles/variables/variables-size';
+
+%input-error {
+  font-size: variables-size.$font-size-x-s;
+  color: var(--red-text-color);
+  padding-left: variables-size.$rem-5;
+  margin-top: variables-size.$rem-5;
+}

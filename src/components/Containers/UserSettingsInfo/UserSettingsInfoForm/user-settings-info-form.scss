@@ -1,6 +1,7 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/placeholders/settings-label';
 @use 'src/styles/placeholders/form-input-group';
+@use 'src/styles/placeholders/input-error';
 
 .user-settings-info-form {
   &__container {
@@ -17,6 +18,10 @@
 
   &__input {
 
+  }
+
+  &__error {
+    @extend %input-error;
   }
 
   &__button {

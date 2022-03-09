@@ -3,7 +3,15 @@
 .login-form {
   @extend %auth-page__form;
 
+  &__input-group {
+    @extend %auth-page__input-group;
+  }
+
   &__input {
     @extend %auth-page__input;
+  }
+
+  &__error {
+    @extend %auth-page__error;
   }
 }

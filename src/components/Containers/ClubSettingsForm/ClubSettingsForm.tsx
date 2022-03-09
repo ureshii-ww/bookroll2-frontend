@@ -7,6 +7,7 @@ import './club-settings-form.scss';
 import InputTextarea from '../../UI/InputTextarea/InputTextarea';
 import InputSelect from '../../UI/InputSelect/InputSelect';
 import useClubSettingsForm from './useClubSettingsForm';
+import authDataLength from '../../../constants/auth-data-length';
 
 export interface ClubSettingsFormProps {
   clubSettingsInfo: ClubSettingsInfo;
@@ -28,8 +29,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = data =>
-    sendSettingsData(clubUrl, data.clubname, data.master, data.rules);
+  const onSubmit: SubmitHandler<Inputs> = data => sendSettingsData(clubUrl, data.clubname, data.master, data.rules);
 
   return (
     <form className="club-settings-form" onSubmit={handleSubmit(onSubmit)}>
@@ -41,9 +41,24 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
           name="clubname"
           control={control}
           defaultValue={clubname}
-          rules={{ required: true }}
+          rules={{
+            required: true,
+            minLength: authDataLength.CLUBNAME_MIN_LENGTH,
+            maxLength: authDataLength.CLUBNAME_MAX_LENGTH,
+          }}
           render={({ field }) => <InputText {...field} />}
         />
+        {errors.clubname?.type === 'required' && <div className="club-settings-form__error">Введите имя клуба</div>}
+        {errors.clubname?.type === 'minLength' && (
+          <div className="club-settings-form__error">
+            Имя клуба должно быть не короче {authDataLength.CLUBNAME_MIN_LENGTH} символов
+          </div>
+        )}
+        {errors.clubname?.type === 'required' && (
+          <div className="club-settings-form__error">
+            Имя клуба должно быть не длинее {authDataLength.CLUBNAME_MAX_LENGTH} символов
+          </div>
+        )}
       </fieldset>
       <fieldset className="club-settings-form__group">
         <label className="club-settings-form__label" htmlFor="master">

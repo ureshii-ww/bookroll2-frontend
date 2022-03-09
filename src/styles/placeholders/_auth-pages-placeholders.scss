@@ -1,4 +1,5 @@
 @use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/input-error';
 
 %auth-page {
   background-color: var(--page-background-color);
@@ -21,8 +22,16 @@
   margin-bottom: variables-size.$rem-20;
 }
 
-%auth-page__input {
+%auth-page__input-group {
   margin-bottom: variables-size.$rem-16;
+}
+
+%auth-page__input {
+  width: 100%;
+}
+
+%auth-page__error {
+  @extend %input-error;
 }
 
 @media (max-width: variables-size.$device-width-small) {

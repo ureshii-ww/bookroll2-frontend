@@ -1,6 +1,7 @@
 @use 'src/styles/placeholders/form-input-group';
 @use 'src/styles/placeholders/settings-label';
 @use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/input-error';
 
 .club-settings-form {
   &__group {
@@ -9,6 +10,10 @@
 
   &__label {
     @extend %settings-label;
+  }
+
+  &__error {
+    @extend %input-error;
   }
 
   &__button {
