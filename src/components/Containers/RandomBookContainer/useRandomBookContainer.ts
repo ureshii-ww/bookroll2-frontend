@@ -28,8 +28,7 @@ const useRandomBookContainer = () => {
   const confirmBook = useRequestPost(async (bookData: BookData) => {
     await BookService.confirmBook(bookData);
     addNotification('Книга добавлена', 'success');
-    const response = await BookService.getRandomBook();
-    setBookData(response.data);
+    getBook();
   });
 
   useEffect(() => {
