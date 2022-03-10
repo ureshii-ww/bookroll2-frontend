@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BasicUserInfo } from '../../../models/basic-user-info';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import { useRequestTab } from '../../../hooks/useRequestTab';
+import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 
 const useClubProfileMembers = () => {
@@ -9,14 +9,14 @@ const useClubProfileMembers = () => {
   const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchMembers = useRequestTab(async () => {
+  const fetchMembers = useRequest('Tab', async () => {
     const response = await ClubService.getClubMembers(clubUrl);
     setUsersInfo(response.data);
     setIsLoaded(true);
   });
 
   useEffect(() => {
-    fetchMembers();
+    fetchMembers({});
   }, [clubUrl]);
 
   return { usersInfo, isLoaded, clubUrl };

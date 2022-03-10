@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import WheelContainerBookData from '../WheelContainerBookData/WheelContainerBookData';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRequestPage } from '../../../../hooks/useRequestPage';
+import useRequest from '../../../../hooks/useRequest';
 import ClubService from '../../../../services/club.service';
 import { RouteNames } from '../../../../routes/route-names.enum';
 import SubmitButton from '../../../UI/SubmitButton/SubmitButton';
@@ -16,7 +16,7 @@ const WheelContainerFinish: FC<WheelContainerFinishProps> = ({winnerInfo, ...res
   const {clubUrl} = useParams();
   const navigate = useNavigate();
   const { addNotification } = useActions();
-  const confirmBook = useRequestPage(async () => {
+  const confirmBook = useRequest('Page', async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo.book.id);
     if (response.data === 'Success') {
       addNotification('Книга успешно выбрана', 'success');

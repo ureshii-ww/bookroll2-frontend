@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ClubBooks } from '../../../models/club-books';
-import { useRequestPage } from '../../../hooks/useRequestPage';
+import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 
 const useWheelPage = () => {
@@ -9,7 +9,7 @@ const useWheelPage = () => {
   const [clubBooks, setClubBooks] = useState<ClubBooks[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [booksKey, setBooksKey] = useState('');
-  const getClubBooks = useRequestPage(async () => {
+  const getClubBooks = useRequest('Page', async () => {
     const response = await ClubService.getClubBooks(clubUrl || '');
     setClubBooks(response.data);
     setIsLoaded(true);
@@ -23,7 +23,7 @@ const useWheelPage = () => {
   };
 
   useEffect(() => {
-    getClubBooks();
+    getClubBooks({});
   }, []);
 
   const handleSetBooksKey = (rollsCount: number) => {

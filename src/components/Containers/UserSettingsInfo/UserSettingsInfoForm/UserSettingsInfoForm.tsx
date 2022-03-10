@@ -6,6 +6,7 @@ import InputColor from '../../../UI/InputColor/InputColor';
 import EmojiButton from '../../../UI/EmojiButton/EmojiButton';
 import './user-settings-info-form.scss';
 import useUserSettingsInfoForm from './useUserSettingsInfoForm';
+import UserSettingsInfoFormInputs from './types/user-settings-info-form-inputs';
 
 interface UserSettingsInfoFormProps {
   username: string | null;
@@ -14,21 +15,16 @@ interface UserSettingsInfoFormProps {
   userUrl: string;
 }
 
-interface Inputs {
-  username: string;
-  color: string;
-  emoji: string;
-}
-
 const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, emoji, userUrl, ...rest }) => {
-  const {updateInfo, chosenEmoji, setEmoji} = useUserSettingsInfoForm(emoji)
+  const { updateInfo, chosenEmoji, setEmoji } = useUserSettingsInfoForm(emoji);
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<UserSettingsInfoFormInputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = data => updateInfo(userUrl, data.username, data.color, chosenEmoji);
+  const onSubmit: SubmitHandler<UserSettingsInfoFormInputs> = data =>
+    updateInfo({ userUrl, username: data.username, color: data.color, emoji: chosenEmoji });
 
   return (
     <form className="user-settings-info-form" onSubmit={handleSubmit(onSubmit)}>

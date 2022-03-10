@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { WheelSegment } from '../../../UI/WinWheel/models/wheel-segment';
-import { useRequestPage } from '../../../../hooks/useRequestPage';
 import ClubService from '../../../../services/club.service';
 import { RouteNames } from '../../../../routes/route-names.enum';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,7 +9,7 @@ import useWheelSegments from './useWheelSegments';
 import useWheelWinner from './useWheelWinner';
 import useWheelRollsHistory from './useWheelRollsHistory';
 import useWheelStages, { WheelStages } from './useWheelStages';
-import { useRequestPost } from '../../../../hooks/useRequestPost';
+import useRequest from '../../../../hooks/useRequest';
 
 const useWheelContainer = (
   { clubBooks, handleSetBooksKey, displayWinner }: WheelContainerProps,
@@ -26,7 +25,7 @@ const useWheelContainer = (
   const { wheelRollsHistory, addToHistory } = useWheelRollsHistory();
   const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, isFinish, addToHistory });
 
-  const confirmBook = useRequestPost<any>(async () => {
+  const confirmBook = useRequest('Post', async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo?.book.id || '');
     if (response.data === 'Success') {
       addNotification('Книга успешно выбрана', 'success');

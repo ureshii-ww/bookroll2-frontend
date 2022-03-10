@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useEffect, useState } from 'react';
 import { ClubProfileInfo } from '../../../models/club-profile-info';
-import { useRequestPage } from '../../../hooks/useRequestPage';
+import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import { ClubProfileHeaderProps } from './ClubProfileHeader';
 
@@ -16,15 +16,15 @@ const useClubProfileHeader = ({ clubUrl, setIsMaster, setIsLoaded }: ClubProfile
     isInClub: false,
   });
 
-  const fetchInfo = useRequestPage(async (clubUrl: string) => {
-    const response = await ClubService.getClubProfileInfo(clubUrl);
+  const fetchInfo = useRequest('Page', async () => {
+    const response = await ClubService.getClubProfileInfo(clubUrl || '');
     setClubInfo(response.data);
     setIsMaster(response.data.isMaster);
     setIsLoaded();
   });
 
   useEffect(() => {
-    fetchInfo(clubUrl);
+    fetchInfo({});
   }, [userData]);
 
   return { clubInfo };

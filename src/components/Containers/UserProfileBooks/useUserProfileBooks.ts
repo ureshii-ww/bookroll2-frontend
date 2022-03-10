@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { BookData } from '../../../models/book-data';
 import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
-import { useRequestTab } from '../../../hooks/useRequestTab';
+import useRequest from '../../../hooks/useRequest';
 import UserService from '../../../services/user.service';
-import { useRequestPost } from '../../../hooks/useRequestPost';
 import FetchDeleteBookArgs from './types/fetch-delete-book-args';
 import FetchBooksArray from './types/fetch-books-array';
 
@@ -22,14 +21,14 @@ const useUserProfileBooks = (userUrl: string) => {
     }
   }
 
-  const fetchBooksArray = useRequestTab<FetchBooksArray>(async () => {
+  const fetchBooksArray = useRequest('Tab', async () => {
     const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
     const listLength = parseInt(response.headers['x-data-length']);
     makeNewBooksArray(booksArray, response.data, listLength)
     setIsLoaded(true);
   });
 
-  const fetchDeleteBook = useRequestPost<FetchDeleteBookArgs>(async ({index}) => {
+  const fetchDeleteBook = useRequest<FetchDeleteBookArgs>('Post', async ({index}) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
       const copyOfBooksArray = [...booksArray];
@@ -51,7 +50,7 @@ const useUserProfileBooks = (userUrl: string) => {
 
   useEffect(() => {
     if (!isOut) {
-      fetchBooksArray();
+      fetchBooksArray({});
     }
   }, [pageNum]);
 

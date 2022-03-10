@@ -17,7 +17,7 @@ const RandomBookContainer = () => {
         <MainButton className="main-button--green" onClick={() => confirmBook(bookData)}>
           Подтвердить
         </MainButton>
-        <MainButton className="main-button--red" onClick={() => getBook()}>
+        <MainButton className="main-button--red" onClick={() => getBook({})}>
           Искать ещё
         </MainButton>
       </div>

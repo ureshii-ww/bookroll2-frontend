@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UserProfileInfo } from '../../../models/user-profile-info';
-import { useRequestPage } from '../../../hooks/useRequestPage';
 import UserService from '../../../services/user.service';
-import { useRequestModal } from '../../../hooks/useRequestModal';
+import useRequest from '../../../hooks/useRequest';
 
 const useUserSettingsInfo = (userUrl: string) => {
   const [userInfo, setUserInfo] = useState<UserProfileInfo>({
@@ -14,14 +13,14 @@ const useUserSettingsInfo = (userUrl: string) => {
   });
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  const fetchInfo = useRequestModal(async (userUrl: string) => {
+  const fetchInfo = useRequest('Modal', async () => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
     setIsLoaded(true);
   });
 
   useEffect(() => {
-    fetchInfo(userUrl);
+    fetchInfo({});
   }, []);
 
   return { userInfo, isLoaded };

@@ -4,7 +4,7 @@ import { ClubSettingsInfo } from '../../../models/club-settings-info';
 import { useLocation } from 'react-router-dom';
 import ClubService from '../../../services/club.service';
 import './club-settings-page.scss';
-import { useRequestModal } from '../../../hooks/useRequestModal';
+import useRequest from '../../../hooks/useRequest';
 import PageLoader from '../../UI/PageLoader/PageLoader';
 
 const ClubSettingsPage = () => {
@@ -16,7 +16,7 @@ const ClubSettingsPage = () => {
     members: [],
   });
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const getClubSettingsInfo = useRequestModal(async (clubUrl: string) => {
+  const getClubSettingsInfo = useRequest('Modal', async (clubUrl: string) => {
     const response = await ClubService.getSettingsInfo(clubUrl);
     setClubInfo(response.data);
     setIsLoaded(true);

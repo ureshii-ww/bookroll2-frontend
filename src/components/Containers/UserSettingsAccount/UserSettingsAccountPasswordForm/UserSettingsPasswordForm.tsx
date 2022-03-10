@@ -2,20 +2,16 @@ import React, { FC } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import InputText from '../../../UI/InputText/InputText';
 import SubmitButton from '../../../UI/SubmitButton/SubmitButton';
-import { useRequestPage } from '../../../../hooks/useRequestPage';
+import useRequest from '../../../../hooks/useRequest';
 import UserService from '../../../../services/user.service';
 import { useActions } from '../../../../hooks/useActions';
 import './user-settings-password-form.scss';
 import authDataLength from '../../../../constants/auth-data-length';
+import UserSettingsPasswordInputs from './types/user-settings-password-inputs';
+import UpdatePasswordArgs from './types/update-password-args';
 
 interface UserSettingsPasswordFormProps {
   userUrl: string;
-}
-
-interface Inputs {
-  oldPassword: string;
-  newPassword: string;
-  newPasswordRepeat: string;
 }
 
 const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, ...rest }) => {
@@ -26,16 +22,17 @@ const UserSettingsPasswordForm: FC<UserSettingsPasswordFormProps> = ({ userUrl, 
     formState: { errors },
     getValues,
     resetField,
-  } = useForm<Inputs>();
-  const updatePassword = useRequestPage(async (userUrl: string, oldPassword: string, newPassword: string) => {
+  } = useForm<UserSettingsPasswordInputs>();
+
+  const updatePassword = useRequest<UpdatePasswordArgs>('Post', async ({ oldPassword, newPassword }) => {
     const response = await UserService.updatePassword(userUrl, oldPassword, newPassword);
     if (response.data === 'Success') {
       addNotification('Пароль успешно обновлён', 'success');
     }
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async data => {
-    await updatePassword(userUrl, data.oldPassword, data.newPassword);
+  const onSubmit: SubmitHandler<UserSettingsPasswordInputs> = async data => {
+    await updatePassword({ oldPassword: data.oldPassword, newPassword: data.newPassword });
     resetField('oldPassword');
     resetField('newPassword');
     resetField('newPasswordRepeat');

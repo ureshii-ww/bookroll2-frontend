@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useEffect, useState } from 'react';
 import { UserProfileInfo } from '../../../models/user-profile-info';
-import { useRequestPage } from '../../../hooks/useRequestPage';
+import useRequest from '../../../hooks/useRequest';
 import UserService from '../../../services/user.service';
 
 const useUserProfileHeader = (userUrl: string, setIsLoaded: () => void) => {
@@ -14,7 +14,7 @@ const useUserProfileHeader = (userUrl: string, setIsLoaded: () => void) => {
     clubUrl: null,
   });
 
-  const fetchInfo = useRequestPage(async (userUrl: string) => {
+  const fetchInfo = useRequest('Page', async (userUrl: string) => {
     const response = await UserService.getUserProfileInfo(userUrl);
     setUserInfo(response.data);
     setIsLoaded();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import { useRequestTab } from '../../../hooks/useRequestTab';
+import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 
 const useClubProfileRules = () => {
@@ -8,14 +8,14 @@ const useClubProfileRules = () => {
   const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchClubRules = useRequestTab(async () => {
+  const fetchClubRules = useRequest('Tab',async () => {
     const response = await ClubService.getClubRules(clubUrl);
     setClubRules(response.data);
     setIsLoaded(true);
   });
 
   useEffect(() => {
-    fetchClubRules();
+    fetchClubRules({});
   }, [clubUrl]);
 
   return { clubRules, isLoaded };

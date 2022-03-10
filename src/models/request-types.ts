@@ -1,0 +1,1 @@
+export type RequestTypes = 'Page' | 'Tab' | 'Post' | 'Modal';
