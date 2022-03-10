@@ -2,33 +2,25 @@ import React, { FC } from 'react';
 import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-import AuthServices from '../../../services/auth.service';
-import { useNavigate } from 'react-router-dom';
-import { RouteNames } from '../../../routes/route-names.enum';
 import './register-form.scss';
-import { useRequestPost } from '../../../hooks/useRequestPost';
 import authDataLength from '../../../constants/auth-data-length';
-
-type Inputs = {
-  username: string;
-  email: string;
-  password: string;
-  passwordRepeat: string;
-};
+import useRegisterForm from './useRegisterForm';
+import { RegisterFormInputs } from './types/register-form-inputs';
 
 const RegisterForm: FC = props => {
-  const navigate = useNavigate();
+  const fetchRegister = useRegisterForm();
   const {
     control,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => fetchRegister(data.username, data.email, data.password);
-  const fetchRegister = useRequestPost(async (username: string, email: string, password: string) => {
-    await AuthServices.register(username, email, password);
-    navigate(RouteNames.LOGIN);
-  });
+  } = useForm<RegisterFormInputs>();
+  const onSubmit: SubmitHandler<RegisterFormInputs> = data =>
+    fetchRegister({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    });
 
   return (
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>

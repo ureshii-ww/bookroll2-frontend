@@ -4,6 +4,7 @@ import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { useRequestTab } from '../../../hooks/useRequestTab';
 import UserService from '../../../services/user.service';
 import { useRequestPost } from '../../../hooks/useRequestPost';
+import FetchDeleteBookArgs from './types/fetch-delete-book-args';
 
 const useUserProfileBooks = (userUrl: string) => {
   const chunkSize = 10;
@@ -27,7 +28,7 @@ const useUserProfileBooks = (userUrl: string) => {
     setIsLoaded(true);
   });
 
-  const fetchDeleteBook = useRequestPost(async (userUrl: string, index: number) => {
+  const fetchDeleteBook = useRequestPost<FetchDeleteBookArgs>(async ({userUrl, index}) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
       const copyOfBooksArray = [...booksArray];

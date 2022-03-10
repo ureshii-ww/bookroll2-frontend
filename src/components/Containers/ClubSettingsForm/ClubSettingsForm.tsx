@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { ClubSettingsInfo } from '../../../models/club-settings-info';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
@@ -8,17 +7,8 @@ import InputTextarea from '../../UI/InputTextarea/InputTextarea';
 import InputSelect from '../../UI/InputSelect/InputSelect';
 import useClubSettingsForm from './useClubSettingsForm';
 import authDataLength from '../../../constants/auth-data-length';
-
-export interface ClubSettingsFormProps {
-  clubSettingsInfo: ClubSettingsInfo;
-  clubUrl: string;
-}
-
-interface Inputs {
-  clubname: string;
-  master: string;
-  rules: string;
-}
+import ClubSettingsFormInputs from './types/club-settings-form-inputs';
+import ClubSettingsFormProps from './types/club-settings-form-props';
 
 const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl, ...rest }) => {
   const { clubname, rules, members } = clubSettingsInfo;
@@ -27,9 +17,15 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<ClubSettingsFormInputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = data => sendSettingsData(clubUrl, data.clubname, data.master, data.rules);
+  const onSubmit: SubmitHandler<ClubSettingsFormInputs> = data =>
+    sendSettingsData({
+      clubUrl,
+      clubname: data.clubname,
+      masterUrl: data.master,
+      description: data.rules,
+    });
 
   return (
     <form className="club-settings-form" onSubmit={handleSubmit(onSubmit)}>

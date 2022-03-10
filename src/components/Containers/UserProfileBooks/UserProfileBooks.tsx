@@ -11,7 +11,7 @@ const UserProfileBooks: FC = props => {
   const { booksArray, isOut, containerRef, fetchDeleteBook, isLoaded } = useUserProfileBooks(userUrl || '');
 
   const handleDeleteBook = (index: number) => {
-    fetchDeleteBook(userUrl, index);
+    fetchDeleteBook({userUrl, index});
   };
 
   return (

@@ -5,6 +5,11 @@ import { useRequestTab } from '../../../hooks/useRequestTab';
 import ClubService from '../../../services/club.service';
 import { useRequestPost } from '../../../hooks/useRequestPost';
 
+interface FetchDeleteBookArgs {
+  index: number;
+  userUrl: string;
+}
+
 const useClubProfileBooks = () => {
   const [booksData, setBooksData] = useState<ClubBooks[]>([]);
   const { isMaster, clubUrl } = useClubProfileContext();
@@ -20,7 +25,8 @@ const useClubProfileBooks = () => {
     fetchBooksData(clubUrl);
   }, [clubUrl]);
 
-  const fetchDeleteBook = useRequestPost(async (clubUrl: string, index: number, userUrl: string) => {
+  const fetchDeleteBook = useRequestPost<FetchDeleteBookArgs>(async args => {
+    const { userUrl, index } = args;
     const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
 
     if (response.data === 'Success') {
@@ -32,10 +38,10 @@ const useClubProfileBooks = () => {
   });
 
   const handleDelete = (index: number, userUrl: string) => {
-    fetchDeleteBook(clubUrl, index, userUrl);
+    fetchDeleteBook({index, userUrl});
   };
 
-  return {booksData, clubUrl, isMaster, handleDelete, isLoaded}
-}
+  return { booksData, clubUrl, isMaster, handleDelete, isLoaded };
+};
 
 export default useClubProfileBooks;

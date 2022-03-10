@@ -6,7 +6,7 @@ import './wheel-container-controls.scss';
 
 interface WheelContainerControlsProps {
   readonly startRoll: () => void;
-  readonly confirmBook: () => void;
+  readonly confirmBook: (args: any) => void;
   readonly winnerInfo: WheelWinnerInfo | null;
   readonly handleSetTime: (event: FormEvent<HTMLInputElement>) => void;
   readonly isRoll: boolean;

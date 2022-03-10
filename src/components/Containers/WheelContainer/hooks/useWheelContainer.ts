@@ -26,7 +26,7 @@ const useWheelContainer = (
   const { wheelRollsHistory, addToHistory } = useWheelRollsHistory();
   const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, isFinish, addToHistory });
 
-  const confirmBook = useRequestPost(async () => {
+  const confirmBook = useRequestPost<any>(async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo?.book.id || '');
     if (response.data === 'Success') {
       addNotification('Книга успешно выбрана', 'success');
