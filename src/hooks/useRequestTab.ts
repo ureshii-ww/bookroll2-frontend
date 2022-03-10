@@ -1,12 +1,12 @@
 import { useActions } from './useActions';
 
-export const useRequestTab = (callback: (...args: any[]) => Promise<void>) => {
+export const useRequestTab = <T = {}>(callback: (args?: T) => Promise<void>) => {
   const { setLoadingTabTrue, setLoadingTabFalse, addNotification } = useActions();
 
-  return async (...args: any[]) => {
-    setLoadingTabTrue();
+  return async (args?: T) => {
     try {
-      await callback(...args);
+      setLoadingTabTrue();
+      await callback(args);
     } catch (e: any) {
       addNotification(
         JSON.parse(e.request?.response)?.message || JSON.parse(e.response?.response)?.message || 'Ошибка при запросе',

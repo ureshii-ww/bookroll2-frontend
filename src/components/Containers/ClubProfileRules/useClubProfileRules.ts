@@ -8,14 +8,14 @@ const useClubProfileRules = () => {
   const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchClubRules = useRequestTab(async clubUrl => {
+  const fetchClubRules = useRequestTab(async () => {
     const response = await ClubService.getClubRules(clubUrl);
     setClubRules(response.data);
     setIsLoaded(true);
   });
 
   useEffect(() => {
-    fetchClubRules(clubUrl);
+    fetchClubRules();
   }, [clubUrl]);
 
   return { clubRules, isLoaded };

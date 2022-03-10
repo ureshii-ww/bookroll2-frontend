@@ -1,9 +1,9 @@
 import { useActions } from './useActions';
 
-export const useRequestPost = <Type>(callback: (args: Type) => Promise<void>) => {
+export const useRequestPost = <T = {}>(callback: (args: T) => Promise<void>) => {
   const { setLoadingPostTrue, setLoadingPostFalse, addNotification } = useActions();
 
-  return async (args: Type) => {
+  return async (args: T) => {
     try {
       setLoadingPostTrue();
       await callback(args);

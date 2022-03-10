@@ -5,6 +5,7 @@ import { useRequestTab } from '../../../hooks/useRequestTab';
 import UserService from '../../../services/user.service';
 import { useRequestPost } from '../../../hooks/useRequestPost';
 import FetchDeleteBookArgs from './types/fetch-delete-book-args';
+import FetchBooksArray from './types/fetch-books-array';
 
 const useUserProfileBooks = (userUrl: string) => {
   const chunkSize = 10;
@@ -21,7 +22,7 @@ const useUserProfileBooks = (userUrl: string) => {
     }
   }
 
-  const fetchBooksArray = useRequestTab(async (userUrl: string, pageNum: number, chunkSize: number) => {
+  const fetchBooksArray = useRequestTab<FetchBooksArray>(async () => {
     const response = await UserService.getUserBooks(userUrl, pageNum, chunkSize);
     const listLength = parseInt(response.headers['x-data-length']);
     makeNewBooksArray(booksArray, response.data, listLength)
@@ -50,7 +51,7 @@ const useUserProfileBooks = (userUrl: string) => {
 
   useEffect(() => {
     if (!isOut) {
-      fetchBooksArray(userUrl, pageNum, chunkSize);
+      fetchBooksArray();
     }
   }, [pageNum]);
 

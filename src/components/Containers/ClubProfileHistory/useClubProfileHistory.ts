@@ -9,14 +9,14 @@ const useClubProfileHistory = () => {
   const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const fetchHistory = useRequestTab(async clubUrl => {
+  const fetchHistory = useRequestTab(async () => {
     const response = await ClubService.getChosenBooksHistory(clubUrl);
     setChosenBooksHistory(response.data);
     setIsLoaded(true)
   });
 
   useEffect(() => {
-    fetchHistory(clubUrl);
+    fetchHistory();
   }, [clubUrl]);
 
   return {chosenBooksHistory, isLoaded, clubUrl};

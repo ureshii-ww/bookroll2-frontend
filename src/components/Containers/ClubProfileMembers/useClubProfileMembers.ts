@@ -9,14 +9,14 @@ const useClubProfileMembers = () => {
   const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchMembers = useRequestTab(async clubUrl => {
+  const fetchMembers = useRequestTab(async () => {
     const response = await ClubService.getClubMembers(clubUrl);
     setUsersInfo(response.data);
     setIsLoaded(true);
   });
 
   useEffect(() => {
-    fetchMembers(clubUrl);
+    fetchMembers();
   }, [clubUrl]);
 
   return { usersInfo, isLoaded, clubUrl };
