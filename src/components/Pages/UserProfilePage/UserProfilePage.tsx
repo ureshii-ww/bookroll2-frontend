@@ -13,7 +13,6 @@ const UserProfilePage = () => {
   const { userUrl } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const isCurrentUser = useAppSelector(state => state.auth.userData?.url === userUrl);
-  const isTabLoading = useAppSelector(state => state.loadingTab.isLoadingTab);
   const handleSetIsLoaded = () => {
     setIsLoaded(true);
   };

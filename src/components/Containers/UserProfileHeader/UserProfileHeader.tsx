@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import ProfileTitle from '../../UI/ProfileTitle/ProfileTitle';
 import UserHeaderButtons from './UserHeaderButtons/UserHeaderButtons';
 import UserHeaderClub from './UserHeaderClub/UserHeaderClub';
 import './user-profile-header.scss';
 import Avatar from '../../UI/Avatar/Avatar';
 import useUserProfileHeader from './useUserProfileHeader';
+import { Helmet } from 'react-helmet';
 
 interface UserProfileHeaderProps {
   isCurrentUser: boolean;
@@ -16,16 +17,21 @@ const UserProfileHeader: FC<UserProfileHeaderProps> = ({ userUrl, setIsLoaded, i
   const { userInfo } = useUserProfileHeader(userUrl, setIsLoaded);
 
   return (
-    <section className="user-profile-header">
-      <div className="user-profile-header__title-container">
-        <div className="user-profile-header__avatar">
-          <Avatar emoji={userInfo.emoji} color={userInfo.color} className="avatar--big" />
+    <Fragment>
+      <Helmet>
+        <title>Профиль {userInfo.username || ''}</title>
+      </Helmet>
+      <section className="user-profile-header">
+        <div className="user-profile-header__title-container">
+          <div className="user-profile-header__avatar">
+            <Avatar emoji={userInfo.emoji} color={userInfo.color} className="avatar--big" />
+          </div>
+          <ProfileTitle title={userInfo.username || ''} />
         </div>
-        <ProfileTitle title={userInfo.username || ''} />
-      </div>
-      <UserHeaderButtons isCurrentUser={isCurrentUser} />
-      <UserHeaderClub clubUrl={userInfo.clubUrl} clubname={userInfo.clubname} isCurrentUser={isCurrentUser} />
-    </section>
+        <UserHeaderButtons isCurrentUser={isCurrentUser} />
+        <UserHeaderClub clubUrl={userInfo.clubUrl} clubname={userInfo.clubname} isCurrentUser={isCurrentUser} />
+      </section>
+    </Fragment>
   );
 };
 

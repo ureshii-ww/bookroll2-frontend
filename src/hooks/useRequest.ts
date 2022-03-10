@@ -2,7 +2,7 @@ import { useActions } from './useActions';
 import { RequestTypes } from '../models/request-types';
 import useLoadingMethods from './useLoadingMethods';
 
-function useRequest <T = {}>(type: RequestTypes, callback: (args: T) => void) {
+function useRequest<T = {}>(type: RequestTypes, callback: (args: T) => void) {
   const { addNotification } = useActions();
   const loading = useLoadingMethods(type);
 
@@ -19,6 +19,6 @@ function useRequest <T = {}>(type: RequestTypes, callback: (args: T) => void) {
       loading.methodFalse();
     }
   };
-};
+}
 
 export default useRequest;
