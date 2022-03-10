@@ -29,7 +29,7 @@ const useUserProfileBooks = (userUrl: string) => {
     setIsLoaded(true);
   });
 
-  const fetchDeleteBook = useRequestPost<FetchDeleteBookArgs>(async ({userUrl, index}) => {
+  const fetchDeleteBook = useRequestPost<FetchDeleteBookArgs>(async ({index}) => {
     const response = await UserService.deleteBook(userUrl, index);
     if (response.data === 'Success') {
       const copyOfBooksArray = [...booksArray];
