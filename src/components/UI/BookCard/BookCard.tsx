@@ -17,7 +17,7 @@ interface BookCardProps {
 }
 
 const BookCard: FC<BookCardProps> = props => {
-  const { isClubHistory, isOwner, bookData, handleDelete, ...rest } = props;
+  const { isClubHistory, isOwner, bookData, handleDelete } = props;
   const { title, authors, year, genres, meetingNumber } = bookData;
 
   return (

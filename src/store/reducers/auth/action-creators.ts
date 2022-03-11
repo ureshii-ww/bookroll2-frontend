@@ -5,6 +5,7 @@ import AuthService from '../../../services/auth.service';
 import $api, { setUserUrl } from '../../../api';
 import ClubService from '../../../services/club.service';
 import { LoadingPageActionCreators } from '../loading-page/action-creators';
+import { ThemeActionCreators } from '../theme/action-creators';
 
 export const AuthActionCreators = {
   setIsAuth: (auth: boolean): SetIsAuthAction => ({ type: AuthActionEnum.SET_IS_AUTH, payload: auth }),
@@ -27,11 +28,14 @@ export const AuthActionCreators = {
   },
   logout: () => async (dispatch: AppDispatch) => {
     try {
-      const response = await AuthService.logout();
+      await AuthService.logout();
       localStorage.removeItem('isAuth');
       dispatch(AuthActionCreators.setIsAuth(false));
       localStorage.removeItem('userData');
       dispatch(AuthActionCreators.setUserData(null));
+      localStorage.setItem('themeStyle', 'light');
+      dispatch(ThemeActionCreators.setTheme('light'));
+      document.body.classList.remove('dark');
       $api.defaults.headers.common['Authorization'] = '';
       setUserUrl('');
     } catch (error: any) {

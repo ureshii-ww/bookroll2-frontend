@@ -1,5 +1,4 @@
-import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { RouteNames } from '../../../routes/route-names.enum';
 import LogoutButton from './LogoutButton/LogoutButton';

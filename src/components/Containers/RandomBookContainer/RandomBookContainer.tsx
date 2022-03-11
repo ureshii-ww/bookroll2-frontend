@@ -8,7 +8,7 @@ import PageLoader from '../../UI/PageLoader/PageLoader';
 const RandomBookContainer = () => {
   const { bookData, getBook, confirmBook, isLoading, isLoaded } = useRandomBookContainer();
 
-  return !isLoading ? (
+  return !isLoading && isLoaded ? (
     <Fragment>
       <div className="random-book__view">
         <BookDataView book={bookData} />

@@ -1,20 +1,18 @@
 import React, { FC, FormEvent, Fragment } from 'react';
 import MainButton from '../../../UI/MainButton/MainButton';
-import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import InputText from '../../../UI/InputText/InputText';
 import './wheel-container-controls.scss';
 
 interface WheelContainerControlsProps {
   readonly startRoll: () => void;
   readonly confirmBook: (args: any) => void;
-  readonly winnerInfo: WheelWinnerInfo | null;
   readonly handleSetTime: (event: FormEvent<HTMLInputElement>) => void;
   readonly isRoll: boolean;
   readonly isFinish: boolean;
 }
 
 const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
-  const { startRoll, confirmBook, winnerInfo, isRoll, isFinish, handleSetTime, ...rest } = props;
+  const { startRoll, confirmBook, isRoll, isFinish, handleSetTime } = props;
   return (
     <div className="wheel-container-controls">
       {!isFinish ? (

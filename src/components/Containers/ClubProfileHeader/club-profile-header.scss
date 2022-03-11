@@ -3,19 +3,15 @@
 .club-profile-header {
   display: grid;
   grid-template-areas:
-    'title buttons buttons'
-    'book book master'
-    'book book meeting';
+      'buttons buttons buttons'
+      'title title title'
+      'book book master'
+      'book book meeting';
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
 }
 
 @media (max-width: variables-size.$device-width-large) {
   .club-profile-header {
-    grid-template-areas:
-      'buttons buttons buttons'
-      'title title title'
-      'book book master'
-      'book book meeting';
     padding: variables-size.$page-padding-top;
   }
 }

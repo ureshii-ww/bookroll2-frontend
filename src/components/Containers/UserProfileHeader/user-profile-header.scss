@@ -3,15 +3,17 @@
 .user-profile-header {
   display: grid;
   grid-template-areas:
-    'title buttons'
-    'club club';
-  grid-template-columns: auto 200px;
-  grid-template-rows: auto variables-size.$rem-80;
+      'buttons'
+      'title'
+      'club';
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
   padding: variables-size.$page-padding-top variables-size.$page-padding-side 0 variables-size.$page-padding-side;
 
   &__title-container {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: variables-size.$rem-16;
   }
 
   &__avatar {
@@ -24,12 +26,6 @@
 
 @media (max-width: variables-size.$device-width-large) {
   .user-profile-header {
-    grid-template-areas:
-      'buttons'
-      'title'
-      'club';
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
     padding: variables-size.$page-padding-top variables-size.$page-padding-top 0 variables-size.$page-padding-top;
 
     &__title-container {

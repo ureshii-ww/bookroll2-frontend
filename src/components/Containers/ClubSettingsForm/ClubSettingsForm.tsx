@@ -50,7 +50,7 @@ const ClubSettingsForm: FC<ClubSettingsFormProps> = ({ clubSettingsInfo, clubUrl
             Имя клуба должно быть не короче {authDataLength.CLUBNAME_MIN_LENGTH} символов
           </div>
         )}
-        {errors.clubname?.type === 'required' && (
+        {errors.clubname?.type === 'maxLength' && (
           <div className="club-settings-form__error">
             Имя клуба должно быть не длинее {authDataLength.CLUBNAME_MAX_LENGTH} символов
           </div>

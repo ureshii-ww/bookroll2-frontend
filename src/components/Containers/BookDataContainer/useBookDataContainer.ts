@@ -15,6 +15,6 @@ const useBookDataContainer = (bookId: string) => {
   }, []);
 
   return bookData;
-}
+};
 
 export default useBookDataContainer;

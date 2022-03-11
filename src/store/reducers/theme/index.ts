@@ -1,4 +1,4 @@
-import { ThemeAction, ThemeActionEnum, ThemeState, ThemeStyleType } from './types';
+import { ThemeAction, ThemeActionEnum, ThemeState } from './types';
 
 const localStorageThemeStyle = localStorage.getItem('themeStyle');
 const themeStyle =

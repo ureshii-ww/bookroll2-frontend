@@ -4,7 +4,6 @@ import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import useRequest from '../../../hooks/useRequest';
 import UserService from '../../../services/user.service';
 import FetchDeleteBookArgs from './types/fetch-delete-book-args';
-import FetchBooksArray from './types/fetch-books-array';
 
 const useUserProfileBooks = (userUrl: string) => {
   const chunkSize = 10;

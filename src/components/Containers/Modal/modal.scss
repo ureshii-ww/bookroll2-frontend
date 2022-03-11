@@ -33,10 +33,15 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: z-indexes.$z-index-modal-close;
 
     svg {
       width: variables-size.$font-size-l;
       height: variables-size.$font-size-l;
     }
+  }
+
+  &__scrollbar {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }

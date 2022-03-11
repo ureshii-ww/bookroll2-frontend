@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from 'react';
+import React, { FC } from 'react';
 import { BasicUserInfo } from '../../../../models/basic-user-info';
 import { Link } from 'react-router-dom';
 import { RouteNames } from '../../../../routes/route-names.enum';
@@ -12,10 +12,6 @@ interface ClubBooksCardHeaderProps {
 }
 
 const ClubBooksCardHeader: FC<ClubBooksCardHeaderProps> = ({user, toggleOpen, ...rest}) => {
-  const avatarStyles: CSSProperties = {
-    backgroundColor: user.color || 'FFF',
-  };
-
   return (
     <div className="club-books-card__head">
       <Link className="club-books-card__user" to={`${RouteNames.USER_PROFILE_BASE}${user.url}`}>

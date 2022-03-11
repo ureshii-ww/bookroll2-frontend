@@ -17,6 +17,10 @@
   }
 
   &__name {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     color: variables-color.$card-white-text;
     font-size: variables-size.$font-size-x-l;
     &:hover {

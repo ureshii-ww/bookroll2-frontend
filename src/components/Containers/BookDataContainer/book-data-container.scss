@@ -1,0 +1,7 @@
+.book-data-container {
+  &__loader {
+    width: min(30vw, 200px);
+    height: min(30vh, 200px);
+    position: relative;
+  }
+}

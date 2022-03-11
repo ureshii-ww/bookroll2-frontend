@@ -72,7 +72,6 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
             isRoll={isRoll}
             confirmBook={confirmBook}
             isFinish={isFinish}
-            winnerInfo={winnerInfo}
             startRoll={startRoll}
             handleSetTime={handleSetTime}
           />

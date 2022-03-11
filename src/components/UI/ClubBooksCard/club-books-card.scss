@@ -174,3 +174,11 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
     }
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-books-card {
+    &__username {
+      font-size: variables-size.$font-size-m-s;
+    }
+  }
+}

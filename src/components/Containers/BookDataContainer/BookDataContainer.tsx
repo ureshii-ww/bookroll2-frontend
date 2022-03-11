@@ -1,6 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import BookDataView from '../../UI/BookDataView/BookDataView';
 import useBookDataContainer from './useBookDataContainer';
+import PageLoader from '../../UI/PageLoader/PageLoader';
+import './book-data-container.scss';
 
 interface BookDataContainerProps {
   bookId: string;
@@ -12,7 +14,9 @@ const BookDataContainer: FC<BookDataContainerProps> = ({ bookId }) => {
   return bookData ? (
     <BookDataView book={bookData} />
   ) : (
-    <div>Loading</div>
+    <div className="book-data-container__loader">
+      <PageLoader />
+    </div>
   );
 };
 

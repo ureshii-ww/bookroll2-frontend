@@ -1,8 +1,14 @@
-@use '../../../styles/variables/variables-size';
+@use 'src/styles/variables/variables-size';
 
 .random-book-placeholder {
   height: calc(100vh - variables-size.$layout-padding * 2 - variables-size.$page-padding-top * 2);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: variables-size.$device-width-large) {
+  .random-book-placeholder {
+    height: calc(100vh - variables-size.$layout-padding * 2 - variables-size.$page-padding-top * 2 - 80px);
+  }
 }

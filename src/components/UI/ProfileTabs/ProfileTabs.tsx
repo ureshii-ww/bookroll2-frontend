@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import TabButton, { TabButtonProps } from './TabButton/TabButton';
 import './profile-tabs.scss';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import Scrollbars from 'react-custom-scrollbars-2';
 
 interface ProfileTabsProps {
   url: string | undefined;

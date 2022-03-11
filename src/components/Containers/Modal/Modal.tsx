@@ -14,11 +14,14 @@ const Modal = () => {
   }
 
   return (
-    <div className="modal-bg" onClick={closeModal}>
-      <Scrollbars renderView={props => <div {...props} className="modal-container__wrapper" />}>
-        <div className="modal-container" onClick={e => e.stopPropagation()}>
+    <div className='modal-bg' onClick={closeModal}>
+      <Scrollbars autoHide
+                  renderThumbVertical={props => <div {...props} className='modal-container__scrollbar' />}
+                  renderThumbHorizontal={props => <div {...props} className='modal-container__scrollbar' />}
+                  renderView={props => <div {...props} className='modal-container__wrapper' />}>
+        <div className='modal-container' onClick={e => e.stopPropagation()}>
           {reactComponent}
-          <TransparentButton className="modal-container__close" onClick={closeModal}>
+          <TransparentButton className='modal-container__close' onClick={closeModal}>
             <CloseSvg />
           </TransparentButton>
         </div>

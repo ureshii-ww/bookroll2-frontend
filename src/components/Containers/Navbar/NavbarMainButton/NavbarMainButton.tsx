@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarMainButtonProps {

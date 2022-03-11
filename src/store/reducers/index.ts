@@ -8,7 +8,7 @@ import loadingModal from './loading-page';
 import loadingPost from './loading-post';
 import bubble from './bubble';
 
-export default {
+const reducers =  {
   auth,
   notifications,
   theme,
@@ -19,3 +19,5 @@ export default {
   loadingPost,
   bubble,
 };
+
+export default reducers;

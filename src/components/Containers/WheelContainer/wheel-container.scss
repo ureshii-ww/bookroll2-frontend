@@ -53,6 +53,17 @@
       height: variables-size.$font-size-x-s;;
     }
   }
+
+  &__placeholder {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-l;
+    text-align: center;
+  }
 }
 
 @media (max-width: variables-size.$device-width-large) {
