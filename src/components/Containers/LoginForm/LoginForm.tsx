@@ -45,17 +45,12 @@ const LoginForm: FC = props => {
         <Controller
           name="password"
           defaultValue={''}
-          rules={{ required: true, minLength: authDataLength.PASSWORD_MIN_LENGTH }}
+          rules={{ required: true }}
           control={control}
           render={({ field }) => (
             <InputText placeholder="Пароль" className="login-form__input" {...field} type="password" />
           )}
         />
-        {errors.password?.type === 'minLength' && (
-          <div className="login-form__error">
-            Пароль должен быть длиннее {authDataLength.PASSWORD_MIN_LENGTH} символов
-          </div>
-        )}
         {errors.password?.type === 'required' && <div className="login-form__error">Введите пароль</div>}
       </div>
       <SubmitButton>Войти</SubmitButton>
