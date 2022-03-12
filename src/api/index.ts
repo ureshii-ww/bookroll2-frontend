@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL: string = process.env.REACT_APP_API_URL + '/api/';
+export const API_URL: string = process.env.REACT_APP_API_URL;
 
 let currentUserUrl = JSON.parse(localStorage.getItem('userData') || '{}')?.url;
 
