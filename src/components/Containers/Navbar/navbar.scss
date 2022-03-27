@@ -125,6 +125,14 @@
   .navbar {
     border-radius: 0;
     padding: 0;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: variables-size.$navbar-mobile-height;
+
+    &:before, &:after {
+      display: none;
+    }
 
     .navbar__theme-switch, .navbar__logout {
       display: none;
@@ -138,6 +146,7 @@
 
       a:not(.navbar__profile), div:not(.navbar__profile) {
         margin-bottom: 0;
+        margin-right: 0;
         display: flex;
         justify-content: center;
         align-items: center;
