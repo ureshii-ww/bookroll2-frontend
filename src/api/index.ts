@@ -6,30 +6,69 @@ let currentUserUrl = JSON.parse(localStorage.getItem('userData') || '{}')?.url;
 
 export const setUserUrl = (url: string) => {
   currentUserUrl = url;
-}
+};
 
 const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL
-})
+  baseURL: API_URL,
+});
 
-$api.interceptors.response.use(config => {
-  return config
-}, async error => {
-  const originalRequest = error.config;
-  if (error.response.status == 401 && error.config && !error.config._isRetry) {
-    originalRequest._isRetry = true;
-    try {
-      const response = await axios.post(API_URL + 'auth/refresh',
-        {userUrl: currentUserUrl}, {withCredentials: true});
-      $api.defaults.headers.common['Authorization'] = `Bearer ${response.headers['x-access-token']}`
-      originalRequest.headers.Authorization = `Bearer ${response.headers['x-access-token']}`;
-      return $api.request(originalRequest);
-    } catch (error) {
-      console.log('Not Authorized');
+let isRefreshing = false;
+let failedQueue: any[] = [];
+
+const processQueue = (error: any, token: string | null = null) => {
+  failedQueue.forEach(prom => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
     }
+  });
+
+  failedQueue = [];
+};
+
+$api.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (error.response.status == 401 && error.config && !error.config._isRetry) {
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then(token => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            return $api.request(originalRequest);
+          })
+          .catch(err => {
+            return Promise.reject(err);
+          });
+      }
+
+      originalRequest._isRetry = true;
+      isRefreshing = true;
+      try {
+        const response = await axios.post(
+          API_URL + 'auth/refresh',
+          { userUrl: currentUserUrl },
+          { withCredentials: true }
+        );
+        $api.defaults.headers.common['Authorization'] = `Bearer ${response.headers['x-access-token']}`;
+        originalRequest.headers.Authorization = `Bearer ${response.headers['x-access-token']}`;
+        processQueue(null, response.headers['x-access-token']);
+        return $api.request(originalRequest);
+      } catch (error) {
+        processQueue(error, null);
+        console.log('Not Authorized');
+      } finally {
+        isRefreshing = false;
+      }
+    }
+    throw error;
   }
-  throw error;
-})
+);
 
 export default $api;
