@@ -129,6 +129,7 @@
     bottom: 0;
     width: 100%;
     height: variables-size.$navbar-mobile-height;
+    z-index: z-indexes.$z-index-mobile-navbar;
 
     &:before, &:after {
       display: none;
