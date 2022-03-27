@@ -64,3 +64,9 @@
     border-top: 10px solid var(--bubble-background-color);
   }
 }
+
+@media (min-width: variables-size.$device-width-small) {
+  .bubble {
+    display: none;
+  }
+}
