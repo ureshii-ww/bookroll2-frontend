@@ -34,8 +34,9 @@
 
 @media (max-width: variables-size.$device-width-small) {
   .app-layout {
-    padding: 0 0 variables-size.$navbar-mobile-height 0;
+    padding: 0;
     grid-template-rows: 100%;
+    height: calc(100vh - variables-size.$navbar-mobile-height);
 
     &__wrapper {
       overflow-x: hidden !important;
