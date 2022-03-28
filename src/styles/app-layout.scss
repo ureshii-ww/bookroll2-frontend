@@ -39,7 +39,7 @@
 
     &__wrapper {
       overflow-x: hidden !important;
-      padding-bottom: calc(variables-size.$navbar-mobile-height + 15px);
+      padding-bottom: variables-size.$navbar-mobile-height;
     }
 
     &__page {
