@@ -34,16 +34,18 @@
 
 @media (max-width: variables-size.$device-width-small) {
   .app-layout {
-    padding: 0 0 variables-size.$navbar-mobile-height 0;
-    grid-template-rows: 100%;
+    display: block;
+    padding: 0;
 
     &__wrapper {
       overflow-x: hidden !important;
+      padding-bottom: calc(variables-size.$navbar-mobile-height + 15px);
     }
 
     &__page {
       border-radius: 0;
       box-shadow: none;
+      height: 100%;
     }
   }
 }
