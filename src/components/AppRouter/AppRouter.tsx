@@ -11,10 +11,8 @@ import RandomBookPage from '../Pages/RandomBookPage/RandomBookPage';
 import ClubProfilePage from '../Pages/ClubProfilePage/ClubProfilePage';
 import UserProfileBooks from '../Containers/UserProfileBooks/UserProfileBooks';
 import ClubProfileBooks from '../Containers/ClubProfileBooks/ClubProfileBooks';
-import '../../styles/app-layout.scss';
 import '../../styles/auth-pages.scss';
 import WheelPage from '../Pages/WheelPage/WheelPage';
-import Scrollbars from 'react-custom-scrollbars-2';
 import UserProfileReviews from '../Containers/UserProfileReviews/UserProfileReviews';
 import ClubProfileHistory from '../Containers/ClubProfileHistory/ClubProfileHistory';
 import ClubProfileMembers from '../Containers/ClubProfileMembers/ClubProfileMembers';
@@ -31,30 +29,28 @@ const AppRouter: FC = () => {
     <Fragment>
       <RemoveTrailingSlash />
       {isAuth && userData ? (
-        <div className="app-layout">
+        <Fragment>
           <Navbar />
           <Bubble />
-          <main className="app-layout__page">
-            <Scrollbars autoHide={true} renderView={props => <div {...props} className="app-layout__wrapper" />}>
-              <Routes>
-                <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
-                  <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
-                  <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
-                </Route>
-                <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
-                  <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
-                  <Route path={RouteNames.CLUB_PROFILE_HISTORY} element={<ClubProfileHistory />} />
-                  <Route path={RouteNames.CLUB_PROFILE_MEMBERS} element={<ClubProfileMembers />} />
-                  <Route path={RouteNames.CLUB_PROFILE_RULES} element={<ClubProfileRules />} />
-                  <Route path={RouteNames.CLUB_PROFILE_REVIEWS} element={<ClubProfileReviews />} />
-                </Route>
-                <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
-                <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
-                <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
-              </Routes>
-            </Scrollbars>
+          <main className="main-content">
+            <Routes>
+              <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
+                <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
+                <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
+              </Route>
+              <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
+                <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
+                <Route path={RouteNames.CLUB_PROFILE_HISTORY} element={<ClubProfileHistory />} />
+                <Route path={RouteNames.CLUB_PROFILE_MEMBERS} element={<ClubProfileMembers />} />
+                <Route path={RouteNames.CLUB_PROFILE_RULES} element={<ClubProfileRules />} />
+                <Route path={RouteNames.CLUB_PROFILE_REVIEWS} element={<ClubProfileReviews />} />
+              </Route>
+              <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
+              <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
+              <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
+            </Routes>
           </main>
-        </div>
+        </Fragment>
       ) : (
         <div className="auth-pages">
           <Routes>
