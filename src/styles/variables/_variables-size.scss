@@ -15,6 +15,7 @@ $rem-32: 2rem;
 $rem-36: 2.25rem;
 $rem-40: 2.5rem;
 $rem-48: 3rem;
+$rem-50: 3.124rem;
 $rem-60: 3.75rem;
 $rem-72: 4.5rem;
 $rem-80: 5rem;
@@ -40,7 +41,7 @@ $font-weight-x-l: 700;
 $font-weight-x-x-l: 800;
 
 //border-radius
-$page-layout-radius: 24px;
+$page-layout-radius: 12px;
 $card-radius: 20px;
 
 //icons
@@ -63,4 +64,4 @@ $device-width-large: 992px;
 $device-width-x-large: 1200px;
 
 //navbar
-$navbar-mobile-height: $rem-60;
+$navbar-height: $rem-50;

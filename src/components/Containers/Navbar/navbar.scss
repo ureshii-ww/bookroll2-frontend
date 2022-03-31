@@ -4,7 +4,7 @@
 @use 'src/styles/variables/variables-shadow';
 
 .navbar {
-  height: 50px;
+  height: variables-size.$navbar-height;
   width: 100%;
   position: fixed;
   background-color: var(--navbar-background-color);
