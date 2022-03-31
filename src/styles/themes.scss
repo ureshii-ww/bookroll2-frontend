@@ -10,6 +10,7 @@
   --green-color-hover: #{variables-light.$green-color-hover};
   --red-color: #{variables-light.$red-color};
   --red-color-hover: #{variables-light.$red-color-hover};
+  --navbar-link-accent: #{variables-light.$navbar-link-accent};
 
   //background
   --background-color: #{variables-light.$background-color};
@@ -38,7 +39,8 @@
   //shadow
   --wheel-shadow-color: #{variables-light.$wheel-shadow-color};
   --notification-shadow-color: #{variables-light.$notification-shadow-color};
-  --page-shadow-color: #{variables-light.$page-shadow-color};
+  --navbar-shadow-small: #{variables-light.$navbar-shadow-small-color};
+  --navbar-shadow-big: #{variables-light.$navbar-shadow-big-color};
 }
 
 .dark {
@@ -50,6 +52,7 @@
   --green-color-hover: #{variables-dark.$green-color-hover};
   --red-color: #{variables-dark.$red-color};
   --red-color-hover: #{variables-dark.$red-color-hover};
+  --navbar-link-accent: #{variables-dark.$navbar-link-accent};
 
   //background
   --background-color: #{variables-dark.$background-color};
@@ -78,5 +81,6 @@
   //shadow
   --wheel-shadow-color: #{variables-dark.$wheel-shadow-color};
   --notification-shadow-color: #{variables-dark.$notification-shadow-color};
-  --page-shadow-color: #{variables-dark.$page-shadow-color};
+  --navbar-shadow-small: #{variables-dark.$navbar-shadow-small-color};
+  --navbar-shadow-big: #{variables-dark.$navbar-shadow-big-color};
 }

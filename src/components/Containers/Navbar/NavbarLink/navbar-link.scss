@@ -1,0 +1,62 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+
+.navbar-link {
+  color: variables-color.$navbar-link;
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: variables-size.$rem-20;
+  }
+
+  &__title {
+    font-size: variables-size.$font-size-s;
+    font-weight: variables-size.$font-weight-l;
+  }
+
+  &__icon {
+    margin-right: variables-size.$rem-5;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: variables-color.$navbar-link;
+    border-radius: 100%;
+    color: var(--navbar-link-accent);
+
+    svg {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+
+  &:hover {
+    .navbar-link__title {
+      color: variables-color.$navbar-link-hover;
+    }
+
+    .navbar-link__icon {
+      color: variables-color.$navbar-link;
+      background-color: var(--navbar-link-accent);
+    }
+  }
+
+  &:visited {
+    color: variables-color.$navbar-link;
+  }
+
+  &--active {
+    pointer-events: none;
+
+    .navbar-link__title {
+      color: var(--navbar-link-accent);
+    }
+
+    .navbar-link__icon {
+      color: variables-color.$navbar-link;
+      background-color: var(--navbar-link-accent);
+    }
+  }
+}

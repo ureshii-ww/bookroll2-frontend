@@ -1,0 +1,80 @@
+@use 'src/styles/variables/variables-size';
+
+$toggle-height: variables-size.$rem-22;
+$toggle-width: calc($toggle-height * 2);
+$indicator-dimension: calc($toggle-height - calc($toggle-height / 5));
+$indicator-border-distance: calc($toggle-height / 10);
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+
+  &__input {
+    visibility: hidden;
+    height: 1px;
+    width: 1px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+  }
+
+  &__toggle {
+    width: $toggle-width;
+    height: $toggle-height;
+    background-color: #FFF;
+    border-radius: variables-size.$rem-80;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__indicator {
+    width: $indicator-dimension;
+    height: $indicator-dimension;
+    background-color: var(--navbar-link-accent);
+    border-radius: 100%;
+    position: absolute;
+    bottom: $indicator-border-distance;
+    transition: 0.25s, background-color 0s;
+  }
+
+  &__icon {
+    width: $toggle-height;
+    height: $toggle-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+
+    svg {
+      color: var(--navbar-link-accent);
+    }
+  }
+
+  &--light {
+    .theme-switch__indicator {
+      left: $indicator-border-distance;
+    }
+
+    .theme-switch__icon {
+      right: 0;
+      svg {
+        width: variables-size.$rem-20;
+        height: variables-size.$rem-20;
+      }
+    }
+  }
+
+  &--dark {
+    .theme-switch__indicator {
+      left: calc($toggle-width - $indicator-dimension - $indicator-border-distance);
+    }
+
+    .theme-switch__icon {
+      left: 0;
+      svg {
+        width: variables-size.$rem-22;
+        height: variables-size.$rem-22;
+      }
+    }
+  }
+}

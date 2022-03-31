@@ -1,0 +1,10 @@
+.navbar-profile-button {
+  cursor: pointer;
+  outline: 3px solid transparent;
+  padding: 2px;
+  border-radius: 100%;
+
+  &--opened {
+    outline-color: var(--navbar-link-accent);
+  }
+}

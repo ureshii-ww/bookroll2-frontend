@@ -25,6 +25,17 @@
       font-size: variables-size.$font-size-x-x-l;
     }
   }
+
+  &.avatar--navbar {
+    .avatar__background {
+      width: variables-size.$rem-32;
+      height: variables-size.$rem-32;
+    }
+
+    .avatar__emoji {
+      font-size: variables-size.$font-size-s;
+    }
+  }
 }
 
 @media (max-width: variables-size.$device-width-medium) {

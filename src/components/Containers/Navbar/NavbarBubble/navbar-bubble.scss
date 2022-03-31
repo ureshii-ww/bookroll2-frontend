@@ -1,4 +1,29 @@
+@use 'src/styles/variables/variables-size';
+
 .navbar-bubble__wrapper {
-  bottom: 65px;
-  right: 30px;
+  top: 48px;
+  right: 2px;
+
+  &.bubble:after {
+    top: -9px;
+    bottom: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--bubble-background-color);
+    border-top: none;
+  }
+
+  button {
+    font-size: variables-size.$font-size-x-s;
+  }
+
+  .navbar__logout {
+    &:hover {
+      color: var(--red-text-color);
+
+      svg {
+        color: var(--red-text-color);
+      }
+    }
+  }
 }

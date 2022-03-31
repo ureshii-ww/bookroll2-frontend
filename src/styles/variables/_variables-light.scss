@@ -6,6 +6,7 @@ $green-color: rgba(12, 124, 89, 1);
 $green-color-hover: rgba(12, 124, 89, .8);
 $red-color: rgba(208, 10, 33, 1);
 $red-color-hover: rgba(208, 10, 33, 0.8);
+$navbar-link-accent: #b91c1c;
 
 //background
 $background-color: #454545;
@@ -34,4 +35,5 @@ $input-border-color: $accent-color;
 //shadow
 $wheel-shadow-color: rgba(0, 0, 0, .2);
 $notification-shadow-color: rgba(0, 0, 0, .15);
-$page-shadow-color: rgba(0, 0, 0, .2);
+$navbar-shadow-big-color: rgba(0, 0, 0, .12);
+$navbar-shadow-small-color: rgba(0, 0, 0, .2);

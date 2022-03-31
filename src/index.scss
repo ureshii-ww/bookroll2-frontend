@@ -1,7 +1,12 @@
 @import-normalize;
-@import-sanitize;
 @import 'styles/themes';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -20,6 +25,14 @@ a {
   &:visited {
     color: var(--link-text-color);
   }
+}
+
+figure {
+  margin: 0;
+}
+
+svg {
+  fill: currentColor;
 }
 
 .hidden {

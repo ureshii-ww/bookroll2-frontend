@@ -3,7 +3,7 @@
 @use 'src/styles/variables/variables-shadow';
 
 .bubble {
-  position: absolute;
+  position: fixed;
   z-index: z-indexes.$z-index-bubble;
   background-color: var(--bubble-background-color);
   border-radius: variables-size.$card-radius;
@@ -11,11 +11,11 @@
   box-shadow: variables-shadow.$shadow-bubble;
 
   &__item {
-    padding: variables-size.$rem-10 variables-size.$rem-12;
-    font-size: variables-size.$font-size-m-s;
+    padding: variables-size.$rem-5;
+    font-size: variables-size.$font-size-x-s;
     color: var(--main-text-color);
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
 
     &:visited, &:hover {
@@ -23,8 +23,8 @@
     }
 
     .bubble__emoji, svg {
-      width: variables-size.$font-size-l;
-      height: variables-size.$font-size-l;
+      width: variables-size.$font-size-m;
+      height: variables-size.$font-size-m;
       font-size: variables-size.$font-size-m;
       margin-right: variables-size.$rem-5;
       display: flex;
@@ -34,23 +34,21 @@
     }
 
     .transparent-button {
+      width: 100%;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      svg {
+        width: variables-size.$font-size-m;
+        height: variables-size.$font-size-m;
+      }
+      span {
+        padding-top: variables-size.$rem-2;
+      }
     }
 
     &:not(:last-child) {
       border-bottom: 1px solid var(--border-color);
     }
-  }
-
-  &__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: calc(var(--vh, 1vh) * 100);
-    z-index: z-indexes.$z-index-bubble-bg;
-    overflow: hidden;
   }
 
   &:after {
@@ -63,11 +61,5 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid var(--bubble-background-color);
-  }
-}
-
-@media (min-width: variables-size.$device-width-small) {
-  .bubble {
-    display: none;
   }
 }

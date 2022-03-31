@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './bubble.scss';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useActions } from '../../../hooks/useActions';
@@ -13,10 +13,8 @@ const Bubble = () => {
   }
 
   return (
-    <div className="bubble__background" onClick={closeBubble}>
-      <div className={classString}>
-        {reactComponent}
-      </div>
+    <div onClick={closeBubble} className={classString}>
+      {reactComponent}
     </div>
   );
 };

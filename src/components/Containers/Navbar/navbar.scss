@@ -1,174 +1,43 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/variables/variables-color';
 @use 'src/styles/variables/z-indexes';
+@use 'src/styles/variables/variables-shadow';
 
 .navbar {
-  grid-area: navbar;
+  height: 50px;
+  width: 100%;
+  position: fixed;
   background-color: var(--navbar-background-color);
-  border-radius: variables-size.$page-layout-radius 0 0 variables-size.$page-layout-radius;
-  padding: 25px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   z-index: z-indexes.$z-index-navbar;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 variables-size.$rem-20;
+  box-shadow: variables-shadow.$shadow-navbar;
 
-  &::before {
-    content: ' ';
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    right: -50px;
-    background-color: var(--navbar-background-color);
-    z-index: z-indexes.$z-index-navbar;
+  &__logo {
+    font-size: variables-size.$font-size-l;
+    font-weight: variables-size.$font-weight-x-l;
+    color: var(--navbar-link-accent);
   }
 
-  &::after {
-    content: ' ';
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    bottom: 0;
-    right: -50px;
-    background-color: var(--navbar-background-color);
-    z-index: z-indexes.$z-index-navbar;
-  }
-
-  &__main-buttons {
+  &__menu {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 50px;
-
-    a, div {
-      margin-bottom: 20px;
-    }
+    justify-content: space-between;
   }
 
-  &__button {
-    svg {
-      color: variables-color.$navbar-icon;
-      fill: currentColor;
-      width: variables-size.$navbar-icons-size;
-      height: variables-size.$navbar-icons-size;
-
-      &:hover {
-        color: variables-color.$navbar-icon-hover;
-      }
-    }
-
-    &.navbar__button--disabled {
-      svg {
-        color: variables-color.$navbar-icon-disabled;
-
-        &:hover {
-          color: variables-color.$navbar-icon-disabled;
-        }
-      }
-    }
-
-    &.navbar__button--active {
-      svg {
-        filter: drop-shadow(0 0 4px variables-color.$navbar-icon);
-
-        &:hover {
-          color: variables-color.$navbar-icon;
-        }
-      }
-    }
+  &__links {
+    display: flex;
+    align-items: center;
+    margin-right: calc(variables-size.$rem-20 - 3px);
   }
 
-  &__profile {
-    display: block;
+  &__theme-switch-wrapper {
+    margin-right: variables-size.$rem-20;
   }
 
-  &__bubble-button {
-    display: none;
-  }
-}
-
-@media (max-width: variables-size.$device-width-large) {
-  .navbar {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 0;
-    border-radius: 0 0 variables-size.$page-layout-radius variables-size.$page-layout-radius;
-
-    &__main-buttons {
-      flex-direction: row-reverse;
-      align-items: center;
-      padding: 0;
-
-      a, div {
-        margin-bottom: 0;
-        margin-right: variables-size.$rem-20;
-      }
-    }
-
-    &:before {
-      right: 0;
-      top: -50px;
-    }
-
-    &:after {
-      top: -50px;
-      right: unset;
-      left: 0;
-    }
-  }
-}
-
-@media (max-width: variables-size.$device-width-small) {
-  .navbar {
-    border-radius: 0;
-    padding: 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: variables-size.$navbar-mobile-height;
-    z-index: z-indexes.$z-index-mobile-navbar;
-
-    &:before, &:after {
-      display: none;
-    }
-
-    .navbar__theme-switch, .navbar__logout {
-      display: none;
-    }
-
-    &__main-buttons {
-      width: 100%;
-      height: 100%;
-      justify-content: space-around;
-      padding-bottom: 0;
-
-      a:not(.navbar__profile), div:not(.navbar__profile) {
-        margin-bottom: 0;
-        margin-right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
-    &__button {
-      svg {
-        width: variables-size.$font-size-page-title-s;
-        height: variables-size.$font-size-page-title-s;
-      }
-    }
-
-    &__bubble-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &__profile {
-      display: none;
-    }
+  &__profile-wrapper {
+    user-select: none;
   }
 }
