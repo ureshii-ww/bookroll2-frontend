@@ -2,7 +2,7 @@
 
 %profile-header-button {
   margin-left: 10px;
-  font-size: variables-size.$font-size-x-s;
+  font-size: variables-size.$font-size-m-s;
   display: flex;
   align-items: center;
   color: var(--dim-text-color);
@@ -15,8 +15,8 @@
 
   svg {
     fill: currentColor;
-    width: variables-size.$font-size-m-s;
-    height: variables-size.$font-size-m-s;
+    width: variables-size.$font-size-l;
+    height: variables-size.$font-size-l ;
     margin-right: 3px;
   }
 }

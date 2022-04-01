@@ -14,7 +14,7 @@ interface WheelContainerControlsProps {
 const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
   const { startRoll, confirmBook, isRoll, isFinish, handleSetTime } = props;
   return (
-    <div className="wheel-container-controls">
+    <div className={isFinish ? 'wheel-container-controls wheel-container-controls--finish' : 'wheel-container-controls'}>
       {!isFinish ? (
         <Fragment>
           <div className="wheel-container-controls__input-group">

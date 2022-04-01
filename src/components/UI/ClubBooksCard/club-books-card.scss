@@ -39,7 +39,7 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
 
   &__username {
     color: variables-color.$card-white-text;
-    font-size: variables-size.$font-size-l;
+    font-size: variables-size.$font-size-x-l;
   }
 
   &__button {
@@ -50,8 +50,8 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
     transition: transform 0.1s linear;
     svg {
       color: variables-color.$card-white-text;
-      width: variables-size.$font-size-m;
-      height: variables-size.$font-size-m;
+      width: variables-size.$font-size-x-l;
+      height: variables-size.$font-size-x-l;
       fill: currentColor;
     }
   }
@@ -99,6 +99,11 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
 
   &__title {
     margin-right: 10px;
+  }
+
+  &__name {
+    color: var(--bold-text-color);
+    font-weight: variables-size.$font-weight-l;
   }
 
   &__left-container, &__right-container {

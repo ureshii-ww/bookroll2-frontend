@@ -35,9 +35,7 @@ const ClubProfilePage = () => {
   return (
     <div className={isLoaded ? 'club-profile-page' : 'club-profile-page club-profile-page--loading'}>
       {!isLoaded && (
-        <div>
-          <PageLoader />
-        </div>
+        <PageLoader />
       )}
       <ClubProfileHeader setIsLoaded={handleSetIsLoaded} clubUrl={clubUrl} setIsMaster={value => setIsMaster(value)} />
       <ProfileTabs tabsData={clubProfileTabs} url={clubUrl} />

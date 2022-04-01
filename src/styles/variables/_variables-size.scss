@@ -13,6 +13,8 @@ $rem-24: 1.5rem;
 $rem-30: 1.875rem;
 $rem-32: 2rem;
 $rem-36: 2.25rem;
+$rem-37: 2.3125rem;
+$rem-38: 2.375rem;
 $rem-40: 2.5rem;
 $rem-48: 3rem;
 $rem-50: 3.124rem;
@@ -21,16 +23,15 @@ $rem-72: 4.5rem;
 $rem-80: 5rem;
 
 //font
-$font-size-x-x-s: 0.875rem;
-$font-size-x-s: 1rem;
-$font-size-s: 1.125rem;
-$font-size-m-s: 1.25rem;
-$font-size-m: 1.5rem;
-$font-size-l: 1.75rem;
-$font-size-x-l: 2rem;
-$font-size-x-x-l: 2.25rem;
-$font-size-page-title-s: 3rem;
-$font-size-page-title: 4rem;
+$font-size-x-s: 0.75rem;
+$font-size-s: 0.875rem;
+$font-size-m-s: 1rem;
+$font-size-m: 1.125rem;
+$font-size-l: 1.25rem;
+$font-size-x-l: 1.5rem;
+$font-size-x-x-l: 1.75rem;
+$font-size-page-title-s: 2.5rem;
+$font-size-page-title: 3rem;
 
 //font-weight
 $font-weight-x-s: 300;
@@ -43,6 +44,7 @@ $font-weight-x-x-l: 800;
 //border-radius
 $page-layout-radius: 12px;
 $card-radius: 20px;
+$bubble-radius: 12px;
 
 //icons
 $navbar-icons-size: 64px;

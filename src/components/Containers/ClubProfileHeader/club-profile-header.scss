@@ -8,6 +8,10 @@
       'book book master'
       'book book meeting';
   padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+
+  .profile-title {
+    margin-bottom: variables-size.$rem-10;
+  }
 }
 
 @media (max-width: variables-size.$device-width-large) {

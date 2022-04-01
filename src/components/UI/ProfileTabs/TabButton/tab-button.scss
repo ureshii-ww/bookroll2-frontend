@@ -1,7 +1,7 @@
 @use 'src/styles/variables/variables-size';
 
 .tab-button {
-  font-size: variables-size.$font-size-m-s;
+  font-size: variables-size.$font-size-m;
   padding-right: variables-size.$rem-20;
   font-weight: variables-size.$font-weight-x-s;
 
@@ -46,12 +46,12 @@
 
 @media (max-width: variables-size.$device-width-medium) {
   .tab-button {
-    font-size: variables-size.$font-size-s;
+    font-size: variables-size.$font-size-m-s;
   }
 }
 
 @media (max-width: variables-size.$device-width-small) {
   .tab-button {
-    font-size: variables-size.$font-size-x-s;
+    font-size: variables-size.$font-size-s;
   }
 }

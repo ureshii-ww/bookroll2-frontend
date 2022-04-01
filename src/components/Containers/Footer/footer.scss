@@ -1,0 +1,40 @@
+@use 'src/styles/variables/variables-size';
+
+.footer {
+  min-height: 100px;
+  background-color: var(--page-background-color);
+  border-top: 3px solid var(--accent-color);
+  padding: 0 variables-size.$rem-20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    font-size: variables-size.$font-size-x-l;
+    font-weight: variables-size.$font-weight-x-l;
+    color: var(--accent-color);
+  }
+
+  &__credits {
+    font-size: variables-size.$font-size-l;
+  }
+
+  &__uww {
+    background: linear-gradient(to right, #fc1838, #ff8c10, #ffec48, #48f364, #72f7ff, #5989e1, #6747f1);
+    background-clip: text;
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 10s ease-in-out infinite;
+  }
+}
+
+@keyframes rainbow_animation {
+  0%,100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}

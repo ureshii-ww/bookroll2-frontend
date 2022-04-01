@@ -1,7 +1,7 @@
 @use 'src/styles/variables/variables-size';
 
 .wheel-container-info {
-  margin-bottom: 40px;
+  margin-bottom: variables-size.$rem-20;
 
   &__placeholder {
     font-size: variables-size.$font-size-page-title-s;

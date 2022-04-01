@@ -1,17 +1,31 @@
 @use 'src/styles/placeholders/form-input-group';
 @use 'src/styles/placeholders/settings-label';
+@use 'src/styles/variables/variables-size';
 
 .wheel-container-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   &__input-group {
-    @extend %form-input-group;
-    margin-bottom: 20px;
+    //@extend %form-input-group;
+    //margin-bottom: 20px;
+    display: flex;
+    align-items: center;
   }
 
   &__input-label {
     @extend %settings-label;
+    margin-bottom: 0;
+    margin-right: variables-size.$rem-10;
   }
 
   &__input {
-    width: 43px;
+    width: variables-size.$rem-37;
+    text-align: right;
+  }
+
+  &--finish {
+    justify-content: flex-end;
   }
 }

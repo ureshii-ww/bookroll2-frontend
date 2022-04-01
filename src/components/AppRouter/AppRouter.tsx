@@ -20,6 +20,7 @@ import ClubProfileMembers from '../Containers/ClubProfileMembers/ClubProfileMemb
 import ClubProfileRules from '../Containers/ClubProfileRules/ClubProfileRules';
 import ClubProfileReviews from '../Containers/ClubProfileReviews/ClubProfileReviews';
 import Bubble from '../Containers/Bubble/Bubble';
+import Footer from '../Containers/Footer/Footer';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -30,7 +31,7 @@ const AppRouter: FC = () => {
     <Fragment>
       <RemoveTrailingSlash />
       {isAuth && userData ? (
-        <Fragment>
+        <div className="logged-in">
           <Navbar />
           <Bubble />
           <main className="main-content">
@@ -53,7 +54,8 @@ const AppRouter: FC = () => {
               </Routes>
             </div>
           </main>
-        </Fragment>
+          <Footer />
+        </div>
       ) : (
         <div className="auth-pages">
           <Routes>

@@ -27,7 +27,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
   const { hookData, wheelWinner, wheelStages } = useWheelContainer(
     { clubBooks, handleSetBooksKey, displayWinner },
     handeSetSpinsNumber,
-    recountTextSize,
+    recountTextSize
   );
   const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
   const { isStart, isRoll, isFinish } = wheelStages;
@@ -35,24 +35,20 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
 
   const wheelAnimationOptions: WheelAnimationOptions = !isStart
     ? {
-      type: 'spinToStop',
-      spins: spinsNumber,
-      duration: spinTime,
-    }
+        type: 'spinToStop',
+        spins: spinsNumber,
+        duration: spinTime,
+      }
     : { spins: 0 };
 
   if (width < 700) {
-    return (
-      <div className="wheel-container__placeholder">
-        Ваш экран слишком мал для колеса
-      </div>
-    )
+    return <div className="wheel-container__placeholder">Ваш экран слишком мал для колеса</div>;
   }
 
   return (
-    <div className='wheel-container'>
-      <div className='wheel-container__wheel'>
-        <div className='wheel-container__triangle'>
+    <div className={isRoll ? 'wheel-container wheel-container--roll' : 'wheel-container'}>
+      <div className="wheel-container__wheel">
+        <div className="wheel-container__triangle">
           <TriangleSvg />
         </div>
         <WinWheel
@@ -65,8 +61,8 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
           animationOptions={wheelAnimationOptions}
         />
       </div>
-      <div className='wheel-container__side'>
-        <div className='wheel-container__info-wrapper'>
+      <div className="wheel-container__side-wrapper">
+        <div className="wheel-container__side">
           <WheelContainerInfo winnerInfo={winnerInfo} />
           <WheelContainerControls
             isRoll={isRoll}
@@ -76,14 +72,15 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
             handleSetTime={handleSetTime}
           />
         </div>
-        <div className='wheel-container__history-button-wrapper'>
-          <TransparentButton
-            className='wheel-container__history-button'
-            onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
-            История
-            <DetailsSvg />
-          </TransparentButton>
-        </div>
+
+      </div>
+      <div className="wheel-container__history-button-wrapper">
+        <TransparentButton
+          className="wheel-container__history-button"
+          onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
+          История
+          <DetailsSvg />
+        </TransparentButton>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@
   flex-wrap: wrap;
 
   &__card {
-    width: calc(50% - 1.25rem);
+    width: calc(50% - .625rem);
     &:nth-of-type(odd) {
       margin-right: variables-size.$rem-20;
     }

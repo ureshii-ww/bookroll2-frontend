@@ -6,13 +6,13 @@
   position: fixed;
   z-index: z-indexes.$z-index-bubble;
   background-color: var(--bubble-background-color);
-  border-radius: variables-size.$card-radius;
+  border-radius: variables-size.$bubble-radius;
   padding: variables-size.$rem-5;
   box-shadow: variables-shadow.$shadow-bubble;
 
   &__item {
     padding: variables-size.$rem-5;
-    font-size: variables-size.$font-size-x-s;
+    font-size: variables-size.$font-size-m-s;
     color: var(--main-text-color);
     display: flex;
     align-items: center;
@@ -23,9 +23,9 @@
     }
 
     .bubble__emoji, svg {
-      width: variables-size.$font-size-m;
-      height: variables-size.$font-size-m;
-      font-size: variables-size.$font-size-m;
+      width: variables-size.$font-size-l;
+      height: variables-size.$font-size-l;
+      font-size: variables-size.$font-size-l;
       margin-right: variables-size.$rem-5;
       display: flex;
       align-items: center;
@@ -38,11 +38,11 @@
       display: flex;
       align-items: center;
       svg {
-        width: variables-size.$font-size-m;
-        height: variables-size.$font-size-m;
+        width: variables-size.$font-size-l;
+        height: variables-size.$font-size-l;
       }
       span {
-        padding-top: variables-size.$rem-2;
+        font-size: variables-size.$font-size-m-s;
       }
     }
 

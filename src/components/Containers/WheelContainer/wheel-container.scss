@@ -1,13 +1,12 @@
 @use 'src/styles/variables/variables-size';
 @use 'src/styles/variables/variables-color';
+@use 'src/styles/variables/variables-shadow';
 @use 'src/styles/placeholders/triangle-shadow';
 @use 'src/styles/variables/z-indexes';
 
 .wheel-container {
-  display: grid;
-  grid-template-areas: 'wheel side';
-  grid-template-columns: fit-content(700px) auto;
   margin-bottom: variables-size.$page-padding-side;
+  position: relative;
 
   &__triangle {
     position: absolute;
@@ -23,27 +22,43 @@
   }
 
   &__wheel {
+    display: flex;
+    justify-content: center;
     position: relative;
-    grid-area: wheel;
     padding-top: variables-size.$page-padding-top;
-    margin-right: variables-size.$page-padding-side;
+  }
+
+  &__side-wrapper {
+    position: absolute;
+    top: variables-size.$font-size-m-s;
+    bottom: variables-size.$font-size-m-s;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: z-indexes.$z-index-wheel-info;
   }
 
   &__side {
-    grid-area: side;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: variables-size.$page-padding-top;
+    background-color: var(--bubble-background-color);
+    padding: variables-size.$page-padding-top;
+    border-radius: variables-size.$page-layout-radius;
+    box-shadow: variables-shadow.$shadow-wheel-info;
+    width: 90%;
   }
 
   &__history-button-wrapper {
     display: flex;
     justify-content: flex-end;
+    z-index: z-indexes.$z-index-wheel-history-button;
   }
 
   &__history-button {
-    font-size: variables-size.$font-size-x-s;
+    font-size: variables-size.$font-size-m-s;
     display: flex;
     align-items: center;
     svg {
@@ -64,20 +79,10 @@
     font-weight: variables-size.$font-weight-l;
     text-align: center;
   }
-}
 
-@media (max-width: variables-size.$device-width-large) {
-  .wheel-container {
-    grid-template-areas:
-      'wheel'
-      'side';
-    grid-template-columns: auto;
-
-    &__wheel {
-      margin-right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  &--roll {
+    .wheel-container__side-wrapper {
+      display: none;
     }
   }
 }

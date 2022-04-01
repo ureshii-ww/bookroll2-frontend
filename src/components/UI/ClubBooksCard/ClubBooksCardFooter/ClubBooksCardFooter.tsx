@@ -24,7 +24,11 @@ const ClubBooksCardFooter: FC<ClubBooksCardFooterProps> = props => {
           className={book.isDisabled ? 'club-books-card-book club-books-card-book--disabled' : 'club-books-card-book'}
           key={`${user.url}-${book.id}-${booksKey}`}>
           <div className="club-books-card-book__left-container">
-            <p className="club-books-card-book__title">{`${book.title} - ${book.authors.join(', ')}`}</p>
+            <p className="club-books-card-book__title">
+              <span className="club-books-card-book__name">{book.title}</span>
+              {` - `}
+              <span className="club-books-card-book__authors">{book.authors.join(', ')}</span>
+            </p>
             <TransparentButton className="club-books-card-book__details" onClick={() => showModal(book.id)}>
               <DetailsSvg />
             </TransparentButton>
