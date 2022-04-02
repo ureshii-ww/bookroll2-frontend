@@ -12,7 +12,7 @@ const createWheelSegments = (clubBooks: ClubBooks[]) => {
         text: `${item.user.username} ${item.user.emoji}`,
         fillStyle: item.user.color,
         textFillStyle: determineTextColor(item.user.color),
-        // strokeStyle: determineTextColor(item.user.color),
+        // strokeStyle: determineTextColor(item.user-profile.color),
         value: {
           bookId: item.books[j].id,
           userUrl: item.user.url,

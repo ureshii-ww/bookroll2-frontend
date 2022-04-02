@@ -1343,7 +1343,7 @@ export class Winwheel {
   
   // ====================================================================================================================
   // This function takes the x an the y of a mouse event, such as click or move, and converts the x and the y in to
-  // co-ordinates on the canvas as the raw values are the x and the y from the top and left of the user's browser.
+  // co-ordinates on the canvas as the raw values are the x and the y from the top and left of the user-profile's browser.
   // ====================================================================================================================
   windowToCanvas(x, y) {
     var bbox = this.canvas.getBoundingClientRect()
@@ -1356,7 +1356,7 @@ export class Winwheel {
   
   // ====================================================================================================================
   // This function returns the segment object located at the specified x and y coordinates on the canvas.
-  // It is used to allow things to be done with a segment clicked by the user, such as highlight, display or change some values, etc.
+  // It is used to allow things to be done with a segment clicked by the user-profile, such as highlight, display or change some values, etc.
   // ====================================================================================================================
   getSegmentAt(x, y) {
     var foundSegment = null
@@ -1379,8 +1379,8 @@ export class Winwheel {
     // KNOWN ISSUE: this does not work correct if the canvas is scaled using css, or has padding, border.
     // @TODO see if can find a solution at some point, check windowToCanvas working as needed, then below.
     
-    // Call function above to convert the raw x and y from the user's browser to canvas coordinates
-    // i.e. top and left is top and left of canvas, not top and left of the user's browser.
+    // Call function above to convert the raw x and y from the user-profile's browser to canvas coordinates
+    // i.e. top and left is top and left of canvas, not top and left of the user-profile's browser.
     var loc = this.windowToCanvas(x, y)
     
     // ------------------------------------------
@@ -1497,7 +1497,7 @@ export class Winwheel {
   
   // ====================================================================================================================
   // Works out the segment currently pointed to by the pointer of the wheel. Normally called when the spinning has stopped
-  // to work out the prize the user has won. Returns the number of the segment in the segments array.
+  // to work out the prize the user-profile has won. Returns the number of the segment in the segments array.
   // ====================================================================================================================
   getIndicatedSegmentNumber() {
     var indicatedPrize = 0
@@ -1718,7 +1718,7 @@ export class Winwheel {
           // If the stop angle has not been specified then pick random between 0 and 359.
           this.animation._stopAngle = Math.floor(Math.random() * 359)
         } else {
-          // We need to set the internal to 360 minus what the user entered because the wheel spins past 0 without
+          // We need to set the internal to 360 minus what the user-profile entered because the wheel spins past 0 without
           // this it would indicate the prize on the opposite side of the wheel. We aslo need to take in to account
           // the pointerAngle as the stop angle needs to be relative to that.
           this.animation._stopAngle = 360 - this.animation.stopAngle + this.pointerAngle
@@ -1767,7 +1767,7 @@ export class Winwheel {
         if (this.animation.stopAngle == null) {
           this.animation._stopAngle = 0
         } else {
-          // We need to set the internal to 360 minus what the user entered
+          // We need to set the internal to 360 minus what the user-profile entered
           // because the wheel spins past 0 without this it would indicate the
           // prize on the opposite side of the wheel.
           this.animation._stopAngle = 360 - this.animation.stopAngle
@@ -1943,7 +1943,7 @@ export class Segment {
     }
     
     // There are 2 additional properties which are set by the code, so need to define them here.
-    // They are not in the default options because they are not something that should be set by the user,
+    // They are not in the default options because they are not something that should be set by the user-profile,
     // the values are updated every time the updateSegmentSizes() function is called.
     this.startAngle = 0
     this.endAngle = 0
@@ -2109,7 +2109,7 @@ function winwheelStopAnimation(canCallback) {
     if (callback != null) {
       // If the callback is a function then call it, otherwise evaluate the property as javascript code.
       if (typeof callback === 'function') {
-        // Pass back the indicated segment as 99% of the time you will want to know this to inform the user of their prize.
+        // Pass back the indicated segment as 99% of the time you will want to know this to inform the user-profile of their prize.
         callback(winwheelToDrawDuringAnimation.getIndicatedSegment())
       } else {
         eval(callback)
