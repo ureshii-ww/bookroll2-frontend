@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
+import { loadUserProfileInfo } from '../../../reducers/user-profile/info';
 import { loadUserProfileInfoSaga } from './workers';
-import { loadUserProfileInfo } from '../../reducers/user-profile/info';
 
 export function* watchLoadUserProfileInfo() {
-  yield takeEvery(loadUserProfileInfo.type, loadUserProfileInfoSaga)
+  yield takeEvery(loadUserProfileInfo.type, loadUserProfileInfoSaga);
 }

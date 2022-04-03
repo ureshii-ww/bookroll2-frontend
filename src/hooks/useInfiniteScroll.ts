@@ -1,38 +1,33 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export const useInfiniteScroll = () => {
-  const [lastElement, setLastElement] = useState<Element | null>(null);
-  const [pageNum, setPageNum] = useState<number>(1);
+export function useInfiniteScroll(callback: () => void) {
+  const [triggerElement, setTriggerElement] = useState<Element | null>(null);
 
-  const containerRef = useCallback(node => {
-    setLastElement(node);
+  const triggerRef = useCallback((element: Element | null) => {
+    setTriggerElement(element);
   }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      async entries => {
+      entries => {
         const container = entries[0];
         if (container.isIntersecting) {
-          setPageNum(num => num + 1);
+          callback();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     );
 
-    if (lastElement) {
-      observer.observe(lastElement);
+    if (triggerElement) {
+      observer.observe(triggerElement);
     }
 
     return () => {
-      if (lastElement) {
-        observer.unobserve(lastElement);
-      }
+      observer.disconnect();
     };
-  }, [lastElement]);
+  }, [triggerElement, callback]);
 
   return {
-    pageNum,
-    setPageNum,
-    containerRef
+    triggerRef,
   };
-};
+}

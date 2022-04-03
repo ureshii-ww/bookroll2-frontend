@@ -1,6 +1,6 @@
+import { loadUserProfileInfo, loadUserProfileInfoSuccess } from '../../../reducers/user-profile/info';
+import UserService from '../../../../services/user.service';
 import { call, put } from 'redux-saga/effects';
-import UserService from '../../../services/user.service';
-import { loadUserProfileInfo, loadUserProfileInfoSuccess } from '../../reducers/user-profile/info';
 
 export function* loadUserProfileInfoSaga(action: ReturnType<typeof loadUserProfileInfo>) {
   const userUrl = action.payload;
@@ -14,4 +14,3 @@ export function* loadUserProfileInfoSaga(action: ReturnType<typeof loadUserProfi
     console.log(error);
   }
 }
-

@@ -1,35 +1,18 @@
 import React, { FC, Fragment } from 'react';
 import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePage';
 import BookCard from '../../UI/BookCard/BookCard';
-import { useAppSelector } from '../../../hooks/useAppSelector';
 import './user-profile-books.scss';
 import useUserProfileBooks from './useUserProfileBooks';
 
-const UserProfileBooks: FC = props => {
-  const isLoading = useAppSelector(state => state.loadingTab.isLoadingTab);
+const UserProfileBooks: FC = () => {
   const { isCurrentUser, userUrl } = useUserProfileContext();
-  const { booksArray, isOut, containerRef, fetchDeleteBook, isLoaded } = useUserProfileBooks(userUrl || '');
-
-  const handleDeleteBook = (index: number) => {
-    fetchDeleteBook({index});
-  };
+  const { booksArray, isOut, isLoading, triggerRef, wholeArrayLength, handleDeleteBook } = useUserProfileBooks(userUrl);
 
   return (
     <div className="user-profile-books">
-      {isLoaded &&
-        booksArray.length > 0 &&
-        booksArray.map((book, index) => {
-          return index === booksArray.length - 1 && !isLoading && !isOut ? (
-            <Fragment key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}>
-              <BookCard
-                isClubHistory={false}
-                isOwner={isCurrentUser}
-                handleDelete={() => handleDeleteBook(index)}
-                bookData={{ ...book }}
-              />
-              <div ref={containerRef}>Loader</div>
-            </Fragment>
-          ) : (
+      {wholeArrayLength > 0 && (
+        <Fragment>
+          {booksArray.map((book, index) => (
             <BookCard
               key={`${userUrl}-${book.title}-${book.authors.join(', ')}`}
               isClubHistory={false}
@@ -37,9 +20,12 @@ const UserProfileBooks: FC = props => {
               handleDelete={() => handleDeleteBook(index)}
               bookData={{ ...book }}
             />
-          );
-        })}
-      {!isLoading && isLoaded && booksArray.length === 0 && <div>Книги не выбраны</div>}
+          ))}
+        </Fragment>
+      )}
+      {!isLoading && wholeArrayLength === 0 && <div>Книги не выбраны</div>}
+      {!isOut && !isLoading && <div ref={triggerRef} />}
+      {isLoading && <div>Loader...</div>}
     </div>
   );
 };

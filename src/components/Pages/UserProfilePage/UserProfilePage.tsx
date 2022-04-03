@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UserProfileHeader from '../../Containers/UserProfileHeader/UserProfileHeader';
-import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useLocation, Outlet, Navigate, useOutletContext } from 'react-router-dom';
 import ProfileTabs from '../../UI/ProfileTabs/ProfileTabs';
 import { TabButtonProps } from '../../UI/ProfileTabs/TabButton/TabButton';

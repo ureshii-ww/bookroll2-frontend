@@ -1,5 +1,5 @@
 import { spawn, all } from 'redux-saga/effects';
-import { userProfileSaga } from './user';
+import { userProfileSaga } from './user-profile';
 
 export default function* rootSaga() {
   const sagas = [userProfileSaga];
