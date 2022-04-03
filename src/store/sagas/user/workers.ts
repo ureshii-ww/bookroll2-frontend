@@ -1,9 +1,8 @@
 import { call, put } from 'redux-saga/effects';
-import { LoadUserProfileInfo } from '../../reducers/user-profile/types';
 import UserService from '../../../services/user.service';
-import { loadUserProfileInfoSuccess } from '../../reducers/user-profile/actions';
+import { loadUserProfileInfo, loadUserProfileInfoSuccess } from '../../reducers/user-profile/info';
 
-export function* loadUserProfileInfoSaga(action: LoadUserProfileInfo) {
+export function* loadUserProfileInfoSaga(action: ReturnType<typeof loadUserProfileInfo>) {
   const userUrl = action.payload;
   try {
     const response: Awaited<ReturnType<typeof UserService.getUserProfileInfo>> = yield call(
