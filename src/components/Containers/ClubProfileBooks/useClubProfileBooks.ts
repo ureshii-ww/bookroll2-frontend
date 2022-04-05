@@ -1,43 +1,27 @@
-import { useEffect, useState } from 'react';
-import { ClubBooks } from '../../../models/club-books';
+import { useEffect } from 'react';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import useRequest from '../../../hooks/useRequest';
-import ClubService from '../../../services/club.service';
-import FetchDeleteBookArgs from './types/fetch-delete-books-args';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { deleteClubProfileBook, loadClubProfileBooks } from '../../../store/reducers/club-profile/books';
 
 const useClubProfileBooks = () => {
-  const [booksData, setBooksData] = useState<ClubBooks[]>([]);
   const { clubUrl } = useClubProfileContext();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useAppDispatch();
+  const { isLoading, data: booksData } = useAppSelector(state => state.clubProfile.books);
+  const clubData = useAppSelector(state => state.clubProfile.info.data);
   const isMaster = useAppSelector(state => state.clubProfile.info.data?.isMaster || false);
 
-  const fetchBooksData = useRequest('Tab', async () => {
-    const response = await ClubService.getClubBooks(clubUrl);
-    setBooksData(response.data);
-    setIsLoaded(true);
-  });
-
   useEffect(() => {
-    fetchBooksData({});
+    if (clubData) {
+      dispatch(loadClubProfileBooks(clubUrl));
+    }
   }, [clubUrl]);
 
-  const fetchDeleteBook = useRequest<FetchDeleteBookArgs>('Post', async ({ userUrl, index }) => {
-    const response = await ClubService.deleteClubBook(clubUrl, userUrl, index);
-
-    if (response.data === 'Success') {
-      const tempArray = booksData;
-      const userIndex = tempArray.findIndex(entry => entry.user.url === userUrl);
-      tempArray[userIndex].books.splice(index, 1);
-      setBooksData([...tempArray]);
-    }
-  });
-
   const handleDelete = (index: number, userUrl: string) => {
-    fetchDeleteBook({ index, userUrl });
+    dispatch(deleteClubProfileBook({ clubUrl, userUrl, index }));
   };
 
-  return { booksData, clubUrl, isMaster, handleDelete, isLoaded };
+  return { booksData, clubUrl, isMaster, isLoading, handleDelete };
 };
 
 export default useClubProfileBooks;

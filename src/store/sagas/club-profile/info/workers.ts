@@ -9,7 +9,7 @@ import axios from 'axios';
 import { addSystemNotification } from '../../../reducers/system-notifications';
 
 export function* loadClubProfileInfoSaga(action: ReturnType<typeof loadClubProfileInfo>) {
-  const clubUrl = action.payload;
+  const clubUrl: string = action.payload;
   try {
     const response: Awaited<ReturnType<typeof ClubService.getClubProfileInfo>> = yield call(
       ClubService.getClubProfileInfo,
