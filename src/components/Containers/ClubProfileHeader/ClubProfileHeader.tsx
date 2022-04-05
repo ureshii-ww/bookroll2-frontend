@@ -5,29 +5,31 @@ import ClubHeaderBook from './ClubHeaderBook/ClubHeaderBook';
 import ClubHeaderMaster from './ClubHeaderMaster/ClubHeaderMaster';
 import './club-profile-header.scss';
 import ClubHeaderMeeting from './ClubHeaderMeeting/ClubHeaderMeeting';
-import useClubProfileHeader from './useClubProfileHeader';
 import { Helmet } from 'react-helmet';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 export interface ClubProfileHeaderProps {
-  clubUrl: string | undefined;
-  setIsMaster: (arg0: boolean) => void;
-  setIsLoaded: () => void;
+  clubUrl: string;
 }
 
-const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl, setIsMaster, setIsLoaded, ...rest }) => {
-  const { clubInfo } = useClubProfileHeader({ clubUrl, setIsMaster, setIsLoaded });
+const ClubProfileHeader: FC<ClubProfileHeaderProps> = ({ clubUrl }) => {
+  const clubInfo = useAppSelector(state => state.clubProfile.info.data);
 
   return (
     <Fragment>
       <Helmet>
-        <title>Клуб {clubInfo.clubname || ''}</title>
+        <title>Клуб {clubInfo?.clubname || ''}</title>
       </Helmet>
       <section className="club-profile-header">
-        <ProfileTitle title={clubInfo.clubname || ''} />
-        <ClubProfileHeaderButtons clubUrl={clubUrl || ''} isInClub={clubInfo.isInClub} isMaster={clubInfo.isMaster} />
-        <ClubHeaderBook book={clubInfo.bookToRead} />
-        <ClubHeaderMaster master={clubInfo.master} />
-        <ClubHeaderMeeting meetingNumber={clubInfo.meetingNumber} />
+        <ProfileTitle title={clubInfo?.clubname || ''} />
+        <ClubProfileHeaderButtons
+          clubUrl={clubUrl || ''}
+          isInClub={clubInfo?.isInClub || false}
+          isMaster={clubInfo?.isMaster || false}
+        />
+        <ClubHeaderBook book={clubInfo?.bookToRead || null} />
+        <ClubHeaderMaster master={clubInfo?.master || null} />
+        <ClubHeaderMeeting meetingNumber={clubInfo?.meetingNumber || 0} />
       </section>
     </Fragment>
   );

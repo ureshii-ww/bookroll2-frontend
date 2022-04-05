@@ -4,11 +4,13 @@ import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePa
 import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import FetchDeleteBookArgs from './types/fetch-delete-books-args';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 const useClubProfileBooks = () => {
   const [booksData, setBooksData] = useState<ClubBooks[]>([]);
-  const { isMaster, clubUrl } = useClubProfileContext();
+  const { clubUrl } = useClubProfileContext();
   const [isLoaded, setIsLoaded] = useState(false);
+  const isMaster = useAppSelector(state => state.clubProfile.info.data?.isMaster || false);
 
   const fetchBooksData = useRequest('Tab', async () => {
     const response = await ClubService.getClubBooks(clubUrl);

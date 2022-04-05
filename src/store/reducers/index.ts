@@ -9,6 +9,7 @@ import loadingPost from './loading-post';
 import bubble from './bubble';
 import userProfile from './user-profile';
 import systemNotifications from './system-notifications';
+import clubProfile from './club-profile';
 
 const reducers =  {
   auth,
@@ -21,6 +22,7 @@ const reducers =  {
   loadingPost,
   bubble,
   userProfile,
+  clubProfile,
   systemNotifications
 };
 
