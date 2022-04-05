@@ -1,5 +1,6 @@
 import {
-  deleteUserProfileBook, deleteUserProfileBookSuccess,
+  deleteUserProfileBook,
+  deleteUserProfileBookSuccess,
   loadUserProfileBooks,
   loadUserProfileBooksSuccess,
   resetUserProfileBooks,
@@ -11,6 +12,7 @@ import axios from 'axios';
 import { NotificationsActionCreators } from '../../../reducers/notifications/action-creators';
 import { RootState } from '../../../index';
 import { UserProfileBooksState } from '../../../reducers/user-profile/books/types';
+import { addSystemNotification } from '../../../reducers/system-notifications';
 
 export function* loadUserProfileBooksSaga(action: ReturnType<typeof loadUserProfileBooks>) {
   const { page, userUrl, size } = action.payload;
@@ -25,8 +27,9 @@ export function* loadUserProfileBooksSaga(action: ReturnType<typeof loadUserProf
     const length = parseInt(response.headers['x-data-length']);
     yield put(loadUserProfileBooksSuccess({ data: response.data, length }));
   } catch (error: any) {
-    if (axios.isAxiosError(error))
-      yield call(NotificationsActionCreators.addNotification, error.request.statusText, 'error');
+    if (axios.isAxiosError(error)) {
+      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+    }
   } finally {
     yield put(LoadingTabActionCreators.setLoadingTabFalse());
   }

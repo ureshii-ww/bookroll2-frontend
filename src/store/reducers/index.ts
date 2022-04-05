@@ -8,6 +8,7 @@ import loadingModal from './loading-page';
 import loadingPost from './loading-post';
 import bubble from './bubble';
 import userProfile from './user-profile';
+import systemNotifications from './system-notifications';
 
 const reducers =  {
   auth,
@@ -20,6 +21,7 @@ const reducers =  {
   loadingPost,
   bubble,
   userProfile,
+  systemNotifications
 };
 
 export default reducers;
