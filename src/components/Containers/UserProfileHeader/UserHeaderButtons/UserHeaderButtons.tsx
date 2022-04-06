@@ -2,17 +2,18 @@ import React, { FC } from 'react';
 import './user-header-buttons.scss';
 import { ReactComponent as SettingsSvg } from '../../../../assets/svg/settings.svg';
 import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
-import { useActions } from '../../../../hooks/useActions';
 import UserSettings from '../../../Pages/UserSettings/UserSettings';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { openModal } from '../../../../store/reducers/modal';
 
 interface UserHeaderButtonsProps {
   isCurrentUser: boolean;
 }
 
 const UserHeaderButtons: FC<UserHeaderButtonsProps> = ({ isCurrentUser, ...rest }) => {
-  const {showModal} = useActions();
+  const dispatch = useAppDispatch();
   const showSettings = () => {
-    showModal(<UserSettings/>)
+    dispatch(openModal(<UserSettings/>))
   }
 
   return (

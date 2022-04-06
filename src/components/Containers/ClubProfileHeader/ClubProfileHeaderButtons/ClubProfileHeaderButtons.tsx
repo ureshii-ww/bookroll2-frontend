@@ -10,6 +10,8 @@ import { ReactComponent as LeaveSvg } from '../../../../assets/svg/leave-club.sv
 import { ReactComponent as JoinSvg } from '../../../../assets/svg/join-club.svg';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import ClubSettingsPage from '../../../Pages/ClubSettingsPage/ClubSettingsPage';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { openModal } from '../../../../store/reducers/modal';
 
 interface ClubProfileHeaderButtonsProps {
   isMaster: boolean;
@@ -18,10 +20,11 @@ interface ClubProfileHeaderButtonsProps {
 }
 
 const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub, isMaster, clubUrl, ...rest }) => {
-  const { joinClub, leaveClub, showModal } = useActions();
+  const { joinClub, leaveClub } = useActions();
+  const dispatch = useAppDispatch();
   const userClub = useAppSelector(state => state.auth.userData?.club);
   const showSettingsModal = () => {
-    showModal(<ClubSettingsPage />);
+    dispatch(openModal(<ClubSettingsPage />));
   };
 
   return (

@@ -1,17 +1,25 @@
-import { ModalAction, ModalActionEnum, ModalState } from './types';
+import { ModalState, ShowModalPayload } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ModalState = {
   isShow: false,
-  reactComponent: null
-}
+  reactComponent: null,
+};
 
-export default function ModalReducer(state = initialState, action: ModalAction) {
-  switch (action.type) {
-    case ModalActionEnum.CLOSE_MODAL:
-      return initialState;
-    case ModalActionEnum.SHOW_MODAL:
-      return {isShow: true, reactComponent: action.payload};
-    default:
-      return state;
-  }
-}
+const modalSlice = createSlice({
+  name: 'modal',
+  initialState,
+  reducers: {
+    openModal(state, action: PayloadAction<ShowModalPayload>) {
+      state.isShow = true;
+      state.reactComponent = action.payload;
+    },
+    closeModal(state) {
+      state.reactComponent = null;
+      state.isShow = false;
+    },
+  },
+});
+
+export const { openModal, closeModal } = modalSlice.actions;
+export default modalSlice.reducer;

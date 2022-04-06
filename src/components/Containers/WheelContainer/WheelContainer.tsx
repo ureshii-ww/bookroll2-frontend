@@ -13,6 +13,8 @@ import { ReactComponent as DetailsSvg } from '../../../assets/svg/details.svg';
 import { ReactComponent as TriangleSvg } from '../../../assets/svg/triangle.svg';
 import './wheel-container.scss';
 import useWindowDimensions from '../../../hooks/useDimensions';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { openModal } from '../../../store/reducers/modal';
 
 export interface WheelContainerProps {
   clubBooks: ClubBooks[];
@@ -21,7 +23,7 @@ export interface WheelContainerProps {
 }
 
 const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, handleSetBooksKey, ...rest }) => {
-  const { showModal } = useActions();
+  const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const { handleSetTime, handeSetSpinsNumber, recountTextSize, spinsNumber, spinTime, textSize } = useWheelSettings();
   const { hookData, wheelWinner, wheelStages } = useWheelContainer(
@@ -40,6 +42,10 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
         duration: spinTime,
       }
     : { spins: 0 };
+
+  const handleOpenHistory = () => {
+    dispatch(openModal(<WheelHistory rollsHistory={wheelRollsHistory} />))
+  }
 
   if (width < 700) {
     return <div className="wheel-container__placeholder">Ваш экран слишком мал для колеса</div>;
@@ -77,7 +83,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
       <div className="wheel-container__history-button-wrapper">
         <TransparentButton
           className="wheel-container__history-button"
-          onClick={() => showModal(<WheelHistory rollsHistory={wheelRollsHistory} />)}>
+          onClick={handleOpenHistory}>
           История
           <DetailsSvg />
         </TransparentButton>

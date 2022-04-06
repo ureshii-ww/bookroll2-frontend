@@ -9,9 +9,12 @@ import CreateClubFormInput from './types/create-club-form-inputs';
 import CreateClubArgs from './types/create-club-args';
 import authDataLength from '../../../constants/auth-data-length';
 import './create-club-form.scss';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { closeModal } from '../../../store/reducers/modal';
 
 const CreateClubForm: FC = () => {
-  const { setUserData, closeModal } = useActions();
+  const { setUserData } = useActions();
+  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
@@ -22,7 +25,7 @@ const CreateClubForm: FC = () => {
     const response = await ClubService.createClub(clubname);
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
-    closeModal();
+    dispatch(closeModal());
   });
 
   const onSubmit: SubmitHandler<CreateClubFormInput> = data => createClub({ clubname: data.clubname });

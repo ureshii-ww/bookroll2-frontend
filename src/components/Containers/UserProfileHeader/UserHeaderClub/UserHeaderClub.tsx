@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
 import CreateClubForm from '../../CreateClubForm/CreateClubForm';
 import './user-header-club.scss';
-import { useActions } from '../../../../hooks/useActions';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { openModal } from '../../../../store/reducers/modal';
 
 interface UserHeaderClubProps {
   isCurrentUser: boolean;
@@ -12,9 +13,9 @@ interface UserHeaderClubProps {
 }
 
 const UserHeaderClub: FC<UserHeaderClubProps> = ({ isCurrentUser, clubname, clubUrl, ...rest }) => {
-  const {showModal} = useActions();
+  const dispatch = useAppDispatch();
   const handleShowModal = () => {
-    showModal(<CreateClubForm />)
+    dispatch(openModal(<CreateClubForm />))
   }
 
   return (

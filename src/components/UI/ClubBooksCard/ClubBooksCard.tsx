@@ -6,6 +6,8 @@ import BookDataContainer from '../../Containers/BookDataContainer/BookDataContai
 import ClubBooksCardFooter from './ClubBooksCardFooter/ClubBooksCardFooter';
 import ClubBooksCardHeader from './ClubBooksCardHeader/ClubBooksCardHeader';
 import { useActions } from '../../../hooks/useActions';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { openModal } from '../../../store/reducers/modal';
 
 interface ClubBooksCardProps {
   user: BasicUserInfo;
@@ -16,14 +18,14 @@ interface ClubBooksCardProps {
 }
 
 const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDelete, booksKey, ...rest }) => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(value => !value);
   };
 
-  const { showModal } = useActions();
-  const handleShowModal = (id: string) => {
-    showModal(<BookDataContainer bookId={id} />);
+  const handleOpenModal = (id: string) => {
+    dispatch(openModal(<BookDataContainer bookId={id} />));
   };
 
   return (
@@ -34,7 +36,7 @@ const ClubBooksCard: FC<ClubBooksCardProps> = ({ user, books, isMaster, handleDe
           books={books}
           user={user}
           isMaster={isMaster}
-          showModal={handleShowModal}
+          showModal={handleOpenModal}
           handleDelete={handleDelete}
           booksKey={booksKey}
         />

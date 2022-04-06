@@ -3,9 +3,12 @@ import { useState } from 'react';
 import useRequest from '../../../../hooks/useRequest';
 import UserService from '../../../../services/user.service';
 import UpdateInfoArgs from './types/update-info-args';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { closeModal } from '../../../../store/reducers/modal';
 
 const useUserSettingsInfoForm = (emoji: string | null) => {
-  const { setUserData, closeModal } = useActions();
+  const { setUserData } = useActions();
+  const dispatch = useAppDispatch();
   const [chosenEmoji, setChosenEmoji] = useState<string>(emoji || '😎');
   const { addNotification } = useActions();
 
@@ -15,7 +18,7 @@ const useUserSettingsInfoForm = (emoji: string | null) => {
     addNotification('Настройки успешно обновлены', 'success');
     localStorage.setItem('userData', JSON.stringify(response.data));
     setUserData(response.data);
-    closeModal();
+    dispatch(closeModal());
   });
 
   const setEmoji = (emoji: string) => {
