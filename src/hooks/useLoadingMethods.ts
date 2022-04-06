@@ -4,8 +4,6 @@ import LoadingMethods from '../models/loading-methods';
 
 const useLoadingMethods = (type: RequestTypes): LoadingMethods => {
   const {
-    setLoadingTabTrue,
-    setLoadingTabFalse,
     setLoadingPageTrue,
     setLoadingPageFalse,
     setLoadingPostTrue,
@@ -29,11 +27,6 @@ const useLoadingMethods = (type: RequestTypes): LoadingMethods => {
       return {
         methodTrue: setLoadingPostTrue,
         methodFalse: setLoadingPostFalse,
-      };
-    case 'Tab':
-      return {
-        methodTrue: setLoadingTabTrue,
-        methodFalse: setLoadingTabFalse,
       };
   }
 };

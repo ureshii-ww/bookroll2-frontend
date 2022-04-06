@@ -10,9 +10,11 @@ import { call, put } from 'redux-saga/effects';
 import axios from 'axios';
 import { addSystemNotification } from '../../../reducers/system-notifications';
 import { DeleteClubProfileBookPayload } from '../../../reducers/club-profile/books/types';
+import { finishLoadingTab, startLoadingTab } from '../../../reducers/loading-tab';
 
 export function* loadClubProfileBooksSaga(action: ReturnType<typeof loadClubProfileBooks>) {
   const clubUrl: string = action.payload;
+  yield put(startLoadingTab())
   try {
     const response: Awaited<ReturnType<typeof ClubService.getClubBooks>> = yield call(
       ClubService.getClubBooks,
@@ -24,6 +26,8 @@ export function* loadClubProfileBooksSaga(action: ReturnType<typeof loadClubProf
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
       yield put(loadClubProfileBooksFailure());
     }
+  } finally {
+    yield put(finishLoadingTab())
   }
 }
 

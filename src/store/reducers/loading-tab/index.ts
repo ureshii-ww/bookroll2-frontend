@@ -1,16 +1,22 @@
-import { LoadingTabAction, LoadingTabEnum, LoadingTabState } from './types';
+import { LoadingTabState } from './types';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: LoadingTabState = {
   isLoadingTab: false,
 };
 
-export default function loadingTabReducer(state = initialState, action: LoadingTabAction): LoadingTabState {
-  switch (action.type) {
-    case LoadingTabEnum.SET_LOADING_TAB_TRUE:
-      return { isLoadingTab: action.payload };
-    case LoadingTabEnum.SET_LOADING_TAB_FALSE:
-      return { isLoadingTab: action.payload };
-    default:
-      return state;
-  }
-}
+const loadingTabSlice = createSlice({
+  name: 'loadingTab',
+  initialState,
+  reducers: {
+    startLoadingTab(state) {
+      state.isLoadingTab = true;
+    },
+    finishLoadingTab(state) {
+      state.isLoadingTab = false;
+    },
+  },
+});
+
+export const { startLoadingTab, finishLoadingTab } = loadingTabSlice.actions;
+export default loadingTabSlice.reducer;

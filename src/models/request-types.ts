@@ -1,1 +1,1 @@
-export type RequestTypes = 'Page' | 'Tab' | 'Post' | 'Modal';
+export type RequestTypes = 'Page' | 'Post' | 'Modal';
