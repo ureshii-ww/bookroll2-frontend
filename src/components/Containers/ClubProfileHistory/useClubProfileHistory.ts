@@ -3,23 +3,20 @@ import { useEffect, useState } from 'react';
 import useRequest from '../../../hooks/useRequest';
 import ClubService from '../../../services/club.service';
 import { BookData } from '../../../models/book-data';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { loadClubProfileHistory } from '../../../store/reducers/club-profile/history';
 
 const useClubProfileHistory = () => {
-  const [chosenBooksHistory, setChosenBooksHistory] = useState<BookData[]>([]);
+  const { data: chosenBooksHistory, isLoading } = useAppSelector(state => state.clubProfile.history);
   const { clubUrl } = useClubProfileContext();
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  const fetchHistory = useRequest('Tab', async () => {
-    const response = await ClubService.getChosenBooksHistory(clubUrl);
-    setChosenBooksHistory(response.data);
-    setIsLoaded(true)
-  });
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchHistory({});
+    dispatch(loadClubProfileHistory(clubUrl));
   }, [clubUrl]);
 
-  return {chosenBooksHistory, isLoaded, clubUrl};
+  return { chosenBooksHistory, isLoading, clubUrl };
 };
 
 export default useClubProfileHistory;

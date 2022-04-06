@@ -6,11 +6,11 @@ import './club-profile-history.scss';
 interface ClubProfileHistoryProps {}
 
 const ClubProfileHistory: FC<ClubProfileHistoryProps> = () => {
-  const { chosenBooksHistory, isLoaded, clubUrl } = useClubProfileHistory();
+  const { chosenBooksHistory, isLoading, clubUrl } = useClubProfileHistory();
   //TODO поменять на инфинайт скролл
   return (
     <div className="club-profile-history">
-      {isLoaded &&
+      {!isLoading &&
         chosenBooksHistory.length !== 0 &&
         chosenBooksHistory.map((book, index) => (
           <BookCard
@@ -19,7 +19,7 @@ const ClubProfileHistory: FC<ClubProfileHistoryProps> = () => {
             bookData={{ meetingNumber: index + 1, ...book }}
           />
         ))}
-      {isLoaded && chosenBooksHistory.length === 0 && <div>Собраний ещё не было</div>}
+      {!isLoading && chosenBooksHistory.length === 0 && <div>Собраний ещё не было</div>}
     </div>
   );
 };
