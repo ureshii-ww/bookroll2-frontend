@@ -11,9 +11,9 @@ import authDataLength from '../../../constants/auth-data-length';
 import './create-club-form.scss';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { closeModal } from '../../../store/reducers/modal';
+import { setUserData } from '../../../store/reducers/auth';
 
 const CreateClubForm: FC = () => {
-  const { setUserData } = useActions();
   const dispatch = useAppDispatch();
   const {
     control,
@@ -24,7 +24,7 @@ const CreateClubForm: FC = () => {
   const createClub = useRequest<CreateClubArgs>('Page', async ({ clubname }) => {
     const response = await ClubService.createClub(clubname);
     localStorage.setItem('userData', JSON.stringify(response.data));
-    setUserData(response.data);
+    dispatch(setUserData(response.data));
     dispatch(closeModal());
   });
 

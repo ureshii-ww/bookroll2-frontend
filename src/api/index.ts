@@ -8,6 +8,10 @@ export const setUserUrl = (url: string) => {
   currentUserUrl = url;
 };
 
+export const setUserToken = (token: string) => {
+  $api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 const $api = axios.create({
   withCredentials: true,
   baseURL: API_URL,

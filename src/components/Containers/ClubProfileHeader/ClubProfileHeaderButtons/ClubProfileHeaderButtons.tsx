@@ -12,6 +12,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector';
 import ClubSettingsPage from '../../../Pages/ClubSettingsPage/ClubSettingsPage';
 import useAppDispatch from '../../../../hooks/useAppDispatch';
 import { openModal } from '../../../../store/reducers/modal';
+import { joinClub, leaveClub } from '../../../../store/reducers/auth';
 
 interface ClubProfileHeaderButtonsProps {
   isMaster: boolean;
@@ -20,7 +21,6 @@ interface ClubProfileHeaderButtonsProps {
 }
 
 const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub, isMaster, clubUrl, ...rest }) => {
-  const { joinClub, leaveClub } = useActions();
   const dispatch = useAppDispatch();
   const userClub = useAppSelector(state => state.auth.userData?.club);
   const showSettingsModal = () => {
@@ -44,7 +44,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
       {!isInClub && !userClub && (
         <TransparentButton
           className="club-profile-header__button transparent-button--green"
-          onClick={() => joinClub(clubUrl)}>
+          onClick={() => dispatch(joinClub(clubUrl))}>
           <JoinSvg />
           <span>Вступить в клуб</span>
         </TransparentButton>
@@ -52,7 +52,7 @@ const ClubProfileHeaderButtons: FC<ClubProfileHeaderButtonsProps> = ({ isInClub,
       {isInClub && (
         <TransparentButton
           className="club-profile-header__button transparent-button--red"
-          onClick={() => leaveClub(clubUrl)}>
+          onClick={() => dispatch(leaveClub(clubUrl))}>
           <LeaveSvg />
           <span>Выйти из клуба</span>
         </TransparentButton>

@@ -4,8 +4,16 @@ import { systemNotificationsSaga } from './system-notifications';
 import { clubProfileSaga } from './club-profile';
 import { clubSettingsSaga } from './club-settings';
 import { userSettingsSaga } from './user-settings';
+import { authSaga } from './auth';
 
 export default function* rootSaga() {
-  const sagas = [userProfileSaga, clubProfileSaga, clubSettingsSaga, userSettingsSaga, systemNotificationsSaga];
+  const sagas = [
+    authSaga,
+    userProfileSaga,
+    clubProfileSaga,
+    clubSettingsSaga,
+    userSettingsSaga,
+    systemNotificationsSaga,
+  ];
   yield all(sagas.map(s => spawn(s)));
 }

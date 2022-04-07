@@ -1,4 +1,12 @@
-import { AuthAction, AuthActionEnum, AuthState } from './types';
+import {
+  AuthState,
+  JoinClubPayload,
+  LeaveClubPayload,
+  LoginPayload,
+  SetIsAuthPayload,
+  SetUserDataPayload,
+} from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const isAuth = JSON.parse(localStorage.getItem('isAuth') || '{}');
 const userData = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -6,21 +14,27 @@ const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 const initialState: AuthState = {
   isAuth: typeof isAuth === 'object' ? false : isAuth,
   userData: Object.keys(userData).length === 0 ? null : userData,
-  // accessToken: null
-}
+};
 
-export default function authReducer(state = initialState, action: AuthAction): AuthState {
-  switch (action.type) {
-    case AuthActionEnum.SET_IS_AUTH:
-      return {...state, isAuth: action.payload}
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setIsAuth(state, action: PayloadAction<SetIsAuthPayload>) {
+      state.isAuth = action.payload;
+    },
+    setUserData(state, action: PayloadAction<SetUserDataPayload>) {
+      state.userData = action.payload;
+    },
+    login(state, action: PayloadAction<LoginPayload>) {},
+    logout(state) {
+      state.isAuth = false;
+      state.userData = null;
+    },
+    joinClub(state, action: PayloadAction<JoinClubPayload>) {},
+    leaveClub(state, action: PayloadAction<LeaveClubPayload>) {},
+  },
+});
 
-    case AuthActionEnum.SET_USER_DATA:
-      return {...state, userData: action.payload}
-
-    // case AuthActionEnum.SET_ACCESS_TOKEN:
-    //   return {...state, accessToken: action.payload}
-
-    default:
-      return state;
-  }
-}
+export const { setIsAuth, setUserData, login, logout, leaveClub, joinClub } = authSlice.actions;
+export default authSlice.reducer;

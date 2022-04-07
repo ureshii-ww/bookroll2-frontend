@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import InputText from '../../UI/InputText/InputText';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-import { useActions } from '../../../hooks/useActions';
-import authDataLength from '../../../constants/auth-data-length';
 import './login-form.scss';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { login } from '../../../store/reducers/auth';
 
 type Inputs = {
   email: string;
@@ -12,7 +12,7 @@ type Inputs = {
 };
 
 const LoginForm: FC = props => {
-  const { login, addNotification } = useActions();
+  const dispatch = useAppDispatch()
   const {
     control,
     handleSubmit,
@@ -20,11 +20,7 @@ const LoginForm: FC = props => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async data => {
-    try {
-      await login(data.email, data.password);
-    } catch (error: any) {
-      addNotification(error.response?.data?.message || 'Непредвиденная ошибка', 'error');
-    }
+    dispatch(login(data))
   };
 
   return (
