@@ -2,28 +2,19 @@ import { useEffect, useState } from 'react';
 import { UserProfileInfo } from '../../../models/user-profile-info';
 import UserService from '../../../services/user.service';
 import useRequest from '../../../hooks/useRequest';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { loadUserSettingsInfo } from '../../../store/reducers/user-settings/info';
 
 const useUserSettingsInfo = (userUrl: string) => {
-  const [userInfo, setUserInfo] = useState<UserProfileInfo>({
-    username: '',
-    color: '',
-    emoji: '',
-    clubname: '',
-    clubUrl: '',
-  });
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-
-  const fetchInfo = useRequest('Modal', async () => {
-    const response = await UserService.getUserProfileInfo(userUrl);
-    setUserInfo(response.data);
-    setIsLoaded(true);
-  });
+  const dispatch = useAppDispatch();
+  const { data: userInfo, isLoading } = useAppSelector(state => state.userSettings.info);
 
   useEffect(() => {
-    fetchInfo({});
+    dispatch(loadUserSettingsInfo(userUrl));
   }, []);
 
-  return { userInfo, isLoaded };
+  return { userInfo, isLoading };
 };
 
 export default useUserSettingsInfo;

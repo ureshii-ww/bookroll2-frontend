@@ -11,6 +11,7 @@ import systemNotifications from './system-notifications';
 import clubProfile from './club-profile';
 import loadingTab from './loading-tab';
 import clubSettings from './club-settings';
+import userSettings from './user-settings';
 
 const reducers =  {
   auth,
@@ -24,6 +25,7 @@ const reducers =  {
   userProfile,
   clubProfile,
   clubSettings,
+  userSettings,
   systemNotifications,
   loadingTab
 };

@@ -13,9 +13,11 @@ interface UserSettingsInfoFormProps {
   emoji: string | null;
   color: string | null;
   userUrl: string;
+  disabled: boolean;
 }
 
-const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, emoji, userUrl, ...rest }) => {
+const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = (props) => {
+  const { username, color, emoji, userUrl, disabled } = props;
   const { updateInfo, chosenEmoji, setEmoji } = useUserSettingsInfoForm(emoji);
   const {
     control,
@@ -38,7 +40,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
             control={control}
             defaultValue={username || 'username'}
             rules={{ required: true }}
-            render={({ field }) => <InputText {...field} />}
+            render={({ field }) => <InputText {...field} disabled={disabled} />}
           />
           {errors.username && <div className="user-settings-info-form__error">Введите имя</div>}
         </fieldset>
@@ -55,7 +57,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = ({ username, color, 
             control={control}
             defaultValue={color || '#FFF'}
             rules={{ required: true }}
-            render={({ field }) => <InputColor {...field} />}
+            render={({ field }) => <InputColor {...field} disabled={disabled} />}
           />
         </fieldset>
       </div>
