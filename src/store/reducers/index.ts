@@ -10,6 +10,7 @@ import userProfile from './user-profile';
 import systemNotifications from './system-notifications';
 import clubProfile from './club-profile';
 import loadingTab from './loading-tab';
+import clubSettings from './club-settings';
 
 const reducers =  {
   auth,
@@ -22,6 +23,7 @@ const reducers =  {
   bubble,
   userProfile,
   clubProfile,
+  clubSettings,
   systemNotifications,
   loadingTab
 };

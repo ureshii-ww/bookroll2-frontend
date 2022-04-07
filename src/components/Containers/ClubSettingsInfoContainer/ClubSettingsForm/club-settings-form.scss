@@ -1,7 +1,7 @@
-@use 'src/styles/placeholders/form-input-group';
-@use 'src/styles/placeholders/settings-label';
-@use 'src/styles/variables/variables-size';
-@use 'src/styles/placeholders/input-error';
+@use '../../../../styles/placeholders/form-input-group';
+@use '../../../../styles/placeholders/settings-label';
+@use '../../../../styles/variables/variables-size';
+@use '../../../../styles/placeholders/input-error';
 
 .club-settings-form {
   &__group {
