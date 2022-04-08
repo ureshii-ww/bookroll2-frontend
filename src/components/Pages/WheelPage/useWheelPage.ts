@@ -1,36 +1,30 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ClubBooks } from '../../../models/club-books';
-import useRequest from '../../../hooks/useRequest';
-import ClubService from '../../../services/club.service';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { displayClubWheelBooksWinner, loadClubWheelBooks } from '../../../store/reducers/club-wheel/books-list';
 
 const useWheelPage = () => {
   const { clubUrl } = useParams();
-  const [clubBooks, setClubBooks] = useState<ClubBooks[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useAppDispatch();
+  const { data: clubBooks, isLoading } = useAppSelector(state => state.clubWheel.booksList);
   const [booksKey, setBooksKey] = useState('');
-  const getClubBooks = useRequest('Page', async () => {
-    const response = await ClubService.getClubBooks(clubUrl || '');
-    setClubBooks(response.data);
-    setIsLoaded(true);
-  });
 
   const displayWinner = (userIndex: number, bookIndex: number) => {
-    setClubBooks(clubBooks => {
-      clubBooks[userIndex].books[bookIndex].isDisabled = true;
-      return [...clubBooks];
-    });
+    dispatch(displayClubWheelBooksWinner({ userIndex, bookIndex }));
   };
 
   useEffect(() => {
-    getClubBooks({});
+    if (clubUrl) {
+      dispatch(loadClubWheelBooks(clubUrl));
+    }
   }, []);
 
   const handleSetBooksKey = (rollsCount: number) => {
     setBooksKey(rollsCount.toString());
-  }
+  };
 
-  return { clubBooks, isLoaded, displayWinner, booksKey, handleSetBooksKey };
+  return { clubBooks, isLoading, displayWinner, booksKey, handleSetBooksKey };
 };
 
 export default useWheelPage;

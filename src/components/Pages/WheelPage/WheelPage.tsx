@@ -11,9 +11,9 @@ import { Helmet } from 'react-helmet';
 
 const WheelPage = () => {
   const { clubUrl } = useParams();
-  const { clubBooks, isLoaded, displayWinner, handleSetBooksKey, booksKey } = useWheelPage();
+  const { clubBooks, isLoading, displayWinner, handleSetBooksKey, booksKey } = useWheelPage();
 
-  return isLoaded ? (
+  return !isLoading && clubBooks ? (
     <Fragment>
       <Helmet>
         <title>Книжное колесо</title>
@@ -29,7 +29,6 @@ const WheelPage = () => {
         <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
       </div>
     </Fragment>
-
   ) : (
     <div className="wheel-page__loader">
       <PageLoader />

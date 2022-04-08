@@ -6,6 +6,7 @@ import { clubSettingsSaga } from './club-settings';
 import { userSettingsSaga } from './user-settings';
 import { authSaga } from './auth';
 import { randomBookSaga } from './random-book';
+import { clubWheelSaga } from './club-wheel';
 
 export default function* rootSaga() {
   const sagas = [
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     randomBookSaga,
     clubSettingsSaga,
     userSettingsSaga,
+    clubWheelSaga,
     systemNotificationsSaga,
   ];
   yield all(sagas.map(s => spawn(s)));
