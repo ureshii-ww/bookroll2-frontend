@@ -1,40 +1,27 @@
-import { useEffect, useState } from 'react';
-import { BookData } from '../../../models/book-data';
+import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import BookService from '../../../services/book.service';
-import { useActions } from '../../../hooks/useActions';
-import useRequest from '../../../hooks/useRequest';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { confirmRandomBook, loadRandomBook } from '../../../store/reducers/random-book';
 
 const useRandomBookContainer = () => {
-  const [bookData, setBookData] = useState<BookData>({
-    title: '',
-    authors: [''],
-    year: '',
-    cover: '',
-    description: '',
-    genres: [''],
-  });
-  const isLoading = useAppSelector(state => state.loadingPage.isLoadingPage);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useAppDispatch();
+  const {data: bookData, isLoading, isConfirming} = useAppSelector(state => state.randomBook);
 
-  const getBook = useRequest('Page', async () => {
-    const response = await BookService.getRandomBook();
-    setBookData(response.data);
-    setIsLoaded(true);
-  });
+  const confirmBook = () => {
+    if (bookData) {
+      dispatch(confirmRandomBook(bookData));
+    }
+  }
 
-  const { addNotification } = useActions();
-  const confirmBook = useRequest('Post', async (bookData: BookData) => {
-    await BookService.confirmBook(bookData);
-    addNotification('Книга добавлена', 'success');
-    getBook({});
-  });
+  const getBook = () => {
+    dispatch(loadRandomBook());
+  }
 
   useEffect(() => {
-    getBook({});
+    getBook();
   }, []);
 
-  return { bookData, confirmBook, getBook, isLoading, isLoaded };
+  return { bookData, confirmBook, getBook, isLoading, isConfirming };
 };
 
 export default useRandomBookContainer;

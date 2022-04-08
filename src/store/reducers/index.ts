@@ -12,6 +12,7 @@ import clubProfile from './club-profile';
 import loadingTab from './loading-tab';
 import clubSettings from './club-settings';
 import userSettings from './user-settings';
+import randomBook from './random-book';
 
 const reducers =  {
   auth,
@@ -26,6 +27,7 @@ const reducers =  {
   clubProfile,
   clubSettings,
   userSettings,
+  randomBook,
   systemNotifications,
   loadingTab
 };
