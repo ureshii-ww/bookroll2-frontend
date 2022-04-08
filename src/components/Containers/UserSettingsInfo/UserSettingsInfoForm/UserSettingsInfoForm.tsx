@@ -26,7 +26,7 @@ const UserSettingsInfoForm: FC<UserSettingsInfoFormProps> = (props) => {
   } = useForm<UserSettingsInfoFormInputs>();
 
   const onSubmit: SubmitHandler<UserSettingsInfoFormInputs> = data =>
-    updateInfo({ userUrl, username: data.username, color: data.color, emoji: chosenEmoji });
+    updateInfo(userUrl, data.username,data.color, chosenEmoji);
 
   return (
     <form className="user-settings-info-form" onSubmit={handleSubmit(onSubmit)}>

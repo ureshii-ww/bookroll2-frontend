@@ -12,6 +12,7 @@ import { closeModal } from '../../../reducers/modal';
 import axios from 'axios';
 import { addSystemNotification } from '../../../reducers/system-notifications';
 import { UpdateUserSettingsInfoPayload } from '../../../reducers/user-settings/info/types';
+import { setUserData } from '../../../reducers/auth';
 
 export function* loadUserSettingsInfoSaga(action: ReturnType<typeof loadUserSettingsInfo>) {
   const userUrl: string = action.payload;
@@ -34,7 +35,15 @@ export function* loadUserSettingsInfoSaga(action: ReturnType<typeof loadUserSett
 export function* updateUserSettingsInfoSaga(action: ReturnType<typeof updateUserSettingsInfo>) {
   const { userUrl, username, color, emoji }: UpdateUserSettingsInfoPayload = action.payload;
   try {
-    yield call(UserService.updateInfo, userUrl, username, color, emoji);
+    const response: Awaited<ReturnType<typeof UserService.updateInfo>> = yield call(
+      UserService.updateInfo,
+      userUrl,
+      username,
+      color,
+      emoji
+    );
+    yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
+    yield put(setUserData(response.data));
     yield put(updateUserSettingsInfoSuccess());
     yield put(addSystemNotification({ message: 'Настройки успешно обновлены', notificationType: 'success' }));
   } catch (error) {

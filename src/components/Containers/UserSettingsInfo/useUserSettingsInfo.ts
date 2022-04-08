@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-import { UserProfileInfo } from '../../../models/user-profile-info';
-import UserService from '../../../services/user.service';
-import useRequest from '../../../hooks/useRequest';
+import { useEffect } from 'react';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { loadUserSettingsInfo } from '../../../store/reducers/user-settings/info';
