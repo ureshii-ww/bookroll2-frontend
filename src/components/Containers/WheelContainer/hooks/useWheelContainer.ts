@@ -8,22 +8,26 @@ import { WheelContainerProps } from '../WheelContainer';
 import useWheelSegments from './useWheelSegments';
 import useWheelWinner from './useWheelWinner';
 import useWheelRollsHistory from './useWheelRollsHistory';
-import useWheelStages, { WheelStages } from './useWheelStages';
 import useRequest from '../../../../hooks/useRequest';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { setClubWheelStage } from '../../../../store/reducers/club-wheel/wheel-stages';
+import { WheelStages } from '../../../../store/reducers/club-wheel/wheel-stages/types';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
 
 const useWheelContainer = (
   { clubBooks, handleSetBooksKey, displayWinner }: WheelContainerProps,
   handeSetSpinsNumber: () => void,
-  recountTextSize: (segmentsNumber: number) => void,
+  recountTextSize: (segmentsNumber: number) => void
 ) => {
   const { clubUrl } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const currentStage = useAppSelector(state => state.clubWheel.stages.currentStage);
   const { addNotification } = useActions();
   const [rollCount, setRollCount] = useState(0);
-  const { isStart, isRoll, isFinish, setStage } = useWheelStages();
   const { wheelSegments, shuffleSegments, removeWinnerSegment } = useWheelSegments(clubBooks, recountTextSize);
   const { wheelRollsHistory, addToHistory } = useWheelRollsHistory();
-  const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, isFinish, addToHistory });
+  const { winnerInfo, setWinner } = useWheelWinner({ clubBooks, displayWinner, wheelSegments, addToHistory });
 
   const confirmBook = useRequest('Post', async () => {
     const response = await ClubService.confirmBook(clubUrl || '', winnerInfo?.book.id || '');
@@ -35,9 +39,10 @@ const useWheelContainer = (
 
   const handleWinner = (segment: WheelSegment) => {
     removeWinnerSegment(segment);
-    setStage(WheelStages.ROLL, false);
     if (wheelSegments.length === 2) {
-      setStage(WheelStages.FINISH, true);
+      dispatch(setClubWheelStage(WheelStages.WINNER));
+    } else {
+      dispatch(setClubWheelStage(WheelStages.WINNER));
     }
     setWinner(segment);
   };
@@ -46,10 +51,7 @@ const useWheelContainer = (
     handeSetSpinsNumber();
     recountTextSize(wheelSegments.length);
     shuffleSegments();
-    if (isStart) {
-      setStage(WheelStages.START, false);
-    }
-    setStage(WheelStages.ROLL, true);
+    dispatch(setClubWheelStage(WheelStages.ROLL));
     setRollCount(value => value + 1);
   };
 
@@ -59,11 +61,7 @@ const useWheelContainer = (
   }, [rollCount]);
 
   return {
-    wheelStages: {
-      isStart,
-      isRoll,
-      isFinish,
-    },
+    currentStage,
     wheelWinner: {
       winnerInfo,
       handleWinner,

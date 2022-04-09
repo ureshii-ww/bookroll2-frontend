@@ -2,20 +2,21 @@ import React, { FC, FormEvent, Fragment } from 'react';
 import MainButton from '../../../UI/MainButton/MainButton';
 import InputText from '../../../UI/InputText/InputText';
 import './wheel-container-controls.scss';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { WheelStages } from '../../../../store/reducers/club-wheel/wheel-stages/types';
 
 interface WheelContainerControlsProps {
   readonly startRoll: () => void;
   readonly confirmBook: (args: any) => void;
   readonly handleSetTime: (event: FormEvent<HTMLInputElement>) => void;
-  readonly isRoll: boolean;
-  readonly isFinish: boolean;
 }
 
 const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
-  const { startRoll, confirmBook, isRoll, isFinish, handleSetTime } = props;
+  const { startRoll, confirmBook, handleSetTime } = props;
+  const currentStage = useAppSelector(state => state.clubWheel.stages.currentStage);
   return (
-    <div className={isFinish ? 'wheel-container-controls wheel-container-controls--finish' : 'wheel-container-controls'}>
-      {!isFinish ? (
+    <div className={currentStage === WheelStages.FINISH ? 'wheel-container-controls wheel-container-controls--finish' : 'wheel-container-controls'}>
+      {currentStage !== WheelStages.FINISH ? (
         <Fragment>
           <div className="wheel-container-controls__input-group">
             <label className="wheel-container-controls__input-label" htmlFor="spin-time">
@@ -24,12 +25,11 @@ const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
             <InputText
               className="wheel-container-controls__input"
               name="spin-time"
-              disabled={isRoll}
               maxLength={2}
               onChange={handleSetTime}
             />
           </div>
-          <MainButton className="wheel-container-controls__button" disabled={isRoll} onClick={startRoll}>
+          <MainButton className="wheel-container-controls__button" onClick={startRoll}>
             Раскрутить
           </MainButton>
         </Fragment>

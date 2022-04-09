@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { displayClubWheelBooksWinner, loadClubWheelBooks } from '../../../store/reducers/club-wheel/books-list';
+import { resetClubWheelStage } from '../../../store/reducers/club-wheel/wheel-stages';
 
 const useWheelPage = () => {
   const { clubUrl } = useParams();
@@ -15,6 +16,7 @@ const useWheelPage = () => {
   };
 
   useEffect(() => {
+    dispatch(resetClubWheelStage());
     if (clubUrl) {
       dispatch(loadClubWheelBooks(clubUrl));
     }

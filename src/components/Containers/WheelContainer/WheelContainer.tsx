@@ -15,6 +15,7 @@ import './wheel-container.scss';
 import useWindowDimensions from '../../../hooks/useDimensions';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { openModal } from '../../../store/reducers/modal';
+import { WheelStages } from '../../../store/reducers/club-wheel/wheel-stages/types';
 
 export interface WheelContainerProps {
   clubBooks: ClubBooks[];
@@ -26,16 +27,15 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
   const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const { handleSetTime, handeSetSpinsNumber, recountTextSize, spinsNumber, spinTime, textSize } = useWheelSettings();
-  const { hookData, wheelWinner, wheelStages } = useWheelContainer(
+  const { hookData, wheelWinner, currentStage } = useWheelContainer(
     { clubBooks, handleSetBooksKey, displayWinner },
     handeSetSpinsNumber,
     recountTextSize
   );
   const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
-  const { isStart, isRoll, isFinish } = wheelStages;
   const { winnerInfo, handleWinner } = wheelWinner;
 
-  const wheelAnimationOptions: WheelAnimationOptions = !isStart
+  const wheelAnimationOptions: WheelAnimationOptions = currentStage !== WheelStages.START
     ? {
         type: 'spinToStop',
         spins: spinsNumber,
@@ -52,7 +52,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
   }
 
   return (
-    <div className={isRoll ? 'wheel-container wheel-container--roll' : 'wheel-container'}>
+    <div className={currentStage === WheelStages.ROLL ? 'wheel-container wheel-container--roll' : 'wheel-container'}>
       <div className="wheel-container__wheel">
         <div className="wheel-container__triangle">
           <TriangleSvg />
@@ -71,9 +71,7 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
         <div className="wheel-container__side">
           <WheelContainerInfo winnerInfo={winnerInfo} />
           <WheelContainerControls
-            isRoll={isRoll}
             confirmBook={confirmBook}
-            isFinish={isFinish}
             startRoll={startRoll}
             handleSetTime={handleSetTime}
           />
