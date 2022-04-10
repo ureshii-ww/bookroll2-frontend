@@ -19,6 +19,10 @@
     font-size: variables-size.$font-size-x-l;
     font-weight: variables-size.$font-weight-x-l;
     color: var(--navbar-link-accent);
+
+    &--small {
+      display: none;
+    }
   }
 
   &__menu {
@@ -39,5 +43,28 @@
 
   &__profile-wrapper {
     user-select: none;
+  }
+}
+
+@media (max-width: variables-size.$device-width-medium) {
+  .navbar {
+    &__logo {
+      &--big {
+        display: none;
+      }
+
+      &--small {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .navbar {
+    width: 100vw;
+    order: 2;
+    bottom: 0;
+    left: 0;
   }
 }

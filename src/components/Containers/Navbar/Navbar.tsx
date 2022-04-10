@@ -13,8 +13,11 @@ const Navbar: FC = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__logo">
+      <div className="navbar__logo navbar__logo--big">
         Книжный Клуб.
+      </div>
+      <div className="navbar__logo navbar__logo--small">
+        КК.
       </div>
       <div className="navbar__menu">
         <div className="navbar__theme-switch-wrapper">
