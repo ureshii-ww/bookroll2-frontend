@@ -1,19 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import './bubble.scss';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useActions } from '../../../hooks/useActions';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { closeBubble } from '../../../store/reducers/bubble';
 
 const Bubble = () => {
+  const dispatch = useAppDispatch();
   const { isShow, reactComponent, wrapperClass } = useAppSelector(state => state.bubble);
-  const { closeBubble } = useActions();
   const classString = wrapperClass ? `bubble ${wrapperClass}` : 'bubble';
+  const handleCloseBubble = () => {
+    dispatch(closeBubble());
+  }
 
   if (!isShow) {
     return null;
   }
 
   return (
-    <div onClick={closeBubble} className={classString}>
+    <div onClick={handleCloseBubble} className={classString}>
       {reactComponent}
     </div>
   );

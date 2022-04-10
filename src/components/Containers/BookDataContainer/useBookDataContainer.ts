@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
-import { BookData } from '../../../models/book-data';
-import BookService from '../../../services/book.service';
-import useRequest from '../../../hooks/useRequest';
+import { useEffect } from 'react';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { loadBookData } from '../../../store/reducers/book-data';
 
 const useBookDataContainer = (bookId: string) => {
-  const [bookData, setBookData] = useState<BookData>();
-  const getBookData = useRequest('Modal', async () => {
-    const response = await BookService.getBookData(bookId);
-    setBookData(response.data);
-  });
+  const dispatch = useAppDispatch();
+  const { data: bookData, isLoading } = useAppSelector(state => state.bookData);
 
   useEffect(() => {
-    getBookData({});
+    dispatch(loadBookData(bookId));
   }, []);
 
-  return bookData;
+  return { bookData, isLoading };
 };
 
 export default useBookDataContainer;

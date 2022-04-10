@@ -1,15 +1,16 @@
-import { useActions } from '../../../../hooks/useActions';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { ThemeStyleType } from '../../../../store/reducers/theme/types';
 import { useEffect } from 'react';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import { setTheme } from '../../../../store/reducers/theme';
 
 const useThemeSwitch = () => {
-  const { setTheme } = useActions();
+  const dispatch = useAppDispatch();
   const currentTheme = useAppSelector(state => state.theme.themeStyle);
 
   const switchTheme = () => {
     const newTheme: ThemeStyleType = currentTheme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
+    dispatch(setTheme(newTheme));
     localStorage.setItem('themeStyle', newTheme);
     document.body.classList.toggle('dark');
   };

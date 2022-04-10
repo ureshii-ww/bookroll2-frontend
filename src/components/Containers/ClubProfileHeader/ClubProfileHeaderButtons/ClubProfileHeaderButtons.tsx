@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
-import { useActions } from '../../../../hooks/useActions';
 import { Link } from 'react-router-dom';
 import { RouteNames } from '../../../../routes/route-names.enum';
 import './club-profile-header-buttons.scss';

@@ -1,4 +1,5 @@
-import { ThemeAction, ThemeActionEnum, ThemeState } from './types';
+import { SetThemePayload, ThemeState } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const localStorageThemeStyle = localStorage.getItem('themeStyle');
 const themeStyle =
@@ -8,11 +9,15 @@ const initialState: ThemeState = {
   themeStyle: themeStyle,
 };
 
-export default function themeReducer(state = initialState, action: ThemeAction): ThemeState {
-  switch (action.type) {
-    case ThemeActionEnum.SET_THEME:
-      return { ...state, themeStyle: action.payload };
-    default:
-      return state;
-  }
-}
+const themeSlice = createSlice({
+  name: 'theme',
+  initialState,
+  reducers: {
+    setTheme(state, action: PayloadAction<SetThemePayload>) {
+      state.themeStyle = action.payload;
+    },
+  },
+});
+
+export const { setTheme } = themeSlice.actions;
+export default themeSlice.reducer;

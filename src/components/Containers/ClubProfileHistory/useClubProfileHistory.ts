@@ -1,8 +1,5 @@
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import { useEffect, useState } from 'react';
-import useRequest from '../../../hooks/useRequest';
-import ClubService from '../../../services/club.service';
-import { BookData } from '../../../models/book-data';
+import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { loadClubProfileHistory } from '../../../store/reducers/club-profile/history';

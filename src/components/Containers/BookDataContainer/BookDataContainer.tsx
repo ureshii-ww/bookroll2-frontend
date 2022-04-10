@@ -9,9 +9,9 @@ interface BookDataContainerProps {
 }
 
 const BookDataContainer: FC<BookDataContainerProps> = ({ bookId }) => {
-  const bookData = useBookDataContainer(bookId);
+  const { bookData, isLoading } = useBookDataContainer(bookId);
 
-  return bookData ? (
+  return !isLoading && bookData ? (
     <BookDataView book={bookData} />
   ) : (
     <div className="book-data-container__loader">

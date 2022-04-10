@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import TransparentButton from '../../../UI/TransparentButton/TransparentButton';
-import { useActions } from '../../../../hooks/useActions';
 import { ReactComponent as LogoutSvg } from '../../../../assets/svg/navbar-logout.svg';
 import useAppDispatch from '../../../../hooks/useAppDispatch';
 import { logout } from '../../../../store/reducers/auth';

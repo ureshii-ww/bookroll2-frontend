@@ -1,4 +1,4 @@
-import { watchJoinClub, watchLeaveClub, watchLogin, watchLogout } from './watchers';
+import { watchCreateClub, watchJoinClub, watchLeaveClub, watchLogin, watchLogout } from './watchers';
 import { fork } from 'redux-saga/effects';
 
 export function* authSaga() {
@@ -6,4 +6,5 @@ export function* authSaga() {
   yield fork(watchLogout);
   yield fork(watchJoinClub);
   yield fork(watchLeaveClub);
+  yield fork(watchCreateClub);
 }

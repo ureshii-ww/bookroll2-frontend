@@ -1,16 +1,12 @@
-import AuthServices from '../../../services/auth.service';
-import { RouteNames } from '../../../routes/route-names.enum';
-import { useNavigate } from 'react-router-dom';
-import FetchRegisterArgs from './types/fetch-register-args';
-import useRequest from '../../../hooks/useRequest';
+import { useDispatch } from 'react-redux';
+import { register } from '../../../store/reducers/auth';
 
 const useRegisterForm = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const fetchRegister = useRequest<FetchRegisterArgs>('Post', async ({ username, email, password }) => {
-    await AuthServices.register(username, email, password);
-    navigate(RouteNames.LOGIN);
-  });
+  const fetchRegister = (username: string, email: string, password: string) => {
+    dispatch(register({ username, email, password }));
+  };
 
   return fetchRegister;
 };

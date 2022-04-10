@@ -5,7 +5,6 @@ import './club-books-card.scss';
 import BookDataContainer from '../../Containers/BookDataContainer/BookDataContainer';
 import ClubBooksCardFooter from './ClubBooksCardFooter/ClubBooksCardFooter';
 import ClubBooksCardHeader from './ClubBooksCardHeader/ClubBooksCardHeader';
-import { useActions } from '../../../hooks/useActions';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { openModal } from '../../../store/reducers/modal';
 

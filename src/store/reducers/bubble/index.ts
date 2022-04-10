@@ -1,4 +1,5 @@
-import { BubbleAction, BubbleActionEnum, BubbleState } from './types';
+import { BubbleState, ShowBubblePayload } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: BubbleState = {
   isShow: false,
@@ -6,13 +7,22 @@ const initialState: BubbleState = {
   wrapperClass: null,
 };
 
-export default function BubbleReducer(state = initialState, action: BubbleAction) {
-  switch (action.type) {
-    case BubbleActionEnum.CLOSE_BUBBLE:
-      return initialState;
-    case BubbleActionEnum.SHOW_BUBBLE:
-      return { isShow: true, reactComponent: action.payload.reactComponent, wrapperClass: action.payload.wrapperClass };
-    default:
-      return state;
+const bubbleSlice = createSlice({
+  name: 'bubble',
+  initialState,
+  reducers: {
+    showBubble(state, action: PayloadAction<ShowBubblePayload>) {
+      state.reactComponent = action.payload.reactComponent;
+      state.wrapperClass = action.payload.wrapperClass;
+      state.isShow = true;
+    },
+    closeBubble(state) {
+      state.isShow = false;
+      state.reactComponent = null;
+      state.wrapperClass = '';
+    }
   }
-}
+})
+
+export const {showBubble, closeBubble} = bubbleSlice.actions;
+export default bubbleSlice.reducer;

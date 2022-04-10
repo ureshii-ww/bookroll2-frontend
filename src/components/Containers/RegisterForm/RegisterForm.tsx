@@ -15,12 +15,7 @@ const RegisterForm: FC = props => {
     formState: { errors },
     getValues,
   } = useForm<RegisterFormInputs>();
-  const onSubmit: SubmitHandler<RegisterFormInputs> = data =>
-    fetchRegister({
-      username: data.username,
-      email: data.email,
-      password: data.password,
-    });
+  const onSubmit: SubmitHandler<RegisterFormInputs> = data => fetchRegister(data.username, data.email, data.password);
 
   return (
     <form className="register-form" onSubmit={handleSubmit(onSubmit)}>

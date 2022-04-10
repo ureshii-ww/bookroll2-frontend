@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
-import useRequest from '../../../hooks/useRequest';
-import ClubService from '../../../services/club.service';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { loadClubProfileRules } from '../../../store/reducers/club-profile/rules';

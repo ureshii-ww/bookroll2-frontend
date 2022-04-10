@@ -1,15 +1,42 @@
 import { call, put } from 'redux-saga/effects';
 import axios from 'axios';
 import { addSystemNotification } from '../../reducers/system-notifications';
-import { joinClub, leaveClub, login, setIsAuth, setUserData } from '../../reducers/auth';
+import {
+  createClub,
+  joinClub,
+  leaveClub,
+  login,
+  loginFailure,
+  loginSuccess,
+  register,
+  registerFailure,
+  registerSuccess,
+  setIsAuth,
+  setUserData,
+} from '../../reducers/auth';
 import AuthService from '../../../services/auth.service';
 import { setUserToken, setUserUrl } from '../../../api';
 import ClubService from '../../../services/club.service';
+import { closeModal } from '../../reducers/modal';
+
+export function* registerSaga(action: ReturnType<typeof register>) {
+  const { username, email, password } = action.payload;
+  try {
+    yield call(AuthService.register, username, email, password);
+    yield put(registerSuccess());
+  } catch (error) {
+    yield put(registerFailure());
+    if (axios.isAxiosError(error)) {
+      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+    }
+  }
+}
 
 export function* loginSaga(action: ReturnType<typeof login>) {
   const { email, password } = action.payload;
   try {
     const response: Awaited<ReturnType<typeof AuthService.login>> = yield call(AuthService.login, email, password);
+    yield put(loginSuccess());
     yield call([localStorage, localStorage.setItem], 'isAuth', JSON.stringify(true));
     yield put(setIsAuth(true));
     yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
@@ -17,6 +44,7 @@ export function* loginSaga(action: ReturnType<typeof login>) {
     yield call(setUserUrl, response.data.url);
     yield call(setUserToken, response.headers['x-access-token']);
   } catch (error) {
+    yield put(loginFailure());
     if (axios.isAxiosError(error)) {
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
     }
@@ -31,6 +59,20 @@ export function* logoutSaga() {
     yield put(setUserData(null));
     yield call(setUserUrl, '');
     yield call(setUserToken, '');
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+    }
+  }
+}
+
+export function* createClubSaga(action: ReturnType<typeof createClub>) {
+  const clubname = action.payload;
+  try {
+    const response: Awaited<ReturnType<typeof ClubService.createClub>> = yield call(ClubService.createClub, clubname);
+    yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
+    yield put(setUserData(response.data));
+    yield put(closeModal());
   } catch (error) {
     if (axios.isAxiosError(error)) {
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));

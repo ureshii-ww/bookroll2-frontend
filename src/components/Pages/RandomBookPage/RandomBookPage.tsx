@@ -5,7 +5,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { Helmet } from 'react-helmet';
 
 const RandomBookPage = () => {
-  const isLoading = useAppSelector(state => state.loadingPage.isLoadingPage);
+  const isLoading = useAppSelector(state => state.randomBook.isLoading);
 
   return (
     <Fragment>

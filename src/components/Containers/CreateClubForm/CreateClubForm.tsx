@@ -1,34 +1,21 @@
 import React, { FC } from 'react';
 import InputText from '../../UI/InputText/InputText';
-import useRequest from '../../../hooks/useRequest';
-import ClubService from '../../../services/club.service';
-import { useActions } from '../../../hooks/useActions';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CreateClubFormInput from './types/create-club-form-inputs';
-import CreateClubArgs from './types/create-club-args';
 import authDataLength from '../../../constants/auth-data-length';
 import './create-club-form.scss';
-import useAppDispatch from '../../../hooks/useAppDispatch';
-import { closeModal } from '../../../store/reducers/modal';
-import { setUserData } from '../../../store/reducers/auth';
+import { useCreateClubForm } from './useCreateClubForm';
 
 const CreateClubForm: FC = () => {
-  const dispatch = useAppDispatch();
+  const {handleCreateClub} = useCreateClubForm();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateClubFormInput>();
 
-  const createClub = useRequest<CreateClubArgs>('Page', async ({ clubname }) => {
-    const response = await ClubService.createClub(clubname);
-    localStorage.setItem('userData', JSON.stringify(response.data));
-    dispatch(setUserData(response.data));
-    dispatch(closeModal());
-  });
-
-  const onSubmit: SubmitHandler<CreateClubFormInput> = data => createClub({ clubname: data.clubname });
+  const onSubmit: SubmitHandler<CreateClubFormInput> = data => handleCreateClub(data.clubname);
 
   return (
     <div className="create-club-form">
