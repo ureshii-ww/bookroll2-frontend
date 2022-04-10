@@ -1,21 +1,21 @@
-import ClubService from '../../../services/club.service';
-import { RouteNames } from '../../../routes/route-names.enum';
-import { useActions } from '../../../hooks/useActions';
-import { useNavigate, useParams } from 'react-router-dom';
-import useRequest from '../../../hooks/useRequest';
-import { WheelWinnerInfo } from '../../../models/wheel-winner-info';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { confirmClubWheelWinner } from '../../../store/reducers/club-wheel/wheel-winner';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { closeModal } from '../../../store/reducers/modal';
 
-const useWheelHistory = (rollsHistory: WheelWinnerInfo[]) => {
-  const {clubUrl} = useParams();
-  const { addNotification } = useActions();
-  const navigate = useNavigate();
-  return useRequest('Page', async (index: number) => {
-    const response = await ClubService.confirmBook(clubUrl || '', rollsHistory[index].book.id || '');
-    if (response.data === 'Success') {
-      addNotification('Книга успешно выбрана', 'success');
-      navigate(`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}`);
+const useWheelHistory = (clubUrl: string) => {
+
+  const dispatch = useAppDispatch();
+  const rollsHistory = useAppSelector(state => state.clubWheel.history.data);
+
+  const confirmBook = (index: number) => {
+    if (clubUrl && rollsHistory) {
+      dispatch(confirmClubWheelWinner({ clubUrl, book: rollsHistory[index].book.id }));
+      dispatch(closeModal());
     }
-  });
+  };
+
+  return { confirmBook, rollsHistory };
 };
 
 export default useWheelHistory;

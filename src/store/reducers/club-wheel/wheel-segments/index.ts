@@ -53,10 +53,13 @@ const clubWheelSegmentsSlice = createSlice({
           )
       );
     },
+    resetClubWheelSegments(state) {
+      state.data = [];
+    },
   },
 });
 
-export const { createClubWheelSegments, removeClubWheelSegment, shuffleClubWheelSegments } =
+export const { createClubWheelSegments, removeClubWheelSegment, shuffleClubWheelSegments, resetClubWheelSegments } =
   clubWheelSegmentsSlice.actions;
 const clubWheelSegmentsReducer = clubWheelSegmentsSlice.reducer;
 export default clubWheelSegmentsReducer;

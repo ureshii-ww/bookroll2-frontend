@@ -2,20 +2,26 @@ import React, { FC, FormEvent, Fragment } from 'react';
 import MainButton from '../../../UI/MainButton/MainButton';
 import InputText from '../../../UI/InputText/InputText';
 import './wheel-container-controls.scss';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { WheelStages } from '../../../../store/reducers/club-wheel/wheel-stages/types';
+import { useWheelContainerControls } from './useWheelContainerControls';
 
 interface WheelContainerControlsProps {
-  readonly startRoll: () => void;
-  readonly confirmBook: (args: any) => void;
   readonly handleSetTime: (event: FormEvent<HTMLInputElement>) => void;
+  handeSetSpinsNumber: () => void;
+  recountTextSize: (segmentsNumber: number) => void;
 }
 
 const WheelContainerControls: FC<WheelContainerControlsProps> = props => {
-  const { startRoll, confirmBook, handleSetTime } = props;
-  const currentStage = useAppSelector(state => state.clubWheel.stages.currentStage);
+  const { handleSetTime, handeSetSpinsNumber, recountTextSize } = props;
+  const { currentStage, startRoll, confirmBook } = useWheelContainerControls(handeSetSpinsNumber, recountTextSize);
+
   return (
-    <div className={currentStage === WheelStages.FINISH ? 'wheel-container-controls wheel-container-controls--finish' : 'wheel-container-controls'}>
+    <div
+      className={
+        currentStage === WheelStages.FINISH
+          ? 'wheel-container-controls wheel-container-controls--finish'
+          : 'wheel-container-controls'
+      }>
       {currentStage !== WheelStages.FINISH ? (
         <Fragment>
           <div className="wheel-container-controls__input-group">

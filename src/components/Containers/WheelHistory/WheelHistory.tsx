@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
-import { WheelWinnerInfo } from '../../../models/wheel-winner-info';
 import useWheelHistory from './useWheelHistory';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
 import './wheel-history.scss';
 
-interface WheelHistoryProps {
-  rollsHistory: WheelWinnerInfo[];
+export interface WheelHistoryProps {
+  clubUrl: string;
 }
 
-const WheelHistory: FC<WheelHistoryProps> = ({ rollsHistory, ...rest }) => {
-  const confirmBook = useWheelHistory(rollsHistory);
+const WheelHistory: FC<WheelHistoryProps> = ({clubUrl}) => {
+  const { rollsHistory, confirmBook } = useWheelHistory(clubUrl);
 
   return rollsHistory.length > 0 ? (
     <div className="wheel-history">
@@ -29,9 +28,7 @@ const WheelHistory: FC<WheelHistoryProps> = ({ rollsHistory, ...rest }) => {
       ))}
     </div>
   ) : (
-    <div className="wheel-history__placeholder">
-      Вы ещё не крутили колесо
-    </div>
+    <div className="wheel-history__placeholder">Вы ещё не крутили колесо</div>
   );
 };
 

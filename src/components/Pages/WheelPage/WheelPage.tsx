@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 const WheelPage = () => {
   const { clubUrl } = useParams();
-  const { clubBooks, isLoading, displayWinner, handleSetBooksKey, booksKey } = useWheelPage();
+  const { clubBooks, isLoading, handleSetBooksKey, booksCount, booksKey } = useWheelPage();
 
   return !isLoading && clubBooks ? (
     <Fragment>
@@ -25,7 +25,8 @@ const WheelPage = () => {
             Назад
           </Link>
         </div>
-        <WheelContainer clubBooks={clubBooks} handleSetBooksKey={handleSetBooksKey} displayWinner={displayWinner} />
+        {booksCount > 2 && <WheelContainer handleSetBooksKey={handleSetBooksKey} />}
+        {booksCount <= 2 && <div>Участники выбрали мало книг</div>}
         <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
       </div>
     </Fragment>

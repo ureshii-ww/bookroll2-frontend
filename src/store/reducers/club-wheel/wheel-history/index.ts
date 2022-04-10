@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ClubWheelHistoryState = {
   data: [],
+  rollsCount: 0,
 };
 
 const clubWheelHistorySlice = createSlice({
@@ -12,9 +13,17 @@ const clubWheelHistorySlice = createSlice({
     addWinnerToClubHistory(state, action: PayloadAction<AddWinnerToClubWheelHistoryPayload>) {
       state.data.push(action.payload);
     },
+    incrementClubWheelRollsCount(state) {
+      state.rollsCount += 1;
+    },
+    resetClubWheelBooksHistory(state) {
+      state.data = [];
+      state.rollsCount = 0;
+    },
   },
 });
 
-export const { addWinnerToClubHistory } = clubWheelHistorySlice.actions;
+export const { addWinnerToClubHistory, incrementClubWheelRollsCount, resetClubWheelBooksHistory } =
+  clubWheelHistorySlice.actions;
 const clubWheelHistoryReducer = clubWheelHistorySlice.reducer;
 export default clubWheelHistoryReducer;

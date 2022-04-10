@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { ClubBooks } from '../../../models/club-books';
 import useWheelContainer from './hooks/useWheelContainer';
 import WinWheel from '../../UI/WinWheel/WinWheel';
 import WheelContainerInfo from './WheelContainerInfo/WheelContainerInfo';
@@ -7,45 +6,30 @@ import WheelContainerControls from './WheelContainerControls/WheelContainerContr
 import useWheelSettings from './hooks/useWheelSettings';
 import { WheelAnimationOptions } from '../../UI/WinWheel/models/wheel-animation-options';
 import TransparentButton from '../../UI/TransparentButton/TransparentButton';
-import { useActions } from '../../../hooks/useActions';
-import WheelHistory from '../WheelHistory/WheelHistory';
 import { ReactComponent as DetailsSvg } from '../../../assets/svg/details.svg';
 import { ReactComponent as TriangleSvg } from '../../../assets/svg/triangle.svg';
 import './wheel-container.scss';
 import useWindowDimensions from '../../../hooks/useDimensions';
-import useAppDispatch from '../../../hooks/useAppDispatch';
-import { openModal } from '../../../store/reducers/modal';
 import { WheelStages } from '../../../store/reducers/club-wheel/wheel-stages/types';
 
 export interface WheelContainerProps {
-  clubBooks: ClubBooks[];
-  displayWinner: (userIndex: number, bookIndex: number) => void;
   handleSetBooksKey: (rollsCount: number) => void;
 }
 
-const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, handleSetBooksKey, ...rest }) => {
-  const dispatch = useAppDispatch();
+const WheelContainer: FC<WheelContainerProps> = ({ handleSetBooksKey }) => {
   const { width } = useWindowDimensions();
   const { handleSetTime, handeSetSpinsNumber, recountTextSize, spinsNumber, spinTime, textSize } = useWheelSettings();
-  const { hookData, wheelWinner, currentStage } = useWheelContainer(
-    { clubBooks, handleSetBooksKey, displayWinner },
-    handeSetSpinsNumber,
-    recountTextSize
-  );
-  const { wheelSegments, wheelRollsHistory, rollCount, startRoll, confirmBook } = hookData;
-  const { winnerInfo, handleWinner } = wheelWinner;
+  const { handleWinner, currentStage, wheelSegments, rollCount, handleOpenHistory } =
+    useWheelContainer(handleSetBooksKey);
 
-  const wheelAnimationOptions: WheelAnimationOptions = currentStage !== WheelStages.START
-    ? {
-        type: 'spinToStop',
-        spins: spinsNumber,
-        duration: spinTime,
-      }
-    : { spins: 0 };
-
-  const handleOpenHistory = () => {
-    dispatch(openModal(<WheelHistory rollsHistory={wheelRollsHistory} />))
-  }
+  const wheelAnimationOptions: WheelAnimationOptions =
+    currentStage !== WheelStages.START
+      ? {
+          type: 'spinToStop',
+          spins: spinsNumber,
+          duration: spinTime,
+        }
+      : { spins: 0 };
 
   if (width < 700) {
     return <div className="wheel-container__placeholder">Ваш экран слишком мал для колеса</div>;
@@ -69,19 +53,16 @@ const WheelContainer: FC<WheelContainerProps> = ({ clubBooks, displayWinner, han
       </div>
       <div className="wheel-container__side-wrapper">
         <div className="wheel-container__side">
-          <WheelContainerInfo winnerInfo={winnerInfo} />
+          <WheelContainerInfo />
           <WheelContainerControls
-            confirmBook={confirmBook}
-            startRoll={startRoll}
             handleSetTime={handleSetTime}
+            handeSetSpinsNumber={handeSetSpinsNumber}
+            recountTextSize={recountTextSize}
           />
         </div>
-
       </div>
       <div className="wheel-container__history-button-wrapper">
-        <TransparentButton
-          className="wheel-container__history-button"
-          onClick={handleOpenHistory}>
+        <TransparentButton className="wheel-container__history-button" onClick={handleOpenHistory}>
           История
           <DetailsSvg />
         </TransparentButton>

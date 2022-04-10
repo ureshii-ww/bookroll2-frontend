@@ -14,7 +14,7 @@ const clubWheelStagesSlice = createSlice({
     },
     resetClubWheelStage(state) {
       state.currentStage = WheelStages.START;
-    }
+    },
   },
 });
 

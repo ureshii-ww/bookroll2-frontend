@@ -1,5 +1,7 @@
 import {
-  ClubWheelBookListState, DisplayClubWheelBooksWinnerPayload, LoadClubWheelBooksPayload,
+  ClubWheelBookListState,
+  DisplayClubWheelBooksWinnerPayload,
+  LoadClubWheelBooksPayload,
   LoadClubWheelBooksSuccessPayload,
 } from './types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -24,11 +26,14 @@ const clubWheelBooksListSlice = createSlice({
       state.isLoading = false;
     },
     displayClubWheelBooksWinner(state, action: PayloadAction<DisplayClubWheelBooksWinnerPayload>) {
-      const {userIndex, bookIndex} = action.payload;
+      const { userIndex, bookIndex } = action.payload;
       if (state.data) {
         state.data[userIndex].books[bookIndex].isDisabled = true;
       }
-    }
+    },
+    resetClubWheelBooksList(state) {
+      state.data = null;
+    },
   },
 });
 
@@ -37,6 +42,7 @@ export const {
   loadClubWheelBooksSuccess,
   loadClubWheelBooksFailure,
   displayClubWheelBooksWinner,
+  resetClubWheelBooksList,
 } = clubWheelBooksListSlice.actions;
 
 const clubWheelBooksListReducer = clubWheelBooksListSlice.reducer;
