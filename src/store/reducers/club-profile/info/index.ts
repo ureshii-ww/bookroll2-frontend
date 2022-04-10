@@ -20,9 +20,25 @@ const clubProfileInfoSlice = createSlice({
     loadClubProfileInfoFailure(state, action: PayloadAction) {
       state.isLoading = false;
     },
+    joinClubSuccess(state) {
+      if (state.data) {
+        state.data.isInClub = true;
+      }
+    },
+    leaveClubSuccess(state) {
+      if (state.data) {
+        state.data.isInClub = false;
+        state.data.isMaster = false;
+      }
+    },
   },
 });
 
-export const { loadClubProfileInfo, loadClubProfileInfoFailure, loadClubProfileInfoSuccess } =
-  clubProfileInfoSlice.actions;
+export const {
+  loadClubProfileInfo,
+  loadClubProfileInfoFailure,
+  loadClubProfileInfoSuccess,
+  joinClubSuccess,
+  leaveClubSuccess,
+} = clubProfileInfoSlice.actions;
 export const clubProfileInfoReducer = clubProfileInfoSlice.reducer;

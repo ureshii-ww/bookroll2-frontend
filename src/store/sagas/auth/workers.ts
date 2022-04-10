@@ -18,6 +18,7 @@ import AuthService from '../../../services/auth.service';
 import { setUserToken, setUserUrl } from '../../../api';
 import ClubService from '../../../services/club.service';
 import { closeModal } from '../../reducers/modal';
+import { joinClubSuccess, leaveClubSuccess } from '../../reducers/club-profile/info';
 
 export function* registerSaga(action: ReturnType<typeof register>) {
   const { username, email, password } = action.payload;
@@ -72,6 +73,7 @@ export function* createClubSaga(action: ReturnType<typeof createClub>) {
     const response: Awaited<ReturnType<typeof ClubService.createClub>> = yield call(ClubService.createClub, clubname);
     yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
     yield put(setUserData(response.data));
+    yield put(joinClubSuccess());
     yield put(closeModal());
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -86,6 +88,7 @@ export function* joinClubSaga(action: ReturnType<typeof joinClub>) {
     const response: Awaited<ReturnType<typeof ClubService.joinClub>> = yield call(ClubService.joinClub, clubUrl);
     yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
     yield put(setUserData(response.data));
+    yield put(joinClubSuccess());
   } catch (error) {
     if (axios.isAxiosError(error)) {
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
@@ -99,6 +102,7 @@ export function* leaveClubSaga(action: ReturnType<typeof leaveClub>) {
     const response: Awaited<ReturnType<typeof ClubService.leaveClub>> = yield call(ClubService.leaveClub, clubUrl);
     yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
     yield put(setUserData(response.data));
+    yield put(leaveClubSuccess());
   } catch (error) {
     if (axios.isAxiosError(error)) {
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
