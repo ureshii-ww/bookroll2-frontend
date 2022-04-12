@@ -64,7 +64,10 @@
 @media (max-width: variables-size.$device-width-medium) {
   .navbar-link {
     &__title {
-      display: none;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+      overflow: hidden;
     }
   }
 }

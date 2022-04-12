@@ -12,31 +12,32 @@ const Navbar: FC = () => {
   const { userData } = useAppSelector(state => state.auth);
 
   return (
-    <nav className="navbar">
-      <div className="navbar__logo navbar__logo--big">
+    <nav className='navbar navbar--desktop'>
+      <div className='navbar__logo navbar__logo--big'>
         Книжный Клуб.
       </div>
-      <div className="navbar__logo navbar__logo--small">
+      <div className='navbar__logo navbar__logo--small'>
         КК.
       </div>
-      <div className="navbar__menu">
-        <div className="navbar__theme-switch-wrapper">
+      <div className='navbar__menu'>
+        <div className='navbar__theme-switch-wrapper'>
           <ThemeSwitch />
         </div>
-        <div className="navbar__links">
+        <div className='navbar__links'>
           {userData?.club ? (
             <Fragment>
-              <NavbarLinkMaker title="Мой клуб" icon={<ClubSvg/>} path={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`}/>
-              <NavbarLinkMaker title="Случайная книга" icon={<BookSvg />} path={RouteNames.RANDOM_BOOK} />
+              <NavbarLinkMaker title='Мой клуб' icon={<ClubSvg />}
+                               path={`${RouteNames.CLUB_PROFILE_BASE}${userData?.club}`} />
+              <NavbarLinkMaker title='Случайная книга' icon={<BookSvg />} path={RouteNames.RANDOM_BOOK} />
             </Fragment>
           ) : (
             <Fragment>
-              <NavbarLinkMaker title="Мой клуб" icon={<ClubSvg/>} disabled />
-              <NavbarLinkMaker title="Искать книгу" icon={<BookSvg />} disabled />
+              <NavbarLinkMaker title='Мой клуб' icon={<ClubSvg />} disabled />
+              <NavbarLinkMaker title='Искать книгу' icon={<BookSvg />} disabled />
             </Fragment>
           )}
         </div>
-        <div className="navbar__profile-wrapper">
+        <div className='navbar__profile-wrapper'>
           <NavbarProfileButton
             userEmoji={userData?.emoji || ''}
             userColor={userData?.color || ''}

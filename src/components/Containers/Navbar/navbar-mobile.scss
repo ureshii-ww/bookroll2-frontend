@@ -1,0 +1,47 @@
+@use 'src/styles/variables/variables-size';
+@use 'src/styles/variables/variables-color';
+
+.navbar {
+  &--mobile {
+    display: none;
+    order: 2;
+    bottom: 0;
+    height: variables-size.$mobile-navbar-height;
+
+    .navbar-link {
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+
+      &__icon {
+        margin-right: 0;
+        width: variables-size.$rem-40;
+        height: variables-size.$rem-40;
+
+        svg {
+          width: variables-size.$rem-30;
+          height: variables-size.$rem-30;
+        }
+      }
+    }
+
+    .avatar--navbar {
+      .avatar__background {
+        width: variables-size.$rem-40;
+        height: variables-size.$rem-40;
+      }
+
+      .avatar__emoji {
+        font-size: variables-size.$rem-24;
+      }
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .navbar {
+    &--mobile {
+      display: flex;
+    }
+  }
+}

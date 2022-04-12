@@ -17,9 +17,9 @@ const NavbarBubble: FC<NavbarBubbleProps> = ({ userUrl }) => {
         <ProfileSvg />
         <span>Мой профиль</span>
       </Link>
-      {/*<div className="bubble__item">*/}
-      {/*  <ThemeSwitch>Сменить тему</ThemeSwitch>*/}
-      {/*</div>*/}
+      <div className="bubble__item navbar-bubble__theme-switch">
+        <ThemeSwitch>Сменить тему</ThemeSwitch>
+      </div>
       <div className="bubble__item">
         <LogoutButton>Выйти</LogoutButton>
       </div>

@@ -21,6 +21,7 @@ import ClubProfileRules from '../Containers/ClubProfileRules/ClubProfileRules';
 import ClubProfileReviews from '../Containers/ClubProfileReviews/ClubProfileReviews';
 import Bubble from '../Containers/Bubble/Bubble';
 import Footer from '../Containers/Footer/Footer';
+import NavbarMobile from '../Containers/Navbar/NavbarMobile';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -54,6 +55,7 @@ const AppRouter: FC = () => {
               </Routes>
             </div>
           </main>
+          <NavbarMobile />
           <Footer />
         </div>
       ) : (
