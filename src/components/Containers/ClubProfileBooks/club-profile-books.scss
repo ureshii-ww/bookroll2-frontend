@@ -1,5 +1,8 @@
 @use 'src/styles/placeholders/page-placeholders';
+@use 'src/styles/placeholders/profile-content-placeholder';
 
 .club-profile-books {
-
+  &__placeholder {
+    @extend %profile-content-placeholder;
+  }
 }

@@ -9,11 +9,11 @@
     margin-top: variables-size.$rem-10;
   }
 
-  &__book {
+  &__book, , &__placeholder {
     margin-top: variables-size.$rem-10;
   }
 
-  &__name {
+  &__name, &__placeholder {
     font-size: variables-size.$font-size-x-x-l;
     font-weight: variables-size.$font-weight-x-x-l;
     color: var(--bold-text-color);

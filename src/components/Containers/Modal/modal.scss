@@ -14,15 +14,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: variables-size.$page-padding-top 0;
+  padding: variables-size.$page-padding 0;
 }
 
 .modal-container {
   background-color: var(--page-background-color);
   border-radius: variables-size.$page-layout-radius;
   position: relative;
-  max-width: clamp(320px, 80%, 900px);
-  padding: variables-size.$page-padding-top;
+  max-width: min(85%, 900px);
+  padding: variables-size.$page-padding;
   margin: auto;
 
   &__close {
@@ -34,8 +34,24 @@
     z-index: z-indexes.$z-index-modal-close;
 
     svg {
-      width: variables-size.$font-size-l;
-      height: variables-size.$font-size-l;
+      width: variables-size.$rem-22;
+      height: variables-size.$rem-22;
     }
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .modal-bg {
+    padding: 0;
+    display: block;
+  }
+
+  .modal-container {
+    min-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+

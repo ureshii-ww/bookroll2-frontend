@@ -11,24 +11,17 @@
     color: var(--bold-text-color);
     margin: 0;
   }
-
 }
 
-@media (max-width: variables-size.$device-width-large) {
+@media (max-width: variables-size.$device-width-medium) {
   .profile-title__text {
     font-size: variables-size.$font-size-page-title-s;
   }
 }
 
-@media (max-width: variables-size.$device-width-medium) {
-  .profile-title__text {
-    font-size: variables-size.$font-size-x-x-l;
-  }
-}
-
 @media (max-width: variables-size.$device-width-small) {
   .profile-title__text {
-    font-size: variables-size.$font-size-l;
+    font-size: variables-size.$font-size-x-x-l;
     font-weight: variables-size.$font-weight-l;
   }
 }

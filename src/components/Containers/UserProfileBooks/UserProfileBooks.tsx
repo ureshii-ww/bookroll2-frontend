@@ -23,9 +23,8 @@ const UserProfileBooks: FC = () => {
           ))}
         </Fragment>
       )}
-      {!isLoading && wholeArrayLength === 0 && <div>Книги не выбраны</div>}
+      {!isLoading && wholeArrayLength === 0 && <div className="user-profile-books__placeholder">Книги не выбраны</div>}
       {!isOut && !isLoading && <div ref={triggerRef} />}
-      {isLoading && <div>Loader...</div>}
     </div>
   );
 };

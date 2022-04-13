@@ -1,6 +1,4 @@
 import React, { FC } from 'react';
-import { RouteNames } from '../../../../routes/route-names.enum';
-import { ReactComponent as BookSvg } from '../../../../assets/svg/navbar-book.svg';
 import NavbarLink from '../NavbarLink/NavbarLink';
 
 interface NavbarLinkMakerProps {

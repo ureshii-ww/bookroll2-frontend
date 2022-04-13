@@ -1,7 +1,12 @@
 @use 'src/styles/placeholders/page-loading';
+@use 'src/styles/placeholders/profile-content-placeholder';
 
 .user-profile-books {
   &--loading {
     @extend %page-loading;
+  }
+
+  &__placeholder {
+    @extend %profile-content-placeholder;
   }
 }

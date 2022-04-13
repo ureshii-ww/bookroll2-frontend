@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import Notification from '../../UI/Notification/Notification';
-import './notification-container.scss';
+import Notification from '../../UI/SystemNotification/Notification';
+import './system-notification-container.scss';
 
-const NotificationsContainer: FC = () => {
-  const notifications = useAppSelector(state => state.notifications.notifications);
+const SystemNotificationsContainer: FC = () => {
+  const notifications = useAppSelector(state => state.systemNotifications.notifications);
 
   return (
     <div className="notification-container">
@@ -19,4 +19,4 @@ const NotificationsContainer: FC = () => {
   );
 };
 
-export default NotificationsContainer;
+export default SystemNotificationsContainer;

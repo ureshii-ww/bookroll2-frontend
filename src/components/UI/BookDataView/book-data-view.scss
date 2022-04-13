@@ -8,7 +8,7 @@
     @extend %main-gradient;
     border-radius: variables-size.$card-radius;
     overflow: hidden;
-    margin-bottom: variables-size.$page-padding-top;
+    margin-bottom: variables-size.$page-padding;
   }
 
   &__title-container {
@@ -23,7 +23,7 @@
   }
 
   &__info {
-    margin-bottom: variables-size.$page-padding-top;
+    margin-bottom: variables-size.$page-padding;
   }
 
   &__info-line {
@@ -48,11 +48,11 @@
   }
 
   &__description {
-    font-size: variables-size.$font-size-m-s;
+    font-size: variables-size.$font-size-m;
   }
 }
 
-@media (max-width: variables-size.$device-width-large) {
+@media (max-width: variables-size.$device-width-medium) {
   .book-data-view {
     &__title {
       font-size: variables-size.$font-size-page-title-s;
@@ -60,18 +60,6 @@
 
     &__info-line {
       flex-direction: column;
-    }
-  }
-}
-
-@media (max-width: variables-size.$device-width-medium) {
-  .book-data-view {
-    &__title {
-      font-size: variables-size.$font-size-x-x-l;
-    }
-
-    &__info-line {
-      font-size: variables-size.$font-size-m-s;
     }
   }
 }
@@ -95,15 +83,6 @@
 
     &__title {
       font-size: variables-size.$font-size-x-l;
-    }
-
-    &__info-line {
-      flex-direction: column;
-      font-size: variables-size.$font-size-s;
-    }
-
-    &__description, &__description-container {
-      font-size: variables-size.$font-size-s;
     }
   }
 }

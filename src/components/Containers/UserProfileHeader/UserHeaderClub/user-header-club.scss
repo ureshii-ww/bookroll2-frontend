@@ -2,6 +2,7 @@
 
 .user-header-club {
   display: flex;
+  margin-bottom: variables-size.$rem-12;
 
   &__container {
     display: flex;
@@ -11,10 +12,9 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-large) {
+@media (max-width: variables-size.$device-width-medium) {
   .user-header-club {
     flex-direction: column;
-    margin-bottom: variables-size.$rem-12;
   }
 }
 

@@ -125,8 +125,8 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
 
     svg {
       fill: currentColor;
-      width: variables-size.$font-size-m-s;
-      height: variables-size.$font-size-m-s;
+      width: variables-size.$font-size-m;
+      height: variables-size.$font-size-m;
     }
   }
 
@@ -154,16 +154,10 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
   }
 }
 
-@media (max-width: variables-size.$device-width-medium) {
-  .club-books-card {
-    &__username {
-      font-size: variables-size.$font-size-m;
-    }
-  }
-
+@media (max-width: variables-size.$device-width-small) {
   .club-books-card-book {
     flex-direction: column;
-    font-size: variables-size.$font-size-s;
+    font-size: variables-size.$font-size-m-s;
     align-items: flex-start;
 
     &__left-container {
@@ -176,14 +170,6 @@ $club-books-card-head-padding: variables-size.$card-padding-side variables-size.
 
     &__right-container {
       width: 100%;
-    }
-  }
-}
-
-@media (max-width: variables-size.$device-width-small) {
-  .club-books-card {
-    &__username {
-      font-size: variables-size.$font-size-m-s;
     }
   }
 }

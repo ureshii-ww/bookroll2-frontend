@@ -3,6 +3,8 @@
 @use 'src/styles/placeholders/page-content';
 
 .club-profile-page {
+  @extend %page-layout;
+
   &__content {
     @extend %page-padding;
     @extend %page-content;

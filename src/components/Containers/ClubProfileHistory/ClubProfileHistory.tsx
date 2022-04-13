@@ -19,7 +19,9 @@ const ClubProfileHistory: FC<ClubProfileHistoryProps> = () => {
             bookData={{ meetingNumber: index + 1, ...book }}
           />
         ))}
-      {!isLoading && chosenBooksHistory.length === 0 && <div>Собраний ещё не было</div>}
+      {!isLoading && chosenBooksHistory.length === 0 && (
+        <div className="club-profile-history__placeholder">Собраний ещё не было</div>
+      )}
     </div>
   );
 };

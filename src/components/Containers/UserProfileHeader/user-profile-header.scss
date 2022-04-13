@@ -8,7 +8,7 @@
       'club';
   grid-template-columns: auto;
   grid-template-rows: auto auto auto;
-  padding: variables-size.$page-padding-top variables-size.$page-padding-side 0 variables-size.$page-padding-side;
+  padding: variables-size.$page-padding variables-size.$page-padding 0 variables-size.$page-padding;
 
   &__title-container {
     display: flex;
@@ -21,16 +21,6 @@
     justify-content: center;
     align-items: center;
     margin-right: 20px;
-  }
-}
-
-@media (max-width: variables-size.$device-width-large) {
-  .user-profile-header {
-    padding: variables-size.$page-padding-top variables-size.$page-padding-top 0 variables-size.$page-padding-top;
-
-    &__title-container {
-      margin-bottom: variables-size.$rem-12;
-    }
   }
 }
 

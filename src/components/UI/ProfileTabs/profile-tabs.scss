@@ -8,7 +8,7 @@
     display: flex;
     overflow-x: auto;
     width: 100%;
-    padding-left: variables-size.$page-padding-side;
+    padding-left: variables-size.$page-padding;
   }
 
   &:after {
@@ -86,13 +86,5 @@
   100% {
     width: 100%;
     opacity: 0;
-  }
-}
-
-@media (max-width: variables-size.$device-width-large) {
-  .profile-tabs {
-    &__wrapper {
-      padding-left: variables-size.$page-padding-top;
-    }
   }
 }

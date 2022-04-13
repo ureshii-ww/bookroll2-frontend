@@ -43,7 +43,7 @@ $book-card-authors-padding: variables-size.$rem-5;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: variables-size.$font-size-m-s;
+    font-size: variables-size.$font-size-m;
   }
 
   &__delete {
@@ -85,12 +85,10 @@ $book-card-authors-padding: variables-size.$rem-5;
 
     &__title {
       padding: 0;
-      font-size: variables-size.$font-size-l;
       margin-bottom: $book-card-authors-padding;
     }
 
     &__authors {
-      font-size: variables-size.$font-size-m-s;
       padding: 0;
     }
 
@@ -107,15 +105,15 @@ $book-card-authors-padding: variables-size.$rem-5;
 @media (max-width: variables-size.$device-width-small) {
   .book-card {
     &__title {
-      font-size: variables-size.$font-size-m;
+      font-size: variables-size.$font-size-l;
     }
 
     &__authors {
-      font-size: variables-size.$font-size-m-s;
+      font-size: variables-size.$font-size-m;
     }
 
     &__meeting-number {
-      font-size: variables-size.$font-size-s;
+      font-size: variables-size.$font-size-m-s;
     }
   }
 }

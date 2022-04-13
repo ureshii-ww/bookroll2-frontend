@@ -1,11 +1,15 @@
 @use 'src/styles/variables/variables-size';
 
-%page-padding {
-  padding: variables-size.$page-padding-top variables-size.$page-padding-side;
+%page-layout {
+  min-height: 960px;
 }
 
-@media (max-width: variables-size.$device-width-large) {
-  %page-padding {
-    padding: variables-size.$page-padding-top;
+%page-padding {
+  padding: variables-size.$page-padding;
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  %page-layout {
+    min-height: 100vh;
   }
 }

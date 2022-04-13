@@ -26,12 +26,12 @@ const WheelPage = () => {
           </Link>
         </div>
         {booksCount > 2 && <WheelContainer handleSetBooksKey={handleSetBooksKey} />}
-        {booksCount <= 2 && <div>Участники выбрали мало книг</div>}
+        {booksCount <= 2 && <div className="wheel-page__placeholder">Участники выбрали слишком мало книг</div>}
         <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
       </div>
     </Fragment>
   ) : (
-    <div className="wheel-page__loader">
+    <div className="wheel-page wheel-page__loader">
       <PageLoader />
     </div>
   );

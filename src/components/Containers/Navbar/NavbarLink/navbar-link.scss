@@ -59,6 +59,23 @@
       background-color: var(--navbar-link-accent);
     }
   }
+
+  &--disabled {
+    .navbar-link__title {
+      color: variables-color.$navbar-link-hover;
+    }
+
+    .navbar-link__icon{
+      background-color: variables-color.$navbar-link-hover;
+    }
+
+    &:hover {
+      .navbar-link__icon {
+        background-color: variables-color.$navbar-link-hover;
+        color: var(--navbar-link-accent);
+      }
+    }
+  }
 }
 
 @media (max-width: variables-size.$device-width-medium) {

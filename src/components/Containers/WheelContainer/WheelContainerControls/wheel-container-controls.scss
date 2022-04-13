@@ -8,8 +8,6 @@
   align-items: center;
 
   &__input-group {
-    //@extend %form-input-group;
-    //margin-bottom: 20px;
     display: flex;
     align-items: center;
   }
@@ -21,7 +19,7 @@
   }
 
   &__input {
-    width: variables-size.$rem-37;
+    width: variables-size.$rem-42;
     text-align: right;
   }
 

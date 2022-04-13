@@ -1,7 +1,7 @@
 import React, { FC, Fragment, useEffect } from 'react';
 import AppRouter from './components/AppRouter/AppRouter';
 import './index.scss';
-import NotificationsContainer from './components/Containers/NotificationsContainer/NotificationsContainer';
+import SystemNotificationsContainer from './components/Containers/SystemNotificationsContainer/SystemNotificationsContainer';
 import Modal from './components/Containers/Modal/Modal';
 
 const App: FC = () => {
@@ -17,7 +17,7 @@ const App: FC = () => {
   return (
     <Fragment>
       <AppRouter />
-      <NotificationsContainer />
+      <SystemNotificationsContainer />
       <Modal />
     </Fragment>
   );

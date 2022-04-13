@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   color: var(--dim-text-color);
+
   &:hover {
     color: var(--dim-text-color);
   }
@@ -30,7 +31,6 @@
 @media (max-width: variables-size.$device-width-medium) {
   %profile-header-section-title {
     font-size: variables-size.$font-size-m;
-    margin-top: variables-size.$rem-16;
   }
 }
 
@@ -50,8 +50,8 @@
     }
 
     svg {
-      width: variables-size.$font-size-l;
-      height: variables-size.$font-size-l;
+      width: variables-size.$rem-24;
+      height: variables-size.$rem-24;
       margin-right: 0;
     }
   }

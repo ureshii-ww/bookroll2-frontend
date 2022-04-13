@@ -28,23 +28,3 @@
     }
   }
 }
-
-@media (max-width: variables-size.$device-width-large) {
-  .member-card {
-    padding: variables-size.$rem-16;
-
-    &__name {
-      font-size: variables-size.$font-size-l;
-    }
-  }
-}
-
-@media (max-width: variables-size.$device-width-small) {
-  .member-card {
-    padding: variables-size.$rem-16;
-
-    &__name {
-      font-size: variables-size.$font-size-m;
-    }
-  }
-}

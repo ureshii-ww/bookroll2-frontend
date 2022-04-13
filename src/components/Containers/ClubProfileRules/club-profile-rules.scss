@@ -1,8 +1,13 @@
 @use 'src/styles/variables/variables-size';
+@use 'src/styles/placeholders/profile-content-placeholder';
 
 .club-profile-rules {
   &__text {
     white-space: pre-wrap;
     font-size: variables-size.$font-size-m;
+  }
+
+  &__placeholder {
+    @extend %profile-content-placeholder;
   }
 }

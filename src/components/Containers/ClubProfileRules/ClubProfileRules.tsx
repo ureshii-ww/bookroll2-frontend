@@ -8,7 +8,7 @@ const ClubProfileRules = () => {
   return (
     <div className="club-profile-rules">
       {!isLoading && clubRules && <p className="club-profile-rules__text">{clubRules}</p>}
-      {!isLoading && !clubRules && <div>Пусто</div>}
+      {!isLoading && !clubRules && <div className="club-profile-rules__placeholder">Пусто</div>}
     </div>
   );
 };

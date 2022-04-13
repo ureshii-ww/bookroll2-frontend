@@ -2,7 +2,7 @@
 @use 'src/styles/variables/variables-size';
 
 .club-settings-page {
-  padding: variables-size.$page-padding-top;
+  padding: variables-size.$page-padding;
 
   &__title {
     @extend %setting-page-title;

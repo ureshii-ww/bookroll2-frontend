@@ -6,14 +6,9 @@
   justify-content: flex-end;
   align-items: flex-start;
   grid-area: buttons;
+  margin-bottom: variables-size.$rem-12;
 }
 
 .club-profile-header__button {
   @extend %profile-header-button;
-}
-
-@media (max-width: variables-size.$device-width-large) {
-  .club-profile-header__buttons {
-    margin-bottom: variables-size.$rem-20;
-  }
 }

@@ -44,14 +44,8 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-medium) {
-  .tab-button {
-    font-size: variables-size.$font-size-m-s;
-  }
-}
-
 @media (max-width: variables-size.$device-width-small) {
   .tab-button {
-    font-size: variables-size.$font-size-s;
+    font-size: variables-size.$font-size-m-s;
   }
 }

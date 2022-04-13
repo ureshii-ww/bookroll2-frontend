@@ -7,7 +7,7 @@
   margin-bottom: variables-size.$rem-10;
   padding: variables-size.$rem-10;
   color: var(--main-text-color);
-  font-size: variables-size.$font-size-m;
+  font-size: variables-size.$font-size-l;
   font-weight: variables-size.$font-weight-x-s;
 
   &--active {
@@ -30,12 +30,12 @@
   }
 }
 
-@media (max-width: variables-size.$device-width-medium) {
+@media (max-width: variables-size.$device-width-small) {
   .settings-tab-button {
     margin-bottom: 0;
     padding: 0;
     margin-right: variables-size.$rem-10;
-    font-size: variables-size.$font-size-s;
+    font-size: variables-size.$font-size-m;
 
     span {
       display: flex;

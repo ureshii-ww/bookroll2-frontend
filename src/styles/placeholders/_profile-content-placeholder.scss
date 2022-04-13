@@ -1,0 +1,8 @@
+@use 'src/styles/variables/variables-size';
+
+%profile-content-placeholder {
+  font-size: variables-size.$font-size-l;
+  padding: 40% 0;
+  display: flex;
+  justify-content: center;
+}

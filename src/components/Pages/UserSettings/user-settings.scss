@@ -5,7 +5,7 @@ $container-padding: 1.25rem;
 $tabs-padding: 2.5rem;
 
 .user-settings {
-  padding: variables-size.$page-padding-top;
+  padding: variables-size.$page-padding;
 
   &__content {
     display: grid;
@@ -31,7 +31,7 @@ $tabs-padding: 2.5rem;
   }
 }
 
-@media (max-width: variables-size.$device-width-medium) {
+@media (max-width: variables-size.$device-width-small) {
   .user-settings {
     padding: 0;
 
