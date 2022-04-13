@@ -5,7 +5,6 @@ import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 export type ClubWheelWinnerState = {
   data: WheelWinnerInfo | null;
   isConfirming: boolean;
-  isConfirmed: boolean;
 }
 
 export type MakeClubWheelWinnerPayload = {

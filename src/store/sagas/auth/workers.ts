@@ -19,6 +19,9 @@ import { setUserToken, setUserUrl } from '../../../api';
 import ClubService from '../../../services/club.service';
 import { closeModal } from '../../reducers/modal';
 import { joinClubSuccess, leaveClubSuccess } from '../../reducers/club-profile/info';
+import { setTheme } from '../../reducers/theme';
+import { push } from 'redux-first-history';
+import { RouteNames } from '../../../routes/route-names.enum';
 
 export function* registerSaga(action: ReturnType<typeof register>) {
   const { username, email, password } = action.payload;
@@ -38,12 +41,13 @@ export function* loginSaga(action: ReturnType<typeof login>) {
   try {
     const response: Awaited<ReturnType<typeof AuthService.login>> = yield call(AuthService.login, email, password);
     yield put(loginSuccess());
-    yield call([localStorage, localStorage.setItem], 'isAuth', JSON.stringify(true));
-    yield put(setIsAuth(true));
     yield call([localStorage, localStorage.setItem], 'userData', JSON.stringify(response.data));
     yield put(setUserData(response.data));
     yield call(setUserUrl, response.data.url);
     yield call(setUserToken, response.headers['x-access-token']);
+    yield call([localStorage, localStorage.setItem], 'isAuth', JSON.stringify(true));
+    yield put(setIsAuth(true));
+    yield put(push(`${RouteNames.USER_PROFILE_BASE}${response.data.url}`))
   } catch (error) {
     yield put(loginFailure());
     if (axios.isAxiosError(error)) {
@@ -58,6 +62,7 @@ export function* logoutSaga() {
     yield call([localStorage, localStorage.clear]);
     yield put(setIsAuth(false));
     yield put(setUserData(null));
+    yield put(setTheme('light'));
     yield call(setUserUrl, '');
     yield call(setUserToken, '');
   } catch (error) {

@@ -12,6 +12,8 @@ import { addSystemNotification } from '../../../reducers/system-notifications';
 import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import { addWinnerToClubHistory } from '../../../reducers/club-wheel/wheel-history';
 import { displayClubWheelBooksWinner } from '../../../reducers/club-wheel/books-list';
+import { push } from 'redux-first-history';
+import { RouteNames } from '../../../../routes/route-names.enum';
 
 export function* makeClubWheelWinnerSaga(action: ReturnType<typeof makeClubWheelWinner>) {
   const { winnerSegment, clubBooks } = action.payload;
@@ -39,6 +41,7 @@ export function* confirmClubWheelWinnerSaga(action: ReturnType<typeof confirmClu
   try {
     yield call(ClubService.confirmBook, clubUrl, book);
     yield put(confirmClubWheelWinnerSuccess());
+    yield put(push(`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}`));
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
       yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));

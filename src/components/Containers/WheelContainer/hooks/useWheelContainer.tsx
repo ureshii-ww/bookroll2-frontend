@@ -5,11 +5,10 @@ import { setClubWheelStage } from '../../../../store/reducers/club-wheel/wheel-s
 import { WheelStages } from '../../../../store/reducers/club-wheel/wheel-stages/types';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { createClubWheelSegments, removeClubWheelSegment } from '../../../../store/reducers/club-wheel/wheel-segments';
-import { makeClubWheelWinner, resetClubWheelIsConfirmed } from '../../../../store/reducers/club-wheel/wheel-winner';
+import { makeClubWheelWinner } from '../../../../store/reducers/club-wheel/wheel-winner';
 import { openModal } from '../../../../store/reducers/modal';
 import WheelHistory from '../../WheelHistory/WheelHistory';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RouteNames } from '../../../../routes/route-names.enum';
 
 const useWheelContainer = (handleSetBooksKey: (rollsCount: number) => void) => {
   const { clubUrl } = useParams();
@@ -19,7 +18,6 @@ const useWheelContainer = (handleSetBooksKey: (rollsCount: number) => void) => {
   const clubBooks = useAppSelector(state => state.clubWheel.booksList.data);
   const wheelSegments = useAppSelector(state => state.clubWheel.segments.data);
   const rollCount = useAppSelector(state => state.clubWheel.history.rollsCount);
-  const isConfirmed = useAppSelector(state => state.clubWheel.winner.isConfirmed);
 
   const handleOpenHistory = () => {
     dispatch(openModal(<WheelHistory clubUrl={clubUrl || ''}/>));
@@ -41,13 +39,6 @@ const useWheelContainer = (handleSetBooksKey: (rollsCount: number) => void) => {
   useEffect(() => {
     handleSetBooksKey(rollCount);
   }, [rollCount]);
-
-  useEffect(() => {
-    if (isConfirmed) {
-      navigate(`${RouteNames.CLUB_PROFILE_BASE}${clubUrl}`);
-      dispatch(resetClubWheelIsConfirmed());
-    }
-  }, [isConfirmed, clubUrl]);
 
   useEffect(() => {
     if (clubBooks) {
