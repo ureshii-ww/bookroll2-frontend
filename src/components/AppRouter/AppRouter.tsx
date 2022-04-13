@@ -52,6 +52,7 @@ const AppRouter: FC = () => {
                 </Route>
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
+                <Route path="/" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </div>
