@@ -42,6 +42,7 @@ const AppRouter: FC = () => {
                 <Route path={RouteNames.USER_PROFILE} element={<UserProfilePage key={cutPath} />}>
                   <Route path={RouteNames.USER_PROFILE_BOOKS} element={<UserProfileBooks />} />
                   <Route path={RouteNames.USER_PROFILE_REVIEWS} element={<UserProfileReviews />} />
+                  <Route path="*" element={<Navigate to={RouteNames.USER_PROFILE_BOOKS} />} />
                 </Route>
                 <Route path={RouteNames.CLUB_PROFILE} element={<ClubProfilePage key={cutPath} />}>
                   <Route path={RouteNames.CLUB_PROFILE_BOOKS} element={<ClubProfileBooks />} />
@@ -49,6 +50,7 @@ const AppRouter: FC = () => {
                   <Route path={RouteNames.CLUB_PROFILE_MEMBERS} element={<ClubProfileMembers />} />
                   <Route path={RouteNames.CLUB_PROFILE_RULES} element={<ClubProfileRules />} />
                   <Route path={RouteNames.CLUB_PROFILE_REVIEWS} element={<ClubProfileReviews />} />
+                  <Route path="*" element={<Navigate to={RouteNames.CLUB_PROFILE_BOOKS} />} />
                 </Route>
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />

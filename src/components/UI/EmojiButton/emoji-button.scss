@@ -64,3 +64,13 @@
     }
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .picker-container {
+    top: -300px;
+  }
+
+  .emoji-mart-scroll {
+    padding: 0 10px 0 0;
+  }
+}

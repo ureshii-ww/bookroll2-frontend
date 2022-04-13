@@ -33,3 +33,9 @@
 
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .create-club-form {
+    width: 100%;
+  }
+}
