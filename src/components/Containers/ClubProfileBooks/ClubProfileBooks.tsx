@@ -2,6 +2,7 @@ import React, { FC, Fragment } from 'react';
 import ClubBooksCard from '../../UI/ClubBooksCard/ClubBooksCard';
 import './club-profile-books.scss';
 import useClubProfileBooks from './useClubProfileBooks';
+import { ReactComponent as CryingFace } from '../../../assets/svg/loudly-crying-face.svg';
 
 const ClubProfileBooks: FC = () => {
   const { booksData, clubUrl, isMaster, handleDelete, isLoading } = useClubProfileBooks();
@@ -19,7 +20,12 @@ const ClubProfileBooks: FC = () => {
             />
           ))}
           {booksData.length === 0 && (
-            <div className="club-profile-books__placeholder">Участники ещё не выбрали книги</div>
+            <div className="club-profile-books__placeholder">
+              <span>
+                <CryingFace />
+              </span>
+              <span>Участники ещё не выбрали книги</span>
+            </div>
           )}
         </div>
       )}

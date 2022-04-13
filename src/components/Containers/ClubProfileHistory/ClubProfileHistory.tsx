@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import useClubProfileHistory from './useClubProfileHistory';
 import BookCard from '../../UI/BookCard/BookCard';
 import './club-profile-history.scss';
+import { ReactComponent as RollingEyes } from '../../../assets/svg/rolling-eyes.svg';
 
 interface ClubProfileHistoryProps {}
 
@@ -20,7 +21,12 @@ const ClubProfileHistory: FC<ClubProfileHistoryProps> = () => {
           />
         ))}
       {!isLoading && chosenBooksHistory.length === 0 && (
-        <div className="club-profile-history__placeholder">Собраний ещё не было</div>
+        <div className="club-profile-history__placeholder">
+          <span>
+            <RollingEyes />
+          </span>
+          <span>Собраний ещё не было</span>
+        </div>
       )}
     </div>
   );

@@ -2,7 +2,21 @@
 
 %profile-content-placeholder {
   font-size: variables-size.$font-size-l;
-  padding: 40% 0;
+  height: 550px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  svg {
+    width: variables-size.$rem-60;
+    height: variables-size.$rem-60;
+    margin-right: variables-size.$rem-12;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  %profile-content-placeholder {
+    height: 200px;
+  }
 }

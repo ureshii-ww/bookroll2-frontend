@@ -8,6 +8,7 @@ import { RouteNames } from '../../../routes/route-names.enum';
 import { ReactComponent as BackSvg } from '../../../assets/svg/back.svg';
 import PageLoader from '../../UI/PageLoader/PageLoader';
 import { Helmet } from 'react-helmet';
+import { ReactComponent as CryingFace } from '../../../assets/svg/loudly-crying-face.svg';
 
 const WheelPage = () => {
   const { clubUrl } = useParams();
@@ -26,7 +27,14 @@ const WheelPage = () => {
           </Link>
         </div>
         {booksCount > 2 && <WheelContainer handleSetBooksKey={handleSetBooksKey} />}
-        {booksCount <= 2 && <div className="wheel-page__placeholder">Участники выбрали слишком мало книг</div>}
+        {booksCount <= 2 && (
+          <div className="wheel-page__placeholder">
+            <span>
+              <CryingFace />
+            </span>
+            <span>Участники выбрали слишком мало книг</span>
+          </div>
+        )}
         <WheelPageClubBooks clubBooks={clubBooks} booksKey={booksKey} />
       </div>
     </Fragment>

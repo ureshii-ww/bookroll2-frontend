@@ -3,6 +3,7 @@ import { useUserProfileContext } from '../../Pages/UserProfilePage/UserProfilePa
 import BookCard from '../../UI/BookCard/BookCard';
 import './user-profile-books.scss';
 import useUserProfileBooks from './useUserProfileBooks';
+import { ReactComponent as ConfusedFace } from '../../../assets/svg/confused-face.svg';
 
 const UserProfileBooks: FC = () => {
   const { isCurrentUser, userUrl } = useUserProfileContext();
@@ -23,7 +24,14 @@ const UserProfileBooks: FC = () => {
           ))}
         </Fragment>
       )}
-      {!isLoading && wholeArrayLength === 0 && <div className="user-profile-books__placeholder">Книги не выбраны</div>}
+      {!isLoading && wholeArrayLength === 0 && (
+        <div className="user-profile-books__placeholder">
+          <span>
+            <ConfusedFace />
+          </span>
+          <span>Книги не выбраны</span>
+        </div>
+      )}
       {!isOut && !isLoading && <div ref={triggerRef} />}
     </div>
   );

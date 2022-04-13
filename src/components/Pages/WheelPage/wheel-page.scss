@@ -26,10 +26,26 @@
 
   &__placeholder {
     width: 100%;
-    padding: 55% 0;
+    padding: 40vh 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: variables-size.$font-size-l;
+    text-align: center;
+    svg {
+      width: variables-size.$rem-60;
+      height: variables-size.$rem-60;
+      margin-right: variables-size.$rem-12;
+    }
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .wheel-page__placeholder {
+    flex-direction: column;
+    padding: 35vh 0;
+    svg {
+      margin-bottom: variables-size.$rem-12;
+    }
   }
 }

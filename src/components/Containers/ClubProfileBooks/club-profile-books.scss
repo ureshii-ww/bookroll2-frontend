@@ -1,8 +1,18 @@
 @use 'src/styles/placeholders/page-placeholders';
 @use 'src/styles/placeholders/profile-content-placeholder';
+@use 'src/styles/variables/variables-size';
 
 .club-profile-books {
   &__placeholder {
     @extend %profile-content-placeholder;
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .club-profile-books__placeholder {
+    flex-direction: column;
+    svg {
+      margin-bottom: variables-size.$rem-12;
+    }
   }
 }

@@ -1,0 +1,7 @@
+@use 'src/styles/placeholders/profile-content-placeholder';
+
+.club-profile-reviews {
+  &__placeholder {
+    @extend %profile-content-placeholder;
+  }
+}
