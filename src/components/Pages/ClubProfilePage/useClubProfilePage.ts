@@ -8,6 +8,7 @@ const useClubProfilePage = () => {
   const { clubUrl } = useParams();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(state => state.clubProfile.info.isLoading);
+  const error = useAppSelector(state => state.clubProfile.info.error);
 
   useEffect(() => {
     if (!isLoading && clubUrl && clubUrl.length > 0) {
@@ -15,7 +16,7 @@ const useClubProfilePage = () => {
     }
   }, []);
 
-  return { clubUrl, isLoading };
+  return { clubUrl, isLoading, error };
 };
 
 export default useClubProfilePage;

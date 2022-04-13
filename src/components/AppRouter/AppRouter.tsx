@@ -22,6 +22,7 @@ import ClubProfileReviews from '../Containers/ClubProfileReviews/ClubProfileRevi
 import Bubble from '../Containers/Bubble/Bubble';
 import Footer from '../Containers/Footer/Footer';
 import NavbarMobile from '../Containers/Navbar/NavbarMobile';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 const AppRouter: FC = () => {
   const { isAuth, userData } = useAppSelector(state => state.auth);
@@ -51,7 +52,7 @@ const AppRouter: FC = () => {
                 </Route>
                 <Route path={RouteNames.CLUB_WHEEL} element={<WheelPage />} />
                 <Route path={RouteNames.RANDOM_BOOK} element={<RandomBookPage />} />
-                <Route path="*" element={<Navigate to={`${RouteNames.USER_PROFILE_BASE}${userData.url}/`} />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </div>
           </main>

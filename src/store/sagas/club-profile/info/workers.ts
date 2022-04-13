@@ -17,9 +17,23 @@ export function* loadClubProfileInfoSaga(action: ReturnType<typeof loadClubProfi
     );
     yield put(loadClubProfileInfoSuccess(response.data));
   } catch (error) {
-    if(axios.isAxiosError(error)) {
-      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
-      yield put(loadClubProfileInfoFailure());
+    if (axios.isAxiosError(error)) {
+      if (error.request.status === 404) {
+        yield put(
+          loadClubProfileInfoFailure({
+            status: error.request.status,
+            message: 'Такой страницы не существует',
+          })
+        );
+      } else {
+        yield put(
+          loadClubProfileInfoFailure({
+            status: error.request.status,
+            message: error.request.statusText,
+          })
+        );
+        yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+      }
     }
   }
 }

@@ -1,9 +1,15 @@
-import { ClubProfileInfoState, LoadClubProfileInfoPayload, LoadClubProfileInfoSuccessPayload } from './types';
+import {
+  ClubProfileInfoState,
+  LoadClubProfileInfoFailurePayload,
+  LoadClubProfileInfoPayload,
+  LoadClubProfileInfoSuccessPayload,
+} from './types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ClubProfileInfoState = {
   data: null,
   isLoading: false,
+  error: null,
 };
 
 const clubProfileInfoSlice = createSlice({
@@ -12,13 +18,15 @@ const clubProfileInfoSlice = createSlice({
   reducers: {
     loadClubProfileInfo(state, action: PayloadAction<LoadClubProfileInfoPayload>) {
       state.isLoading = true;
+      state.error = null;
     },
     loadClubProfileInfoSuccess(state, action: PayloadAction<LoadClubProfileInfoSuccessPayload>) {
       state.data = action.payload;
       state.isLoading = false;
     },
-    loadClubProfileInfoFailure(state, action: PayloadAction) {
+    loadClubProfileInfoFailure(state, action: PayloadAction<LoadClubProfileInfoFailurePayload>) {
       state.isLoading = false;
+      state.error = action.payload;
     },
     joinClubSuccess(state) {
       if (state.data) {

@@ -8,6 +8,7 @@ const useUserProfilePage = () => {
   const { userUrl } = useParams();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(state => state.userProfile.info.isLoading);
+  const error = useAppSelector(state => state.userProfile.info.error);
   const isCurrentUser = useAppSelector(state => state.auth.userData?.url === userUrl);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const useUserProfilePage = () => {
     }
   }, []);
 
-  return { userUrl, isLoading, isCurrentUser };
+  return { userUrl, isLoading, isCurrentUser, error };
 };
 
 export default useUserProfilePage;

@@ -18,8 +18,22 @@ export function* loadUserProfileInfoSaga(action: ReturnType<typeof loadUserProfi
     yield put(loadUserProfileInfoSuccess(response.data));
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
-      yield put(loadUserProfileInfoFailure());
+      if (error.request.status === 404) {
+        yield put(
+          loadUserProfileInfoFailure({
+            status: error.request.status,
+            message: 'Такой страницы не существует',
+          })
+        );
+      } else {
+        yield put(
+          loadUserProfileInfoFailure({
+            status: error.request.status,
+            message: error.request.statusText,
+          })
+        );
+        yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+      }
     }
   }
 }

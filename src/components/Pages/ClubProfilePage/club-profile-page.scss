@@ -1,6 +1,7 @@
 @use 'src/styles/placeholders/page-placeholders';
 @use 'src/styles/placeholders/page-loading';
 @use 'src/styles/placeholders/page-content';
+@use 'src/styles/placeholders/page-error';
 
 .club-profile-page {
   @extend %page-layout;
@@ -12,5 +13,9 @@
 
   &--loading {
     @extend %page-loading;
+  }
+
+  &--error {
+    @extend %page-error;
   }
 }

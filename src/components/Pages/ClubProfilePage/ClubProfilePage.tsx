@@ -7,12 +7,13 @@ import { RouteNames } from '../../../routes/route-names.enum';
 import './club-profile-page.scss';
 import PageLoader from '../../UI/PageLoader/PageLoader';
 import useClubProfilePage from './useClubProfilePage';
+import ErrorContainer from '../../UI/ErrorContainer/ErrorContainer';
 
 type ContextType = { clubUrl: string };
 
 const ClubProfilePage = () => {
   const location = useLocation();
-  const { clubUrl, isLoading } = useClubProfilePage();
+  const { clubUrl, isLoading, error } = useClubProfilePage();
 
   const clubProfileTabs: TabButtonProps[] = [
     { name: 'Описание', path: `${RouteNames.CLUB_PROFILE_BASE}${clubUrl}/${RouteNames.CLUB_PROFILE_RULES}` },
@@ -28,11 +29,23 @@ const ClubProfilePage = () => {
     );
   }
 
-  return isLoading ? (
-    <div className="club-profile-page club-profile-page--loading">
-      <PageLoader />
-    </div>
-  ) : (
+  if (isLoading) {
+    return (
+      <div className="club-profile-page club-profile-page--loading">
+        <PageLoader />
+      </div>
+    );
+  }
+
+  if (!isLoading && error?.status === 404) {
+    return (
+      <div className="club-profile-page club-profile-page--error">
+        <ErrorContainer errorCode={error.status} errorMessage={error.message} />
+      </div>
+    );
+  }
+
+  return (
     <div className="club-profile-page">
       <ClubProfileHeader clubUrl={clubUrl || ''} />
       <ProfileTabs tabsData={clubProfileTabs} url={clubUrl} />
