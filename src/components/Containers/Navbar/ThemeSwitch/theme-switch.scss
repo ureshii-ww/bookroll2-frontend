@@ -78,3 +78,23 @@ $indicator-border-distance: calc($toggle-height / 10);
     }
   }
 }
+
+@media (max-width: variables-size.$device-width-small) {
+  .theme-switch {
+    &--light, &--dark {
+      .theme-switch__icon {
+        width: variables-size.$font-size-x-x-l;
+        height: variables-size.$font-size-x-x-l;
+        right: unset;
+        left: unset;
+        bottom: unset;
+
+        svg {
+          width: variables-size.$font-size-x-x-l;
+          height: variables-size.$font-size-x-x-l;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

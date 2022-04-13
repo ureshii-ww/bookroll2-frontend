@@ -66,6 +66,11 @@
       &.bubble__item {
         display: flex;
       }
+
+      .theme-switch__toggle {
+        width: variables-size.$rem-32;
+        height: variables-size.$rem-32;
+      }
     }
   }
 }

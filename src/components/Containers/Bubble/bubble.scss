@@ -37,10 +37,12 @@
       width: 100%;
       display: flex;
       align-items: center;
+
       svg {
         width: variables-size.$font-size-l;
         height: variables-size.$font-size-l;
       }
+
       span {
         font-size: variables-size.$font-size-m-s;
       }
@@ -61,5 +63,27 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid var(--bubble-background-color);
+  }
+}
+
+@media (max-width: variables-size.$device-width-small) {
+  .bubble__item {
+    font-size: variables-size.$font-size-x-l;
+
+    svg {
+      width: variables-size.$font-size-x-x-l;
+      height: variables-size.$font-size-x-x-l;
+    }
+
+    .transparent-button {
+      span {
+        font-size: variables-size.$font-size-x-l;
+      }
+
+      svg {
+        width: variables-size.$font-size-x-x-l;
+        height: variables-size.$font-size-x-x-l;
+      }
+    }
   }
 }
