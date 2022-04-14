@@ -22,12 +22,15 @@ import { joinClubSuccess, leaveClubSuccess } from '../../reducers/club-profile/i
 import { setTheme } from '../../reducers/theme';
 import { push } from 'redux-first-history';
 import { RouteNames } from '../../../routes/route-names.enum';
+import { removeDarkFromBody } from '../../../helpers/remove-dark-from-body';
 
 export function* registerSaga(action: ReturnType<typeof register>) {
   const { username, email, password } = action.payload;
   try {
     yield call(AuthService.register, username, email, password);
     yield put(registerSuccess());
+    yield put(addSystemNotification({message: 'Вы успешно зарегистрированы', notificationType: 'success'}));
+    yield put(push(`${RouteNames.LOGIN}`));
   } catch (error) {
     yield put(registerFailure());
     if (axios.isAxiosError(error)) {
@@ -63,6 +66,7 @@ export function* logoutSaga() {
     yield put(setIsAuth(false));
     yield put(setUserData(null));
     yield put(setTheme('light'));
+    yield call(removeDarkFromBody);
     yield call(setUserUrl, '');
     yield call(setUserToken, '');
   } catch (error) {

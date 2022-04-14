@@ -1,9 +1,13 @@
 import { takeEvery } from 'redux-saga/effects';
-import { createClub, joinClub, leaveClub, login, logout } from '../../reducers/auth';
-import { createClubSaga, joinClubSaga, leaveClubSaga, loginSaga, logoutSaga } from './workers';
+import { createClub, joinClub, leaveClub, login, logout, register } from '../../reducers/auth';
+import { createClubSaga, joinClubSaga, leaveClubSaga, loginSaga, logoutSaga, registerSaga } from './workers';
 
 export function* watchLogin() {
   yield takeEvery(login.type, loginSaga);
+}
+
+export function* watchRegister() {
+  yield takeEvery(register.type, registerSaga);
 }
 
 export function* watchLogout() {
