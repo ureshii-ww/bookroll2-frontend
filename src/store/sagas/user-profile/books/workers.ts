@@ -3,7 +3,6 @@ import {
   deleteUserProfileBookSuccess,
   loadUserProfileBooks,
   loadUserProfileBooksSuccess,
-  resetUserProfileBooks,
 } from '../../../reducers/user-profile/books';
 import { call, put, select } from 'redux-saga/effects';
 import UserService from '../../../../services/user.service';
@@ -21,7 +20,7 @@ export function* loadUserProfileBooksSaga(action: ReturnType<typeof loadUserProf
       UserService.getUserBooks,
       userUrl,
       page,
-      size
+      size,
     );
     const length = parseInt(response.headers['x-data-length']);
     yield put(loadUserProfileBooksSuccess({ data: response.data, length }));
@@ -45,7 +44,7 @@ export function* deleteUserProfileBookSaga(action: ReturnType<typeof deleteUserP
         UserService.getUserBooks,
         userUrl,
         page,
-        size
+        size,
       );
       const lastArrayElement = response.data[response.data.length - 1];
       const newLength = parseInt(response.headers['x-data-length']);

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { WheelWinnerInfo } from '../../../../models/wheel-winner-info';
 import WheelContainerBookData from '../WheelContainerBookData/WheelContainerBookData';
 import './wheel-container-info.scss';
 import { useAppSelector } from '../../../../hooks/useAppSelector';

@@ -33,7 +33,7 @@ export function* loadUserSettingsAccountSaga(action: ReturnType<typeof loadUserS
 export function* updatePasswordSaga(action: ReturnType<typeof updatePassword>) {
   const { userUrl, oldPassword, newPassword }: UpdatePasswordPayload = action.payload;
   try {
-    const response: Awaited<ReturnType<typeof UserService.updatePassword>> = yield call(
+   yield call(
       UserService.updatePassword,
       userUrl,
       oldPassword,

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { store } from '../store';
+import { logout } from '../store/reducers/auth';
 
 export const API_URL: string = process.env.REACT_APP_API_URL || '';
 
@@ -66,7 +68,7 @@ $api.interceptors.response.use(
         return $api.request(originalRequest);
       } catch (error) {
         processQueue(error, null);
-        console.log('Not Authorized');
+        store.dispatch(logout());
       } finally {
         isRefreshing = false;
       }

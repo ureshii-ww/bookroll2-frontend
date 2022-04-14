@@ -20,8 +20,6 @@ export interface LoadUserProfileBooksSuccessPayload {
   length: number;
 }
 
-export type ResetUserProfileBooksPayload = string;
-
 export interface DeleteUserProfileBookPayload {
   userUrl: string;
   index: number;

@@ -12,7 +12,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const useWheelContainer = (handleSetBooksKey: (rollsCount: number) => void) => {
   const { clubUrl } = useParams();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const currentStage = useAppSelector(state => state.clubWheel.stages.currentStage);
   const clubBooks = useAppSelector(state => state.clubWheel.booksList.data);

@@ -9,7 +9,7 @@ interface UserAccountProps {
 }
 
 const UserSettingsAccount: FC<UserAccountProps> = ({ userUrl, ...rest }) => {
-  const { accountInfo, isLoading } = useUserSettingsAccount(userUrl);
+  const { accountInfo } = useUserSettingsAccount(userUrl);
 
   return (
     <div className="user-settings-account">

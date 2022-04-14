@@ -3,7 +3,6 @@ import {
   DeleteUserProfileBookSuccessPayload,
   LoadUserProfileBooksPayload,
   LoadUserProfileBooksSuccessPayload,
-  ResetUserProfileBooksPayload,
   UserProfileBooksState,
 } from './types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
