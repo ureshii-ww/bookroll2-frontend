@@ -10,7 +10,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: UserProfileBooksState = {
   data: [],
-  isLoading: false,
+  isLoading: true,
   page: 1,
   size: 10,
   length: 1,
@@ -41,6 +41,7 @@ const userProfileBooksSlice = createSlice({
     resetUserProfileBooks(state) {
       state.isOut = false;
       state.data = [];
+      state.isLoading = true;
     },
     deleteUserProfileBook(state, action: PayloadAction<DeleteUserProfileBookPayload>) {},
     deleteUserProfileBookSuccess(state, action: PayloadAction<DeleteUserProfileBookSuccessPayload>) {
