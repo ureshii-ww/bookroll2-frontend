@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ClubProfileHistoryState = {
   data: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const clubProfileHistorySlice = createSlice({
@@ -22,6 +22,7 @@ const clubProfileHistorySlice = createSlice({
     },
     resetClubProfileHistory(state) {
       state.data = [];
+      state.isLoading = true;
     },
   },
 });

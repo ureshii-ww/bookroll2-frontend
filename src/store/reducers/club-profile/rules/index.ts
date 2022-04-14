@@ -22,6 +22,7 @@ const clubProfileRulesSlice = createSlice({
     },
     resetClubProfileRules(state) {
       state.data = '';
+      state.isLoading = true;
     },
   },
 });

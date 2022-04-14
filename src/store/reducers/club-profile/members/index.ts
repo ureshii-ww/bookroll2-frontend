@@ -22,6 +22,7 @@ const clubProfileMembersSlice = createSlice({
     },
     resetClubProfileMembers(state) {
       state.data = [];
+      state.isLoading = true;
     },
   },
 });

@@ -9,7 +9,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ClubProfileBooksState = {
   data: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const clubProfileBooksSlice = createSlice({
@@ -26,6 +26,7 @@ const clubProfileBooksSlice = createSlice({
     loadClubProfileBooksFailure(state, action: PayloadAction) {},
     resetClubProfileBooks(state) {
       state.data = [];
+      state.isLoading = true;
     },
     deleteClubProfileBook(state, action: PayloadAction<DeleteClubProfileBookPayload>) {},
     deleteClubProfileBookSuccess(state, action: PayloadAction<DeleteClubProfileBookSuccessPayload>) {
