@@ -54,7 +54,7 @@ export function* loginSaga(action: ReturnType<typeof login>) {
   } catch (error) {
     yield put(loginFailure());
     if (axios.isAxiosError(error)) {
-      yield put(addSystemNotification({ message: error.request.statusText, notificationType: 'error' }));
+      yield put(addSystemNotification({ message: JSON.parse(error.request.response).message, notificationType: 'error' }));
     }
   }
 }
