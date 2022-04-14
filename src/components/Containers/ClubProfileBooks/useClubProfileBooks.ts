@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
-import { deleteClubProfileBook, loadClubProfileBooks } from '../../../store/reducers/club-profile/books';
+import {
+  deleteClubProfileBook,
+  loadClubProfileBooks,
+  resetClubProfileBooks,
+} from '../../../store/reducers/club-profile/books';
 
 const useClubProfileBooks = () => {
   const { clubUrl } = useClubProfileContext();
@@ -14,6 +18,10 @@ const useClubProfileBooks = () => {
   useEffect(() => {
     if (clubData) {
       dispatch(loadClubProfileBooks(clubUrl));
+    }
+
+    return () => {
+      dispatch(resetClubProfileBooks());
     }
   }, [clubUrl]);
 

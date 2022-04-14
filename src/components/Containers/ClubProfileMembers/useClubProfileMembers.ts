@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePage';
 import useAppDispatch from '../../../hooks/useAppDispatch';
-import { loadClubProfileMembers } from '../../../store/reducers/club-profile/members';
+import { loadClubProfileMembers, resetClubProfileMembers } from '../../../store/reducers/club-profile/members';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
 const useClubProfileMembers = () => {
@@ -11,6 +11,10 @@ const useClubProfileMembers = () => {
 
   useEffect(() => {
     dispatch(loadClubProfileMembers(clubUrl));
+
+    return () => {
+      dispatch(resetClubProfileMembers());
+    }
   }, [clubUrl]);
 
   return { usersInfo, clubUrl, isLoading };

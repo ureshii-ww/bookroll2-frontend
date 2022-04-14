@@ -2,7 +2,7 @@ import { useClubProfileContext } from '../../Pages/ClubProfilePage/ClubProfilePa
 import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
-import { loadClubProfileHistory } from '../../../store/reducers/club-profile/history';
+import { loadClubProfileHistory, resetClubProfileHistory } from '../../../store/reducers/club-profile/history';
 
 const useClubProfileHistory = () => {
   const { data: chosenBooksHistory, isLoading } = useAppSelector(state => state.clubProfile.history);
@@ -11,6 +11,10 @@ const useClubProfileHistory = () => {
 
   useEffect(() => {
     dispatch(loadClubProfileHistory(clubUrl));
+
+    return () => {
+      dispatch(resetClubProfileHistory());
+    }
   }, [clubUrl]);
 
   return { chosenBooksHistory, isLoading, clubUrl };

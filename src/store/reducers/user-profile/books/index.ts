@@ -38,7 +38,7 @@ const userProfileBooksSlice = createSlice({
     loadUserProfileBooksFailure(state, action: PayloadAction) {
       state.isLoading = false;
     },
-    resetUserProfileBooks(state, action: PayloadAction<ResetUserProfileBooksPayload>) {
+    resetUserProfileBooks(state) {
       state.isOut = false;
       state.data = [];
     },

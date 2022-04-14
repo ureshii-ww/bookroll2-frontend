@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useEffect } from 'react';
-import { loadClubProfileInfo } from '../../../store/reducers/club-profile/info';
+import { loadClubProfileInfo, resetClubProfileInfo } from '../../../store/reducers/club-profile/info';
 
 const useClubProfilePage = () => {
   const { clubUrl } = useParams();
@@ -13,6 +13,10 @@ const useClubProfilePage = () => {
   useEffect(() => {
     if (!isLoading && clubUrl && clubUrl.length > 0) {
       dispatch(loadClubProfileInfo(clubUrl));
+    }
+
+    return () => {
+      dispatch(resetClubProfileInfo());
     }
   }, []);
 

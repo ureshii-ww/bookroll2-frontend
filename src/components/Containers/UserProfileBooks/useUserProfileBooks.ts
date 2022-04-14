@@ -30,9 +30,13 @@ const useUserProfileBooks = (userUrl: string) => {
 
   useEffect(() => {
     if (userInfoData !== null) {
-      dispatch(resetUserProfileBooks(userUrl));
+      dispatch(loadUserProfileBooks({ userUrl, page: 1, size: chunkSize }));
     }
-  }, []);
+
+    return () => {
+      dispatch(resetUserProfileBooks());
+    }
+  }, [])
 
   return { booksArray, triggerRef, isOut, isLoading, wholeArrayLength, handleDeleteBook };
 };

@@ -34,11 +34,6 @@ export function* loadUserProfileBooksSaga(action: ReturnType<typeof loadUserProf
   }
 }
 
-export function* resetUserProfileBooksSaga(action: ReturnType<typeof resetUserProfileBooks>) {
-  const userUrl = action.payload;
-  yield put(loadUserProfileBooks({ userUrl, page: 1, size: 10 }));
-}
-
 export function* deleteUserProfileBookSaga(action: ReturnType<typeof deleteUserProfileBook>) {
   const { index, userUrl } = action.payload;
   try {

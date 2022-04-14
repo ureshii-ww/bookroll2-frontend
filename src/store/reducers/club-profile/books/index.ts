@@ -24,6 +24,9 @@ const clubProfileBooksSlice = createSlice({
       state.isLoading = false;
     },
     loadClubProfileBooksFailure(state, action: PayloadAction) {},
+    resetClubProfileBooks(state) {
+      state.data = [];
+    },
     deleteClubProfileBook(state, action: PayloadAction<DeleteClubProfileBookPayload>) {},
     deleteClubProfileBookSuccess(state, action: PayloadAction<DeleteClubProfileBookSuccessPayload>) {
       const { userUrl, index } = action.payload;
@@ -37,6 +40,7 @@ export const {
   loadClubProfileBooks,
   loadClubProfileBooksFailure,
   loadClubProfileBooksSuccess,
+  resetClubProfileBooks,
   deleteClubProfileBook,
   deleteClubProfileBookSuccess,
 } = clubProfileBooksSlice.actions;

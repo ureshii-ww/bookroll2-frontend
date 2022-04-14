@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { loadUserProfileInfo } from '../../../store/reducers/user-profile/info';
+import { loadUserProfileInfo, resetUserProfileInfo } from '../../../store/reducers/user-profile/info';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
@@ -14,6 +14,10 @@ const useUserProfilePage = () => {
   useEffect(() => {
     if (!isLoading && userUrl && userUrl.length > 0) {
       dispatch(loadUserProfileInfo(userUrl));
+    }
+
+    return () => {
+      dispatch(resetUserProfileInfo());
     }
   }, []);
 

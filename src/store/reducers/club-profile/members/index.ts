@@ -20,9 +20,16 @@ const clubProfileMembersSlice = createSlice({
     loadClubProfileMembersFailure(state) {
       state.isLoading = false;
     },
+    resetClubProfileMembers(state) {
+      state.data = [];
+    },
   },
 });
 
-export const { loadClubProfileMembers, loadClubProfileMembersFailure, loadClubProfileMembersSuccess } =
-  clubProfileMembersSlice.actions;
+export const {
+  loadClubProfileMembers,
+  loadClubProfileMembersFailure,
+  loadClubProfileMembersSuccess,
+  resetClubProfileMembers,
+} = clubProfileMembersSlice.actions;
 export const clubProfileMembersReducer = clubProfileMembersSlice.reducer;

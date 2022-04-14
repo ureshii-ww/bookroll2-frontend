@@ -28,11 +28,14 @@ const userProfileInfoSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    resetUserProfileInfo(state) {
+      state.data = null;
+    },
   },
 });
 
-export const { loadUserProfileInfo, loadUserProfileInfoSuccess, loadUserProfileInfoFailure } =
+export const { loadUserProfileInfo, loadUserProfileInfoSuccess, loadUserProfileInfoFailure, resetUserProfileInfo } =
   userProfileInfoSlice.actions;
 
-const userProfileInfoReducer =  userProfileInfoSlice.reducer;
+const userProfileInfoReducer = userProfileInfoSlice.reducer;
 export default userProfileInfoReducer;

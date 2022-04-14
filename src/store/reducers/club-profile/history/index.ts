@@ -20,9 +20,16 @@ const clubProfileHistorySlice = createSlice({
     loadClubProfileHistoryFailure(state) {
       state.isLoading = false;
     },
+    resetClubProfileHistory(state) {
+      state.data = [];
+    },
   },
 });
 
-export const { loadClubProfileHistory, loadClubProfileHistoryFailure, loadClubProfileHistorySuccess } =
-  clubProfileHistorySlice.actions;
+export const {
+  loadClubProfileHistory,
+  loadClubProfileHistoryFailure,
+  loadClubProfileHistorySuccess,
+  resetClubProfileHistory,
+} = clubProfileHistorySlice.actions;
 export const clubProfileHistoryReducer = clubProfileHistorySlice.reducer;

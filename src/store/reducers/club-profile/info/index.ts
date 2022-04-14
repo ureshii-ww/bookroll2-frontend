@@ -28,6 +28,10 @@ const clubProfileInfoSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    resetClubProfileInfo(state) {
+      state.data = null;
+      state.error = null;
+    },
     joinClubSuccess(state) {
       if (state.data) {
         state.data.isInClub = true;
@@ -46,6 +50,7 @@ export const {
   loadClubProfileInfo,
   loadClubProfileInfoFailure,
   loadClubProfileInfoSuccess,
+  resetClubProfileInfo,
   joinClubSuccess,
   leaveClubSuccess,
 } = clubProfileInfoSlice.actions;
